@@ -33,7 +33,7 @@ public class RouteUserDistributionConfigurator implements RouteConfigurator {
         DeliveryOptions options = DeliveryOptionsBuilder.buildWithApiVersion(routingContext).setSendTimeout(mbusTimeout)
             .addHeader(Constants.Message.MSG_OP, Constants.Message.MSG_OP_USER_DISTRIBUTION);
         eb.<JsonObject>send(Constants.EventBus.MBEP_USER_DISTRIBUTION,
-            RouteRequestUtility.getBodyForMessage(routingContext), options,
+            RouteRequestUtility.getBodyForMessage(routingContext, true), options,
             reply -> RouteResponseUtility.responseHandler(routingContext, reply, LOGGER));
     }
 

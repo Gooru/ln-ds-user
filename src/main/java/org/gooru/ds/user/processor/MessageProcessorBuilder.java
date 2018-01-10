@@ -1,6 +1,7 @@
 package org.gooru.ds.user.processor;
 
 import org.gooru.ds.user.constants.Constants;
+import org.gooru.ds.user.processor.user.distribution.UserDistributionProcessor;
 
 import io.vertx.core.Vertx;
 import io.vertx.core.eventbus.Message;
@@ -17,7 +18,7 @@ public class MessageProcessorBuilder {
     public static MessageProcessor buildProcessor(Vertx vertx, Message<JsonObject> message, String op) {
         switch (op) {
         case Constants.Message.MSG_OP_USER_DISTRIBUTION:
-            return new StubbedMessageProcessor(vertx, message);
+            return new UserDistributionProcessor(vertx, message);
         default:
             return null;
         }
