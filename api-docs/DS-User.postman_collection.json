@@ -1,0 +1,44 @@
+{
+	"id": "03382c33-b2fe-7c4a-6055-327a444ff279",
+	"name": "DS-User",
+	"description": "",
+	"order": [
+		"7f49ddfb-7149-812a-ab5f-e1692b3a6cc4"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1515565475701,
+	"owner": 0,
+	"public": false,
+	"requests": [
+		{
+			"id": "7f49ddfb-7149-812a-ab5f-e1692b3a6cc4",
+			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/api/ds/users/v1/user/distribution",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1515565564993,
+			"name": "UserDistribution",
+			"description": "",
+			"collectionId": "03382c33-b2fe-7c4a-6055-327a444ff279",
+			"responses": []
+		}
+	]
+}
