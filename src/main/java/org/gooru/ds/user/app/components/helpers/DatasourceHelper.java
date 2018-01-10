@@ -18,7 +18,7 @@ public final class DatasourceHelper {
         throw new AssertionError();
     }
 
-    private static final String DEFAULT_DATA_SOURCE_TYPE = "nucleus.ds.type";
+    private static final String DEFAULT_DATA_SOURCE_TYPE = "ds.type";
     private static final String DS_HIKARI = "hikari";
 
     public static DataSource initializeDataSource(JsonObject dbConfig) {
