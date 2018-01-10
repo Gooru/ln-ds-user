@@ -10,6 +10,8 @@ public final class Constants {
         public static final String MBEP_AUTH = "org.gooru.suggestions.eventbus.auth";
         public static final String MBUS_TIMEOUT = "event.bus.send.timeout.seconds";
 
+        public static final String MBEP_USER_DISTRIBUTION = "org.gooru.ds.users.user.distribution";
+
         private EventBus() {
             throw new AssertionError();
         }
@@ -22,6 +24,8 @@ public final class Constants {
         public static final String MSG_OP_STATUS = "mb.op.status";
         public static final String MSG_OP_STATUS_SUCCESS = "mb.op.status.success";
         public static final String MSG_OP_STATUS_FAIL = "mb.op.status.fail";
+
+        public static final String MSG_OP_USER_DISTRIBUTION = "mb.op.user.distribution";
 
         public static final String MSG_API_VERSION = "api.version";
         public static final String MSG_SESSION_TOKEN = "session.token";
@@ -61,6 +65,7 @@ public final class Constants {
         public static final String API_INTERNAL_BANNER = "/api/internal/banner";
         public static final String API_INTERNAL_METRICS = "/api/internal/metrics";
         private static final String API_BASE_ROUTE = "/api/ds/users/:version/";
+        public static final String API_USER_DISTRIBUTION = API_BASE_ROUTE + "user/distribution";
 
         private Route() {
             throw new AssertionError();

@@ -11,7 +11,7 @@
     }
   },
   "verticles": {
-    "org.gooru.suggestions.bootstrap.verticles.AuthVerticle": {
+    "org.gooru.ds.user.bootstrap.verticles.AuthVerticle": {
       "instances": 1,
       "worker": false,
       "config": {
@@ -25,13 +25,13 @@
         "sessionTimeoutInSeconds": 3600
       }
     },
-    "org.gooru.suggestions.bootstrap.verticles.SuggestionsTrackerVerticle": {
+    "org.gooru.ds.user.bootstrap.verticles.UserDistributionVerticle": {
       "instances": 1,
       "worker": false,
       "config": {
       }
     },
-    "org.gooru.suggestions.bootstrap.verticles.HttpVerticle": {
+    "org.gooru.ds.user.bootstrap.verticles.HttpVerticle": {
       "instances": 1,
       "worker": false,
       "config": {
