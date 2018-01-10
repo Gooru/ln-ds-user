@@ -4,6 +4,7 @@ import org.gooru.ds.user.constants.Constants;
 import org.gooru.ds.user.exceptions.HttpResponseWrapperException;
 import org.gooru.ds.user.exceptions.MessageResponseWrapperException;
 import org.gooru.ds.user.processor.MessageProcessor;
+import org.gooru.ds.user.processor.MessageProcessorBuilder;
 import org.gooru.ds.user.responses.MessageResponse;
 import org.gooru.ds.user.responses.ResponseUtil;
 import org.slf4j.Logger;
@@ -19,8 +20,8 @@ import io.vertx.core.json.JsonObject;
 /**
  * @author ashish on 10/1/18.
  */
-public class UserDistributionVerticle extends AbstractVerticle {
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserDistributionVerticle.class);
+public class DispatcherVerticle extends AbstractVerticle {
+    private static final Logger LOGGER = LoggerFactory.getLogger(DispatcherVerticle.class);
 
     @Override
     public void start(Future<Void> startFuture) throws Exception {
@@ -40,12 +41,10 @@ public class UserDistributionVerticle extends AbstractVerticle {
 
     private void processMessage(Message<JsonObject> message) {
         String op = message.headers().get(Constants.Message.MSG_OP);
-        switch (op) {
-        case Constants.Message.MSG_OP_USER_DISTRIBUTION:
-            MessageProcessor.buildStubbedProcessor(vertx, message).process()
-                .setHandler(event -> finishResponse(message, event));
-            break;
-        default:
+        MessageProcessor processor = MessageProcessorBuilder.buildProcessor(vertx, message, op);
+        if (processor != null) {
+            processor.process().setHandler(event -> finishResponse(message, event));
+        } else {
             LOGGER.warn("Invalid operation type");
             ResponseUtil.processFailure(message);
         }

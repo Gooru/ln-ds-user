@@ -65,9 +65,9 @@ class RouteAuthConfigurator implements RouteConfigurator {
                             routingContext.next();
                         } else {
                             if (responseHolder.isAuthorized()) {
-                                LOGGER.warn("Anonymous user is not allowed to have SP experience");
+                                LOGGER.warn("Anonymous access not allowed");
                             } else {
-                                LOGGER.warn("Unauthorized user is not allowed to have SP experience");
+                                LOGGER.warn("Unauthorized access not allowed");
                             }
                             routingContext.response().setStatusCode(HttpConstants.HttpStatus.UNAUTHORIZED.getCode())
                                 .setStatusMessage(HttpConstants.HttpStatus.UNAUTHORIZED.getMessage()).end();

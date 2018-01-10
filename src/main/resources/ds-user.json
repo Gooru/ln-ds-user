@@ -25,7 +25,7 @@
         "sessionTimeoutInSeconds": 3600
       }
     },
-    "org.gooru.ds.user.bootstrap.verticles.UserDistributionVerticle": {
+    "org.gooru.ds.user.bootstrap.verticles.DispatcherVerticle": {
       "instances": 1,
       "worker": false,
       "config": {
