@@ -10,7 +10,7 @@ public final class Constants {
         public static final String MBEP_AUTH = "org.gooru.suggestions.eventbus.auth";
         public static final String MBUS_TIMEOUT = "event.bus.send.timeout.seconds";
 
-        public static final String MBEP_USER_DISTRIBUTION = "org.gooru.ds.users.user.distribution";
+        public static final String MBEP_DISPATCHER = "org.gooru.ds.users.dispatcher";
 
         private EventBus() {
             throw new AssertionError();

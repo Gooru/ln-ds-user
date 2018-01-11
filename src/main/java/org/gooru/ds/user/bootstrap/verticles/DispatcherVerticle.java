@@ -27,7 +27,7 @@ public class DispatcherVerticle extends AbstractVerticle {
     public void start(Future<Void> startFuture) throws Exception {
 
         EventBus eb = vertx.eventBus();
-        eb.localConsumer(Constants.EventBus.MBEP_USER_DISTRIBUTION, this::processMessage).completionHandler(result -> {
+        eb.localConsumer(Constants.EventBus.MBEP_DISPATCHER, this::processMessage).completionHandler(result -> {
             if (result.succeeded()) {
                 LOGGER.info("Tracker end point ready to listen");
                 startFuture.complete();
