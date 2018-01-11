@@ -43,6 +43,9 @@
     }
   },
   "app.configuration": {
+    "default.offset": 0,
+    "default.limit": 20,
+    "default.max.limit": 30
   },
   "vertxOptions": {
     "workerPoolSize": 40,

@@ -6,7 +6,8 @@
 		"7f49ddfb-7149-812a-ab5f-e1692b3a6cc4",
 		"f6e6ad3a-8a26-aa77-32b1-b79f6345743c",
 		"70c52df3-234c-8d6a-7232-76433386bad0",
-		"030d1ece-dc31-3e99-c6a3-ebfc653b6f6a"
+		"030d1ece-dc31-3e99-c6a3-ebfc653b6f6a",
+		"5738471c-2859-f288-a8d1-91fd8805e985"
 	],
 	"folders": [],
 	"folders_order": [],
@@ -68,6 +69,64 @@
 			"helperAttributes": {},
 			"time": 1515646668927,
 			"name": "UserDistribution - Both Filters",
+			"description": "",
+			"collectionId": "03382c33-b2fe-7c4a-6055-327a444ff279",
+			"responses": []
+		},
+		{
+			"id": "5738471c-2859-f288-a8d1-91fd8805e985",
+			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/api/ds/users/v1/user/distribution/active?subject=MATHS&activeDuration=1m&offset=0&limit=10",
+			"queryParams": [
+				{
+					"key": "subject",
+					"value": "MATHS",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "activeDuration",
+					"value": "1m",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "offset",
+					"value": "0",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "limit",
+					"value": "10",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1515666820357,
+			"name": "Active Users List for Subject",
 			"description": "",
 			"collectionId": "03382c33-b2fe-7c4a-6055-327a444ff279",
 			"responses": []

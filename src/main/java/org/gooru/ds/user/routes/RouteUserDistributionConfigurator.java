@@ -27,6 +27,15 @@ public class RouteUserDistributionConfigurator implements RouteConfigurator {
         eb = vertx.eventBus();
         mbusTimeout = config.getLong(Constants.EventBus.MBUS_TIMEOUT, 30L) * 1000;
         router.get(Constants.Route.API_USER_DISTRIBUTION).handler(this::userDistribution);
+        router.get(Constants.Route.API_ACTIVE_USER_LIST).handler(this::activeUserList);
+    }
+
+    private void activeUserList(RoutingContext routingContext) {
+        DeliveryOptions options = DeliveryOptionsBuilder.buildWithApiVersion(routingContext).setSendTimeout(mbusTimeout)
+            .addHeader(Constants.Message.MSG_OP, Constants.Message.MSG_OP_ACTIVE_USER_LIST);
+        eb.<JsonObject>send(Constants.EventBus.MBEP_DISPATCHER,
+            RouteRequestUtility.getBodyForMessage(routingContext, true), options,
+            reply -> RouteResponseUtility.responseHandler(routingContext, reply, LOGGER));
     }
 
     private void userDistribution(RoutingContext routingContext) {

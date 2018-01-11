@@ -56,7 +56,7 @@ CREATE TABLE active_user_stats (
 );
 
 CREATE TABLE users_profile_master (
-    id bigint PRIMARY KEY,
+    id bigserial PRIMARY KEY,
     user_id text NOT NULL UNIQUE,
     username text,
     reference_id text,

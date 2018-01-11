@@ -1,6 +1,7 @@
 package org.gooru.ds.user.processor;
 
 import org.gooru.ds.user.constants.Constants;
+import org.gooru.ds.user.processor.activeuserlist.ActiveUserListProcessor;
 import org.gooru.ds.user.processor.user.distribution.UserDistributionProcessor;
 
 import io.vertx.core.Vertx;
@@ -19,6 +20,8 @@ public class MessageProcessorBuilder {
         switch (op) {
         case Constants.Message.MSG_OP_USER_DISTRIBUTION:
             return new UserDistributionProcessor(vertx, message);
+        case Constants.Message.MSG_OP_ACTIVE_USER_LIST:
+            return new ActiveUserListProcessor(vertx, message);
         default:
             return null;
         }

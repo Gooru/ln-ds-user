@@ -3,6 +3,7 @@ package org.gooru.ds.user.processor.user.distribution;
 import java.util.Arrays;
 import java.util.List;
 
+import org.gooru.ds.user.app.data.ActiveDuration;
 import org.gooru.ds.user.constants.HttpConstants;
 import org.gooru.ds.user.exceptions.HttpResponseWrapperException;
 import org.slf4j.Logger;
@@ -21,7 +22,6 @@ class UserDistributionCommand {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserDistributionCommand.class);
 
-    private static final List<String> VALID_ACTIVE_DURATION = Arrays.asList("1w", "1m", "6m", "1y");
     private static final List<Integer> VALID_ZOOM = Arrays.asList(1);
 
     public Integer getZoom() {
@@ -77,7 +77,7 @@ class UserDistributionCommand {
             LOGGER.info("Invalid zoom provided for request");
             throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Invalid zoom");
         }
-        if (activeDuration != null && !VALID_ACTIVE_DURATION.contains(activeDuration)) {
+        if (activeDuration != null && !ActiveDuration.isValidDuration(activeDuration)) {
             LOGGER.info("Invalid active duration provided for request");
             throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Invalid active duration");
         }
