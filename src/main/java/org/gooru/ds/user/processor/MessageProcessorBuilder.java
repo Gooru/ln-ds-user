@@ -22,6 +22,10 @@ public class MessageProcessorBuilder {
             return new UserDistributionProcessor(vertx, message);
         case Constants.Message.MSG_OP_ACTIVE_USER_LIST:
             return new ActiveUserListProcessor(vertx, message);
+        case Constants.Message.MSG_OP_USER_STATS_COMPETENCY:
+        case Constants.Message.MSG_OP_USER_STATS_JOURNEYS:
+        case Constants.Message.MSG_OP_USER_STATS_TIMESPENT:
+            return new StubbedMessageProcessor(vertx, message);
         default:
             return null;
         }

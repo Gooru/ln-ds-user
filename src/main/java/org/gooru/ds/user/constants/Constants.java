@@ -27,6 +27,9 @@ public final class Constants {
 
         public static final String MSG_OP_USER_DISTRIBUTION = "mb.op.user.distribution";
         public static final String MSG_OP_ACTIVE_USER_LIST = "mb.op.active.user.list";
+        public static final String MSG_OP_USER_STATS_JOURNEYS = "mb.op.user.stats.journeys";
+        public static final String MSG_OP_USER_STATS_TIMESPENT = "mb.op.user.stats.timespent";
+        public static final String MSG_OP_USER_STATS_COMPETENCY = "mb.op.user.stats.competency";
 
         public static final String MSG_API_VERSION = "api.version";
         public static final String MSG_SESSION_TOKEN = "session.token";
@@ -68,6 +71,9 @@ public final class Constants {
         private static final String API_BASE_ROUTE = "/api/ds/users/:version/";
         public static final String API_USER_DISTRIBUTION = API_BASE_ROUTE + "user/distribution";
         public static final String API_ACTIVE_USER_LIST = API_BASE_ROUTE + "user/distribution/active";
+        public static final String API_USER_STATS_JOURNEYS = API_BASE_ROUTE + "user/stats/journeys";
+        public static final String API_USER_STATS_TIMESPENT = API_BASE_ROUTE + "user/stats/timespent";
+        public static final String API_USER_STATS_COMPETENCY = API_BASE_ROUTE + "user/stats/competency";
 
         private Route() {
             throw new AssertionError();
