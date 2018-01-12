@@ -1,5 +1,5 @@
 {
-    "name": "User journey stats",
+    "name": "User competency stats",
     "request": {
         "method": "GET",
         "headers": [
@@ -7,7 +7,7 @@
                 "Authorization": "Token SessionToken"
             }
         ],
-        "endpoint": "/api/ds/users/v1/user/journeys/stats",
+        "endpoint": "/api/ds/users/v1/user/competency/stats",
         "queryParams": [
             {
                 "name": "user",
@@ -29,10 +29,10 @@
     },
     "response": {
         "body": {
-            "journeyStats" : [
+            "competencyStats" : [
                 {
-                    "independentJourneys": 2,
-                    "classJourneys": 4
+                    "inProgress": 2,
+                    "completed": 4
                 }
             ]
         },
