@@ -7,7 +7,7 @@
                 "Authorization": "Token SessionToken"
             }
         ],
-        "endpoint": "/api/ds/users/v1/user/journeys/stats",
+        "endpoint": "/api/ds/users/v1/user/stats/journeys",
         "queryParams": [
             {
                 "name": "user",

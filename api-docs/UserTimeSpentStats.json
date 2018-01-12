@@ -1,5 +1,5 @@
 {
-    "name": "User competency stats",
+    "name": "User timespent stats",
     "request": {
         "method": "GET",
         "headers": [
@@ -7,7 +7,7 @@
                 "Authorization": "Token SessionToken"
             }
         ],
-        "endpoint": "/api/ds/users/v1/user/stats/competency",
+        "endpoint": "/api/ds/users/v1/user/stats/timespent",
         "queryParams": [
             {
                 "name": "user",
@@ -29,13 +29,16 @@
     },
     "response": {
         "body": {
-            "competencyStats" : [
+            "timespentStats" : [
                 {
-                    "inProgress": 2,
-                    "completed": 4
+                    "webpage": 2,
+                    "interactive": 4,
+                    "video": 5,
+                    "text": 10,
+                    "audio": 10
                 }
             ]
         },
-        "comment": ""
+        "comment": "Time spent are in milliseconds"
     }
 }
