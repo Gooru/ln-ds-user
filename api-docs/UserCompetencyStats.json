@@ -29,12 +29,8 @@
     },
     "response": {
         "body": {
-            "competencyStats" : [
-                {
-                    "inProgress": 2,
-                    "completed": 4
-                }
-            ]
+            "inProgress": 2,
+            "completed": 4
         },
         "comment": ""
     }

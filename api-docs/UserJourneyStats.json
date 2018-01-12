@@ -29,12 +29,8 @@
     },
     "response": {
         "body": {
-            "journeyStats" : [
-                {
-                    "independentJourneys": 2,
-                    "classJourneys": 4
-                }
-            ]
+            "independentJourneys": 2,
+            "classJourneys": 4
         },
         "comment": ""
     }

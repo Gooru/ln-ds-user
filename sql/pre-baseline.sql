@@ -13,7 +13,9 @@
 -- drop table overall_course_performance
 -- drop table user_courses
 -- drop table course_performance
-
+-- drop table user_stats_journeys
+-- drop table user_stats_competency
+-- drop table user_stats_timespent
 
 CREATE TABLE user_distribution_zoom1 (
     id bigserial PRIMARY KEY,
@@ -112,6 +114,39 @@ CREATE TABLE user_vectors (
     updated_at timestamp without time zone DEFAULT timezone('UTC'::text, now()) NOT NULL
 );
 
+
+CREATE TABLE user_stats_competency (
+    id bigserial PRIMARY KEY,
+    user_id text NOT NULL,
+    duration character varying(512) NOT NULL,
+    in_progress integer,
+    completed integer,
+    updated_at timestamp without time zone DEFAULT timezone('UTC'::text, now()) NOT NULL,
+    UNIQUE(user_id, duration)
+);
+
+CREATE TABLE user_stats_journeys (
+    id bigserial PRIMARY KEY,
+    user_id text NOT NULL,
+    duration character varying(512) NOT NULL,
+    independent_journeys integer,
+    class_journeys integer,
+    updated_at timestamp without time zone DEFAULT timezone('UTC'::text, now()) NOT NULL,
+    UNIQUE(user_id, duration)
+);
+
+CREATE TABLE user_stats_timespent (
+    id bigserial PRIMARY KEY,
+    user_id text NOT NULL,
+    duration character varying(512) NOT NULL,
+    audio bigint,
+    interactive bigint,
+    webpage bigint,
+    text bigint,
+    video bigint,
+    updated_at timestamp without time zone DEFAULT timezone('UTC'::text, now()) NOT NULL,
+    UNIQUE(user_id, duration)
+);
 
 -- This is the master data table that forms the leaf level data housing 
 -- Aggregated Tables will be created/derived from this master tables.

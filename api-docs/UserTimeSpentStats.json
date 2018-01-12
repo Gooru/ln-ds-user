@@ -29,15 +29,11 @@
     },
     "response": {
         "body": {
-            "timespentStats" : [
-                {
-                    "webpage": 2,
-                    "interactive": 4,
-                    "video": 5,
-                    "text": 10,
-                    "audio": 10
-                }
-            ]
+            "webpage": 2,
+            "interactive": 4,
+            "video": 5,
+            "text": 10,
+            "audio": 10
         },
         "comment": "Time spent are in milliseconds"
     }
