@@ -1,0 +1,93 @@
+{
+    "name": "Learner profile distribution",
+    "request": {
+        "method": "GET",
+        "headers": [
+            {
+                "Authorization": "Token SessionToken"
+            }
+        ],
+        "endpoint": "/api/ds/users/v1/user/distribution",
+        "queryParams": [
+            {
+                "name": "zoom",
+                "type": "int",
+                "validValues": "1 to 5",
+                "defaultValue": 1,
+                "multipleOccurrence": "Not supported, only one will be picked up",
+                "comment": "1 means highest available level, e.g. continent. From 2 to 5 it will be more granular as is available",
+                "specialNote": null
+            },
+            {
+                "name": "subject",
+                "type": "string",
+                "validValues": "As provided by subject list API",
+                "defaultValue": null,
+                "multipleOccurrence": "Not supported, only one will be picked up",
+                "comment": "Provides a filter if we need to filter the distribution for a particular subject across geo locations",
+                "specialNote": "This parameter is mutually exclusive with geo location"
+            },
+            {
+                "name": "geoLocation",
+                "type": "string",
+                "validValues": "As provided by one of previous API calls",
+                "defaultValue": null,
+                "multipleOccurrence": "Not supported, only one will be picked up",
+                "comment": "Provides a filter if we need to filter the distribution for a particular geolocation across subjects"
+            },
+            {
+                "name": "activeDuration",
+                "type": "string",
+                "validValues": "Hard coded boundaries like 1w, 1m, 6m, 1y etc",
+                "defaultValue": "Would be governed by backend settings",
+                "multipleOccurrence": "Not supported, only one will be picked up",
+                "comment": "Hard coded duration value which will be considered for active user calculation"
+            }
+        ]
+    },
+    "response": {
+        "body": {
+            "subjects": [
+                {
+                    "code": "code",
+                    "name": "name",
+                    "total": 10000,
+                    "active": 3000
+                },
+                {
+                    "code": "code1",
+                    "name": "name1",
+                    "total": 10000,
+                    "active": 3000
+                },
+                {
+                    "code": "code2",
+                    "name": "name2",
+                    "total": 10000,
+                    "active": 3000
+                }
+            ],
+            "geoLocations": [
+                {
+                    "code": "code",
+                    "name": "name",
+                    "total": 10000,
+                    "active": 3000
+                },
+                {
+                    "code": "code1",
+                    "name": "name1",
+                    "total": 10000,
+                    "active": 3000
+                },
+                {
+                    "code": "code2",
+                    "name": "name2",
+                    "total": 10000,
+                    "active": 3000
+                }
+            ]
+        },
+        "comment": "geoLocations block will be present if subject filter is applied. subjects block will be present when geolocation filter is applied. When no filter is applied, both blocks will be present"
+    }
+}
