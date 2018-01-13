@@ -3,6 +3,9 @@ package org.gooru.ds.user.processor;
 import org.gooru.ds.user.constants.Constants;
 import org.gooru.ds.user.processor.activeuserlist.ActiveUserListProcessor;
 import org.gooru.ds.user.processor.user.distribution.UserDistributionProcessor;
+import org.gooru.ds.user.processor.userprefs.content.UserPrefsContentProcessor;
+import org.gooru.ds.user.processor.userprefs.curators.UserPrefsCuratorProcessor;
+import org.gooru.ds.user.processor.userprefs.providers.UserPrefsProviderProcessor;
 import org.gooru.ds.user.processor.userstats.competency.UserStatsCompetencyProcessor;
 import org.gooru.ds.user.processor.userstats.courses.UserStatsCoursesProcessor;
 import org.gooru.ds.user.processor.userstats.journeys.UserStatsJourneysProcessor;
@@ -34,6 +37,12 @@ public class MessageProcessorBuilder {
             return new UserStatsTimespentProcessor(vertx, message);
         case Constants.Message.MSG_OP_USER_STATS_COURSES:
             return new UserStatsCoursesProcessor(vertx, message);
+        case Constants.Message.MSG_OP_USER_PREFS_CONTENT:
+            return new UserPrefsContentProcessor(vertx, message);
+        case Constants.Message.MSG_OP_USER_PREFS_CURATORS:
+            return new UserPrefsCuratorProcessor(vertx, message);
+        case Constants.Message.MSG_OP_USER_PREFS_PROVIDERS:
+            return new UserPrefsProviderProcessor(vertx, message);
         default:
             return null;
         }

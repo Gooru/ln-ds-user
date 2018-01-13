@@ -163,6 +163,51 @@ CREATE TABLE user_stats_courses (
 
 CREATE UNIQUE INDEX on user_stats_courses (user_id, duration, course_id, coalesce(class_id, 'NONE'));
 
+-- Note that prefs values are stored as INT which are scaled to 1000
+-- API should scale it down between 0 and 1 before returning it
+CREATE TABLE user_prefs_content (
+    id bigserial PRIMARY KEY,
+    user_id text NOT NULL UNIQUE,
+    audio integer,
+    interactive integer,
+    webpage integer,
+    text integer,
+    video integer,
+    updated_at timestamp without time zone DEFAULT timezone('UTC'::text, now()) NOT NULL
+);
+
+-- Note that prefs values are stored as INT which are scaled to 1000
+-- API should scale it down between 0 and 1 before returning it
+CREATE TABLE user_prefs_curator (
+    id bigserial PRIMARY KEY,
+    user_id text NOT NULL,
+    curator_id bigint NOT NULL,
+    pref integer,
+    updated_at timestamp without time zone DEFAULT timezone('UTC'::text, now()) NOT NULL,
+    UNIQUE(user_id, curator_id)
+);
+
+-- Note that prefs values are stored as INT which are scaled to 1000
+-- API should scale it down between 0 and 1 before returning it
+CREATE TABLE user_prefs_provider (
+    id bigserial PRIMARY KEY,
+    user_id text NOT NULL,
+    provider_id bigint NOT NULL,
+    pref integer,
+    updated_at timestamp without time zone DEFAULT timezone('UTC'::text, now()) NOT NULL,
+    UNIQUE(user_id, provider_id)
+);
+
+CREATE TABLE curators (
+    id bigserial PRIMARY KEY,
+    name text NOT NULL UNIQUE
+);
+
+CREATE TABLE providers (
+    id bigserial PRIMARY KEY,
+    name text NOT NULL UNIQUE
+);
+
 -- This is the master data table that forms the leaf level data housing 
 -- Aggregated Tables will be created/derived from this master tables.
 CREATE TABLE ds_master (

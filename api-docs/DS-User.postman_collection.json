@@ -11,7 +11,10 @@
 		"a2e40b24-117e-7752-1152-7c89d59825bc",
 		"111c2e6b-345c-b0c5-da2b-28d4ecdd8109",
 		"4f66c0f6-20ff-4e08-fe23-447b1b4226f8",
-		"d70cec9c-d255-1bb6-ac71-0eeb2c541359"
+		"d70cec9c-d255-1bb6-ac71-0eeb2c541359",
+		"e476baf9-889c-94ec-704d-faef5275c72c",
+		"d667e39b-0552-5394-b83c-505fa31d0948",
+		"0efee4be-bba0-0ffe-bb83-17a27eb2f610"
 	],
 	"folders": [],
 	"folders_order": [],
@@ -19,6 +22,43 @@
 	"owner": "1962403",
 	"public": false,
 	"requests": [
+		{
+			"id": "0efee4be-bba0-0ffe-bb83-17a27eb2f610",
+			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/api/ds/users/v1/user/prefs/curators?user=user0",
+			"queryParams": [
+				{
+					"key": "user",
+					"value": "user0",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1515837942011,
+			"name": "User Prefs Curators",
+			"description": "",
+			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b",
+			"responses": []
+		},
 		{
 			"folder": null,
 			"id": "111c2e6b-345c-b0c5-da2b-28d4ecdd8109",
@@ -352,6 +392,43 @@
 			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b"
 		},
 		{
+			"id": "d667e39b-0552-5394-b83c-505fa31d0948",
+			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/api/ds/users/v1/user/prefs/providers?user=user0",
+			"queryParams": [
+				{
+					"key": "user",
+					"value": "user0",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1515837957569,
+			"name": "User Prefs Providers",
+			"description": "",
+			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b",
+			"responses": []
+		},
+		{
 			"id": "d70cec9c-d255-1bb6-ac71-0eeb2c541359",
 			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
 			"headerData": [
@@ -450,6 +527,43 @@
 			],
 			"pathVariableData": [],
 			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b"
+		},
+		{
+			"id": "e476baf9-889c-94ec-704d-faef5275c72c",
+			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/api/ds/users/v1/user/prefs/content?user=user0",
+			"queryParams": [
+				{
+					"key": "user",
+					"value": "user0",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1515837493291,
+			"name": "User Prefs Content",
+			"description": "",
+			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b",
+			"responses": []
 		}
 	]
 }
