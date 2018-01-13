@@ -148,6 +148,21 @@ CREATE TABLE user_stats_timespent (
     UNIQUE(user_id, duration)
 );
 
+CREATE TABLE user_stats_courses (
+    id bigserial PRIMARY KEY,
+    user_id text NOT NULL,
+    duration character varying(512) NOT NULL,
+    course_id character varying(512) NOT NULL,
+    class_id character varying(512),
+    completion  numeric(5,2),
+    performance numeric(5,2) ,
+    timespent bigint,
+    started_in_duration boolean,
+    updated_at timestamp without time zone DEFAULT timezone('UTC'::text, now()) NOT NULL
+);
+
+CREATE UNIQUE INDEX on user_stats_courses (user_id, duration, course_id, coalesce(class_id, 'NONE'));
+
 -- This is the master data table that forms the leaf level data housing 
 -- Aggregated Tables will be created/derived from this master tables.
 CREATE TABLE ds_master (

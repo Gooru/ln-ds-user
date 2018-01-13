@@ -4,6 +4,7 @@ import org.gooru.ds.user.constants.Constants;
 import org.gooru.ds.user.processor.activeuserlist.ActiveUserListProcessor;
 import org.gooru.ds.user.processor.user.distribution.UserDistributionProcessor;
 import org.gooru.ds.user.processor.userstats.competency.UserStatsCompetencyProcessor;
+import org.gooru.ds.user.processor.userstats.courses.UserStatsCoursesProcessor;
 import org.gooru.ds.user.processor.userstats.journeys.UserStatsJourneysProcessor;
 import org.gooru.ds.user.processor.userstats.timespent.UserStatsTimespentProcessor;
 
@@ -31,6 +32,8 @@ public class MessageProcessorBuilder {
             return new UserStatsJourneysProcessor(vertx, message);
         case Constants.Message.MSG_OP_USER_STATS_TIMESPENT:
             return new UserStatsTimespentProcessor(vertx, message);
+        case Constants.Message.MSG_OP_USER_STATS_COURSES:
+            return new UserStatsCoursesProcessor(vertx, message);
         default:
             return null;
         }
