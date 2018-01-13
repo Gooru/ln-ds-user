@@ -7,8 +7,11 @@ import org.gooru.ds.user.processor.userprefs.content.UserPrefsContentProcessor;
 import org.gooru.ds.user.processor.userprefs.curators.UserPrefsCuratorProcessor;
 import org.gooru.ds.user.processor.userprefs.providers.UserPrefsProviderProcessor;
 import org.gooru.ds.user.processor.userstats.competency.UserStatsCompetencyProcessor;
+import org.gooru.ds.user.processor.userstats.content.UserStatsContentsProcessor;
 import org.gooru.ds.user.processor.userstats.courses.UserStatsCoursesProcessor;
+import org.gooru.ds.user.processor.userstats.curator.UserStatsCuratorProcessor;
 import org.gooru.ds.user.processor.userstats.journeys.UserStatsJourneysProcessor;
+import org.gooru.ds.user.processor.userstats.provider.UserStatsProviderProcessor;
 import org.gooru.ds.user.processor.userstats.timespent.UserStatsTimespentProcessor;
 
 import io.vertx.core.Vertx;
@@ -35,6 +38,12 @@ public class MessageProcessorBuilder {
             return new UserStatsJourneysProcessor(vertx, message);
         case Constants.Message.MSG_OP_USER_STATS_TIMESPENT:
             return new UserStatsTimespentProcessor(vertx, message);
+        case Constants.Message.MSG_OP_USER_STATS_CONTENTS:
+            return new UserStatsContentsProcessor(vertx, message);
+        case Constants.Message.MSG_OP_USER_STATS_PROVIDERS:
+            return new UserStatsProviderProcessor(vertx, message);
+        case Constants.Message.MSG_OP_USER_STATS_CURATORS:
+            return new UserStatsCuratorProcessor(vertx, message);
         case Constants.Message.MSG_OP_USER_STATS_COURSES:
             return new UserStatsCoursesProcessor(vertx, message);
         case Constants.Message.MSG_OP_USER_PREFS_CONTENT:

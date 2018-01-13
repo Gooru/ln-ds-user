@@ -14,7 +14,10 @@
 		"d70cec9c-d255-1bb6-ac71-0eeb2c541359",
 		"e476baf9-889c-94ec-704d-faef5275c72c",
 		"d667e39b-0552-5394-b83c-505fa31d0948",
-		"0efee4be-bba0-0ffe-bb83-17a27eb2f610"
+		"0efee4be-bba0-0ffe-bb83-17a27eb2f610",
+		"97f3b961-f0cc-c916-67a2-b0887b094e2e",
+		"368bca7c-c641-098d-88b2-fe78c31d3c3b",
+		"6c64ff0e-052d-251b-5792-90381d45e6c4"
 	],
 	"folders": [],
 	"folders_order": [],
@@ -102,6 +105,50 @@
 			],
 			"pathVariableData": [],
 			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b"
+		},
+		{
+			"id": "368bca7c-c641-098d-88b2-fe78c31d3c3b",
+			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/api/ds/users/v1/user/stats/providers?user=user0&activeDuration=1m",
+			"queryParams": [
+				{
+					"key": "user",
+					"value": "user0",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "activeDuration",
+					"value": "1m",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1515842953258,
+			"name": "User Stats Providers",
+			"description": "",
+			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b",
+			"responses": []
 		},
 		{
 			"folder": null,
@@ -248,6 +295,50 @@
 			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b"
 		},
 		{
+			"id": "6c64ff0e-052d-251b-5792-90381d45e6c4",
+			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/api/ds/users/v1/user/stats/curators?user=user0&activeDuration=1m",
+			"queryParams": [
+				{
+					"key": "user",
+					"value": "user0",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "activeDuration",
+					"value": "1m",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1515843068120,
+			"name": "User Stats Curators",
+			"description": "",
+			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b",
+			"responses": []
+		},
+		{
 			"folder": null,
 			"id": "770fe469-ebdd-90bd-e3fe-90c8e6ea7dc6",
 			"name": "UserDistribution - default",
@@ -290,6 +381,50 @@
 			],
 			"pathVariableData": [],
 			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b"
+		},
+		{
+			"id": "97f3b961-f0cc-c916-67a2-b0887b094e2e",
+			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/api/ds/users/v1/user/stats/contents?user=user0&activeDuration=1m",
+			"queryParams": [
+				{
+					"key": "user",
+					"value": "user0",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "activeDuration",
+					"value": "1m",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1515843038652,
+			"name": "User Stats Content",
+			"description": "",
+			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b",
+			"responses": []
 		},
 		{
 			"folder": null,

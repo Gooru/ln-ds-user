@@ -16,6 +16,12 @@
 -- drop table user_stats_journeys
 -- drop table user_stats_competency
 -- drop table user_stats_timespent
+-- drop table user_prefs_content
+-- drop table user_prefs_provider
+-- drop table user_prefs_curator
+-- drop table user_stats_content
+-- drop table user_stats_provider
+-- drop table user_stats_curator
 
 CREATE TABLE user_distribution_zoom1 (
     id bigserial PRIMARY KEY,
@@ -207,6 +213,41 @@ CREATE TABLE providers (
     id bigserial PRIMARY KEY,
     name text NOT NULL UNIQUE
 );
+
+CREATE TABLE user_stats_content (
+    id bigserial PRIMARY KEY,
+    user_id text NOT NULL UNIQUE,
+    duration character varying(512) NOT NULL,
+    audio bigint,
+    interactive bigint,
+    webpage bigint,
+    text bigint,
+    video bigint,
+    updated_at timestamp without time zone DEFAULT timezone('UTC'::text, now()) NOT NULL,
+    UNIQUE(user_id, duration)
+);
+
+CREATE TABLE user_stats_curator (
+    id bigserial PRIMARY KEY,
+    user_id text NOT NULL,
+    curator_id bigint NOT NULL,
+    duration character varying(512) NOT NULL,
+    counter bigint,
+    updated_at timestamp without time zone DEFAULT timezone('UTC'::text, now()) NOT NULL,
+    UNIQUE(user_id, curator_id, duration)
+);
+
+CREATE TABLE user_stats_provider (
+    id bigserial PRIMARY KEY,
+    user_id text NOT NULL,
+    provider_id bigint NOT NULL,
+    duration character varying(512) NOT NULL,
+    counter bigint,
+    updated_at timestamp without time zone DEFAULT timezone('UTC'::text, now()) NOT NULL,
+    UNIQUE(user_id, provider_id, duration)
+);
+
+
 
 -- This is the master data table that forms the leaf level data housing 
 -- Aggregated Tables will be created/derived from this master tables.
