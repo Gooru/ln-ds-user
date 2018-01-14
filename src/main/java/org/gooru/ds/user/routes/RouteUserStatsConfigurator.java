@@ -29,6 +29,22 @@ public class RouteUserStatsConfigurator implements RouteConfigurator {
         router.get(Constants.Route.API_USER_STATS_COMPETENCY).handler(this::userStatsCompetency);
         router.get(Constants.Route.API_USER_STATS_JOURNEYS).handler(this::userStatsJourneys);
         router.get(Constants.Route.API_USER_STATS_TIMESPENT).handler(this::userStatsTimespent);
+        router.get(Constants.Route.API_USER_STATS_COURSES).handler(this::userStatsCourses);
+        router.get(Constants.Route.API_USER_STATS_CONTENT).handler(this::userStatsContents);
+        router.get(Constants.Route.API_USER_STATS_PROVIDER).handler(this::userStatsProviders);
+        router.get(Constants.Route.API_USER_STATS_CURATOR).handler(this::userStatsCurators);
+    }
+
+    private void userStatsCurators(RoutingContext routingContext) {
+        baseHandler(routingContext, Constants.Message.MSG_OP_USER_STATS_CURATORS, Constants.EventBus.MBEP_DISPATCHER);
+    }
+
+    private void userStatsProviders(RoutingContext routingContext) {
+        baseHandler(routingContext, Constants.Message.MSG_OP_USER_STATS_PROVIDERS, Constants.EventBus.MBEP_DISPATCHER);
+    }
+
+    private void userStatsContents(RoutingContext routingContext) {
+        baseHandler(routingContext, Constants.Message.MSG_OP_USER_STATS_CONTENTS, Constants.EventBus.MBEP_DISPATCHER);
     }
 
     private void userStatsJourneys(RoutingContext routingContext) {
@@ -41,6 +57,10 @@ public class RouteUserStatsConfigurator implements RouteConfigurator {
 
     private void userStatsTimespent(RoutingContext routingContext) {
         baseHandler(routingContext, Constants.Message.MSG_OP_USER_STATS_TIMESPENT, Constants.EventBus.MBEP_DISPATCHER);
+    }
+
+    private void userStatsCourses(RoutingContext routingContext) {
+        baseHandler(routingContext, Constants.Message.MSG_OP_USER_STATS_COURSES, Constants.EventBus.MBEP_DISPATCHER);
     }
 
     private void baseHandler(RoutingContext routingContext, String op, String eventBusEndPoint) {

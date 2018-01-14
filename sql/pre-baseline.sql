@@ -16,6 +16,12 @@
 -- drop table user_stats_journeys
 -- drop table user_stats_competency
 -- drop table user_stats_timespent
+-- drop table user_prefs_content
+-- drop table user_prefs_provider
+-- drop table user_prefs_curator
+-- drop table user_stats_content
+-- drop table user_stats_provider
+-- drop table user_stats_curator
 
 CREATE TABLE user_distribution_zoom1 (
     id bigserial PRIMARY KEY,
@@ -147,6 +153,101 @@ CREATE TABLE user_stats_timespent (
     updated_at timestamp without time zone DEFAULT timezone('UTC'::text, now()) NOT NULL,
     UNIQUE(user_id, duration)
 );
+
+CREATE TABLE user_stats_courses (
+    id bigserial PRIMARY KEY,
+    user_id text NOT NULL,
+    duration character varying(512) NOT NULL,
+    course_id character varying(512) NOT NULL,
+    class_id character varying(512),
+    completion  numeric(5,2),
+    performance numeric(5,2) ,
+    timespent bigint,
+    started_in_duration boolean,
+    updated_at timestamp without time zone DEFAULT timezone('UTC'::text, now()) NOT NULL
+);
+
+CREATE UNIQUE INDEX on user_stats_courses (user_id, duration, course_id, coalesce(class_id, 'NONE'));
+
+-- Note that prefs values are stored as INT which are scaled to 1000
+-- API should scale it down between 0 and 1 before returning it
+CREATE TABLE user_prefs_content (
+    id bigserial PRIMARY KEY,
+    user_id text NOT NULL UNIQUE,
+    audio integer,
+    interactive integer,
+    webpage integer,
+    text integer,
+    video integer,
+    updated_at timestamp without time zone DEFAULT timezone('UTC'::text, now()) NOT NULL
+);
+
+-- Note that prefs values are stored as INT which are scaled to 1000
+-- API should scale it down between 0 and 1 before returning it
+CREATE TABLE user_prefs_curator (
+    id bigserial PRIMARY KEY,
+    user_id text NOT NULL,
+    curator_id bigint NOT NULL,
+    pref integer,
+    updated_at timestamp without time zone DEFAULT timezone('UTC'::text, now()) NOT NULL,
+    UNIQUE(user_id, curator_id)
+);
+
+-- Note that prefs values are stored as INT which are scaled to 1000
+-- API should scale it down between 0 and 1 before returning it
+CREATE TABLE user_prefs_provider (
+    id bigserial PRIMARY KEY,
+    user_id text NOT NULL,
+    provider_id bigint NOT NULL,
+    pref integer,
+    updated_at timestamp without time zone DEFAULT timezone('UTC'::text, now()) NOT NULL,
+    UNIQUE(user_id, provider_id)
+);
+
+CREATE TABLE curators (
+    id bigserial PRIMARY KEY,
+    name text NOT NULL UNIQUE
+);
+
+CREATE TABLE providers (
+    id bigserial PRIMARY KEY,
+    name text NOT NULL UNIQUE
+);
+
+CREATE TABLE user_stats_content (
+    id bigserial PRIMARY KEY,
+    user_id text NOT NULL UNIQUE,
+    duration character varying(512) NOT NULL,
+    audio bigint,
+    interactive bigint,
+    webpage bigint,
+    text bigint,
+    video bigint,
+    updated_at timestamp without time zone DEFAULT timezone('UTC'::text, now()) NOT NULL,
+    UNIQUE(user_id, duration)
+);
+
+CREATE TABLE user_stats_curator (
+    id bigserial PRIMARY KEY,
+    user_id text NOT NULL,
+    curator_id bigint NOT NULL,
+    duration character varying(512) NOT NULL,
+    counter bigint,
+    updated_at timestamp without time zone DEFAULT timezone('UTC'::text, now()) NOT NULL,
+    UNIQUE(user_id, curator_id, duration)
+);
+
+CREATE TABLE user_stats_provider (
+    id bigserial PRIMARY KEY,
+    user_id text NOT NULL,
+    provider_id bigint NOT NULL,
+    duration character varying(512) NOT NULL,
+    counter bigint,
+    updated_at timestamp without time zone DEFAULT timezone('UTC'::text, now()) NOT NULL,
+    UNIQUE(user_id, provider_id, duration)
+);
+
+
 
 -- This is the master data table that forms the leaf level data housing 
 -- Aggregated Tables will be created/derived from this master tables.
