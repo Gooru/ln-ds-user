@@ -2,6 +2,7 @@ package org.gooru.ds.user.constants;
 
 /**
  * @author ashish on 10/1/18.
+ * updated by mukul@gooru
  */
 public final class Constants {
 
@@ -30,6 +31,10 @@ public final class Constants {
         public static final String MSG_OP_USER_STATS_JOURNEYS = "mb.op.user.stats.journeys";
         public static final String MSG_OP_USER_STATS_TIMESPENT = "mb.op.user.stats.timespent";
         public static final String MSG_OP_USER_STATS_COMPETENCY = "mb.op.user.stats.competency";
+
+        public static final String MSG_OP_USER_JOURNEY = "mb.op.user.journey";
+        public static final String MSG_OP_USER_PERF_COURSE = "mb.op.user.performance.course";
+        public static final String MSG_OP_USER_PERF_LESSON = "mb.op.user.performance.lesson";
 
         public static final String MSG_API_VERSION = "api.version";
         public static final String MSG_SESSION_TOKEN = "session.token";
@@ -74,6 +79,10 @@ public final class Constants {
         public static final String API_USER_STATS_JOURNEYS = API_BASE_ROUTE + "user/stats/journeys";
         public static final String API_USER_STATS_TIMESPENT = API_BASE_ROUTE + "user/stats/timespent";
         public static final String API_USER_STATS_COMPETENCY = API_BASE_ROUTE + "user/stats/competency";
+        
+        public static final String API_USER_JOURNEY = API_BASE_ROUTE + "user/journey";
+        public static final String API_USER_PERF_COURSE = API_BASE_ROUTE + "user/performance/course";
+        public static final String API_USER_PERF_LESSON = API_BASE_ROUTE + "user/performance/lesson";
 
         private Route() {
             throw new AssertionError();
