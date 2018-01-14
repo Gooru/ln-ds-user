@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * @author ashish on 10/1/18.
+ * @author ashish on 10/1/18. 
  */
 public class RouteConfiguration implements Iterable<RouteConfigurator> {
 
@@ -22,7 +22,9 @@ public class RouteConfiguration implements Iterable<RouteConfigurator> {
         configurators.add(new RouteFailureConfigurator());
         configurators.add(new RouteUserDistributionConfigurator());
         configurators.add(new RouteUserStatsConfigurator());
+        configurators.add(new RouteUserJourneyConfigurator());
         configurators.add(new RouteUserPrefsConfigurator());
+
 
         internalIterator = configurators.iterator();
     }
