@@ -29,7 +29,11 @@ public class RouteUserJourneyConfigurator implements RouteConfigurator {
         mbusTimeout = config.getLong(Constants.EventBus.MBUS_TIMEOUT, 30L) * 1000;
         router.post(Constants.Route.API_USER_JOURNEY).handler(this::userJourney);
         router.get(Constants.Route.API_USER_PERF_COURSE).handler(this::userPerfCourse);
-        router.get(Constants.Route.API_USER_PERF_LESSON).handler(this::userPerfLesson);
+        router.get(Constants.Route.API_USER_PERF_LESSONS).handler(this::userPerfLessons);
+        router.get(Constants.Route.API_USER_PERF_ASSESSMENTS).handler(this::userPerfAssessments);
+        router.get(Constants.Route.API_USER_PERF_COLLECTIONS).handler(this::userPerfCollections);
+        router.get(Constants.Route.API_USER_SUMMARY_ASSESSMENT).handler(this::userSummaryAssessment);
+        router.get(Constants.Route.API_USER_SUMMARY_COLLECTION).handler(this::userSummaryCollection);
     }
 
     private void userJourney(RoutingContext routingContext) {
@@ -40,11 +44,26 @@ public class RouteUserJourneyConfigurator implements RouteConfigurator {
         baseHandler(routingContext, Constants.Message.MSG_OP_USER_PERF_COURSE, Constants.EventBus.MBEP_DISPATCHER);
     }
 
-    private void userPerfLesson(RoutingContext routingContext) {
-        baseHandler(routingContext, Constants.Message.MSG_OP_USER_PERF_LESSON, Constants.EventBus.MBEP_DISPATCHER);
+    private void userPerfLessons(RoutingContext routingContext) {
+        baseHandler(routingContext, Constants.Message.MSG_OP_USER_PERF_LESSONS, Constants.EventBus.MBEP_DISPATCHER);
     }
 
+    private void userPerfAssessments(RoutingContext routingContext) {
+        baseHandler(routingContext, Constants.Message.MSG_OP_USER_PERF_ASSESSMENTS, Constants.EventBus.MBEP_DISPATCHER);
+    }
     
+    private void userPerfCollections(RoutingContext routingContext) {
+        baseHandler(routingContext, Constants.Message.MSG_OP_USER_PERF_COLLECTIONS, Constants.EventBus.MBEP_DISPATCHER);
+    }
+
+    private void userSummaryAssessment(RoutingContext routingContext) {
+        baseHandler(routingContext, Constants.Message.MSG_OP_USER_SUMMARY_ASSESSMENT, Constants.EventBus.MBEP_DISPATCHER);
+    }
+
+    private void userSummaryCollection(RoutingContext routingContext) {
+        baseHandler(routingContext, Constants.Message.MSG_OP_USER_SUMMARY_COLLECTION, Constants.EventBus.MBEP_DISPATCHER);
+    }
+
     private void baseHandler(RoutingContext routingContext, String op, String eventBusEndPoint) {
         DeliveryOptions options = DeliveryOptionsBuilder.buildWithApiVersion(routingContext).setSendTimeout(mbusTimeout)
             .addHeader(Constants.Message.MSG_OP, op);

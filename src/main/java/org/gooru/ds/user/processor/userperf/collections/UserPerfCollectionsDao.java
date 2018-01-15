@@ -1,5 +1,7 @@
 package org.gooru.ds.user.processor.userperf.collections;
 
+import java.util.List;
+
 import org.gooru.ds.user.processor.userperf.collections.UserPerfCollectionsCommand;
 import org.gooru.ds.user.processor.userperf.collections.UserPerfCollectionsModel;
 import org.gooru.ds.user.processor.userperf.collections.UserPerfCollectionsModelMapper;
@@ -19,7 +21,7 @@ interface UserPerfCollectionsDao {
     		+ " from course_collection_performance where "
     		+ " class_id = :classId  and course_id = :courseId and unit_id = :unitId and lesson_id = :lessonId "
     		+ " and collection_type = 'collection' and user_id = :user")
-    UserPerfCollectionsModel fetchUserPerfCollections (@BindBean UserPerfCollectionsCommand.UserPerfCollectionsCommandBean userPerfCollectionsCommandBean);
+    List<UserPerfCollectionsModel> fetchUserPerfCollections (@BindBean UserPerfCollectionsCommand.UserPerfCollectionsCommandBean userPerfCollectionsCommandBean);
 
 
 }

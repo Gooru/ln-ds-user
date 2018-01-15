@@ -20,7 +20,7 @@ public class UserPerfAssessmentsModelMapper implements ResultSetMapper<UserPerfA
         model.setId(r.getString(MapperFields.ASSESSMENT_ID));
         model.setTitle(r.getString(MapperFields.ASSESSMENT_TITLE));
         model.setSessionId(r.getString(MapperFields.ASSESSMENT_SESSION_ID));
-        model.setTimeSpent(r.getInt(MapperFields.ASSESSMENT_TIMESPENT));
+        model.setTimeSpent(r.getLong(MapperFields.ASSESSMENT_TIMESPENT));
         model.setScore(r.getDouble(MapperFields.ASSESSMENT_SCORE));
         model.setReaction(r.getInt(MapperFields.ASSESSMENT_REACTION));
         

@@ -41,7 +41,11 @@ public final class Constants {
 
         public static final String MSG_OP_USER_JOURNEY = "mb.op.user.journey";
         public static final String MSG_OP_USER_PERF_COURSE = "mb.op.user.performance.course";
-        public static final String MSG_OP_USER_PERF_LESSON = "mb.op.user.performance.lesson";
+        public static final String MSG_OP_USER_PERF_LESSONS = "mb.op.user.performance.lessons";
+        public static final String MSG_OP_USER_PERF_ASSESSMENTS = "mb.op.user.performance.assessments";
+        public static final String MSG_OP_USER_PERF_COLLECTIONS = "mb.op.user.performance.collections";
+        public static final String MSG_OP_USER_SUMMARY_ASSESSMENT = "mb.op.user.summary.assessment";
+        public static final String MSG_OP_USER_SUMMARY_COLLECTION = "mb.op.user.summary.collection";
 
         public static final String MSG_API_VERSION = "api.version";
         public static final String MSG_SESSION_TOKEN = "session.token";
@@ -89,7 +93,11 @@ public final class Constants {
 
         public static final String API_USER_JOURNEY = API_BASE_ROUTE + "user/journey";
         public static final String API_USER_PERF_COURSE = API_BASE_ROUTE + "user/performance/course";
-        public static final String API_USER_PERF_LESSON = API_BASE_ROUTE + "user/performance/lesson";
+        public static final String API_USER_PERF_LESSONS = API_BASE_ROUTE + "user/performance/lessons";
+        public static final String API_USER_PERF_ASSESSMENTS = API_BASE_ROUTE + "user/performance/assessments";
+        public static final String API_USER_PERF_COLLECTIONS = API_BASE_ROUTE + "user/performance/collections";
+        public static final String API_USER_SUMMARY_ASSESSMENT = API_BASE_ROUTE + "user/summary/assessment";
+        public static final String API_USER_SUMMARY_COLLECTION = API_BASE_ROUTE + "user/summary/collection";
 
         public static final String API_USER_STATS_CONTENT = API_BASE_ROUTE + "user/stats/contents";
         public static final String API_USER_STATS_PROVIDER = API_BASE_ROUTE + "user/stats/providers";

@@ -1,12 +1,11 @@
-package org.gooru.ds.user.processor.userperf.collections;
+package org.gooru.ds.user.processor.userperf.summary.collection;
 
 import org.gooru.ds.user.app.data.EventBusMessage;
 import org.gooru.ds.user.app.jdbi.DBICreator;
 import org.gooru.ds.user.processor.MessageProcessor;
-import org.gooru.ds.user.processor.userperf.collections.UserPerfCollectionsCommand;
-import org.gooru.ds.user.processor.userperf.collections.UserPerfCollectionsModel;
-
-import org.gooru.ds.user.processor.userperf.collections.UserPerfCollectionsService;
+import org.gooru.ds.user.processor.userperf.summary.collection.UserPerfCollSummaryCommand;
+import org.gooru.ds.user.processor.userperf.summary.collection.UserPerfCollSummaryModelResponse;
+import org.gooru.ds.user.processor.userperf.summary.collection.UserPerfCollSummaryService;
 import org.gooru.ds.user.responses.MessageResponse;
 import org.gooru.ds.user.responses.MessageResponseFactory;
 import org.slf4j.Logger;
@@ -25,17 +24,19 @@ import io.vertx.core.json.JsonObject;
 /**
  * @author mukul@gooru
  */
-public class UserPerfCollectionsProcessor implements MessageProcessor {
+public class UserPerfCollSummaryProcessor implements MessageProcessor {
+
+
 	
     private final Vertx vertx;
     private final Message<JsonObject> message;
     private final Future<MessageResponse> result;
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserPerfCollectionsProcessor.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserPerfCollSummaryProcessor.class);
     private EventBusMessage eventBusMessage;
-    private final UserPerfCollectionsService UserPerfCollectionsService =
-        new UserPerfCollectionsService(DBICreator.getDbiForDefaultDS());
+    private final UserPerfCollSummaryService UserPerfCollSummaryService =
+        new UserPerfCollSummaryService(DBICreator.getDbiForDefaultDS());
 
-    public UserPerfCollectionsProcessor(Vertx vertx, Message<JsonObject> message) {
+    public UserPerfCollSummaryProcessor(Vertx vertx, Message<JsonObject> message) {
         this.vertx = vertx;
         this.message = message;
         this.result = Future.future();
@@ -45,8 +46,8 @@ public class UserPerfCollectionsProcessor implements MessageProcessor {
     public Future<MessageResponse> process() {
         try {
             this.eventBusMessage = EventBusMessage.eventBusMessageBuilder(message);
-            UserPerfCollectionsCommand command = UserPerfCollectionsCommand.builder(eventBusMessage.getRequestBody());
-            fetchUserCollectionsPerf(command);
+            UserPerfCollSummaryCommand command = UserPerfCollSummaryCommand.builder(eventBusMessage.getRequestBody());
+            fetchUserCollectionSummary(command);
         } catch (Throwable throwable) {
             LOGGER.warn("Encountered exception", throwable);
             result.fail(throwable);
@@ -54,9 +55,9 @@ public class UserPerfCollectionsProcessor implements MessageProcessor {
         return result;
     }
 
-    private void fetchUserCollectionsPerf(UserPerfCollectionsCommand command) {
+    private void fetchUserCollectionSummary(UserPerfCollSummaryCommand command) {
         try {
-        	UserPerfCollectionsModelResponse outcome = UserPerfCollectionsService.fetchUserCollectionsPerf(command);
+        	UserPerfCollSummaryModelResponse outcome = UserPerfCollSummaryService.fetchUserCollSummary(command);
             String resultString = new ObjectMapper().writeValueAsString(outcome);
             result.complete(MessageResponseFactory.createOkayResponse(new JsonObject(resultString)));            
         } catch (JsonProcessingException e) {
@@ -71,5 +72,8 @@ public class UserPerfCollectionsProcessor implements MessageProcessor {
         }
 
     }
+
+
+
 
 }

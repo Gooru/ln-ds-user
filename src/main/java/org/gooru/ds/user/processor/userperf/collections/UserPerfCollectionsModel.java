@@ -9,7 +9,7 @@ public class UserPerfCollectionsModel {
     private String id;    
     private String title;
     private String sessionId;
-    private Integer timeSpent;
+    private Long timeSpent;
     private Integer reaction;
     private Double score;
 	public String getId() {
@@ -30,10 +30,10 @@ public class UserPerfCollectionsModel {
 	public void setSessionId(String sessionId) {
 		this.sessionId = sessionId;
 	}
-	public Integer getTimeSpent() {
+	public Long getTimeSpent() {
 		return timeSpent;
 	}
-	public void setTimeSpent(Integer timeSpent) {
+	public void setTimeSpent(Long timeSpent) {
 		this.timeSpent = timeSpent;
 	}
 	public Integer getReaction() {

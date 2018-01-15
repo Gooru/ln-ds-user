@@ -56,7 +56,7 @@ public class UserPerfAssessmentsProcessor implements MessageProcessor {
 
     private void fetchUserAssessmentsPerf(UserPerfAssessmentsCommand command) {
         try {
-        	UserPerfAssessmentsModel outcome = UserPerfAssessmentsService.fetchUserAssessmentsPerf(command);
+        	UserPerfAssessmentsModelResponse outcome = UserPerfAssessmentsService.fetchUserAssessmentsPerf(command);
             String resultString = new ObjectMapper().writeValueAsString(outcome);
             result.complete(MessageResponseFactory.createOkayResponse(new JsonObject(resultString)));            
         } catch (JsonProcessingException e) {
