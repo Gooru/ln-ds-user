@@ -107,7 +107,6 @@ public final class Constants {
         public static final String API_USER_PREFS_CURATORS = API_BASE_ROUTE + "user/prefs/curators";
         public static final String API_USER_PREFS_PROVIDERS = API_BASE_ROUTE + "user/prefs/providers";
 
-
         private Route() {
             throw new AssertionError();
         }

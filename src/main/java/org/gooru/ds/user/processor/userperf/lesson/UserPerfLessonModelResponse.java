@@ -6,8 +6,8 @@ import java.util.List;
  * @author mukul@gooru
  */
 public class UserPerfLessonModelResponse {
-	
-    List<UserPerfLessonModel> lessons;
+
+    private List<UserPerfLessonModel> lessons;
 
     public List<UserPerfLessonModel> getLessons() {
         return lessons;
@@ -15,6 +15,6 @@ public class UserPerfLessonModelResponse {
 
     public void setLessons(List<UserPerfLessonModel> lessons) {
         this.lessons = lessons;
-}
+    }
 
 }

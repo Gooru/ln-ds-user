@@ -6,7 +6,7 @@ import java.util.List;
  * @author ashish on 13/1/18.
  */
 class UserStatsCuratorModelResponse {
-    List<UserStatsCuratorModel> curators;
+    private List<UserStatsCuratorModel> curators;
 
     public List<UserStatsCuratorModel> getCurators() {
         return curators;

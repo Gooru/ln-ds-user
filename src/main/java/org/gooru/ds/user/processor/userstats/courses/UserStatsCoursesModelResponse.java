@@ -7,7 +7,7 @@ import java.util.List;
  */
 class UserStatsCoursesModelResponse {
 
-    List<UserStatsCoursesModel> courses;
+    private List<UserStatsCoursesModel> courses;
 
     public List<UserStatsCoursesModel> getCourses() {
         return courses;

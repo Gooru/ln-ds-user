@@ -2,19 +2,17 @@ package org.gooru.ds.user.processor.userperf.course;
 
 import org.gooru.ds.user.constants.HttpConstants;
 import org.gooru.ds.user.exceptions.HttpResponseWrapperException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import io.vertx.core.json.JsonObject;
 
-
 /**
  * @author mukul@gooru
  */
 public class UserPerfCourseCommand {
-	
-	private String classId;
+
+    private String classId;
     private String courseId;
     private String user;
 
@@ -23,7 +21,7 @@ public class UserPerfCourseCommand {
     public String getclassId() {
         return classId;
     }
-    
+
     public String getcourseId() {
         return courseId;
     }
@@ -33,22 +31,22 @@ public class UserPerfCourseCommand {
     }
 
     static UserPerfCourseCommand builder(JsonObject requestBody) {
-    	UserPerfCourseCommand result = UserPerfCourseCommand.buildFromJsonObject(requestBody);
+        UserPerfCourseCommand result = UserPerfCourseCommand.buildFromJsonObject(requestBody);
         result.validate();
         return result;
     }
 
     public UserPerfCourseCommandBean asBean() {
-    	UserPerfCourseCommandBean bean = new UserPerfCourseCommandBean();
+        UserPerfCourseCommandBean bean = new UserPerfCourseCommandBean();
         bean.user = user;
         bean.classId = classId;
         bean.courseId = courseId;
-        
+
         return bean;
     }
 
     private static UserPerfCourseCommand buildFromJsonObject(JsonObject requestBody) {
-    	UserPerfCourseCommand result = new UserPerfCourseCommand();
+        UserPerfCourseCommand result = new UserPerfCourseCommand();
 
         result.classId = requestBody.getString(CommandAttributes.CLASS_ID);
         result.courseId = requestBody.getString(CommandAttributes.COURSE_ID);
@@ -63,17 +61,15 @@ public class UserPerfCourseCommand {
             throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
                 "User not provided for request");
         }
-        
+
         if (classId == null) {
             LOGGER.info("Class not provided");
-            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
-                "Class not provided");
+            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Class not provided");
         }
-        
+
         if (courseId == null) {
             LOGGER.info("Course not provided");
-            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
-                "Course not provided");
+            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Course not provided");
         }
     }
 
@@ -89,7 +85,7 @@ public class UserPerfCourseCommand {
         public void setUser(String user) {
             this.user = user;
         }
-        
+
         public String getClassId() {
             return classId;
         }
@@ -97,7 +93,7 @@ public class UserPerfCourseCommand {
         public void setClassId(String classId) {
             this.classId = classId;
         }
-        
+
         public String getCourseId() {
             return courseId;
         }
@@ -111,7 +107,10 @@ public class UserPerfCourseCommand {
         private static final String CLASS_ID = "classId";
         private static final String COURSE_ID = "courseId";
         private static final String USER = "user";
-    }
 
+        private CommandAttributes() {
+            throw new AssertionError();
+        }
+    }
 
 }

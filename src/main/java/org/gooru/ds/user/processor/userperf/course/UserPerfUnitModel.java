@@ -1,11 +1,10 @@
 package org.gooru.ds.user.processor.userperf.course;
 
-
 /**
  * @author mukul@gooru
  */
-public class UserPerfUnitModel {
-	
+class UserPerfUnitModel {
+
     private String unitId;
     private String unitTitle;
     private Long unitAsmtTimeSpent;

@@ -6,7 +6,7 @@ import java.util.List;
  * @author ashish on 13/1/18.
  */
 class UserStatsProviderModelResponse {
-    List<UserStatsProviderModel> providers;
+    private List<UserStatsProviderModel> providers;
 
     public List<UserStatsProviderModel> getProviders() {
         return providers;

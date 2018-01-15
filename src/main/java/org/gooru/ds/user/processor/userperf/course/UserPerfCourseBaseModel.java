@@ -1,11 +1,10 @@
 package org.gooru.ds.user.processor.userperf.course;
 
-
 /**
  * @author mukul@gooru
  */
 public class UserPerfCourseBaseModel {
-	
+
     private String classId;
     private String classCode;
     private String classTitle;
@@ -141,5 +140,5 @@ public class UserPerfCourseBaseModel {
     public void setTotalAssessments(Integer totalAssessments) {
         this.totalAssessments = totalAssessments;
     }
-    
+
 }

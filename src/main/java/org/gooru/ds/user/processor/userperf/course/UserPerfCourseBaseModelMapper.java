@@ -3,16 +3,14 @@ package org.gooru.ds.user.processor.userperf.course;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.gooru.ds.user.processor.userperf.course.UserPerfCourseBaseModel;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.ResultSetMapper;
-
 
 /**
  * @author mukul@gooru
  */
 public class UserPerfCourseBaseModelMapper implements ResultSetMapper<UserPerfCourseBaseModel> {
-	
+
     @Override
     public UserPerfCourseBaseModel map(int index, ResultSet r, StatementContext ctx) throws SQLException {
         UserPerfCourseBaseModel model = new UserPerfCourseBaseModel();
@@ -32,7 +30,6 @@ public class UserPerfCourseBaseModelMapper implements ResultSetMapper<UserPerfCo
         model.setCourseAssessmentsComplete(r.getInt(MapperFields.COURSE_ASSESSMENTS_COMPLETE));
         model.setTotalAssessments(r.getInt(MapperFields.TOTAL_ASSESSMENTS));
 
-        
         return model;
     }
 
@@ -44,9 +41,9 @@ public class UserPerfCourseBaseModelMapper implements ResultSetMapper<UserPerfCo
         private static final String CLASS_ID = "class_id";
         private static final String CLASS_CODE = "class_code";
         private static final String CLASS_TITLE = "class_title";
-        private static final String COURSE_ID = "course_id";        
+        private static final String COURSE_ID = "course_id";
         private static final String COURSE_TITLE = "course_title";
-        private static final String UNIT_ID = "unit_id";        
+        private static final String UNIT_ID = "unit_id";
         private static final String UNIT_TITLE = "unit_title";
         private static final String COURSE_ASMT_TIMESPENT = "course_asmt_time_spent";
         private static final String COURSE_ASMT_SCORE = "course_asmt_score";
@@ -57,7 +54,6 @@ public class UserPerfCourseBaseModelMapper implements ResultSetMapper<UserPerfCo
         private static final String COURSE_ASSESSMENTS_COMPLETE = "course_assessments_complete";
         private static final String TOTAL_ASSESSMENTS = "total_assessments";
 
-        
     }
 
 }

@@ -1,6 +1,5 @@
 package org.gooru.ds.user.processor.user.journey;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,12 +11,11 @@ import org.slf4j.LoggerFactory;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 
-
 /**
  * @author mukul@gooru
  */
 public class UserJourneyCommand {
-	
+
     private List<String> classId;
     private List<String> courseId;
     private String user;
@@ -54,18 +52,18 @@ public class UserJourneyCommand {
         UserJourneyCommand result = new UserJourneyCommand();
 
         //result.classId = requestBody.getString(CommandAttributes.CLASS_ID);
-        JsonArray classIds = requestBody.getJsonArray(CommandAttributes.CLASS_IDS);        
+        JsonArray classIds = requestBody.getJsonArray(CommandAttributes.CLASS_IDS);
         List<String> clsIds = new ArrayList<>(classIds.size());
         for (Object s : classIds) {
-          clsIds.add(s.toString());
+            clsIds.add(s.toString());
         }
-         
-        JsonArray courseIds = requestBody.getJsonArray(CommandAttributes.COURSE_IDS);        
+
+        JsonArray courseIds = requestBody.getJsonArray(CommandAttributes.COURSE_IDS);
         List<String> couIds = new ArrayList<>(courseIds.size());
         for (Object s : courseIds) {
-          couIds.add(s.toString());
+            couIds.add(s.toString());
         }
-        
+
         result.classId = clsIds;
         result.courseId = couIds;
         result.user = requestBody.getString(CommandAttributes.USER);
@@ -73,7 +71,7 @@ public class UserJourneyCommand {
     }
 
     private void validate() {
-        
+
         if (user == null) {
             LOGGER.info("User not provided for request");
             throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
@@ -93,7 +91,7 @@ public class UserJourneyCommand {
         public void setUser(String user) {
             this.user = user;
         }
-        
+
         public List<String> getClassId() {
             return classId;
         }
@@ -101,7 +99,7 @@ public class UserJourneyCommand {
         public void setClassId(List<String> classId) {
             this.classId = classId;
         }
-        
+
         public List<String> getCourseId() {
             return courseId;
         }
@@ -115,6 +113,10 @@ public class UserJourneyCommand {
         private static final String CLASS_IDS = "classIds";
         private static final String COURSE_IDS = "courseIds";
         private static final String USER = "user";
+
+        private CommandAttributes() {
+            throw new AssertionError();
+        }
     }
 
 }

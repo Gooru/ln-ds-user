@@ -1,17 +1,17 @@
 package org.gooru.ds.user.processor.userperf.collections;
 
-
 /**
  * @author mukul@gooru
  */
 public class UserPerfCollectionsModel {
-	
-    private String id;    
+
+    private String id;
     private String title;
     private String sessionId;
     private Long timeSpent;
     private Integer reaction;
     private Double score;
+
 	public String getId() {
 		return id;
 	}
@@ -48,6 +48,5 @@ public class UserPerfCollectionsModel {
 	public void setScore(Double score) {
 		this.score = score;
 	}
-
 
 }
