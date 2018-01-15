@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @author mukul@gooru
  */
-public class UserPerfLessonService {
+class UserPerfLessonService {
 
     private final UserPerfLessonDao userPerfLessonDao;
     private static final Logger LOGGER = LoggerFactory.getLogger(UserPerfLessonService.class);
@@ -29,8 +29,8 @@ public class UserPerfLessonService {
         result.setLessons(models);
         return result;
     }
-    
-    
+
+
 
 
 }

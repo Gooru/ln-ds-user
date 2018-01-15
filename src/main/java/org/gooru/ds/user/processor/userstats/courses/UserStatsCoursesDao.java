@@ -9,7 +9,7 @@ import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
 /**
  * @author ashish on 13/1/18.
  */
-public interface UserStatsCoursesDao {
+interface UserStatsCoursesDao {
 
     @Mapper(UserStatsCoursesModelMapper.class)
     @SqlQuery("select class_id, course_id, performance, completion, timespent, started_in_duration from "

@@ -6,8 +6,8 @@ import java.util.List;
  * @author ashish on 10/1/18.
  */
 class UserDistributionModelResponse {
-    List<UserDistributionModel> subjects;
-    List<UserDistributionModel> geoLocations;
+    private List<UserDistributionModel> subjects;
+    private List<UserDistributionModel> geoLocations;
 
     public List<UserDistributionModel> getSubjects() {
         return subjects;

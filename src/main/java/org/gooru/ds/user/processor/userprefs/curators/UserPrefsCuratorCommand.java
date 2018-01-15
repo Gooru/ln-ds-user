@@ -58,6 +58,10 @@ class UserPrefsCuratorCommand {
 
     static class CommandAttributes {
         private static final String USER = "user";
+
+        private CommandAttributes() {
+            throw new AssertionError();
+        }
     }
 
 }

@@ -132,6 +132,10 @@ class UserDistributionCommand {
         private static final String GEOLOCATION = "geoLocation";
         private static final String ACTIVE_DURATION = "activeDuration";
         private static final String SUBJECT = "subject";
+
+        private CommandAttributes() {
+            throw new AssertionError();
+        }
     }
 
 }

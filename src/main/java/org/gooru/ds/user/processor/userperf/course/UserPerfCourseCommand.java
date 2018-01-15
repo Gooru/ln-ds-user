@@ -13,7 +13,7 @@ import io.vertx.core.json.JsonObject;
  * @author mukul@gooru
  */
 public class UserPerfCourseCommand {
-	
+
 	private String classId;
     private String courseId;
     private String user;
@@ -23,7 +23,7 @@ public class UserPerfCourseCommand {
     public String getclassId() {
         return classId;
     }
-    
+
     public String getcourseId() {
         return courseId;
     }
@@ -43,7 +43,7 @@ public class UserPerfCourseCommand {
         bean.user = user;
         bean.classId = classId;
         bean.courseId = courseId;
-        
+
         return bean;
     }
 
@@ -63,13 +63,13 @@ public class UserPerfCourseCommand {
             throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
                 "User not provided for request");
         }
-        
+
         if (classId == null) {
             LOGGER.info("Class not provided");
             throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
                 "Class not provided");
         }
-        
+
         if (courseId == null) {
             LOGGER.info("Course not provided");
             throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
@@ -89,7 +89,7 @@ public class UserPerfCourseCommand {
         public void setUser(String user) {
             this.user = user;
         }
-        
+
         public String getClassId() {
             return classId;
         }
@@ -97,7 +97,7 @@ public class UserPerfCourseCommand {
         public void setClassId(String classId) {
             this.classId = classId;
         }
-        
+
         public String getCourseId() {
             return courseId;
         }
@@ -111,6 +111,10 @@ public class UserPerfCourseCommand {
         private static final String CLASS_ID = "classId";
         private static final String COURSE_ID = "courseId";
         private static final String USER = "user";
+
+        private CommandAttributes() {
+            throw new AssertionError();
+        }
     }
 
 

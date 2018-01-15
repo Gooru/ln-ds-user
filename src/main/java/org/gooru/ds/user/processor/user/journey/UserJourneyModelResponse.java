@@ -7,8 +7,8 @@ import java.util.List;
  * @author mukul@gooru
  */
 public class UserJourneyModelResponse {
-	
-    List<UserJourneyModel> journeys;
+
+    private List<UserJourneyModel> journeys;
 
     public List<UserJourneyModel> getJourneys() {
         return journeys;

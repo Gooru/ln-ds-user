@@ -161,6 +161,10 @@ class ActiveUserListCommand {
         private static final String LIMIT = "limit";
         private static final String ACTIVE_DURATION = "activeDuration";
         private static final String SUBJECT = "subject";
+
+        private CommandAttributes() {
+            throw new AssertionError();
+        }
     }
 
 }

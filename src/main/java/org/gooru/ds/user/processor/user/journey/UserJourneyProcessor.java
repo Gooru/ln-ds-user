@@ -4,7 +4,6 @@ import org.gooru.ds.user.app.data.EventBusMessage;
 import org.gooru.ds.user.app.jdbi.DBICreator;
 import org.gooru.ds.user.processor.MessageProcessor;
 import org.gooru.ds.user.processor.user.journey.UserJourneyCommand;
-import org.gooru.ds.user.processor.user.journey.UserJourneyModel;
 import org.gooru.ds.user.processor.user.journey.UserJourneyProcessor;
 import org.gooru.ds.user.processor.user.journey.UserJourneyService;
 import org.gooru.ds.user.responses.MessageResponse;
@@ -27,7 +26,7 @@ import io.vertx.core.json.JsonObject;
  * @author mukul@gooru
  */
 public class UserJourneyProcessor implements MessageProcessor {
-	
+
     private final Vertx vertx;
     private final Message<JsonObject> message;
     private final Future<MessageResponse> result;

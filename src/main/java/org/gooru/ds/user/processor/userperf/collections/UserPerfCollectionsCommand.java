@@ -14,7 +14,7 @@ import io.vertx.core.json.JsonObject;
  */
 public class UserPerfCollectionsCommand {
 
-	
+
 private String classId;
 private String courseId;
 private String unitId;
@@ -56,7 +56,7 @@ public UserPerfCollectionsCommandBean asBean() {
     bean.courseId = courseId;
     bean.unitId = unitId;
     bean.lessonId = lessonId;
-    
+
     return bean;
 }
 
@@ -78,25 +78,25 @@ private void validate() {
         throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
             "User not provided for request");
     }
-    
+
     if (classId == null) {
         LOGGER.info("Class not provided");
         throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
             "Class not provided");
     }
-    
+
     if (courseId == null) {
         LOGGER.info("Course not provided");
         throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
             "Course not provided");
     }
-    
+
     if (unitId == null) {
         LOGGER.info("Unit not provided");
         throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
             "Unit not provided");
     }
-    
+
     if (lessonId == null) {
         LOGGER.info("Lesson not provided");
         throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
@@ -118,7 +118,7 @@ public static class UserPerfCollectionsCommandBean {
     public void setUser(String user) {
         this.user = user;
     }
-    
+
     public String getClassId() {
         return classId;
     }
@@ -126,7 +126,7 @@ public static class UserPerfCollectionsCommandBean {
     public void setClassId(String classId) {
         this.classId = classId;
     }
-    
+
     public String getCourseId() {
         return courseId;
     }
@@ -134,7 +134,7 @@ public static class UserPerfCollectionsCommandBean {
     public void setCourseId(String courseId) {
         this.courseId = courseId;
     }
-    
+
     public String getUnitId() {
         return unitId;
     }
@@ -142,7 +142,7 @@ public static class UserPerfCollectionsCommandBean {
     public void setUnitId(String unitId) {
         this.unitId = unitId;
     }
-    
+
     public String getLessonId() {
         return lessonId;
     }
@@ -158,6 +158,10 @@ static class CommandAttributes {
     private static final String UNIT_ID = "unitId";
     private static final String LESSON_ID = "lessonId";
     private static final String USER_ID = "user";
+
+    private CommandAttributes() {
+        throw new AssertionError();
+    }
 }
 
 }

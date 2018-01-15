@@ -28,7 +28,7 @@ import io.vertx.core.json.JsonObject;
  * @author ashish on 10/1/18.
  * updated by mukul@gooru
  */
-public class MessageProcessorBuilder {
+public final class MessageProcessorBuilder {
     private MessageProcessorBuilder() {
         throw new AssertionError();
     }
@@ -45,7 +45,7 @@ public class MessageProcessorBuilder {
             return new UserStatsJourneysProcessor(vertx, message);
         case Constants.Message.MSG_OP_USER_STATS_TIMESPENT:
             return new UserStatsTimespentProcessor(vertx, message);
-          
+
         case Constants.Message.MSG_OP_USER_JOURNEY:
             return new UserJourneyProcessor(vertx, message);
         case Constants.Message.MSG_OP_USER_PERF_COURSE:

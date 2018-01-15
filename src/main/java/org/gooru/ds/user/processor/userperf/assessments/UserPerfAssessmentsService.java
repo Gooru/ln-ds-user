@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @author mukul@gooru
  */
-public class UserPerfAssessmentsService {
+class UserPerfAssessmentsService {
 
 
     private final UserPerfAssessmentsDao userPerfAssessmentsDao;

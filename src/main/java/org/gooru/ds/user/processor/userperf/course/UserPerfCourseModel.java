@@ -6,8 +6,8 @@ import java.util.List;
 /**
  * @author mukul@gooru
  */
-public class UserPerfCourseModel {
-	
+class UserPerfCourseModel {
+
     private String classId;
     private String classCode;
     private String classTitle;
@@ -18,7 +18,7 @@ public class UserPerfCourseModel {
     private Long courseCollTimeSpent;
     private Integer courseAssessmentsComplete;
     private Integer totalAssessments;
-    List<UserPerfUnitModel> units;
+    private List<UserPerfUnitModel> units;
 
     public String getClassId() {
         return classId;

@@ -3,7 +3,6 @@ package org.gooru.ds.user.processor.userperf.lesson;
 import org.gooru.ds.user.app.data.EventBusMessage;
 import org.gooru.ds.user.app.jdbi.DBICreator;
 import org.gooru.ds.user.processor.userperf.lesson.UserPerfLessonCommand;
-import org.gooru.ds.user.processor.userperf.lesson.UserPerfLessonModel;
 import org.gooru.ds.user.processor.MessageProcessor;
 import org.gooru.ds.user.processor.userperf.lesson.UserPerfLessonService;
 import org.gooru.ds.user.responses.MessageResponse;
@@ -26,7 +25,7 @@ import io.vertx.core.json.JsonObject;
  * @author mukul@gooru
  */
 public class UserPerfLessonProcessor implements MessageProcessor {
-	
+
     private final Vertx vertx;
     private final Message<JsonObject> message;
     private final Future<MessageResponse> result;

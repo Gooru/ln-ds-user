@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 /**
  * @author ashish on 11/1/18.
  */
-public class PGArrayUtils {
+public final class PGArrayUtils {
 
     private PGArrayUtils() {
         throw new AssertionError();

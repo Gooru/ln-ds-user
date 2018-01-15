@@ -12,8 +12,8 @@ import io.vertx.core.json.JsonObject;
  * @author mukul@gooru
  */
 public class UserPerfAssessmentsCommand {
-	
-	
+
+
 	private String classId;
     private String courseId;
     private String unitId;
@@ -25,15 +25,15 @@ public class UserPerfAssessmentsCommand {
     public String getclassId() {
         return classId;
     }
-    
+
     public String getcourseId() {
         return courseId;
     }
-    
+
     public String getunitId() {
         return unitId;
     }
-    
+
     public String getlessonId() {
         return lessonId;
     }
@@ -55,7 +55,7 @@ public class UserPerfAssessmentsCommand {
         bean.courseId = courseId;
         bean.unitId = unitId;
         bean.lessonId = lessonId;
-        
+
         return bean;
     }
 
@@ -77,25 +77,25 @@ public class UserPerfAssessmentsCommand {
             throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
                 "User not provided for request");
         }
-        
+
         if (classId == null) {
             LOGGER.info("Class not provided");
             throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
                 "Class not provided");
         }
-        
+
         if (courseId == null) {
             LOGGER.info("Course not provided");
             throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
                 "Course not provided");
         }
-        
+
         if (unitId == null) {
             LOGGER.info("Unit not provided");
             throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
                 "Unit not provided");
         }
-        
+
         if (lessonId == null) {
             LOGGER.info("Lesson not provided");
             throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
@@ -117,7 +117,7 @@ public class UserPerfAssessmentsCommand {
         public void setUser(String user) {
             this.user = user;
         }
-        
+
         public String getClassId() {
             return classId;
         }
@@ -125,7 +125,7 @@ public class UserPerfAssessmentsCommand {
         public void setClassId(String classId) {
             this.classId = classId;
         }
-        
+
         public String getCourseId() {
             return courseId;
         }
@@ -133,7 +133,7 @@ public class UserPerfAssessmentsCommand {
         public void setCourseId(String courseId) {
             this.courseId = courseId;
         }
-        
+
         public String getUnitId() {
             return unitId;
         }
@@ -141,7 +141,7 @@ public class UserPerfAssessmentsCommand {
         public void setUnitId(String unitId) {
             this.unitId = unitId;
         }
-        
+
         public String getLessonId() {
             return lessonId;
         }
@@ -157,6 +157,10 @@ public class UserPerfAssessmentsCommand {
         private static final String UNIT_ID = "unitId";
         private static final String LESSON_ID = "lessonId";
         private static final String USER_ID = "user";
+
+        private CommandAttributes() {
+            throw new AssertionError();
+        }
     }
 
 
