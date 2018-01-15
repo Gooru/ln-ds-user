@@ -1,6 +1,5 @@
 package org.gooru.ds.user.processor.user.journey;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +10,6 @@ import org.slf4j.LoggerFactory;
 
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
-
 
 /**
  * @author mukul@gooru
@@ -57,13 +55,13 @@ public class UserJourneyCommand {
         JsonArray classIds = requestBody.getJsonArray(CommandAttributes.CLASS_IDS);
         List<String> clsIds = new ArrayList<>(classIds.size());
         for (Object s : classIds) {
-          clsIds.add(s.toString());
+            clsIds.add(s.toString());
         }
 
         JsonArray courseIds = requestBody.getJsonArray(CommandAttributes.COURSE_IDS);
         List<String> couIds = new ArrayList<>(courseIds.size());
         for (Object s : courseIds) {
-          couIds.add(s.toString());
+            couIds.add(s.toString());
         }
 
         result.classId = clsIds;

@@ -3,9 +3,6 @@ package org.gooru.ds.user.processor.user.journey;
 import org.gooru.ds.user.app.data.EventBusMessage;
 import org.gooru.ds.user.app.jdbi.DBICreator;
 import org.gooru.ds.user.processor.MessageProcessor;
-import org.gooru.ds.user.processor.user.journey.UserJourneyCommand;
-import org.gooru.ds.user.processor.user.journey.UserJourneyProcessor;
-import org.gooru.ds.user.processor.user.journey.UserJourneyService;
 import org.gooru.ds.user.responses.MessageResponse;
 import org.gooru.ds.user.responses.MessageResponseFactory;
 import org.slf4j.Logger;
@@ -14,13 +11,11 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
 import io.vertx.core.Future;
 import io.vertx.core.Vertx;
 import io.vertx.core.eventbus.Message;
 import io.vertx.core.json.DecodeException;
 import io.vertx.core.json.JsonObject;
-
 
 /**
  * @author mukul@gooru
@@ -32,8 +27,7 @@ public class UserJourneyProcessor implements MessageProcessor {
     private final Future<MessageResponse> result;
     private static final Logger LOGGER = LoggerFactory.getLogger(UserJourneyProcessor.class);
     private EventBusMessage eventBusMessage;
-    private final UserJourneyService userJourneyService =
-        new UserJourneyService(DBICreator.getDbiForDefaultDS());
+    private final UserJourneyService userJourneyService = new UserJourneyService(DBICreator.getDbiForDefaultDS());
 
     public UserJourneyProcessor(Vertx vertx, Message<JsonObject> message) {
         this.vertx = vertx;

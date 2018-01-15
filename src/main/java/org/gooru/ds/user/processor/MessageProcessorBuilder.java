@@ -3,15 +3,12 @@ package org.gooru.ds.user.processor;
 import org.gooru.ds.user.constants.Constants;
 import org.gooru.ds.user.processor.activeuserlist.ActiveUserListProcessor;
 import org.gooru.ds.user.processor.user.distribution.UserDistributionProcessor;
-
 import org.gooru.ds.user.processor.user.journey.UserJourneyProcessor;
 import org.gooru.ds.user.processor.userperf.course.UserPerfCourseProcessor;
 import org.gooru.ds.user.processor.userperf.lesson.UserPerfLessonProcessor;
-
 import org.gooru.ds.user.processor.userprefs.content.UserPrefsContentProcessor;
 import org.gooru.ds.user.processor.userprefs.curators.UserPrefsCuratorProcessor;
 import org.gooru.ds.user.processor.userprefs.providers.UserPrefsProviderProcessor;
-
 import org.gooru.ds.user.processor.userstats.competency.UserStatsCompetencyProcessor;
 import org.gooru.ds.user.processor.userstats.content.UserStatsContentsProcessor;
 import org.gooru.ds.user.processor.userstats.courses.UserStatsCoursesProcessor;

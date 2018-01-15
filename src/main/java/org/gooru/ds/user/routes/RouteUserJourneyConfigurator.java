@@ -18,7 +18,7 @@ import io.vertx.ext.web.RoutingContext;
  * @author mukul@gooru
  */
 public class RouteUserJourneyConfigurator implements RouteConfigurator {
-	
+
     private static final Logger LOGGER = LoggerFactory.getLogger(RouteUserJourneyConfigurator.class);
     private EventBus eb = null;
     private long mbusTimeout;
@@ -35,7 +35,7 @@ public class RouteUserJourneyConfigurator implements RouteConfigurator {
     private void userJourney(RoutingContext routingContext) {
         baseHandler(routingContext, Constants.Message.MSG_OP_USER_JOURNEY, Constants.EventBus.MBEP_DISPATCHER);
     }
-    
+
     private void userPerfCourse(RoutingContext routingContext) {
         baseHandler(routingContext, Constants.Message.MSG_OP_USER_PERF_COURSE, Constants.EventBus.MBEP_DISPATCHER);
     }
@@ -44,7 +44,6 @@ public class RouteUserJourneyConfigurator implements RouteConfigurator {
         baseHandler(routingContext, Constants.Message.MSG_OP_USER_PERF_LESSON, Constants.EventBus.MBEP_DISPATCHER);
     }
 
-    
     private void baseHandler(RoutingContext routingContext, String op, String eventBusEndPoint) {
         DeliveryOptions options = DeliveryOptionsBuilder.buildWithApiVersion(routingContext).setSendTimeout(mbusTimeout)
             .addHeader(Constants.Message.MSG_OP, op);
@@ -52,6 +51,5 @@ public class RouteUserJourneyConfigurator implements RouteConfigurator {
             reply -> RouteResponseUtility.responseHandler(routingContext, reply, LOGGER));
 
     }
-
 
 }

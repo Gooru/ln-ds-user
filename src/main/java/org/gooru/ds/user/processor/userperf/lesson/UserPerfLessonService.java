@@ -2,14 +2,9 @@ package org.gooru.ds.user.processor.userperf.lesson;
 
 import java.util.List;
 
-import org.gooru.ds.user.processor.userperf.lesson.UserPerfLessonCommand;
-import org.gooru.ds.user.processor.userperf.lesson.UserPerfLessonDao;
-import org.gooru.ds.user.processor.userperf.lesson.UserPerfLessonModel;
-
 import org.skife.jdbi.v2.DBI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 
 /**
  * @author mukul@gooru
@@ -29,8 +24,5 @@ class UserPerfLessonService {
         result.setLessons(models);
         return result;
     }
-
-
-
 
 }

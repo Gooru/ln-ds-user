@@ -2,19 +2,17 @@ package org.gooru.ds.user.processor.userperf.course;
 
 import org.gooru.ds.user.constants.HttpConstants;
 import org.gooru.ds.user.exceptions.HttpResponseWrapperException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import io.vertx.core.json.JsonObject;
-
 
 /**
  * @author mukul@gooru
  */
 public class UserPerfCourseCommand {
 
-	private String classId;
+    private String classId;
     private String courseId;
     private String user;
 
@@ -33,13 +31,13 @@ public class UserPerfCourseCommand {
     }
 
     static UserPerfCourseCommand builder(JsonObject requestBody) {
-    	UserPerfCourseCommand result = UserPerfCourseCommand.buildFromJsonObject(requestBody);
+        UserPerfCourseCommand result = UserPerfCourseCommand.buildFromJsonObject(requestBody);
         result.validate();
         return result;
     }
 
     public UserPerfCourseCommandBean asBean() {
-    	UserPerfCourseCommandBean bean = new UserPerfCourseCommandBean();
+        UserPerfCourseCommandBean bean = new UserPerfCourseCommandBean();
         bean.user = user;
         bean.classId = classId;
         bean.courseId = courseId;
@@ -48,7 +46,7 @@ public class UserPerfCourseCommand {
     }
 
     private static UserPerfCourseCommand buildFromJsonObject(JsonObject requestBody) {
-    	UserPerfCourseCommand result = new UserPerfCourseCommand();
+        UserPerfCourseCommand result = new UserPerfCourseCommand();
 
         result.classId = requestBody.getString(CommandAttributes.CLASS_ID);
         result.courseId = requestBody.getString(CommandAttributes.COURSE_ID);
@@ -66,14 +64,12 @@ public class UserPerfCourseCommand {
 
         if (classId == null) {
             LOGGER.info("Class not provided");
-            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
-                "Class not provided");
+            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Class not provided");
         }
 
         if (courseId == null) {
             LOGGER.info("Course not provided");
-            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
-                "Course not provided");
+            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Course not provided");
         }
     }
 
@@ -116,6 +112,5 @@ public class UserPerfCourseCommand {
             throw new AssertionError();
         }
     }
-
 
 }

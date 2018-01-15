@@ -15,6 +15,6 @@ public class UserPerfLessonModelResponse {
 
     public void setLessons(List<UserPerfLessonModel> lessons) {
         this.lessons = lessons;
-}
+    }
 
 }

@@ -2,7 +2,6 @@ package org.gooru.ds.user.processor.user.journey;
 
 import java.util.List;
 
-
 /**
  * @author mukul@gooru
  */
@@ -16,6 +15,6 @@ public class UserJourneyModelResponse {
 
     public void setJourneys(List<UserJourneyModel> journeys) {
         this.journeys = journeys;
-}
+    }
 
 }

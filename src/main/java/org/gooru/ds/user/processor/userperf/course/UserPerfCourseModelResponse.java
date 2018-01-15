@@ -5,6 +5,6 @@ package org.gooru.ds.user.processor.userperf.course;
  */
 class UserPerfCourseModelResponse {
 
-	}
+}
 
 

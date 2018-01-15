@@ -7,14 +7,12 @@ import org.slf4j.LoggerFactory;
 
 import io.vertx.core.json.JsonObject;
 
-
 /**
  * @author mukul@gooru
  */
 public class UserPerfAssessmentsCommand {
 
-
-	private String classId;
+    private String classId;
     private String courseId;
     private String unitId;
     private String lessonId;
@@ -43,13 +41,13 @@ public class UserPerfAssessmentsCommand {
     }
 
     static UserPerfAssessmentsCommand builder(JsonObject requestBody) {
-    	UserPerfAssessmentsCommand result = UserPerfAssessmentsCommand.buildFromJsonObject(requestBody);
+        UserPerfAssessmentsCommand result = UserPerfAssessmentsCommand.buildFromJsonObject(requestBody);
         result.validate();
         return result;
     }
 
     public UserPerfAssessmentsCommandBean asBean() {
-    	UserPerfAssessmentsCommandBean bean = new UserPerfAssessmentsCommandBean();
+        UserPerfAssessmentsCommandBean bean = new UserPerfAssessmentsCommandBean();
         bean.user = user;
         bean.classId = classId;
         bean.courseId = courseId;
@@ -60,7 +58,7 @@ public class UserPerfAssessmentsCommand {
     }
 
     private static UserPerfAssessmentsCommand buildFromJsonObject(JsonObject requestBody) {
-    	UserPerfAssessmentsCommand result = new UserPerfAssessmentsCommand();
+        UserPerfAssessmentsCommand result = new UserPerfAssessmentsCommand();
 
         result.classId = requestBody.getString(CommandAttributes.CLASS_ID);
         result.courseId = requestBody.getString(CommandAttributes.COURSE_ID);
@@ -80,26 +78,22 @@ public class UserPerfAssessmentsCommand {
 
         if (classId == null) {
             LOGGER.info("Class not provided");
-            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
-                "Class not provided");
+            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Class not provided");
         }
 
         if (courseId == null) {
             LOGGER.info("Course not provided");
-            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
-                "Course not provided");
+            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Course not provided");
         }
 
         if (unitId == null) {
             LOGGER.info("Unit not provided");
-            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
-                "Unit not provided");
+            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Unit not provided");
         }
 
         if (lessonId == null) {
             LOGGER.info("Lesson not provided");
-            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
-                "Lesson not provided");
+            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Lesson not provided");
         }
     }
 
@@ -162,8 +156,5 @@ public class UserPerfAssessmentsCommand {
             throw new AssertionError();
         }
     }
-
-
-
 
 }

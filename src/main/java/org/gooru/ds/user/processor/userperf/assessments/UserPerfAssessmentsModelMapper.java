@@ -2,18 +2,15 @@ package org.gooru.ds.user.processor.userperf.assessments;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import org.gooru.ds.user.processor.userperf.assessments.UserPerfAssessmentsModel;
 
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.ResultSetMapper;
-
 
 /**
  * @author mukul@gooru
  */
 public class UserPerfAssessmentsModelMapper implements ResultSetMapper<UserPerfAssessmentsModel> {
-	
-	
+
     @Override
     public UserPerfAssessmentsModel map(int index, ResultSet r, StatementContext ctx) throws SQLException {
         UserPerfAssessmentsModel model = new UserPerfAssessmentsModel();
@@ -23,7 +20,7 @@ public class UserPerfAssessmentsModelMapper implements ResultSetMapper<UserPerfA
         model.setTimeSpent(r.getInt(MapperFields.ASSESSMENT_TIMESPENT));
         model.setScore(r.getDouble(MapperFields.ASSESSMENT_SCORE));
         model.setReaction(r.getInt(MapperFields.ASSESSMENT_REACTION));
-        
+
         return model;
     }
 
@@ -33,7 +30,7 @@ public class UserPerfAssessmentsModelMapper implements ResultSetMapper<UserPerfA
         }
 
         //generically referred to as collection_id in analytics DB
-        private static final String ASSESSMENT_ID = "collection_id";        
+        private static final String ASSESSMENT_ID = "collection_id";
         private static final String ASSESSMENT_TITLE = "collection_title";
         private static final String ASSESSMENT_SESSION_ID = "latest_session_id";
         private static final String ASSESSMENT_TIMESPENT = "collection_time_spent";
@@ -41,7 +38,5 @@ public class UserPerfAssessmentsModelMapper implements ResultSetMapper<UserPerfA
         private static final String ASSESSMENT_REACTION = "collection_average_reaction";
 
     }
-
-
 
 }

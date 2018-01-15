@@ -3,17 +3,14 @@ package org.gooru.ds.user.processor.user.journey;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.gooru.ds.user.processor.user.journey.UserJourneyModel;
-
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.ResultSetMapper;
-
 
 /**
  * @author mukul@gooru
  */
-public class UserJourneyModelMapper implements ResultSetMapper<UserJourneyModel>{
-	
+public class UserJourneyModelMapper implements ResultSetMapper<UserJourneyModel> {
+
     @Override
     public UserJourneyModel map(int index, ResultSet r, StatementContext ctx) throws SQLException {
         UserJourneyModel model = new UserJourneyModel();
@@ -38,15 +35,13 @@ public class UserJourneyModelMapper implements ResultSetMapper<UserJourneyModel>
         private static final String CLASS_ID = "class_id";
         private static final String CLASS_CODE = "class_code";
         private static final String CLASS_TITLE = "class_title";
-        private static final String COURSE_ID = "course_id";        
+        private static final String COURSE_ID = "course_id";
         private static final String COURSE_TITLE = "course_title";
         private static final String TIMESPENT = "time_spent";
         private static final String AVERAGE_SCORE = "average_score";
         private static final String ASSESSMENTS_COMPLETED = "assessments_completed";
         private static final String TOTAL_ASSESSMENTS = "total_assessments";
 
-
     }
-
 
 }
