@@ -247,10 +247,8 @@ CREATE TABLE user_stats_provider (
     UNIQUE(user_id, provider_id, duration)
 );
 
-
-
 -- This is the master data table that forms the leaf level data housing 
--- Aggregated Tables will be created/derived from this master tables.
+-- Aggregated Tables will be created/derived from this master table.
 CREATE TABLE ds_master (
 id BIGSERIAL PRIMARY KEY,
 event_name varchar(36),
@@ -338,18 +336,20 @@ course_coll_time_spent bigint,
 course_coll_score numeric(5,2),
 unit_id varchar(36),
 unit_title varchar(100),
+unit_sequence_id smallint,
 unit_asmt_time_spent bigint,
 unit_asmt_score numeric(5,2),
 unit_coll_time_spent bigint,
 unit_coll_score numeric(5,2),
 lesson_id varchar(36),
 lesson_title varchar(100),
+lesson_sequence_id smallint,
 lesson_asmt_time_spent bigint,
 lesson_asmt_score numeric(5,2),
 lesson_coll_time_spent bigint,
 lesson_coll_score numeric(5,2),
-assessments_completed bigint,
-total_assessments bigint,
+course_assessments_complete smallint,
+total_assessments smallint,
 created_at timestamp NOT NULL DEFAULT (NOW() AT TIME ZONE 'UTC'),
 updated_at timestamp NOT NULL DEFAULT (NOW() AT TIME ZONE 'UTC'));
 
@@ -366,8 +366,11 @@ unit_id varchar(36),
 unit_title varchar(100),
 lesson_id varchar(36),
 lesson_title varchar(100),
+latest_session_id varchar(36),
 collection_id varchar(36),
 collection_title varchar(100),
+collection_sequence_id smallint,
+collection_path_id bigint,
 collection_time_spent bigint,
 collection_score numeric(5,2),
 collection_average_reaction smallint,
