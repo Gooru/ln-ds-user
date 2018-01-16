@@ -1,14 +1,11 @@
 package org.gooru.ds.user.routes;
 
 import org.gooru.ds.user.constants.Constants;
-import org.gooru.ds.user.routes.utils.DeliveryOptionsBuilder;
-import org.gooru.ds.user.routes.utils.RouteRequestUtility;
-import org.gooru.ds.user.routes.utils.RouteResponseUtility;
+import org.gooru.ds.user.routes.utils.RouteHandlerUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import io.vertx.core.Vertx;
-import io.vertx.core.eventbus.DeliveryOptions;
 import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
@@ -36,39 +33,38 @@ public class RouteUserStatsConfigurator implements RouteConfigurator {
     }
 
     private void userStatsCurators(RoutingContext routingContext) {
-        baseHandler(routingContext, Constants.Message.MSG_OP_USER_STATS_CURATORS, Constants.EventBus.MBEP_DISPATCHER);
+        RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_USER_STATS_CURATORS,
+            Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
     }
 
     private void userStatsProviders(RoutingContext routingContext) {
-        baseHandler(routingContext, Constants.Message.MSG_OP_USER_STATS_PROVIDERS, Constants.EventBus.MBEP_DISPATCHER);
+        RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_USER_STATS_PROVIDERS,
+            Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
     }
 
     private void userStatsContents(RoutingContext routingContext) {
-        baseHandler(routingContext, Constants.Message.MSG_OP_USER_STATS_CONTENTS, Constants.EventBus.MBEP_DISPATCHER);
+        RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_USER_STATS_CONTENTS,
+            Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
     }
 
     private void userStatsJourneys(RoutingContext routingContext) {
-        baseHandler(routingContext, Constants.Message.MSG_OP_USER_STATS_JOURNEYS, Constants.EventBus.MBEP_DISPATCHER);
+        RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_USER_STATS_JOURNEYS,
+            Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
     }
 
     private void userStatsCompetency(RoutingContext routingContext) {
-        baseHandler(routingContext, Constants.Message.MSG_OP_USER_STATS_COMPETENCY, Constants.EventBus.MBEP_DISPATCHER);
+        RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_USER_STATS_COMPETENCY,
+            Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
     }
 
     private void userStatsTimespent(RoutingContext routingContext) {
-        baseHandler(routingContext, Constants.Message.MSG_OP_USER_STATS_TIMESPENT, Constants.EventBus.MBEP_DISPATCHER);
+        RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_USER_STATS_TIMESPENT,
+            Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
     }
 
     private void userStatsCourses(RoutingContext routingContext) {
-        baseHandler(routingContext, Constants.Message.MSG_OP_USER_STATS_COURSES, Constants.EventBus.MBEP_DISPATCHER);
-    }
-
-    private void baseHandler(RoutingContext routingContext, String op, String eventBusEndPoint) {
-        DeliveryOptions options = DeliveryOptionsBuilder.buildWithApiVersion(routingContext).setSendTimeout(mbusTimeout)
-            .addHeader(Constants.Message.MSG_OP, op);
-        eb.<JsonObject>send(eventBusEndPoint, RouteRequestUtility.getBodyForMessage(routingContext, true), options,
-            reply -> RouteResponseUtility.responseHandler(routingContext, reply, LOGGER));
-
+        RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_USER_STATS_COURSES,
+            Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
     }
 
 }

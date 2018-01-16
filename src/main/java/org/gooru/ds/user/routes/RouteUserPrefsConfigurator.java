@@ -1,14 +1,11 @@
 package org.gooru.ds.user.routes;
 
 import org.gooru.ds.user.constants.Constants;
-import org.gooru.ds.user.routes.utils.DeliveryOptionsBuilder;
-import org.gooru.ds.user.routes.utils.RouteRequestUtility;
-import org.gooru.ds.user.routes.utils.RouteResponseUtility;
+import org.gooru.ds.user.routes.utils.RouteHandlerUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import io.vertx.core.Vertx;
-import io.vertx.core.eventbus.DeliveryOptions;
 import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
@@ -32,24 +29,18 @@ public class RouteUserPrefsConfigurator implements RouteConfigurator {
     }
 
     private void userPrefsCurators(RoutingContext routingContext) {
-        baseHandler(routingContext, Constants.Message.MSG_OP_USER_PREFS_CURATORS, Constants.EventBus.MBEP_DISPATCHER);
+        RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_USER_PREFS_CURATORS,
+            Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
     }
 
     private void userPrefsContent(RoutingContext routingContext) {
-        baseHandler(routingContext, Constants.Message.MSG_OP_USER_PREFS_CONTENT, Constants.EventBus.MBEP_DISPATCHER);
+        RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_USER_PREFS_CONTENT,
+            Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
     }
 
     private void userPrefsProviders(RoutingContext routingContext) {
-        baseHandler(routingContext, Constants.Message.MSG_OP_USER_PREFS_PROVIDERS, Constants.EventBus.MBEP_DISPATCHER);
+        RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_USER_PREFS_PROVIDERS,
+            Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
     }
-
-    private void baseHandler(RoutingContext routingContext, String op, String eventBusEndPoint) {
-        DeliveryOptions options = DeliveryOptionsBuilder.buildWithApiVersion(routingContext).setSendTimeout(mbusTimeout)
-            .addHeader(Constants.Message.MSG_OP, op);
-        eb.<JsonObject>send(eventBusEndPoint, RouteRequestUtility.getBodyForMessage(routingContext, true), options,
-            reply -> RouteResponseUtility.responseHandler(routingContext, reply, LOGGER));
-
-    }
-
 }
 

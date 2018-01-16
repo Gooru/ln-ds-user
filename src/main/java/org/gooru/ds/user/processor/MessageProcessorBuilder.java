@@ -76,7 +76,8 @@ public final class MessageProcessorBuilder {
             return new UserPrefsCuratorProcessor(vertx, message);
         case Constants.Message.MSG_OP_USER_PREFS_PROVIDERS:
             return new UserPrefsProviderProcessor(vertx, message);
-
+        case Constants.Message.MSG_OP_COMPETENCY_MATRIX:
+            return new StubbedMessageProcessor(vertx, message);
         default:
             return null;
         }

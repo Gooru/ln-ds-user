@@ -38,6 +38,7 @@ public final class Constants {
         public static final String MSG_OP_USER_PREFS_CONTENT = "mb.op.user.prefs.content";
         public static final String MSG_OP_USER_PREFS_CURATORS = "mb.op.user.prefs.curators";
         public static final String MSG_OP_USER_PREFS_PROVIDERS = "mb.op.user.prefs.providers";
+        public static final String MSG_OP_COMPETENCY_MATRIX = "mb.op.competency.matrix";
 
         public static final String MSG_OP_USER_JOURNEY = "mb.op.user.journey";
         public static final String MSG_OP_USER_PERF_COURSE = "mb.op.user.performance.course";
@@ -106,6 +107,8 @@ public final class Constants {
         public static final String API_USER_PREFS_CONTENT = API_BASE_ROUTE + "user/prefs/content";
         public static final String API_USER_PREFS_CURATORS = API_BASE_ROUTE + "user/prefs/curators";
         public static final String API_USER_PREFS_PROVIDERS = API_BASE_ROUTE + "user/prefs/providers";
+
+        public static final String API_COMPETENCY_MATRIX = API_BASE_ROUTE + "/tx/competency/matrix";
 
         private Route() {
             throw new AssertionError();

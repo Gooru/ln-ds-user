@@ -1,14 +1,11 @@
 package org.gooru.ds.user.routes;
 
 import org.gooru.ds.user.constants.Constants;
-import org.gooru.ds.user.routes.utils.DeliveryOptionsBuilder;
-import org.gooru.ds.user.routes.utils.RouteRequestUtility;
-import org.gooru.ds.user.routes.utils.RouteResponseUtility;
+import org.gooru.ds.user.routes.utils.RouteHandlerUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import io.vertx.core.Vertx;
-import io.vertx.core.eventbus.DeliveryOptions;
 import io.vertx.core.eventbus.EventBus;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
@@ -31,19 +28,13 @@ public class RouteUserDistributionConfigurator implements RouteConfigurator {
     }
 
     private void activeUserList(RoutingContext routingContext) {
-        DeliveryOptions options = DeliveryOptionsBuilder.buildWithApiVersion(routingContext).setSendTimeout(mbusTimeout)
-            .addHeader(Constants.Message.MSG_OP, Constants.Message.MSG_OP_ACTIVE_USER_LIST);
-        eb.<JsonObject>send(Constants.EventBus.MBEP_DISPATCHER,
-            RouteRequestUtility.getBodyForMessage(routingContext, true), options,
-            reply -> RouteResponseUtility.responseHandler(routingContext, reply, LOGGER));
+        RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_ACTIVE_USER_LIST,
+            Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
     }
 
     private void userDistribution(RoutingContext routingContext) {
-        DeliveryOptions options = DeliveryOptionsBuilder.buildWithApiVersion(routingContext).setSendTimeout(mbusTimeout)
-            .addHeader(Constants.Message.MSG_OP, Constants.Message.MSG_OP_USER_DISTRIBUTION);
-        eb.<JsonObject>send(Constants.EventBus.MBEP_DISPATCHER,
-            RouteRequestUtility.getBodyForMessage(routingContext, true), options,
-            reply -> RouteResponseUtility.responseHandler(routingContext, reply, LOGGER));
+        RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_USER_DISTRIBUTION,
+            Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
     }
 
 }
