@@ -3,9 +3,6 @@ package org.gooru.ds.user.processor.userperf.summary.collection;
 import org.gooru.ds.user.app.data.EventBusMessage;
 import org.gooru.ds.user.app.jdbi.DBICreator;
 import org.gooru.ds.user.processor.MessageProcessor;
-import org.gooru.ds.user.processor.userperf.summary.collection.UserPerfCollSummaryCommand;
-import org.gooru.ds.user.processor.userperf.summary.collection.UserPerfCollSummaryModelResponse;
-import org.gooru.ds.user.processor.userperf.summary.collection.UserPerfCollSummaryService;
 import org.gooru.ds.user.responses.MessageResponse;
 import org.gooru.ds.user.responses.MessageResponseFactory;
 import org.slf4j.Logger;
@@ -20,14 +17,11 @@ import io.vertx.core.eventbus.Message;
 import io.vertx.core.json.DecodeException;
 import io.vertx.core.json.JsonObject;
 
-
 /**
  * @author mukul@gooru
  */
 public class UserPerfCollSummaryProcessor implements MessageProcessor {
 
-
-	
     private final Vertx vertx;
     private final Message<JsonObject> message;
     private final Future<MessageResponse> result;
@@ -57,9 +51,9 @@ public class UserPerfCollSummaryProcessor implements MessageProcessor {
 
     private void fetchUserCollectionSummary(UserPerfCollSummaryCommand command) {
         try {
-        	UserPerfCollSummaryModelResponse outcome = UserPerfCollSummaryService.fetchUserCollSummary(command);
+            UserPerfCollSummaryModelResponse outcome = UserPerfCollSummaryService.fetchUserCollSummary(command);
             String resultString = new ObjectMapper().writeValueAsString(outcome);
-            result.complete(MessageResponseFactory.createOkayResponse(new JsonObject(resultString)));            
+            result.complete(MessageResponseFactory.createOkayResponse(new JsonObject(resultString)));
         } catch (JsonProcessingException e) {
             LOGGER.error("Not able to convert data to JSON", e);
             result.fail(e);
@@ -72,8 +66,5 @@ public class UserPerfCollSummaryProcessor implements MessageProcessor {
         }
 
     }
-
-
-
 
 }

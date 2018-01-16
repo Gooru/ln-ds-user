@@ -7,13 +7,12 @@ import org.slf4j.LoggerFactory;
 
 import io.vertx.core.json.JsonObject;
 
-
 /**
  * @author mukul@gooru
  */
 public class UserPerfAsmtSummaryCommand {
-	
-	private String classId;
+
+    private String classId;
     private String courseId;
     private String unitId;
     private String lessonId;
@@ -26,15 +25,15 @@ public class UserPerfAsmtSummaryCommand {
     public String getclassId() {
         return classId;
     }
-    
+
     public String getcourseId() {
         return courseId;
     }
-    
+
     public String getunitId() {
         return unitId;
     }
-    
+
     public String getlessonId() {
         return lessonId;
     }
@@ -42,7 +41,7 @@ public class UserPerfAsmtSummaryCommand {
     public String getAssessmentId() {
         return assessmentId;
     }
-    
+
     public String getSessionId() {
         return sessionId;
     }
@@ -52,13 +51,13 @@ public class UserPerfAsmtSummaryCommand {
     }
 
     static UserPerfAsmtSummaryCommand builder(JsonObject requestBody) {
-    	UserPerfAsmtSummaryCommand result = UserPerfAsmtSummaryCommand.buildFromJsonObject(requestBody);
+        UserPerfAsmtSummaryCommand result = UserPerfAsmtSummaryCommand.buildFromJsonObject(requestBody);
         result.validate();
         return result;
     }
 
     public UserPerfAsmtSummaryCommandBean asBean() {
-    	UserPerfAsmtSummaryCommandBean bean = new UserPerfAsmtSummaryCommandBean();
+        UserPerfAsmtSummaryCommandBean bean = new UserPerfAsmtSummaryCommandBean();
         bean.user = user;
         bean.classId = classId;
         bean.courseId = courseId;
@@ -66,12 +65,12 @@ public class UserPerfAsmtSummaryCommand {
         bean.lessonId = lessonId;
         bean.assessmentId = assessmentId;
         bean.sessionId = sessionId;
-        
+
         return bean;
     }
 
     private static UserPerfAsmtSummaryCommand buildFromJsonObject(JsonObject requestBody) {
-    	UserPerfAsmtSummaryCommand result = new UserPerfAsmtSummaryCommand();
+        UserPerfAsmtSummaryCommand result = new UserPerfAsmtSummaryCommand();
 
         result.classId = requestBody.getString(CommandAttributes.CLASS_ID);
         result.courseId = requestBody.getString(CommandAttributes.COURSE_ID);
@@ -90,37 +89,32 @@ public class UserPerfAsmtSummaryCommand {
             throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
                 "User not provided for request");
         }
-        
+
         if (classId == null) {
             LOGGER.info("Class not provided");
-            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
-                "Class not provided");
+            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Class not provided");
         }
-        
+
         if (courseId == null) {
             LOGGER.info("Course not provided");
-            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
-                "Course not provided");
+            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Course not provided");
         }
-        
+
         if (unitId == null) {
             LOGGER.info("Unit not provided");
-            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
-                "Unit not provided");
+            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Unit not provided");
         }
-        
+
         if (lessonId == null) {
             LOGGER.info("Lesson not provided");
-            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
-                "Lesson not provided");
+            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Lesson not provided");
         }
-        
+
         if (assessmentId == null) {
             LOGGER.info("Assessment not provided");
-            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
-                "Assessment not provided");
+            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Assessment not provided");
         }
-        
+
         if (sessionId == null) {
             LOGGER.info("Assessment Session not provided");
             throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
@@ -144,7 +138,7 @@ public class UserPerfAsmtSummaryCommand {
         public void setUser(String user) {
             this.user = user;
         }
-        
+
         public String getClassId() {
             return classId;
         }
@@ -152,7 +146,7 @@ public class UserPerfAsmtSummaryCommand {
         public void setClassId(String classId) {
             this.classId = classId;
         }
-        
+
         public String getCourseId() {
             return courseId;
         }
@@ -160,7 +154,7 @@ public class UserPerfAsmtSummaryCommand {
         public void setCourseId(String courseId) {
             this.courseId = courseId;
         }
-        
+
         public String getUnitId() {
             return unitId;
         }
@@ -168,7 +162,7 @@ public class UserPerfAsmtSummaryCommand {
         public void setUnitId(String unitId) {
             this.unitId = unitId;
         }
-        
+
         public String getLessonId() {
             return lessonId;
         }
@@ -176,7 +170,7 @@ public class UserPerfAsmtSummaryCommand {
         public void setLessonId(String lessonId) {
             this.lessonId = lessonId;
         }
-        
+
         public String getAssessmentId() {
             return assessmentId;
         }
@@ -184,7 +178,7 @@ public class UserPerfAsmtSummaryCommand {
         public void setAssessmentId(String assessmentId) {
             this.assessmentId = assessmentId;
         }
-        
+
         public String getSessionId() {
             return sessionId;
         }
@@ -202,6 +196,10 @@ public class UserPerfAsmtSummaryCommand {
         private static final String ASSESSMENT_ID = "assessmentId";
         private static final String SESSION_ID = "sessionId";
         private static final String USER_ID = "user";
+
+        private CommandAttributes() {
+            throw new AssertionError();
+        }
     }
 
 }

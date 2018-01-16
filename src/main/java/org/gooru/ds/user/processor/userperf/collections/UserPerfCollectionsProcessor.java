@@ -52,7 +52,7 @@ public class UserPerfCollectionsProcessor implements MessageProcessor {
     private void fetchUserCollectionsPerf(UserPerfCollectionsCommand command) {
         try {
 
-        	UserPerfCollectionsModelResponse outcome = UserPerfCollectionsService.fetchUserCollectionsPerf(command);
+            UserPerfCollectionsModelResponse outcome = UserPerfCollectionsService.fetchUserCollectionsPerf(command);
             String resultString = new ObjectMapper().writeValueAsString(outcome);
             result.complete(MessageResponseFactory.createOkayResponse(new JsonObject(resultString)));
         } catch (JsonProcessingException e) {

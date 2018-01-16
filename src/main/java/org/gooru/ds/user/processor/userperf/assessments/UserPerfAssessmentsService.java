@@ -1,11 +1,6 @@
 package org.gooru.ds.user.processor.userperf.assessments;
 
-
 import java.util.List;
-
-import org.gooru.ds.user.processor.userperf.assessments.UserPerfAssessmentsCommand;
-import org.gooru.ds.user.processor.userperf.assessments.UserPerfAssessmentsDao;
-import org.gooru.ds.user.processor.userperf.assessments.UserPerfAssessmentsModel;
 
 import org.skife.jdbi.v2.DBI;
 import org.slf4j.Logger;
@@ -23,7 +18,7 @@ class UserPerfAssessmentsService {
         this.userPerfAssessmentsDao = dbi.onDemand(UserPerfAssessmentsDao.class);
     }
 
-    public UserPerfAssessmentsModelResponse fetchUserAssessmentsPerf(UserPerfAssessmentsCommand command) {    	
+    public UserPerfAssessmentsModelResponse fetchUserAssessmentsPerf(UserPerfAssessmentsCommand command) {
         List<UserPerfAssessmentsModel> models = userPerfAssessmentsDao.fetchUserPerfAssessments(command.asBean());
         UserPerfAssessmentsModelResponse result = new UserPerfAssessmentsModelResponse();
         result.setAssessments(models);

@@ -6,8 +6,8 @@ import java.util.List;
  * @author mukul@gooru
  */
 public class UserPerfCollectionsModelResponse {
-	
-    List<UserPerfCollectionsModel> collections;
+
+    private List<UserPerfCollectionsModel> collections;
 
     public List<UserPerfCollectionsModel> getCollections() {
         return collections;
@@ -15,6 +15,6 @@ public class UserPerfCollectionsModelResponse {
 
     public void setCollections(List<UserPerfCollectionsModel> collections) {
         this.collections = collections;
-}
+    }
 
 }

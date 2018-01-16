@@ -15,8 +15,8 @@ public class UserPerfCollectionsModelMapper implements ResultSetMapper<UserPerfC
     public UserPerfCollectionsModel map(int index, ResultSet r, StatementContext ctx) throws SQLException {
         UserPerfCollectionsModel model = new UserPerfCollectionsModel();
         model.setId(r.getString(MapperFields.COLLECTION_ID));
-        model.setTitle(r.getString(MapperFields.COLLECTION_TITLE));        
-        model.setTimeSpent(r.getLong(MapperFields.COLLECTION_TIMESPENT));        
+        model.setTitle(r.getString(MapperFields.COLLECTION_TITLE));
+        model.setTimeSpent(r.getLong(MapperFields.COLLECTION_TIMESPENT));
         model.setReaction(r.getInt(MapperFields.COLLECTION_REACTION));
 
         return model;

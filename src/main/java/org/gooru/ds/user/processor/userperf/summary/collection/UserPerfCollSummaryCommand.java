@@ -7,13 +7,12 @@ import org.slf4j.LoggerFactory;
 
 import io.vertx.core.json.JsonObject;
 
-
 /**
  * @author mukul@gooru
  */
 public class UserPerfCollSummaryCommand {
-	
-	private String classId;
+
+    private String classId;
     private String courseId;
     private String unitId;
     private String lessonId;
@@ -26,15 +25,15 @@ public class UserPerfCollSummaryCommand {
     public String getclassId() {
         return classId;
     }
-    
+
     public String getcourseId() {
         return courseId;
     }
-    
+
     public String getunitId() {
         return unitId;
     }
-    
+
     public String getlessonId() {
         return lessonId;
     }
@@ -52,13 +51,13 @@ public class UserPerfCollSummaryCommand {
     }
 
     static UserPerfCollSummaryCommand builder(JsonObject requestBody) {
-    	UserPerfCollSummaryCommand result = UserPerfCollSummaryCommand.buildFromJsonObject(requestBody);
+        UserPerfCollSummaryCommand result = UserPerfCollSummaryCommand.buildFromJsonObject(requestBody);
         result.validate();
         return result;
     }
 
     public UserPerfCollSummaryCommandBean asBean() {
-    	UserPerfCollSummaryCommandBean bean = new UserPerfCollSummaryCommandBean();
+        UserPerfCollSummaryCommandBean bean = new UserPerfCollSummaryCommandBean();
         bean.user = user;
         bean.classId = classId;
         bean.courseId = courseId;
@@ -66,12 +65,12 @@ public class UserPerfCollSummaryCommand {
         bean.lessonId = lessonId;
         bean.collectionId = collectionId;
         bean.sessionId = sessionId;
-        
+
         return bean;
     }
 
     private static UserPerfCollSummaryCommand buildFromJsonObject(JsonObject requestBody) {
-    	UserPerfCollSummaryCommand result = new UserPerfCollSummaryCommand();
+        UserPerfCollSummaryCommand result = new UserPerfCollSummaryCommand();
 
         result.classId = requestBody.getString(CommandAttributes.CLASS_ID);
         result.courseId = requestBody.getString(CommandAttributes.COURSE_ID);
@@ -90,37 +89,32 @@ public class UserPerfCollSummaryCommand {
             throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
                 "User not provided for request");
         }
-        
+
         if (classId == null) {
             LOGGER.info("Class not provided");
-            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
-                "Class not provided");
+            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Class not provided");
         }
-        
+
         if (courseId == null) {
             LOGGER.info("Course not provided");
-            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
-                "Course not provided");
+            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Course not provided");
         }
-        
+
         if (unitId == null) {
             LOGGER.info("Unit not provided");
-            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
-                "Unit not provided");
+            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Unit not provided");
         }
-        
+
         if (lessonId == null) {
             LOGGER.info("Lesson not provided");
-            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
-                "Lesson not provided");
+            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Lesson not provided");
         }
-        
+
         if (collectionId == null) {
             LOGGER.info("Collection not provided");
-            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
-                "Collection not provided");
+            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Collection not provided");
         }
-        
+
     }
 
     public static class UserPerfCollSummaryCommandBean {
@@ -130,7 +124,7 @@ public class UserPerfCollSummaryCommand {
         private String lessonId;
         private String collectionId;
         private String sessionId;
-     	private String user;
+        private String user;
 
         public String getUser() {
             return user;
@@ -139,7 +133,7 @@ public class UserPerfCollSummaryCommand {
         public void setUser(String user) {
             this.user = user;
         }
-        
+
         public String getClassId() {
             return classId;
         }
@@ -147,7 +141,7 @@ public class UserPerfCollSummaryCommand {
         public void setClassId(String classId) {
             this.classId = classId;
         }
-        
+
         public String getCourseId() {
             return courseId;
         }
@@ -155,7 +149,7 @@ public class UserPerfCollSummaryCommand {
         public void setCourseId(String courseId) {
             this.courseId = courseId;
         }
-        
+
         public String getUnitId() {
             return unitId;
         }
@@ -163,7 +157,7 @@ public class UserPerfCollSummaryCommand {
         public void setUnitId(String unitId) {
             this.unitId = unitId;
         }
-        
+
         public String getLessonId() {
             return lessonId;
         }
@@ -171,7 +165,7 @@ public class UserPerfCollSummaryCommand {
         public void setLessonId(String lessonId) {
             this.lessonId = lessonId;
         }
-        
+
         public String getCollectionId() {
             return collectionId;
         }
@@ -179,14 +173,14 @@ public class UserPerfCollSummaryCommand {
         public void setCollectionId(String collectionId) {
             this.collectionId = collectionId;
         }
-        
-        public String getSessionId() {
-			return sessionId;
-		}
 
-		public void setSessionId(String sessionId) {
-			this.sessionId = sessionId;
-		}
+        public String getSessionId() {
+            return sessionId;
+        }
+
+        public void setSessionId(String sessionId) {
+            this.sessionId = sessionId;
+        }
 
     }
 
@@ -198,7 +192,10 @@ public class UserPerfCollSummaryCommand {
         private static final String COLLECTION_ID = "collectionId";
         private static final String SESSION_ID = "sessionId";
         private static final String USER_ID = "user";
-    }
 
+        private CommandAttributes() {
+            throw new AssertionError();
+        }
+    }
 
 }

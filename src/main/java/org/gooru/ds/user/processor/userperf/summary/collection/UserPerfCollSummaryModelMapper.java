@@ -3,20 +3,17 @@ package org.gooru.ds.user.processor.userperf.summary.collection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.gooru.ds.user.processor.userperf.summary.collection.UserPerfCollSummaryModel;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.ResultSetMapper;
-
 
 /**
  * @author mukul@gooru
  */
-public class UserPerfCollSummaryModelMapper implements ResultSetMapper<UserPerfCollSummaryModel>{
-	
-	
+public class UserPerfCollSummaryModelMapper implements ResultSetMapper<UserPerfCollSummaryModel> {
+
     @Override
     public UserPerfCollSummaryModel map(int index, ResultSet r, StatementContext ctx) throws SQLException {
-    	UserPerfCollSummaryModel model = new UserPerfCollSummaryModel();
+        UserPerfCollSummaryModel model = new UserPerfCollSummaryModel();
         model.setId(r.getString(MapperFields.RESOURCE_ID));
         //model.setTitle(r.getString(MapperFields.RESOURCE_TITLE));
         model.setType(r.getString(MapperFields.RESOURCE_TYPE));
@@ -26,7 +23,7 @@ public class UserPerfCollSummaryModelMapper implements ResultSetMapper<UserPerfC
         model.setReaction(r.getInt(MapperFields.RESOURCE_REACTION));
         model.setPathId(r.getLong(MapperFields.RESOURCE_PATHID));
         //model.setSequenceId(r.getInt(MapperFields.RESOURCE_SEQUENCE_ID));
-        
+
         return model;
     }
 
@@ -34,8 +31,8 @@ public class UserPerfCollSummaryModelMapper implements ResultSetMapper<UserPerfC
         private MapperFields() {
             throw new AssertionError();
         }
-        
-        private static final String RESOURCE_ID = "resource_id";        
+
+        private static final String RESOURCE_ID = "resource_id";
         private static final String RESOURCE_TITLE = "resource_title";
         private static final String RESOURCE_TYPE = "resource_type";
         private static final String RESOURCE_CONTENT_TYPE = "resource_content_type";
@@ -46,6 +43,5 @@ public class UserPerfCollSummaryModelMapper implements ResultSetMapper<UserPerfC
         private static final String RESOURCE_SEQUENCE_ID = "sequence_id";
 
     }
-
 
 }

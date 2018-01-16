@@ -51,17 +51,19 @@ public class RouteUserJourneyConfigurator implements RouteConfigurator {
     private void userPerfAssessments(RoutingContext routingContext) {
         baseHandler(routingContext, Constants.Message.MSG_OP_USER_PERF_ASSESSMENTS, Constants.EventBus.MBEP_DISPATCHER);
     }
-    
+
     private void userPerfCollections(RoutingContext routingContext) {
         baseHandler(routingContext, Constants.Message.MSG_OP_USER_PERF_COLLECTIONS, Constants.EventBus.MBEP_DISPATCHER);
     }
 
     private void userSummaryAssessment(RoutingContext routingContext) {
-        baseHandler(routingContext, Constants.Message.MSG_OP_USER_SUMMARY_ASSESSMENT, Constants.EventBus.MBEP_DISPATCHER);
+        baseHandler(routingContext, Constants.Message.MSG_OP_USER_SUMMARY_ASSESSMENT,
+            Constants.EventBus.MBEP_DISPATCHER);
     }
 
     private void userSummaryCollection(RoutingContext routingContext) {
-        baseHandler(routingContext, Constants.Message.MSG_OP_USER_SUMMARY_COLLECTION, Constants.EventBus.MBEP_DISPATCHER);
+        baseHandler(routingContext, Constants.Message.MSG_OP_USER_SUMMARY_COLLECTION,
+            Constants.EventBus.MBEP_DISPATCHER);
     }
 
     private void baseHandler(RoutingContext routingContext, String op, String eventBusEndPoint) {

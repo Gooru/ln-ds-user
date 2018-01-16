@@ -2,17 +2,15 @@ package org.gooru.ds.user.processor.userperf.summary.assessment;
 
 import java.util.List;
 
-import org.gooru.ds.user.processor.userperf.summary.assessment.UserPerfAsmtSummaryDao;
 import org.skife.jdbi.v2.DBI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 /**
  * @author mukul@gooru
  */
-public class UserPerfAsmtSummaryService {
-	
+class UserPerfAsmtSummaryService {
+
     private final UserPerfAsmtSummaryDao userPerfAsmtSummaryDao;
     private static final Logger LOGGER = LoggerFactory.getLogger(UserPerfAsmtSummaryService.class);
 
@@ -21,13 +19,12 @@ public class UserPerfAsmtSummaryService {
     }
 
     public UserPerfAsmtSummaryModelResponse fetchUserAsmtSummary(UserPerfAsmtSummaryCommand command) {
-    	
+
         List<UserPerfAsmtSummaryModel> models = userPerfAsmtSummaryDao.fetchUserPerfAsmtSummary(command.asBean());
         UserPerfAsmtSummaryModelResponse result = new UserPerfAsmtSummaryModelResponse();
         result.setResources(models);
         return result;
 
     }
-
 
 }

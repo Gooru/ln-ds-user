@@ -4,14 +4,12 @@ import org.gooru.ds.user.constants.Constants;
 import org.gooru.ds.user.processor.activeuserlist.ActiveUserListProcessor;
 import org.gooru.ds.user.processor.user.distribution.UserDistributionProcessor;
 import org.gooru.ds.user.processor.user.journey.UserJourneyProcessor;
-import org.gooru.ds.user.processor.userperf.course.UserPerfCourseProcessor;
-import org.gooru.ds.user.processor.userperf.lesson.UserPerfLessonProcessor;
-
-import org.gooru.ds.user.processor.userperf.summary.assessment.UserPerfAsmtSummaryProcessor;
-import org.gooru.ds.user.processor.userperf.summary.collection.UserPerfCollSummaryProcessor;
 import org.gooru.ds.user.processor.userperf.assessments.UserPerfAssessmentsProcessor;
 import org.gooru.ds.user.processor.userperf.collections.UserPerfCollectionsProcessor;
-
+import org.gooru.ds.user.processor.userperf.course.UserPerfCourseProcessor;
+import org.gooru.ds.user.processor.userperf.lesson.UserPerfLessonProcessor;
+import org.gooru.ds.user.processor.userperf.summary.assessment.UserPerfAsmtSummaryProcessor;
+import org.gooru.ds.user.processor.userperf.summary.collection.UserPerfCollSummaryProcessor;
 import org.gooru.ds.user.processor.userprefs.content.UserPrefsContentProcessor;
 import org.gooru.ds.user.processor.userprefs.curators.UserPrefsCuratorProcessor;
 import org.gooru.ds.user.processor.userprefs.providers.UserPrefsProviderProcessor;
@@ -63,7 +61,7 @@ public final class MessageProcessorBuilder {
             return new UserPerfAsmtSummaryProcessor(vertx, message);
         case Constants.Message.MSG_OP_USER_SUMMARY_COLLECTION:
             return new UserPerfCollSummaryProcessor(vertx, message);
-            
+
         case Constants.Message.MSG_OP_USER_STATS_CONTENTS:
             return new UserStatsContentsProcessor(vertx, message);
         case Constants.Message.MSG_OP_USER_STATS_PROVIDERS:
