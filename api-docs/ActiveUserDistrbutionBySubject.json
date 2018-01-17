@@ -49,8 +49,8 @@
                 {
                     "userId": "userid",
                     "username": "username",
-                    "firstname": "first",
-                    "lastname": "last",
+                    "firstName": "first",
+                    "lastName": "last",
                     "thumbnail": "thumbnail",
                     "grade": "grade",
                     "authority": 0.5,
