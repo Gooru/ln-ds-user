@@ -4,6 +4,7 @@ import org.gooru.ds.user.constants.Constants;
 import org.gooru.ds.user.processor.activeuserlist.ActiveUserListProcessor;
 import org.gooru.ds.user.processor.user.distribution.UserDistributionProcessor;
 import org.gooru.ds.user.processor.user.journey.UserJourneyProcessor;
+import org.gooru.ds.user.processor.usergrades.UserGradesProcessor;
 import org.gooru.ds.user.processor.userperf.assessments.UserPerfAssessmentsProcessor;
 import org.gooru.ds.user.processor.userperf.collections.UserPerfCollectionsProcessor;
 import org.gooru.ds.user.processor.userperf.course.UserPerfCourseProcessor;
@@ -13,6 +14,7 @@ import org.gooru.ds.user.processor.userperf.summary.collection.UserPerfCollSumma
 import org.gooru.ds.user.processor.userprefs.content.UserPrefsContentProcessor;
 import org.gooru.ds.user.processor.userprefs.curators.UserPrefsCuratorProcessor;
 import org.gooru.ds.user.processor.userprefs.providers.UserPrefsProviderProcessor;
+import org.gooru.ds.user.processor.userprofile.UserProfileProcessor;
 import org.gooru.ds.user.processor.userstats.competency.UserStatsCompetencyProcessor;
 import org.gooru.ds.user.processor.userstats.content.UserStatsContentsProcessor;
 import org.gooru.ds.user.processor.userstats.courses.UserStatsCoursesProcessor;
@@ -47,9 +49,9 @@ public final class MessageProcessorBuilder {
         case Constants.Message.MSG_OP_USER_STATS_TIMESPENT:
             return new UserStatsTimespentProcessor(vertx, message);
         case Constants.Message.MSG_OP_USER_PROFILE:
-            return new StubbedMessageProcessor(vertx, message);
+            return new UserProfileProcessor(vertx, message);
         case Constants.Message.MSG_OP_USER_GRADES:
-            return new StubbedMessageProcessor(vertx, message);
+            return new UserGradesProcessor(vertx, message);
 
         case Constants.Message.MSG_OP_USER_JOURNEY:
             return new UserJourneyProcessor(vertx, message);

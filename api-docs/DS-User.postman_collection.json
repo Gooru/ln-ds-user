@@ -15,6 +15,8 @@
 		"e476baf9-889c-94ec-704d-faef5275c72c",
 		"d667e39b-0552-5394-b83c-505fa31d0948",
 		"0efee4be-bba0-0ffe-bb83-17a27eb2f610",
+		"a8cd48cf-6bba-3372-bbf9-09ddf55e120b",
+		"22c65137-e3c1-3e6e-d82d-c5ed22bfbcce",
 		"97f3b961-f0cc-c916-67a2-b0887b094e2e",
 		"368bca7c-c641-098d-88b2-fe78c31d3c3b",
 		"6c64ff0e-052d-251b-5792-90381d45e6c4"
@@ -105,6 +107,43 @@
 			],
 			"pathVariableData": [],
 			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b"
+		},
+		{
+			"id": "22c65137-e3c1-3e6e-d82d-c5ed22bfbcce",
+			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/api/ds/users/v1/user/grades?user=user0",
+			"queryParams": [
+				{
+					"key": "user",
+					"value": "user0",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1516150768350,
+			"name": "User Grades",
+			"description": "",
+			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b",
+			"responses": []
 		},
 		{
 			"id": "368bca7c-c641-098d-88b2-fe78c31d3c3b",
@@ -469,6 +508,43 @@
 			],
 			"pathVariableData": [],
 			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b"
+		},
+		{
+			"id": "a8cd48cf-6bba-3372-bbf9-09ddf55e120b",
+			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/api/ds/users/v1/user/profile?user=user0",
+			"queryParams": [
+				{
+					"key": "user",
+					"value": "user0",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1516150739152,
+			"name": "User Profile",
+			"description": "",
+			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b",
+			"responses": []
 		},
 		{
 			"folder": null,
