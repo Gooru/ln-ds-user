@@ -1,0 +1,41 @@
+{
+    "name": "User Profile",
+    "request": {
+        "method": "GET",
+        "headers": [
+            {
+                "Authorization": "Token SessionToken"
+            }
+        ],
+        "endpoint": "/api/ds/users/v1/user/profile",
+        "queryParams": [
+            {
+                "name": "user",
+                "type": "string",
+                "validValues": "UUID based user id of the user",
+                "defaultValue": null,
+                "multipleOccurrence": "Not supported, only one will be picked up",
+                "comment": "Lists the user stats value for types of content"
+            }
+        ]
+    },
+    "response": {
+        "body": {
+            "userId": "user-id",
+            "username": "user-name",
+            "emailId": "email",
+            "firstname": "first-name",
+            "lastname": "last-name",
+            "userCategory": "category",
+            "clientId": "client-id",
+            "thumbnail": "thumbnail",
+            "gender": "gender",
+            "about": "about-me",
+            "school": "school",
+            "schoolDistrict": "school-district",
+            "country": "country",
+            "state": "state"
+        },
+        "comment": ""
+    }
+}

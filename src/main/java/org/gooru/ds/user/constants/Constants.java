@@ -38,7 +38,10 @@ public final class Constants {
         public static final String MSG_OP_USER_PREFS_CONTENT = "mb.op.user.prefs.content";
         public static final String MSG_OP_USER_PREFS_CURATORS = "mb.op.user.prefs.curators";
         public static final String MSG_OP_USER_PREFS_PROVIDERS = "mb.op.user.prefs.providers";
+        public static final String MSG_OP_USER_PROFILE = "mb.op.user.profile";
+        public static final String MSG_OP_USER_GRADES = "mb.op.user.grades";
         public static final String MSG_OP_COMPETENCY_MATRIX = "mb.op.competency.matrix";
+        public static final String MSG_OP_COMPETENCY_MATRIX_COORDS = "mb.op.competency.matrix.coords";
 
         public static final String MSG_OP_USER_JOURNEY = "mb.op.user.journey";
         public static final String MSG_OP_USER_PERF_COURSE = "mb.op.user.performance.course";
@@ -107,8 +110,11 @@ public final class Constants {
         public static final String API_USER_PREFS_CONTENT = API_BASE_ROUTE + "user/prefs/content";
         public static final String API_USER_PREFS_CURATORS = API_BASE_ROUTE + "user/prefs/curators";
         public static final String API_USER_PREFS_PROVIDERS = API_BASE_ROUTE + "user/prefs/providers";
+        public static final String API_USER_PROFILE = API_BASE_ROUTE + "user/profile";
+        public static final String API_USER_GRADES = API_BASE_ROUTE + "user/grades";
 
         public static final String API_COMPETENCY_MATRIX = API_BASE_ROUTE + "/tx/competency/matrix";
+        public static final String API_COMPETENCY_MATRIX_COORDS = API_BASE_ROUTE + "/tx/competency/matrix/coordinates";
 
         private Route() {
             throw new AssertionError();

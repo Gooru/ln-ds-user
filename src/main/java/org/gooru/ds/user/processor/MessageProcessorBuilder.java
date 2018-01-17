@@ -46,6 +46,10 @@ public final class MessageProcessorBuilder {
             return new UserStatsJourneysProcessor(vertx, message);
         case Constants.Message.MSG_OP_USER_STATS_TIMESPENT:
             return new UserStatsTimespentProcessor(vertx, message);
+        case Constants.Message.MSG_OP_USER_PROFILE:
+            return new StubbedMessageProcessor(vertx, message);
+        case Constants.Message.MSG_OP_USER_GRADES:
+            return new StubbedMessageProcessor(vertx, message);
 
         case Constants.Message.MSG_OP_USER_JOURNEY:
             return new UserJourneyProcessor(vertx, message);
@@ -77,6 +81,8 @@ public final class MessageProcessorBuilder {
         case Constants.Message.MSG_OP_USER_PREFS_PROVIDERS:
             return new UserPrefsProviderProcessor(vertx, message);
         case Constants.Message.MSG_OP_COMPETENCY_MATRIX:
+            return new StubbedMessageProcessor(vertx, message);
+        case Constants.Message.MSG_OP_COMPETENCY_MATRIX_COORDS:
             return new StubbedMessageProcessor(vertx, message);
         default:
             return null;

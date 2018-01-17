@@ -1,0 +1,50 @@
+{
+    "name": "Competency Matrix for Subject",
+    "request": {
+        "method": "GET",
+        "headers": [
+            {
+                "Authorization": "Token SessionToken"
+            }
+        ],
+        "endpoint": "/api/ds/users/v1/tx/competency/matrix/coordinates",
+        "queryParams": [
+            {
+                "name": "subject",
+                "type": "string",
+                "validValues": "As provided by subject list API",
+                "defaultValue": null,
+                "multipleOccurrence": "Not supported, only one will be picked up",
+                "comment": "Provides a filter for subject for which competency matrix needs to be generated"
+            },
+            {
+                "name": "filter",
+                "type": "string",
+                "validValues": "courses/domains",
+                "defaultValue": null,
+                "multipleOccurrence": "Not supported, only one will be picked up",
+                "comment": "Provides a filter to return either courses or domains. If not provided API will return both"
+            }
+        ]
+    },
+    "response": {
+        "body": {
+            "courses": [
+                {
+                    "courseCode": "course-code",
+                    "courseName": "course-name",
+                    "courseSeq": 1
+                }
+            ],
+            "domains": [
+                {
+                    "domainCode": "domain-code",
+                    "domainName": "domain-name",
+                    "domainSeq": 1
+                }
+            ]
+
+        },
+        "comment": "Status values ranges from 0 10 5. O means not started, 1 means progress, 2 means inferred, 3 means in asserted, 4 means completed, 5 means mastered"
+    }
+}

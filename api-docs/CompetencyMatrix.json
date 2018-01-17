@@ -32,13 +32,9 @@
             "userCompetencyMatrix": [
                 {
                     "courseCode": "course-code",
-                    "courseName": "course-name",
-                    "courseSeq": 1,
                     "domains": [
                         {
                             "domainCode": "domain-code",
-                            "domainName": "domain-name",
-                            "domainSeq": 1,
                             "competencies" : [
                                 {
                                     "competencyCode": "competency-code",
