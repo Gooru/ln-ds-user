@@ -14,7 +14,8 @@ interface UserPerfLessonDao {
     @Mapper(UserPerfLessonModelMapper.class)
     @SqlQuery("select lesson_id, lesson_title, lesson_asmt_time_spent, lesson_asmt_score, lesson_coll_time_spent "
                   + "from course_performance where "
-                  + "class_id = :classId  and course_id = :courseId and unit_id = :unitId and user_id = :user")
+                  + " ((class_id IS NULL AND :classId IS NULL) OR class_id = :classId) AND "
+                  + " course_id = :courseId and unit_id = :unitId and user_id = :user")
     List<UserPerfLessonModel> fetchUserPerfLesson(
         @BindBean UserPerfLessonCommand.UserPerfLessonCommandBean userPerfLessonCommandBean);
 
