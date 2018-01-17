@@ -19,6 +19,7 @@
 		"e437b171-336d-eabe-21a1-966efe256feb",
 		"c80d5884-d394-d461-bbe0-5b5725387d5d",
 		"c9ca9b80-ddc6-7841-719b-1330dc2f2d71",
+		"df1387a4-4c13-9eb2-bcd5-fa713f0cdbda",
 		"22c65137-e3c1-3e6e-d82d-c5ed22bfbcce",
 		"97f3b961-f0cc-c916-67a2-b0887b094e2e",
 		"368bca7c-c641-098d-88b2-fe78c31d3c3b",
@@ -829,6 +830,50 @@
 			],
 			"pathVariableData": [],
 			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b"
+		},
+		{
+			"id": "df1387a4-4c13-9eb2-bcd5-fa713f0cdbda",
+			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/api/ds/users/v1/tx/competency/matrix?subject=MA&user=user0",
+			"queryParams": [
+				{
+					"key": "subject",
+					"value": "MA",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "user",
+					"value": "user0",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1516183971966,
+			"name": "User Competency Matrix",
+			"description": "",
+			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b",
+			"responses": []
 		},
 		{
 			"id": "e437b171-336d-eabe-21a1-966efe256feb",
