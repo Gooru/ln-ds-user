@@ -18,6 +18,9 @@ class UserProfileModel {
     private String schoolDistrict;
     private String country;
     private String state;
+    private float citizenship;
+    private float authority;
+    private float reputation;
 
     public String getUserId() {
         return userId;
@@ -129,5 +132,29 @@ class UserProfileModel {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public float getCitizenship() {
+        return citizenship;
+    }
+
+    public void setCitizenship(float citizenship) {
+        this.citizenship = citizenship;
+    }
+
+    public float getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(float authority) {
+        this.authority = authority;
+    }
+
+    public float getReputation() {
+        return reputation;
+    }
+
+    public void setReputation(float reputation) {
+        this.reputation = reputation;
     }
 }

@@ -27,6 +27,9 @@ public class UserProfileModelMapper implements ResultSetMapper<UserProfileModel>
         result.setSchoolDistrict(r.getString(MapperFields.SCHOOL_DISTRICT));
         result.setCountry(r.getString(MapperFields.COUNTRY));
         result.setState(r.getString(MapperFields.STATE));
+        result.setAuthority(r.getFloat(MapperFields.AUTHORITY));
+        result.setCitizenship(r.getFloat(MapperFields.CITIZENSHIP));
+        result.setReputation(r.getFloat(MapperFields.REPUTATION));
         return result;
     }
 
@@ -50,6 +53,9 @@ public class UserProfileModelMapper implements ResultSetMapper<UserProfileModel>
         private static final String SCHOOL_DISTRICT = "school_district";
         private static final String COUNTRY = "country";
         private static final String STATE = "state";
+        private static final String AUTHORITY = "authority";
+        private static final String CITIZENSHIP = "citizenship";
+        private static final String REPUTATION = "reputation";
     }
 
 }
