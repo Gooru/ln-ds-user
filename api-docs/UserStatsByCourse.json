@@ -1,45 +1,45 @@
 {
-    "name": "User stats by Courses",
-    "request": {
-        "method": "GET",
-        "headers": [
-            {
-                "Authorization": "Token SessionToken"
-            }
-        ],
-        "endpoint": "/api/ds/users/v1/user/stats/courses",
-        "queryParams": [
-            {
-                "name": "user",
-                "type": "string",
-                "validValues": "UUID based user id of the user",
-                "defaultValue": null,
-                "multipleOccurrence": "Not supported, only one will be picked up",
-                "comment": "Lists the counts of user journeys"
-            },
-            {
-                "name": "activeDuration",
-                "type": "string",
-                "validValues": "Hard coded boundaries like 1w, 1m, 6m, 1y etc",
-                "defaultValue": "Would be governed by backend settings",
-                "multipleOccurrence": "Not supported, only one will be picked up",
-                "comment": "Hard coded duration value which will be considered for active user calculation"
-            }
-        ]
+  "name": "User stats by Courses",
+  "request": {
+    "method": "GET",
+    "headers": [
+      {
+        "Authorization": "Token SessionToken"
+      }
+    ],
+    "endpoint": "/api/ds/users/v1/user/stats/courses",
+    "queryParams": [
+      {
+        "name": "user",
+        "type": "string",
+        "validValues": "UUID based user id of the user",
+        "defaultValue": null,
+        "multipleOccurrence": "Not supported, only one will be picked up",
+        "comment": "Lists the counts of user journeys"
+      },
+      {
+        "name": "activeDuration",
+        "type": "string",
+        "validValues": "Hard coded boundaries like 1w, 1m, 6m, 1y etc",
+        "defaultValue": "Would be governed by backend settings",
+        "multipleOccurrence": "Not supported, only one will be picked up",
+        "comment": "Hard coded duration value which will be considered for active user calculation"
+      }
+    ]
+  },
+  "response": {
+    "body": {
+      "courses": [
+        {
+          "courseId": "courseId",
+          "classId": "classIdCouldBeNull",
+          "completion": 30,
+          "timespent": 12000,
+          "performance": 38,
+          "startedInDuration": false
+        }
+      ]
     },
-    "response": {
-        "body": {
-            "courses" : [
-                {
-                    "courseId": "courseId",
-                    "classId": "classIdCouldBeNull",
-                    "completion": 30,
-                    "timespent": 12000,
-                    "performance": 38,
-                    "startedInDuration": false
-                }
-            ]
-        },
-        "comment": ""
-    }
+    "comment": ""
+  }
 }

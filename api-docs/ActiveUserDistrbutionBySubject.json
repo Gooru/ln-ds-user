@@ -1,64 +1,64 @@
 {
-    "name": "Active user distribution for given duration for given subject",
-    "request": {
-        "method": "GET",
-        "headers": [
-            {
-                "Authorization": "Token SessionToken"
-            }
-        ],
-        "endpoint": "/api/ds/users/v1/user/distribution/active",
-        "queryParams": [
-            {
-                "name": "subject",
-                "type": "string",
-                "validValues": "As provided by subject list API",
-                "defaultValue": null,
-                "multipleOccurrence": "Not supported, only one will be picked up",
-                "comment": "Provides a filter for subject for which active users need to be listed"
-            },
-            {
-                "name": "activeDuration",
-                "type": "string",
-                "validValues": "Hard coded boundaries like 1w, 1m, 6m, 1y etc",
-                "defaultValue": "Would be governed by backend settings",
-                "multipleOccurrence": "Not supported, only one will be picked up",
-                "comment": "Hard coded duration value which will be considered for active user calculation"
-            },
-            {
-                "name": "offset",
-                "type": "int",
-                "validValues": "positive integer",
-                "defaultValue": "0",
-                "multipleOccurrence": "Not supported, only one will be picked up",
-                "comment": "defines offset from where to fetch the data"
-            },
-            {
-                "name": "limit",
-                "type": "int",
-                "validValues": "postive integer",
-                "defaultValue": "20",
-                "multipleOccurrence": "Not supported, only one will be picked up",
-                "comment": "total number of records that need to be returned. Note that there may be a cap on backend API and thus it may not exceed some pre defined value"
-            }
-        ]
+  "name": "Active user distribution for given duration for given subject",
+  "request": {
+    "method": "GET",
+    "headers": [
+      {
+        "Authorization": "Token SessionToken"
+      }
+    ],
+    "endpoint": "/api/ds/users/v1/user/distribution/active",
+    "queryParams": [
+      {
+        "name": "subject",
+        "type": "string",
+        "validValues": "As provided by subject list API",
+        "defaultValue": null,
+        "multipleOccurrence": "Not supported, only one will be picked up",
+        "comment": "Provides a filter for subject for which active users need to be listed"
+      },
+      {
+        "name": "activeDuration",
+        "type": "string",
+        "validValues": "Hard coded boundaries like 1w, 1m, 6m, 1y etc",
+        "defaultValue": "Would be governed by backend settings",
+        "multipleOccurrence": "Not supported, only one will be picked up",
+        "comment": "Hard coded duration value which will be considered for active user calculation"
+      },
+      {
+        "name": "offset",
+        "type": "int",
+        "validValues": "positive integer",
+        "defaultValue": "0",
+        "multipleOccurrence": "Not supported, only one will be picked up",
+        "comment": "defines offset from where to fetch the data"
+      },
+      {
+        "name": "limit",
+        "type": "int",
+        "validValues": "postive integer",
+        "defaultValue": "20",
+        "multipleOccurrence": "Not supported, only one will be picked up",
+        "comment": "total number of records that need to be returned. Note that there may be a cap on backend API and thus it may not exceed some pre defined value"
+      }
+    ]
+  },
+  "response": {
+    "body": {
+      "users": [
+        {
+          "userId": "userid",
+          "username": "username",
+          "firstName": "first",
+          "lastName": "last",
+          "thumbnail": "thumbnail",
+          "grade": "grade",
+          "authority": 0.5,
+          "citizenship": 0.7,
+          "reputation": 0.9
+        }
+      ]
     },
-    "response": {
-        "body": {
-            "users" : [
-                {
-                    "userId": "userid",
-                    "username": "username",
-                    "firstName": "first",
-                    "lastName": "last",
-                    "thumbnail": "thumbnail",
-                    "grade": "grade",
-                    "authority": 0.5,
-                    "citizenship": 0.7,
-                    "reputation": 0.9
-                }
-            ]
-        },
-        "comment": ""
-    }
+    "comment": ""
+  }
 }

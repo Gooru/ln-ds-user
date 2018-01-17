@@ -1,47 +1,47 @@
 {
-    "name": "User Stats for Curator",
-    "request": {
-        "method": "GET",
-        "headers": [
-            {
-                "Authorization": "Token SessionToken"
-            }
-        ],
-        "endpoint": "/api/ds/users/v1/user/stats/curators",
-        "queryParams": [
-            {
-                "name": "user",
-                "type": "string",
-                "validValues": "UUID based user id of the user",
-                "defaultValue": null,
-                "multipleOccurrence": "Not supported, only one will be picked up",
-                "comment": "Lists the user preferences value for curators"
-            },
-            {
-                "name": "activeDuration",
-                "type": "string",
-                "validValues": "Hard coded boundaries like 1w, 1m, 6m, 1y etc",
-                "defaultValue": "Would be governed by backend settings",
-                "multipleOccurrence": "Not supported, only one will be picked up",
-                "comment": "Hard coded duration value which will be considered for listing"
-            }
-        ]
-    },
-    "response": {
-        "body": {
-            "curators" : [
-                {
-                    "curatorId": "id",
-                    "curatorName": "name",
-                    "count": 1212
-                },
-                {
-                    "curatorId": "id1",
-                    "curatorName": "name1",
-                    "count": 541
-                }
-            ]
+  "name": "User Stats for Curator",
+  "request": {
+    "method": "GET",
+    "headers": [
+      {
+        "Authorization": "Token SessionToken"
+      }
+    ],
+    "endpoint": "/api/ds/users/v1/user/stats/curators",
+    "queryParams": [
+      {
+        "name": "user",
+        "type": "string",
+        "validValues": "UUID based user id of the user",
+        "defaultValue": null,
+        "multipleOccurrence": "Not supported, only one will be picked up",
+        "comment": "Lists the user preferences value for curators"
+      },
+      {
+        "name": "activeDuration",
+        "type": "string",
+        "validValues": "Hard coded boundaries like 1w, 1m, 6m, 1y etc",
+        "defaultValue": "Would be governed by backend settings",
+        "multipleOccurrence": "Not supported, only one will be picked up",
+        "comment": "Hard coded duration value which will be considered for listing"
+      }
+    ]
+  },
+  "response": {
+    "body": {
+      "curators": [
+        {
+          "curatorId": "id",
+          "curatorName": "name",
+          "count": 1212
         },
-        "comment": ""
-    }
+        {
+          "curatorId": "id1",
+          "curatorName": "name1",
+          "count": 541
+        }
+      ]
+    },
+    "comment": ""
+  }
 }
