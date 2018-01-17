@@ -1,0 +1,60 @@
+{
+	"name": "Overall Performance of this Course and the Units in this Course",
+	"request": {
+		"method": "GET",
+		"headers": [{
+			"Authorization": "Token SessionToken"
+		}],
+		"endpoint": "/api/ds/users/v1/user/performance/course",
+		"queryParams": [{
+			"name": "user",
+			"type": "string",
+			"validValues": "UUID of the user",
+			"isOptional": "No",
+			"comment": ""
+		}, {
+			"name": "classId",
+			"type": "string",
+			"validValues": "UUID for Class",
+			"isOptional": "Yes",
+			"comment": "For Independent Learners ClassId should not be passed"
+		}, {
+			"name": "courseId",
+			"type": "string",
+			"validValues": "UUID for Course",
+			"isOptional": "No",
+			"comment": ""
+		}]
+	},
+	"response": {
+		"body": {
+			"classId": "39442d4d-6331-4c63-89cf-0ddbb36ee3ce",
+			"classCode": "TM3HUSF",
+			"classTitle": "Marine Biology",
+			"courseId": "C0u52d4d-6331-4c63-89cf-0ddbb36ee3ce",
+			"courseTitle": "Course on Sharks",
+			"courseAsmtTimeSpent": 2000000,
+			"courseAsmtScore": 10,
+			"courseCollTimeSpent": 2000000,
+			"courseAssessmentsComplete": 50,
+			"totalAssessments": 100,
+			"units": [{
+					"unitId": "49552d4d-6331-4c63-89cf-0ddbb36ee3ce",
+					"unitTitle": "U1 on Sharks",
+					"unitAsmtTimeSpent": 156000,
+					"unitAsmtScore": 10,
+					"unitCollTimeSpent": 210000
+				},
+				{
+					"unitId": "50562d4d-6331-4c63-89cf-0ddbb36ee3ce",
+					"unitTitle": "U2 on Sharks",
+					"unitAsmtTimeSpent": 156000,
+					"unitAsmtScore": 10,
+					"unitCollTimeSpent": 210000
+				}
+			]
+		},
+		"comment": "",
+		"sampleURL": "http://localhost:8086/api/ds/users/v1/user/performance/course?classId=39442d4d-6331-4c63-89cf-0ddbb36ee3ce&courseId=C0u52d4d-6331-4c63-89cf-0ddbb36ee3ce&user=MuKuLd4d-6331-4c63-89cf-0ddbb36ee3ce"
+	}
+}

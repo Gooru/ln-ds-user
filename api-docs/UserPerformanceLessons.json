@@ -1,0 +1,56 @@
+{
+	"name": "Overall Performance of Lessons in a Unit",
+	"request": {
+		"method": "GET",
+		"headers": [{
+			"Authorization": "Token SessionToken"
+		}],
+		"endpoint": "/api/ds/users/v1/user/performance/lessons",
+		"queryParams": [{
+			"name": "user",
+			"type": "string",
+			"validValues": "UUID of the user",
+			"isOptional": "No",
+			"comment": ""
+		}, {
+			"name": "classId",
+			"type": "string",
+			"validValues": "UUID for Class",
+			"isOptional": "Yes",
+			"comment": "For Independent Learners ClassId should not be passed"
+		}, {
+			"name": "courseId",
+			"type": "string",
+			"validValues": "UUID for Course",
+			"isOptional": "No",
+			"comment": ""
+		}, {
+			"name": "unitId",
+			"type": "string",
+			"validValues": "UUID for Unit",
+			"isOptional": "No",
+			"comment": ""
+		}]
+	},
+	"response": {
+		"body": {
+			"lessons": [{
+					"lessonId": "2332d4d-6331-4c63-89cf-0ddbb36fd5ce",
+					"lessonTitle": "U2L1 on Sharks",
+					"lessonAsmtTimeSpent": 145000,
+					"lessonAsmtScore": 10,
+					"lessonCollTimeSpent": 125000
+				},
+				{
+					"lessonId": "2432d4d-6331-4c63-89cf-0ddbb36fd5ce",
+					"lessonTitle": "U2L2 on Sharks",
+					"lessonAsmtTimeSpent": 145000,
+					"lessonAsmtScore": 10,
+					"lessonCollTimeSpent": 125000
+				}
+			]
+		},
+		"comment": "",
+		"sampleURL": "http://localhost:8086/api/ds/users/v1/user/performance/lessons?classId=39442d4d-6331-4c63-89cf-0ddbb36ee3ce&courseId=C0u52d4d-6331-4c63-89cf-0ddbb36ee3ce&user=MuKuLd4d-6331-4c63-89cf-0ddbb36ee3ce&unitId=50562d4d-6331-4c63-89cf-0ddbb36ee3ce"
+	}
+}

@@ -1,0 +1,64 @@
+{
+	"name": "Overall Performance of Collections in a Lesson",
+	"request": {
+		"method": "GET",
+		"headers": [{
+			"Authorization": "Token SessionToken"
+		}],
+		"endpoint": "/api/ds/users/v1/user/performance/collections",
+		"queryParams": [{
+			"name": "user",
+			"type": "string",
+			"validValues": "UUID of the user",
+			"isOptional": "No",
+			"comment": ""
+		}, {
+			"name": "classId",
+			"type": "string",
+			"validValues": "UUID for Class",
+			"isOptional": "Yes",
+			"comment": "For Independent Learners ClassId should not be passed"
+		}, {
+			"name": "courseId",
+			"type": "string",
+			"validValues": "UUID for Course",
+			"isOptional": "No",
+			"comment": ""
+		}, {
+			"name": "unitId",
+			"type": "string",
+			"validValues": "UUID for Unit",
+			"isOptional": "No",
+			"comment": ""
+		}, {
+			"name": "lessonId",
+			"type": "string",
+			"validValues": "UUID for Lesson",
+			"isOptional": "No",
+			"comment": ""
+		}]
+	},
+	"response": {
+		"body": {
+			"collections": [{
+					"id": "c0111d4d-6331-4c63-89cf-0ddbb36fd5ce",
+					"title": "Coll1 on Sharks",
+					"sessionId": null,
+					"timeSpent": 245001,
+					"reaction": 5,
+					"score": null
+				},
+				{
+					"id": "c01124d-6331-4c63-89cf-0ddbb36fd5ce",
+					"title": "Coll2 on Sharks",
+					"sessionId": null,
+					"timeSpent": 345002,
+					"reaction": 4,
+					"score": null
+				}
+			]
+		},
+		"comment": "",
+		"sampleURL": "http://localhost:8086/api/ds/users/v1/user/performance/collections?classId=39442d4d-6331-4c63-89cf-0ddbb36ee3ce&courseId=49552d4d-6331-4c63-89cf-0ddbb36ee3ce&user=MuKuLd4d-6331-4c63-89cf-0ddbb36ee3ce&unitId=50562d4d-6331-4c63-89cf-0ddbb36ee3ce&lessonId=2432d4d-6331-4c63-89cf-0ddbb36fd5ce"
+	}
+}
