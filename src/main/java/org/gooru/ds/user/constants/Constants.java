@@ -113,8 +113,8 @@ public final class Constants {
         public static final String API_USER_PROFILE = API_BASE_ROUTE + "user/profile";
         public static final String API_USER_GRADES = API_BASE_ROUTE + "user/grades";
 
-        public static final String API_COMPETENCY_MATRIX = API_BASE_ROUTE + "/tx/competency/matrix";
-        public static final String API_COMPETENCY_MATRIX_COORDS = API_BASE_ROUTE + "/tx/competency/matrix/coordinates";
+        public static final String API_COMPETENCY_MATRIX = API_BASE_ROUTE + "tx/competency/matrix";
+        public static final String API_COMPETENCY_MATRIX_COORDS = API_BASE_ROUTE + "tx/competency/matrix/coordinates";
 
         private Route() {
             throw new AssertionError();

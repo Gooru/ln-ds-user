@@ -2,6 +2,8 @@ package org.gooru.ds.user.processor;
 
 import org.gooru.ds.user.constants.Constants;
 import org.gooru.ds.user.processor.activeuserlist.ActiveUserListProcessor;
+import org.gooru.ds.user.processor.competencymatrix.CompetencyMatrixProcessor;
+import org.gooru.ds.user.processor.competencymatrixcoordinates.CompetencyMatrixCoordinatesProcessor;
 import org.gooru.ds.user.processor.user.distribution.UserDistributionProcessor;
 import org.gooru.ds.user.processor.user.journey.UserJourneyProcessor;
 import org.gooru.ds.user.processor.usergrades.UserGradesProcessor;
@@ -83,9 +85,9 @@ public final class MessageProcessorBuilder {
         case Constants.Message.MSG_OP_USER_PREFS_PROVIDERS:
             return new UserPrefsProviderProcessor(vertx, message);
         case Constants.Message.MSG_OP_COMPETENCY_MATRIX:
-            return new StubbedMessageProcessor(vertx, message);
+            return new CompetencyMatrixProcessor(vertx, message);
         case Constants.Message.MSG_OP_COMPETENCY_MATRIX_COORDS:
-            return new StubbedMessageProcessor(vertx, message);
+            return new CompetencyMatrixCoordinatesProcessor(vertx, message);
         default:
             return null;
         }
