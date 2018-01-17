@@ -217,12 +217,15 @@ CREATE TABLE user_prefs_provider (
 
 CREATE TABLE curators (
     id bigserial PRIMARY KEY,
-    name text NOT NULL UNIQUE
+    name text NOT NULL UNIQUE,
+    thumbnail text,
+    short_name text
 );
 
 CREATE TABLE providers (
     id bigserial PRIMARY KEY,
-    name text NOT NULL UNIQUE
+    name text NOT NULL UNIQUE,
+    thumbnail text
 );
 
 CREATE TABLE user_stats_content (
