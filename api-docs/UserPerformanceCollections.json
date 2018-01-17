@@ -1,5 +1,5 @@
 {
-	"name": "Overall Performance of Collections in a Lesson",
+	"name": "Overall Performance of Collections and Assessments in a Lesson",
 	"request": {
 		"method": "GET",
 		"headers": [{
@@ -41,24 +41,58 @@
 	"response": {
 		"body": {
 			"collections": [{
+					"id": "a55M24d-6331-4c63-89cf-0ddbb36fd5ce",
+					"title": "A1 on Sharks",
+					"sessionId": "a1S3Sd-6331-4c63-89cf-0ddbb36fd5ce",
+					"collectionType": "assessment",
+					"timeSpent": 145000,
+					"reaction": 3,
+					"score": 10,
+					"sequenceId": 0
+				},
+				{
+					"id": "a55M3d4d-6331-4c63-89cf-0ddbb36fd5ce",
+					"title": "A2 on Sharks",
+					"sessionId": "a2S3Sd-6331-4c63-89cf-0ddbb36fd5ce",
+					"collectionType": "assessment",
+					"timeSpent": 155000,
+					"reaction": 4,
+					"score": 80,
+					"sequenceId": 0
+				},
+				{
+					"id": "a55M44d-6331-4c63-89cf-0ddbb36fd5ce",
+					"title": "A3 on Sharks",
+					"sessionId": "a3S3Sd-6331-4c63-89cf-0ddbb36fd5ce",
+					"collectionType": "assessment",
+					"timeSpent": 245000,
+					"reaction": 2,
+					"score": 90,
+					"sequenceId": 0
+				},
+				{
 					"id": "c0111d4d-6331-4c63-89cf-0ddbb36fd5ce",
 					"title": "Coll1 on Sharks",
-					"sessionId": null,
+					"sessionId": "c1S3Sd-6331-4c63-89cf-0ddbb36fd5ce",
+					"collectionType": "collection",
 					"timeSpent": 245001,
 					"reaction": 5,
-					"score": null
+					"score": 10,
+					"sequenceId": 0
 				},
 				{
 					"id": "c01124d-6331-4c63-89cf-0ddbb36fd5ce",
 					"title": "Coll2 on Sharks",
-					"sessionId": null,
+					"sessionId": "c2S3Sd-6331-4c63-89cf-0ddbb36fd5ce",
+					"collectionType": "collection",
 					"timeSpent": 345002,
 					"reaction": 4,
-					"score": null
+					"score": 10,
+					"sequenceId": 0
 				}
 			]
 		},
-		"comment": "",
+		"comment": "This API will give the complete Listing of both Collections & Assessments in a Lesson",
 		"sampleURL": "http://localhost:8086/api/ds/users/v1/user/performance/collections?classId=39442d4d-6331-4c63-89cf-0ddbb36ee3ce&courseId=49552d4d-6331-4c63-89cf-0ddbb36ee3ce&user=MuKuLd4d-6331-4c63-89cf-0ddbb36ee3ce&unitId=50562d4d-6331-4c63-89cf-0ddbb36ee3ce&lessonId=2432d4d-6331-4c63-89cf-0ddbb36fd5ce"
 	}
 }

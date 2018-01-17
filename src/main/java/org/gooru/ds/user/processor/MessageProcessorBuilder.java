@@ -7,6 +7,7 @@ import org.gooru.ds.user.processor.user.journey.UserJourneyProcessor;
 import org.gooru.ds.user.processor.usergrades.UserGradesProcessor;
 import org.gooru.ds.user.processor.userperf.assessments.UserPerfAssessmentsProcessor;
 import org.gooru.ds.user.processor.userperf.collections.UserPerfCollectionsProcessor;
+import org.gooru.ds.user.processor.userperf.competency.collections.UserPerfCompetencyCollectionsProcessor;
 import org.gooru.ds.user.processor.userperf.course.UserPerfCourseProcessor;
 import org.gooru.ds.user.processor.userperf.lesson.UserPerfLessonProcessor;
 import org.gooru.ds.user.processor.userperf.summary.assessment.UserPerfAsmtSummaryProcessor;
@@ -59,15 +60,16 @@ public final class MessageProcessorBuilder {
             return new UserPerfCourseProcessor(vertx, message);
         case Constants.Message.MSG_OP_USER_PERF_LESSONS:
             return new UserPerfLessonProcessor(vertx, message);
-        case Constants.Message.MSG_OP_USER_PERF_ASSESSMENTS:
-            return new UserPerfAssessmentsProcessor(vertx, message);
         case Constants.Message.MSG_OP_USER_PERF_COLLECTIONS:
             return new UserPerfCollectionsProcessor(vertx, message);
         case Constants.Message.MSG_OP_USER_SUMMARY_ASSESSMENT:
             return new UserPerfAsmtSummaryProcessor(vertx, message);
         case Constants.Message.MSG_OP_USER_SUMMARY_COLLECTION:
             return new UserPerfCollSummaryProcessor(vertx, message);
+        case Constants.Message.MSG_OP_USER_PERF_COMPETENCY_COLLECTIONS:
+            return new UserPerfCompetencyCollectionsProcessor(vertx, message);
 
+            
         case Constants.Message.MSG_OP_USER_STATS_CONTENTS:
             return new UserStatsContentsProcessor(vertx, message);
         case Constants.Message.MSG_OP_USER_STATS_PROVIDERS:

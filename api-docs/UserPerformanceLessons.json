@@ -39,14 +39,16 @@
 					"lessonTitle": "U2L1 on Sharks",
 					"lessonAsmtTimeSpent": 145000,
 					"lessonAsmtScore": 10,
-					"lessonCollTimeSpent": 125000
+					"lessonCollTimeSpent": 125000,
+					"lessonSequenceId": 1
 				},
 				{
 					"lessonId": "2432d4d-6331-4c63-89cf-0ddbb36fd5ce",
 					"lessonTitle": "U2L2 on Sharks",
 					"lessonAsmtTimeSpent": 145000,
 					"lessonAsmtScore": 10,
-					"lessonCollTimeSpent": 125000
+					"lessonCollTimeSpent": 125000,
+					"lessonSequenceId": 2
 				}
 			]
 		},

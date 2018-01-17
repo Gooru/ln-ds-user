@@ -7,11 +7,12 @@ public class UserPerfLessonModel {
 
     private String lessonId;
     private String lessonTitle;
-    private Integer lessonAsmtTimeSpent;
+    private Long lessonAsmtTimeSpent;
     private Double lessonAsmtScore;
-    private Integer lessonCollTimeSpent;
+    private Long lessonCollTimeSpent;
+    private Integer lessonSequenceId;
 
-    public String getLessonId() {
+	public String getLessonId() {
         return lessonId;
     }
 
@@ -27,11 +28,11 @@ public class UserPerfLessonModel {
         this.lessonTitle = lessonTitle;
     }
 
-    public Integer getLessonAsmtTimeSpent() {
+    public Long getLessonAsmtTimeSpent() {
         return lessonAsmtTimeSpent;
     }
 
-    public void setLessonAsmtTimeSpent(Integer lessonAsmtTimeSpent) {
+    public void setLessonAsmtTimeSpent(Long lessonAsmtTimeSpent) {
         this.lessonAsmtTimeSpent = lessonAsmtTimeSpent;
     }
 
@@ -43,12 +44,21 @@ public class UserPerfLessonModel {
         this.lessonAsmtScore = lessonAsmtScore;
     }
 
-    public Integer getLessonCollTimeSpent() {
+    public Long getLessonCollTimeSpent() {
         return lessonCollTimeSpent;
     }
 
-    public void setLessonCollTimeSpent(Integer lessonCollTimeSpent) {
+    public void setLessonCollTimeSpent(Long lessonCollTimeSpent) {
         this.lessonCollTimeSpent = lessonCollTimeSpent;
     }
+    
+    public Integer getLessonSequenceId() {
+		return lessonSequenceId;
+	}
+
+	public void setLessonSequenceId(Integer lessonSequenceId) {
+		this.lessonSequenceId = lessonSequenceId;
+	}
+
 
 }
