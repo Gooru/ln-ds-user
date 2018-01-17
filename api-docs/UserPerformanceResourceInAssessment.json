@@ -1,0 +1,83 @@
+{
+	"name": "Resource Level Performance for Assessment",
+	"request": {
+		"method": "GET",
+		"headers": [{
+			"Authorization": "Token SessionToken"
+		}],
+		"endpoint": "/api/ds/users/v1/user/summary/assessment",
+		"queryParams": [{
+			"name": "user",
+			"type": "string",
+			"validValues": "UUID of the user",
+			"isOptional": "No",
+			"comment": ""
+		}, {
+			"name": "classId",
+			"type": "string",
+			"validValues": "UUID for Class",
+			"isOptional": "Yes",
+			"comment": "For Independent Learners ClassId should not be passed"
+		}, {
+			"name": "courseId",
+			"type": "string",
+			"validValues": "UUID for Course",
+			"isOptional": "No",
+			"comment": ""
+		}, {
+			"name": "unitId",
+			"type": "string",
+			"validValues": "UUID for Unit",
+			"isOptional": "No",
+			"comment": ""
+		}, {
+			"name": "lessonId",
+			"type": "string",
+			"validValues": "UUID for Lesson",
+			"isOptional": "No",
+			"comment": ""
+		}, {
+			"name": "collectionId",
+			"type": "string",
+			"validValues": "UUID for Collection",
+			"isOptional": "No",
+			"comment": ""
+		}, {
+			"name": "sessionId",
+			"type": "string",
+			"validValues": "UUID for the latest Session",
+			"isOptional": "No",
+			"comment": ""
+		}]
+	},
+	"response": {
+		"body": {
+
+			"resources": [{
+					"id": "dab28a8b-d7cf-428a-985a-05f9e79fbaed",
+					"title": null,
+					"type": "question",
+					"contentType": null,
+					"timeSpent": 154000,
+					"reaction": 0,
+					"score": 0,
+					"pathId": 0,
+					"sequenceId": null
+				},
+				{
+					"id": "23db34d6-794c-47ec-98e2-5db0a3e554b2",
+					"title": null,
+					"type": "question",
+					"contentType": null,
+					"timeSpent": 140000,
+					"reaction": 0,
+					"score": 0,
+					"pathId": 0,
+					"sequenceId": null
+				}
+			]
+		},
+		"comment": "",
+		"sampleURL": "http://localhost:8086/api/ds/users/v1/user/summary/assessment?classId=1ca41b38-9e46-4d7b-b7c6-e9b736599614&courseId=0292d4f1-863c-4355-ae23-1d2d3c5a8200&user=b43703ef-86ad-40b8-a30f-f8dce5940e5f&unitId=7a7c8ff3-8335-4367-9fc6-296d482ab95f&lessonId=1a2d578c-c172-4c8b-b61c-4d65d5430b9d&assessmentId=aa04793d-5cd5-496b-8ef4-7eaf906e71bb&sessionId=c0de4933-5811-4e6f-8fef-3bdeb58d9d3d"
+	}
+}

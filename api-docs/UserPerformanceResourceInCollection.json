@@ -1,0 +1,105 @@
+{
+	"name": "Resource Level Performance for Collection",
+	"request": {
+		"method": "GET",
+		"headers": [{
+			"Authorization": "Token SessionToken"
+		}],
+		"endpoint": "/api/ds/users/v1/user/summary/collection",
+		"queryParams": [{
+			"name": "user",
+			"type": "string",
+			"validValues": "UUID based user id of the user",
+			"isOptional": "No",
+			"multipleOccurrence": "Not supported, only one will be picked up",
+			"comment": "Lists the user preferences value for providers"
+		}, {
+			"name": "classId",
+			"type": "string",
+			"validValues": "UUID for Class",
+			"isOptional": "Yes",
+			"comment": "For Independent Learners ClassId should not be passed"
+		}, {
+			"name": "courseId",
+			"type": "string",
+			"validValues": "UUID for Course",
+			"isOptional": "No",
+			"comment": ""
+		}, {
+			"name": "unitId",
+			"type": "string",
+			"validValues": "UUID for Unit",
+			"isOptional": "No",
+			"comment": ""
+		}, {
+			"name": "lessonId",
+			"type": "string",
+			"validValues": "UUID for Lesson",
+			"isOptional": "No",
+			"comment": ""
+		}, {
+			"name": "collectionId",
+			"type": "string",
+			"validValues": "UUID for Collection",
+			"isOptional": "No",
+			"comment": ""
+		}, {
+			"name": "sessionId",
+			"type": "string",
+			"validValues": "UUID for the latest Session",
+			"isOptional": "No",
+			"comment": ""
+		}]
+	},
+	"response": {
+		"body": {
+			"resources": [{
+					"id": "c558cb6a-9757-461c-9b3d-25a49e0c5e6d",
+					"title": null,
+					"type": "resource",
+					"contentType": null,
+					"timeSpent": 35035,
+					"reaction": 0,
+					"score": 0,
+					"pathId": 0,
+					"sequenceId": null
+				},
+				{
+					"id": "10ca0d81-60dd-47f2-ac5b-6259a54a59b0",
+					"title": null,
+					"type": "question",
+					"contentType": null,
+					"timeSpent": 82863,
+					"reaction": 5,
+					"score": 1,
+					"pathId": 0,
+					"sequenceId": null
+				},
+				{
+					"id": "d11e2343-e583-46c1-a1f7-beaf0b0484c3",
+					"title": null,
+					"type": "resource",
+					"contentType": null,
+					"timeSpent": 60598,
+					"reaction": 0,
+					"score": 0,
+					"pathId": 0,
+					"sequenceId": null
+				},
+				{
+					"id": "339ad788-55b6-4c46-acd5-6025e971bbba",
+					"title": null,
+					"type": "resource",
+					"contentType": null,
+					"timeSpent": 94002,
+					"reaction": 0,
+					"score": 0,
+					"pathId": 0,
+					"sequenceId": null
+				}
+			]
+		},
+		"comment": "",
+		"sampleURL": "http://rgo.gooru.org:8086/api/ds/users/v1/user/summary/collection?classId=73294a4d-8825-4106-8cc9-8c26f370d06c&courseId=987e0144-631d-4bac-a82b-26ffbf5257a0&user=409e31a6-a989-4aff-b6a5-7222542863a4&unitId=4af505ff-9fc0-49c9-b764-d315b2df9be6&lessonId=fa9f52d6-4f15-4f7e-a13c-25dd5b114889&collectionId=08d7462f-6fd3-4fce-b881-b9e63f194a5e&sessionId=2018cab8-34e6-45e8-9890-910d9f8e19ba"
+	}
+}
