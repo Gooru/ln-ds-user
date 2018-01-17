@@ -26,11 +26,11 @@ public class RouteUserJourneyConfigurator implements RouteConfigurator {
         mbusTimeout = config.getLong(Constants.EventBus.MBUS_TIMEOUT, 30L) * 1000;
         router.post(Constants.Route.API_USER_JOURNEY).handler(this::userJourney);
         router.get(Constants.Route.API_USER_PERF_COURSE).handler(this::userPerfCourse);
-        router.get(Constants.Route.API_USER_PERF_LESSONS).handler(this::userPerfLessons);
-        router.get(Constants.Route.API_USER_PERF_ASSESSMENTS).handler(this::userPerfAssessments);
+        router.get(Constants.Route.API_USER_PERF_LESSONS).handler(this::userPerfLessons);        
         router.get(Constants.Route.API_USER_PERF_COLLECTIONS).handler(this::userPerfCollections);
         router.get(Constants.Route.API_USER_SUMMARY_ASSESSMENT).handler(this::userSummaryAssessment);
         router.get(Constants.Route.API_USER_SUMMARY_COLLECTION).handler(this::userSummaryCollection);
+        router.get(Constants.Route.API_USER_PERF_COMPETENCY_COLLECTIONS).handler(this::userPerfCompetencyCollections);
     }
 
     private void userJourney(RoutingContext routingContext) {
@@ -49,11 +49,6 @@ public class RouteUserJourneyConfigurator implements RouteConfigurator {
             Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
     }
 
-    private void userPerfAssessments(RoutingContext routingContext) {
-        RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_USER_PERF_ASSESSMENTS,
-            Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
-    }
-
     private void userPerfCollections(RoutingContext routingContext) {
         RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_USER_PERF_COLLECTIONS,
             Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
@@ -66,6 +61,11 @@ public class RouteUserJourneyConfigurator implements RouteConfigurator {
 
     private void userSummaryCollection(RoutingContext routingContext) {
         RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_USER_SUMMARY_COLLECTION,
+            Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
+    }
+    
+    private void userPerfCompetencyCollections(RoutingContext routingContext) {
+        RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_USER_PERF_COMPETENCY_COLLECTIONS,
             Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
     }
 

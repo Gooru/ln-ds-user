@@ -18,7 +18,9 @@ public class UserPerfCourseBaseModel {
     private Long unitAsmtTimeSpent;
     private Float unitAsmtScore;
     private Long unitCollTimeSpent;
-    private Integer courseAssessmentsComplete;
+    private Integer unitSequenceId;
+
+	private Integer courseAssessmentsComplete;
     private Integer totalAssessments;
 
     public String getClassId() {
@@ -124,6 +126,15 @@ public class UserPerfCourseBaseModel {
     public void setUnitCollTimeSpent(Long unitCollTimeSpent) {
         this.unitCollTimeSpent = unitCollTimeSpent;
     }
+    
+    public Integer getUnitSequenceId() {
+		return unitSequenceId;
+	}
+
+	public void setUnitSequenceId(Integer unitSequenceId) {
+		this.unitSequenceId = unitSequenceId;
+	}
+
 
     public Integer getCourseAssessmentsComplete() {
         return courseAssessmentsComplete;

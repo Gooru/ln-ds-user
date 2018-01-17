@@ -43,14 +43,16 @@
 					"unitTitle": "U1 on Sharks",
 					"unitAsmtTimeSpent": 156000,
 					"unitAsmtScore": 10,
-					"unitCollTimeSpent": 210000
+					"unitCollTimeSpent": 210000,
+					"unitSequenceId": 1
 				},
 				{
 					"unitId": "50562d4d-6331-4c63-89cf-0ddbb36ee3ce",
 					"unitTitle": "U2 on Sharks",
 					"unitAsmtTimeSpent": 156000,
 					"unitAsmtScore": 10,
-					"unitCollTimeSpent": 210000
+					"unitCollTimeSpent": 210000,
+					"unitSequenceId": 2
 				}
 			]
 		},

@@ -389,6 +389,7 @@ collection_score numeric(5,2),
 collection_average_reaction smallint,
 collection_num_attempts smallint,
 collection_type text,
+sequence_id text,
 created_at timestamp NOT NULL DEFAULT (NOW() AT TIME ZONE 'UTC'),
 updated_at timestamp NOT NULL DEFAULT (NOW() AT TIME ZONE 'UTC'));
 

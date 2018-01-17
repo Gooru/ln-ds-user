@@ -10,6 +10,7 @@ class UserPerfUnitModel {
     private Long unitAsmtTimeSpent;
     private Float unitAsmtScore;
     private Long unitCollTimeSpent;
+    private Integer unitSequenceId;
 
     public String getUnitId() {
         return unitId;
@@ -50,5 +51,14 @@ class UserPerfUnitModel {
     public void setUnitCollTimeSpent(Long unitCollTimeSpent) {
         this.unitCollTimeSpent = unitCollTimeSpent;
     }
+    
+    public Integer getUnitSequenceId() {
+		return unitSequenceId;
+	}
+
+	public void setUnitSequenceId(Integer unitSequenceId) {
+		this.unitSequenceId = unitSequenceId;
+	}
+
 
 }

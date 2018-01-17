@@ -1,0 +1,75 @@
+{
+	"name": "Overall Performance of Collections and Assessments for a Competency",
+	"request": {
+		"method": "GET",
+		"headers": [{
+			"Authorization": "Token SessionToken"
+		}],
+		"endpoint": "/api/ds/users/v1/user/performance/competency/collections",
+		"queryParams": [{
+			"name": "user",
+			"type": "string",
+			"validValues": "UUID of the user",
+			"isOptional": "No",
+			"comment": ""
+		}, {
+			"name": "competencyCode",
+			"type": "string",
+			"validValues": "Competency Code(Taxonomy Code) Format",
+			"isOptional": "No",
+			"comment": "Eg. of CompetencyCode is NGSS.K12.SC-HS.LS-EI-04"
+		}]
+	},
+	"response": {
+		"body": {
+			"collections": [{
+					"id": "a1S3Sd-6331-4c63-89cf-0ddbb36fd5ce",
+					"title": "A1 on Sharks",
+					"sessionId": "a55M24d-6331-4c63-89cf-0ddbb36fd5ce",
+					"collectionType": "assessment",
+					"timeSpent": 145000,
+					"reaction": 3,
+					"score": 10
+				},
+				{
+					"id": "a2S3Sd-6331-4c63-89cf-0ddbb36fd5ce",
+					"title": "A2 on Sharks",
+					"sessionId": "a66M24d-6331-4c63-89cf-0ddbb36fd5ce",
+					"collectionType": "assessment",
+					"timeSpent": 235000,
+					"reaction": 3,
+					"score": 50
+				},
+				{
+					"id": "a3S3Sd-6331-4c63-89cf-0ddbb36fd5ce",
+					"title": "A3 on Sharks",
+					"sessionId": "a77M24d-6331-4c63-89cf-0ddbb36fd5ce",
+					"collectionType": "assessment",
+					"timeSpent": 145000,
+					"reaction": 3,
+					"score": 70
+				},
+				{
+					"id": "c1S3Sd-6331-4c63-89cf-0ddbb36fd5ce",
+					"title": "C1 on Sharks",
+					"sessionId": "cllM24d-6331-4c63-89cf-0ddbb36fd5ce",
+					"collectionType": "collection",
+					"timeSpent": 555000,
+					"reaction": 3,
+					"score": 10
+				},
+				{
+					"id": "c2S3Sd-6331-4c63-89cf-0ddbb36fd5ce",
+					"title": "C2 on Sharks",
+					"sessionId": "c11M24d-6331-4c63-89cf-0ddbb36fd5ce",
+					"collectionType": "collection",
+					"timeSpent": 155000,
+					"reaction": 3,
+					"score": 10
+				}
+			]
+		},
+		"comment": "This API will give the complete Listing of both Collections & Assessments for a competency",
+		"sampleURL": "http://localhost:8086/api/ds/users/v1/user/performance/competency/collections?competencyCode=NGSS.K12.SC-HS.LS-EI-04&user=MuKuLd4d-6331-4c63-89cf-0ddbb36ee3ce"
+	}
+}

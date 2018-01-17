@@ -1,10 +1,7 @@
-package org.gooru.ds.user.processor.userperf.collections;
+package org.gooru.ds.user.processor.userperf.competency.collections;
 
-/**
- * @author mukul@gooru
- */
-public class UserPerfCollectionsModel {
-
+public class UserPerfCompetencyCollectionsModel {
+	
     private String id;
     private String title;
     private String sessionId;
@@ -12,9 +9,8 @@ public class UserPerfCollectionsModel {
 	private Long timeSpent;
     private Integer reaction;
     private Double score;
-    private Integer sequenceId;
-  
-	public String getId() {
+
+    public String getId() {
         return id;
     }
 
@@ -69,14 +65,5 @@ public class UserPerfCollectionsModel {
 	public void setCollectionType(String collectionType) {
 		this.collectionType = collectionType;
 	}
-	
-    public Integer getSequenceId() {
-			return sequenceId;
-	}
-
-	public void setSequenceId(Integer sequenceId) {
-			this.sequenceId = sequenceId;
-	}
-
 
 }
