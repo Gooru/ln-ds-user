@@ -6,11 +6,11 @@ package org.gooru.ds.user.processor.userprofile;
 class UserProfileModel {
     private String userId;
     private String username;
-    private String emailId;
-    private String firstname;
-    private String lastname;
+    private String email;
+    private String firstName;
+    private String lastName;
     private String userCategory;
-    private String clientId;
+    private String tenantId;
     private String thumbnail;
     private String gender;
     private String about;
@@ -18,6 +18,9 @@ class UserProfileModel {
     private String schoolDistrict;
     private String country;
     private String state;
+    private float citizenship;
+    private float authority;
+    private float reputation;
 
     public String getUserId() {
         return userId;
@@ -35,28 +38,28 @@ class UserProfileModel {
         this.username = username;
     }
 
-    public String getEmailId() {
-        return emailId;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmailId(String emailId) {
-        this.emailId = emailId;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getUserCategory() {
@@ -67,12 +70,12 @@ class UserProfileModel {
         this.userCategory = userCategory;
     }
 
-    public String getClientId() {
-        return clientId;
+    public String getTenantId() {
+        return tenantId;
     }
 
-    public void setClientId(String clientId) {
-        this.clientId = clientId;
+    public void setTenantId(String tenantId) {
+        this.tenantId = tenantId;
     }
 
     public String getThumbnail() {
@@ -129,5 +132,29 @@ class UserProfileModel {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public float getCitizenship() {
+        return citizenship;
+    }
+
+    public void setCitizenship(float citizenship) {
+        this.citizenship = citizenship;
+    }
+
+    public float getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(float authority) {
+        this.authority = authority;
+    }
+
+    public float getReputation() {
+        return reputation;
+    }
+
+    public void setReputation(float reputation) {
+        this.reputation = reputation;
     }
 }

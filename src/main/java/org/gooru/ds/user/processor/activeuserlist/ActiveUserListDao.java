@@ -19,7 +19,7 @@ interface ActiveUserListDao {
         @BindBean ActiveUserListCommand.ActiveUserListCommandBean activeUserListCommandBean);
 
     @Mapper(ActiveUserListModelMapper.class)
-    @SqlQuery("select a.user_id, a.username, a.firstname, a.lastname, a.thumbnail, b.grade, c.authority/1000::real "
+    @SqlQuery("select a.user_id, a.username, a.first_name, a.last_name, a.thumbnail, b.grade, c.authority/1000::real "
                   + " authority, c.reputation/1000::real reputation, c.citizenship/1000::real citizenship from "
                   + " users_profile_master a, user_grade_map b, user_vectors c where a.user_id = any(:users) and "
                   + " a.user_id = b.user_id  and b.subject_code = :subject and c.user_id = a.user_id")

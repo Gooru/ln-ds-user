@@ -16,6 +16,10 @@
 		"d667e39b-0552-5394-b83c-505fa31d0948",
 		"0efee4be-bba0-0ffe-bb83-17a27eb2f610",
 		"a8cd48cf-6bba-3372-bbf9-09ddf55e120b",
+		"e437b171-336d-eabe-21a1-966efe256feb",
+		"c80d5884-d394-d461-bbe0-5b5725387d5d",
+		"c9ca9b80-ddc6-7841-719b-1330dc2f2d71",
+		"df1387a4-4c13-9eb2-bcd5-fa713f0cdbda",
 		"22c65137-e3c1-3e6e-d82d-c5ed22bfbcce",
 		"97f3b961-f0cc-c916-67a2-b0887b094e2e",
 		"368bca7c-c641-098d-88b2-fe78c31d3c3b",
@@ -547,6 +551,50 @@
 			"responses": []
 		},
 		{
+			"id": "c80d5884-d394-d461-bbe0-5b5725387d5d",
+			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/api/ds/users/v1/tx/competency/matrix/coordinates?subject=MA&filter=courses",
+			"queryParams": [
+				{
+					"key": "subject",
+					"value": "MA",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "filter",
+					"value": "courses",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1516175145881,
+			"name": "Competency Matrix Coordinates - courses",
+			"description": "",
+			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b",
+			"responses": []
+		},
+		{
 			"folder": null,
 			"id": "c841cab5-5b97-ae6c-2898-bdc527c9a749",
 			"name": "UserDistribution - Both Filters",
@@ -601,6 +649,50 @@
 			],
 			"pathVariableData": [],
 			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b"
+		},
+		{
+			"id": "c9ca9b80-ddc6-7841-719b-1330dc2f2d71",
+			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/api/ds/users/v1/tx/competency/matrix/coordinates?subject=MA&filter=domains",
+			"queryParams": [
+				{
+					"key": "subject",
+					"value": "MA",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "filter",
+					"value": "domains",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1516175168434,
+			"name": "Competency Matrix Coordinates - domains",
+			"description": "",
+			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b",
+			"responses": []
 		},
 		{
 			"id": "d667e39b-0552-5394-b83c-505fa31d0948",
@@ -738,6 +830,87 @@
 			],
 			"pathVariableData": [],
 			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b"
+		},
+		{
+			"id": "df1387a4-4c13-9eb2-bcd5-fa713f0cdbda",
+			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/api/ds/users/v1/tx/competency/matrix?subject=MA&user=user0",
+			"queryParams": [
+				{
+					"key": "subject",
+					"value": "MA",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "user",
+					"value": "user0",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1516183971966,
+			"name": "User Competency Matrix",
+			"description": "",
+			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b",
+			"responses": []
+		},
+		{
+			"id": "e437b171-336d-eabe-21a1-966efe256feb",
+			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/api/ds/users/v1/tx/competency/matrix/coordinates?subject=MA",
+			"queryParams": [
+				{
+					"key": "subject",
+					"value": "MA",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1516174945424,
+			"name": "Competency Matrix Coordinates - Unfiltered",
+			"description": "",
+			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b",
+			"responses": []
 		},
 		{
 			"id": "e476baf9-889c-94ec-704d-faef5275c72c",

@@ -1,0 +1,63 @@
+{
+	"name": "User Journey - Get Overall Performance in Class/Courses studied by the Users (to be used for Class/Course Cards",
+	"note": "Based on the Current User Mocks for RGO, this API may not be needed. This will be useful when we need to populated and depict multiple Class/Course Cards in a View",
+	"request": {
+		"method": "Post",
+		"headers": [{
+			"Authorization": "Token SessionToken"
+		}],
+		"endpoint": "api/ds/users/v1/user/journey",
+		"queryParams": [{
+			"name": "user",
+			"type": "string",
+			"validValues": "UUID of the user",
+			"isOptional": "No",
+			"comment": ""
+		}]
+	},
+	"response": {
+		"body": {
+			"journeys": [{
+					"classId": null,
+					"classCode": null,
+					"classTitle": null,
+					"courseId": "49652d4d-6331-4c63-89cf-0ddbb36ee3ce",
+					"courseTitle": "ILCourse on Sharks",
+					"averageScore": 70,
+					"timeSpent": 245000,
+					"assessmentsCompleted": 50,
+					"totalAssessments": 100
+				},
+				{
+					"classId": null,
+					"classCode": null,
+					"classTitle": null,
+					"courseId": "49752d4d-6331-4c63-89cf-0ddbb36ee3ce",
+					"courseTitle": "ILCourse1 on Sharks",
+					"averageScore": 80,
+					"timeSpent": 345000,
+					"assessmentsCompleted": 50,
+					"totalAssessments": 100
+				},
+				{
+					"classId": null,
+					"classCode": null,
+					"classTitle": null,
+					"courseId": "49852d4d-6331-4c63-89cf-0ddbb36ee3ce",
+					"courseTitle": "ILCourse2 on Sharks",
+					"averageScore": 100,
+					"timeSpent": 445000,
+					"assessmentsCompleted": 50,
+					"totalAssessments": 100
+				}
+			]
+		},
+		"comment": "For Independent Learner Journeys, classIds in the PayLoad should be empty, since no class is associated with the Independent Learner. For In-Class Journeys, classIds should be passed on and courseIds should be empty.",
+		"sampleURL": "http://localhost:8086/api/ds/users/v1/user/journey?user=MuKuLd4d-6331-4c63-89cf-0ddbb36ee3ce",
+		"samplePayload": {
+			"classIds": [],
+			"courseIds": ["49652d4d-6331-4c63-89cf-0ddbb36ee3ce", "49752d4d-6331-4c63-89cf-0ddbb36ee3ce", "49852d4d-6331-4c63-89cf-0ddbb36ee3ce"]
+		}
+
+	}
+}

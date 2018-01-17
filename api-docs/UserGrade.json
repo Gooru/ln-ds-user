@@ -1,38 +1,39 @@
 {
-    "name": "User Grade",
-    "request": {
-        "method": "GET",
-        "headers": [
-            {
-                "Authorization": "Token SessionToken"
-            }
-        ],
-        "endpoint": "/api/ds/users/v1/user/grades",
-        "queryParams": [
-            {
-                "name": "user",
-                "type": "string",
-                "validValues": "UUID based user id of the user",
-                "defaultValue": null,
-                "multipleOccurrence": "Not supported, only one will be picked up",
-                "comment": "Lists the user stats value for types of content"
-            }
-        ]
-    },
-    "response": {
-        "body": {
-            "grades": [
-                {
-                    "subjectCode": "subject-code",
-                    "subjectName": "subject-name",
-                    "grade": "grade"
-                },{
-                    "subjectCode": "subject-code1",
-                    "subjectName": "subject-name1",
-                    "grade": "grade1"
-                }
-            ]
+  "name": "User Grade",
+  "request": {
+    "method": "GET",
+    "headers": [
+      {
+        "Authorization": "Token SessionToken"
+      }
+    ],
+    "endpoint": "/api/ds/users/v1/user/grades",
+    "queryParams": [
+      {
+        "name": "user",
+        "type": "string",
+        "validValues": "UUID based user id of the user",
+        "defaultValue": null,
+        "multipleOccurrence": "Not supported, only one will be picked up",
+        "comment": "Lists the user stats value for types of content"
+      }
+    ]
+  },
+  "response": {
+    "body": {
+      "grades": [
+        {
+          "subjectCode": "subject-code",
+          "subjectName": "subject-name",
+          "grade": "grade"
         },
-        "comment": ""
-    }
+        {
+          "subjectCode": "subject-code1",
+          "subjectName": "subject-name1",
+          "grade": "grade1"
+        }
+      ]
+    },
+    "comment": ""
+  }
 }

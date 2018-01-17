@@ -16,7 +16,8 @@ interface UserPerfAssessmentsDao {
         "select collection_id, collection_title, latest_session_id, collection_time_spent, collection_score, "
             + "collection_average_reaction"
             + " from course_collection_performance where "
-            + " class_id = :classId  and course_id = :courseId and unit_id = :unitId and lesson_id = :lessonId "
+            + " ((class_id IS NULL AND :classId IS NULL) OR class_id = :classId) "
+            + " and course_id = :courseId and unit_id = :unitId and lesson_id = :lessonId "
             + " and collection_type = 'assessment' and user_id = :user")
     List<UserPerfAssessmentsModel> fetchUserPerfAssessments(
         @BindBean UserPerfAssessmentsCommand.UserPerfAssessmentsCommandBean userPerfAssessmentsCommandBean);

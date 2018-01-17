@@ -16,8 +16,8 @@ public class ActiveUserListModelMapper implements ResultSetMapper<ActiveUserList
         ActiveUserListModel model = new ActiveUserListModel();
         model.setUserId(r.getString(MapperFields.USER_ID));
         model.setUsername(r.getString(MapperFields.USERNAME));
-        model.setFirstname(r.getString(MapperFields.FIRSTNAME));
-        model.setLastname(r.getString(MapperFields.LASTNAME));
+        model.setFirstName(r.getString(MapperFields.FIRSTNAME));
+        model.setLastName(r.getString(MapperFields.LASTNAME));
         model.setThumbnail(r.getString(MapperFields.THUMBNAIL));
         model.setGrade(r.getString(MapperFields.GRADE));
         model.setAuthority(r.getFloat(MapperFields.AUTHORITY));
@@ -33,8 +33,8 @@ public class ActiveUserListModelMapper implements ResultSetMapper<ActiveUserList
 
         private static final String USER_ID = "user_id";
         private static final String USERNAME = "username";
-        private static final String FIRSTNAME = "firstname";
-        private static final String LASTNAME = "lastname";
+        private static final String FIRSTNAME = "first_name";
+        private static final String LASTNAME = "last_name";
         private static final String THUMBNAIL = "thumbnail";
         private static final String GRADE = "grade";
         private static final String AUTHORITY = "authority";

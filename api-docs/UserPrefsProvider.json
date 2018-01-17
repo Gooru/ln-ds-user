@@ -1,39 +1,39 @@
 {
-    "name": "User Prefs for Provider",
-    "request": {
-        "method": "GET",
-        "headers": [
-            {
-                "Authorization": "Token SessionToken"
-            }
-        ],
-        "endpoint": "/api/ds/users/v1/user/prefs/providers",
-        "queryParams": [
-            {
-                "name": "user",
-                "type": "string",
-                "validValues": "UUID based user id of the user",
-                "defaultValue": null,
-                "multipleOccurrence": "Not supported, only one will be picked up",
-                "comment": "Lists the user preferences value for providers"
-            }
-        ]
-    },
-    "response": {
-        "body": {
-            "providers" : [
-                {
-                    "providerId": "id",
-                    "providerName": "name",
-                    "pref": 0.5
-                },
-                {
-                    "providerId": "id1",
-                    "providerName": "name1",
-                    "pref": 0.55
-                }
-            ]
+  "name": "User Prefs for Provider",
+  "request": {
+    "method": "GET",
+    "headers": [
+      {
+        "Authorization": "Token SessionToken"
+      }
+    ],
+    "endpoint": "/api/ds/users/v1/user/prefs/providers",
+    "queryParams": [
+      {
+        "name": "user",
+        "type": "string",
+        "validValues": "UUID based user id of the user",
+        "defaultValue": null,
+        "multipleOccurrence": "Not supported, only one will be picked up",
+        "comment": "Lists the user preferences value for providers"
+      }
+    ]
+  },
+  "response": {
+    "body": {
+      "providers": [
+        {
+          "providerId": "id",
+          "providerName": "name",
+          "pref": 0.5
         },
-        "comment": ""
-    }
+        {
+          "providerId": "id1",
+          "providerName": "name1",
+          "pref": 0.55
+        }
+      ]
+    },
+    "comment": ""
+  }
 }

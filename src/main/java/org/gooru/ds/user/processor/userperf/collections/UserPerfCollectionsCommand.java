@@ -77,8 +77,8 @@ public class UserPerfCollectionsCommand {
         }
 
         if (classId == null) {
-            LOGGER.info("Class not provided");
-            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Class not provided");
+            LOGGER.info("Class not provided, assumed to be a request for Independent Learner");
+            //throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Class not provided");
         }
 
         if (courseId == null) {
