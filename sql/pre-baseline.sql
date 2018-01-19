@@ -314,6 +314,7 @@ id SERIAL PRIMARY KEY,
 user_id text,
 resource_content_type text,
 resource_time_spent bigint,
+resource_count bigint NOT NULL DEFAULT 0,
 created_at timestamp NOT NULL DEFAULT (NOW() AT TIME ZONE 'UTC'),
 updated_at timestamp NOT NULL DEFAULT (NOW() AT TIME ZONE 'UTC'));
 
