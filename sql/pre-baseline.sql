@@ -190,6 +190,7 @@ CREATE TABLE user_prefs_content (
     webpage integer,
     text integer,
     video integer,
+    image integer,
     updated_at timestamp without time zone DEFAULT timezone('UTC'::text, now()) NOT NULL
 );
 
