@@ -22,6 +22,7 @@
 -- drop table user_stats_content
 -- drop table user_stats_provider
 -- drop table user_stats_curator
+-- drop table user_stats_resource_timespent
 
 CREATE TABLE user_distribution_zoom1 (
     id bigserial PRIMARY KEY,
@@ -262,6 +263,19 @@ CREATE TABLE user_stats_provider (
     updated_at timestamp without time zone DEFAULT timezone('UTC'::text, now()) NOT NULL,
     UNIQUE(user_id, provider_id, duration)
 );
+
+CREATE TABLE user_stats_resource_timespent (
+id BIGSERIAL PRIMARY KEY,
+user_id text NOT NULL,
+resource_id text NOT NULL,
+resource_title text,
+resource_content_type text,
+resource_time_spent bigint,
+path_id bigint,
+duration character varying(512) NOT NULL,
+created_at timestamp NOT NULL DEFAULT (NOW() AT TIME ZONE 'UTC'),
+updated_at timestamp NOT NULL DEFAULT (NOW() AT TIME ZONE 'UTC'));
+
 
 -- This is the master data table that forms the leaf level data housing 
 -- Aggregated Tables will be created/derived from this master table.
