@@ -1,170 +1,53 @@
 {
-	"id": "53056526-e7b1-36ed-6afa-6585a6bfbf6b",
+	"id": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7",
 	"name": "DS-User",
 	"description": "",
 	"order": [
-		"770fe469-ebdd-90bd-e3fe-90c8e6ea7dc6",
-		"5f28ce00-6a26-f706-5ed7-5eb10a484614",
-		"5df5eee7-de97-0b57-77ec-5b365c5ceeb3",
-		"c841cab5-5b97-ae6c-2898-bdc527c9a749",
-		"de7346d2-d3d1-5e0c-3d35-d827df8b9a3d",
-		"a2e40b24-117e-7752-1152-7c89d59825bc",
-		"111c2e6b-345c-b0c5-da2b-28d4ecdd8109",
-		"4f66c0f6-20ff-4e08-fe23-447b1b4226f8",
-		"d70cec9c-d255-1bb6-ac71-0eeb2c541359",
-		"e476baf9-889c-94ec-704d-faef5275c72c",
-		"d667e39b-0552-5394-b83c-505fa31d0948",
-		"0efee4be-bba0-0ffe-bb83-17a27eb2f610",
-		"a8cd48cf-6bba-3372-bbf9-09ddf55e120b",
-		"e437b171-336d-eabe-21a1-966efe256feb",
-		"c80d5884-d394-d461-bbe0-5b5725387d5d",
-		"c9ca9b80-ddc6-7841-719b-1330dc2f2d71",
-		"df1387a4-4c13-9eb2-bcd5-fa713f0cdbda",
-		"22c65137-e3c1-3e6e-d82d-c5ed22bfbcce",
-		"97f3b961-f0cc-c916-67a2-b0887b094e2e",
-		"368bca7c-c641-098d-88b2-fe78c31d3c3b",
-		"6c64ff0e-052d-251b-5792-90381d45e6c4"
+		"f4f873a9-3e93-41cd-3e3b-906c684814e5",
+		"c6c56c5e-9b95-0b72-e22b-29cfeeb51e04",
+		"2ef89a81-0f0c-329e-b516-b349905f5360",
+		"b3227bad-f55a-62d7-e417-f4fec475bcbc",
+		"7c7dfcf8-5976-6a1e-5d7b-b4e64f620efa",
+		"78cd0858-efe2-aca0-e8cf-1836ec99f940",
+		"af682366-4ac4-72ad-5a56-80349a4f593e",
+		"5d90ab25-14f2-2922-eb61-1fa1e3824e0a",
+		"ae59f595-b42d-ac79-450f-a3b104c26dc4",
+		"b8ef3e94-3fbb-4ff3-574f-8bd2d17cb901",
+		"5f3c7378-f017-af91-c77c-7957d039e645",
+		"9469801c-f2f9-cbf8-e4a6-4652d975cce3",
+		"35c5549a-464b-1aff-47a5-3a2efad148a4",
+		"b89ff584-dd9a-4df0-721c-e252eeb460f5",
+		"5028dc4b-1cb7-2aee-4e59-dad56c292ccf",
+		"1f400309-1aa4-9ef0-61e5-725e3a3b8966",
+		"500951ff-9261-ff6f-e5ae-e62fd6105d56",
+		"a43bcc1d-1982-3cfe-dacd-29a53b97f26f",
+		"0ee4246b-7976-7cc6-f862-387eca79ed59",
+		"9dbc6717-20ed-cb66-d28c-81bc04e11b68",
+		"27d000d0-52bc-80b6-7574-b7ef0c7e0a54"
 	],
 	"folders": [],
 	"folders_order": [],
 	"timestamp": 1515565475701,
-	"owner": "1962403",
+	"owner": 0,
 	"public": false,
+	"hasRequests": true,
 	"requests": [
 		{
-			"id": "0efee4be-bba0-0ffe-bb83-17a27eb2f610",
-			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
+			"id": "0ee4246b-7976-7cc6-f862-387eca79ed59",
+			"headers": "Authorization: Token {{auth_token}}\n",
 			"headerData": [
 				{
 					"key": "Authorization",
-					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
+					"value": "Token {{auth_token}}",
 					"description": "",
 					"enabled": true
 				}
 			],
-			"url": "http://localhost:8080/api/ds/users/v1/user/prefs/curators?user=user0",
+			"url": "http://{{host}}/api/ds/users/v1/user/stats/contents?user={{user}}&activeDuration=1m",
 			"queryParams": [
 				{
 					"key": "user",
-					"value": "user0",
-					"equals": true,
-					"description": "",
-					"enabled": true
-				}
-			],
-			"preRequestScript": null,
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "GET",
-			"data": null,
-			"dataMode": "params",
-			"version": 2,
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1515837942011,
-			"name": "User Prefs Curators",
-			"description": "",
-			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b",
-			"responses": []
-		},
-		{
-			"folder": null,
-			"id": "111c2e6b-345c-b0c5-da2b-28d4ecdd8109",
-			"name": "User Stats Journeys",
-			"dataMode": "params",
-			"data": null,
-			"auth": null,
-			"events": null,
-			"rawModeData": null,
-			"descriptionFormat": null,
-			"description": null,
-			"variables": null,
-			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
-			"method": "GET",
-			"pathVariables": {},
-			"url": "http://localhost:8080/api/ds/users/v1/user/stats/journeys?user=user1&activeDuration=1m",
-			"preRequestScript": null,
-			"tests": null,
-			"currentHelper": null,
-			"helperAttributes": null,
-			"queryParams": [
-				{
-					"key": "user",
-					"value": "user1",
-					"equals": true,
-					"enabled": true
-				},
-				{
-					"key": "activeDuration",
-					"value": "1m",
-					"equals": true,
-					"enabled": true
-				}
-			],
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
-					"enabled": true
-				}
-			],
-			"pathVariableData": [],
-			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b"
-		},
-		{
-			"id": "22c65137-e3c1-3e6e-d82d-c5ed22bfbcce",
-			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "http://localhost:8080/api/ds/users/v1/user/grades?user=user0",
-			"queryParams": [
-				{
-					"key": "user",
-					"value": "user0",
-					"equals": true,
-					"description": "",
-					"enabled": true
-				}
-			],
-			"preRequestScript": null,
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "GET",
-			"data": null,
-			"dataMode": "params",
-			"version": 2,
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1516150768350,
-			"name": "User Grades",
-			"description": "",
-			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b",
-			"responses": []
-		},
-		{
-			"id": "368bca7c-c641-098d-88b2-fe78c31d3c3b",
-			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "http://localhost:8080/api/ds/users/v1/user/stats/providers?user=user0&activeDuration=1m",
-			"queryParams": [
-				{
-					"key": "user",
-					"value": "user0",
+					"value": "{{user}}",
 					"equals": true,
 					"description": "",
 					"enabled": true
@@ -187,481 +70,24 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1515842953258,
-			"name": "User Stats Providers",
-			"description": "",
-			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b",
-			"responses": []
-		},
-		{
-			"folder": null,
-			"id": "4f66c0f6-20ff-4e08-fe23-447b1b4226f8",
-			"name": "User Stats Competency",
-			"dataMode": "params",
-			"data": null,
-			"auth": null,
-			"events": null,
-			"rawModeData": null,
-			"descriptionFormat": null,
-			"description": null,
-			"variables": null,
-			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
-			"method": "GET",
-			"pathVariables": {},
-			"url": "http://localhost:8080/api/ds/users/v1/user/stats/competency?user=user1&activeDuration=1m",
-			"preRequestScript": null,
-			"tests": null,
-			"currentHelper": null,
-			"helperAttributes": null,
-			"queryParams": [
-				{
-					"key": "user",
-					"value": "user1",
-					"equals": true,
-					"enabled": true
-				},
-				{
-					"key": "activeDuration",
-					"value": "1m",
-					"equals": true,
-					"enabled": true
-				}
-			],
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
-					"enabled": true
-				}
-			],
-			"pathVariableData": [],
-			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b"
-		},
-		{
-			"folder": null,
-			"id": "5df5eee7-de97-0b57-77ec-5b365c5ceeb3",
-			"name": "UserDistribution - By Geo Across Subjects",
-			"dataMode": "params",
-			"data": null,
-			"auth": null,
-			"events": null,
-			"rawModeData": null,
-			"descriptionFormat": null,
-			"description": null,
-			"variables": null,
-			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
-			"method": "GET",
-			"pathVariables": {},
-			"url": "http://localhost:8080/api/ds/users/v1/user/distribution?zoom=1&geoLocation=AF&activeDuration=1m",
-			"preRequestScript": null,
-			"tests": null,
-			"currentHelper": null,
-			"helperAttributes": null,
-			"queryParams": [
-				{
-					"key": "zoom",
-					"value": "1",
-					"equals": true,
-					"enabled": true
-				},
-				{
-					"key": "geoLocation",
-					"value": "AF",
-					"equals": true,
-					"enabled": true
-				},
-				{
-					"key": "activeDuration",
-					"value": "1m",
-					"equals": true,
-					"enabled": true
-				}
-			],
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
-					"enabled": true
-				}
-			],
-			"pathVariableData": [],
-			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b"
-		},
-		{
-			"folder": null,
-			"id": "5f28ce00-6a26-f706-5ed7-5eb10a484614",
-			"name": "UserDistribution - By Subject Across Geo",
-			"dataMode": "params",
-			"data": null,
-			"auth": null,
-			"events": null,
-			"rawModeData": null,
-			"descriptionFormat": null,
-			"description": null,
-			"variables": null,
-			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
-			"method": "GET",
-			"pathVariables": {},
-			"url": "http://localhost:8080/api/ds/users/v1/user/distribution?zoom=1&subject=MATHS&activeDuration=1m",
-			"preRequestScript": null,
-			"tests": null,
-			"currentHelper": null,
-			"helperAttributes": null,
-			"queryParams": [
-				{
-					"key": "zoom",
-					"value": "1",
-					"equals": true,
-					"enabled": true
-				},
-				{
-					"key": "subject",
-					"value": "MATHS",
-					"equals": true,
-					"enabled": true
-				},
-				{
-					"key": "activeDuration",
-					"value": "1m",
-					"equals": true,
-					"enabled": true
-				}
-			],
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
-					"enabled": true
-				}
-			],
-			"pathVariableData": [],
-			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b"
-		},
-		{
-			"id": "6c64ff0e-052d-251b-5792-90381d45e6c4",
-			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "http://localhost:8080/api/ds/users/v1/user/stats/curators?user=user0&activeDuration=1m",
-			"queryParams": [
-				{
-					"key": "user",
-					"value": "user0",
-					"equals": true,
-					"description": "",
-					"enabled": true
-				},
-				{
-					"key": "activeDuration",
-					"value": "1m",
-					"equals": true,
-					"description": "",
-					"enabled": true
-				}
-			],
-			"preRequestScript": null,
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "GET",
-			"data": null,
-			"dataMode": "params",
-			"version": 2,
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1515843068120,
-			"name": "User Stats Curators",
-			"description": "",
-			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b",
-			"responses": []
-		},
-		{
-			"folder": null,
-			"id": "770fe469-ebdd-90bd-e3fe-90c8e6ea7dc6",
-			"name": "UserDistribution - default",
-			"dataMode": "params",
-			"data": null,
-			"auth": null,
-			"events": null,
-			"rawModeData": null,
-			"descriptionFormat": null,
-			"description": null,
-			"variables": null,
-			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
-			"method": "GET",
-			"pathVariables": {},
-			"url": "http://localhost:8080/api/ds/users/v1/user/distribution?zoom=1&activeDuration=1m",
-			"preRequestScript": null,
-			"tests": null,
-			"currentHelper": null,
-			"helperAttributes": null,
-			"queryParams": [
-				{
-					"key": "zoom",
-					"value": "1",
-					"equals": true,
-					"enabled": true
-				},
-				{
-					"key": "activeDuration",
-					"value": "1m",
-					"equals": true,
-					"enabled": true
-				}
-			],
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
-					"enabled": true
-				}
-			],
-			"pathVariableData": [],
-			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b"
-		},
-		{
-			"id": "97f3b961-f0cc-c916-67a2-b0887b094e2e",
-			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "http://localhost:8080/api/ds/users/v1/user/stats/contents?user=user0&activeDuration=1m",
-			"queryParams": [
-				{
-					"key": "user",
-					"value": "user0",
-					"equals": true,
-					"description": "",
-					"enabled": true
-				},
-				{
-					"key": "activeDuration",
-					"value": "1m",
-					"equals": true,
-					"description": "",
-					"enabled": true
-				}
-			],
-			"preRequestScript": null,
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "GET",
-			"data": null,
-			"dataMode": "params",
-			"version": 2,
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1515843038652,
+			"time": 1516688458658,
 			"name": "User Stats Content",
 			"description": "",
-			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b",
+			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7",
 			"responses": []
 		},
 		{
-			"folder": null,
-			"id": "a2e40b24-117e-7752-1152-7c89d59825bc",
-			"name": "User Stats Timespent",
-			"dataMode": "params",
-			"data": null,
-			"auth": null,
-			"events": null,
-			"rawModeData": null,
-			"descriptionFormat": null,
-			"description": null,
-			"variables": null,
-			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
-			"method": "GET",
-			"pathVariables": {},
-			"url": "http://localhost:8080/api/ds/users/v1/user/stats/timespent?user=user0&activeDuration=1m",
-			"preRequestScript": null,
-			"tests": null,
-			"currentHelper": null,
-			"helperAttributes": null,
-			"queryParams": [
-				{
-					"key": "user",
-					"value": "user0",
-					"equals": true,
-					"enabled": true
-				},
-				{
-					"key": "activeDuration",
-					"value": "1m",
-					"equals": true,
-					"enabled": true
-				}
-			],
+			"id": "1f400309-1aa4-9ef0-61e5-725e3a3b8966",
+			"headers": "Authorization: Token {{auth_token}}\n",
 			"headerData": [
 				{
 					"key": "Authorization",
-					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
-					"enabled": true
-				}
-			],
-			"pathVariableData": [],
-			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b"
-		},
-		{
-			"id": "a8cd48cf-6bba-3372-bbf9-09ddf55e120b",
-			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
+					"value": "Token {{auth_token}}",
 					"description": "",
 					"enabled": true
 				}
 			],
-			"url": "http://localhost:8080/api/ds/users/v1/user/profile?user=user0",
-			"queryParams": [
-				{
-					"key": "user",
-					"value": "user0",
-					"equals": true,
-					"description": "",
-					"enabled": true
-				}
-			],
-			"preRequestScript": null,
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "GET",
-			"data": null,
-			"dataMode": "params",
-			"version": 2,
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1516150739152,
-			"name": "User Profile",
-			"description": "",
-			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b",
-			"responses": []
-		},
-		{
-			"id": "c80d5884-d394-d461-bbe0-5b5725387d5d",
-			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "http://localhost:8080/api/ds/users/v1/tx/competency/matrix/coordinates?subject=MA&filter=courses",
-			"queryParams": [
-				{
-					"key": "subject",
-					"value": "MA",
-					"equals": true,
-					"description": "",
-					"enabled": true
-				},
-				{
-					"key": "filter",
-					"value": "courses",
-					"equals": true,
-					"description": "",
-					"enabled": true
-				}
-			],
-			"preRequestScript": null,
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "GET",
-			"data": null,
-			"dataMode": "params",
-			"version": 2,
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1516175145881,
-			"name": "Competency Matrix Coordinates - courses",
-			"description": "",
-			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b",
-			"responses": []
-		},
-		{
-			"folder": null,
-			"id": "c841cab5-5b97-ae6c-2898-bdc527c9a749",
-			"name": "UserDistribution - Both Filters",
-			"dataMode": "params",
-			"data": null,
-			"auth": null,
-			"events": null,
-			"rawModeData": null,
-			"descriptionFormat": null,
-			"description": null,
-			"variables": null,
-			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
-			"method": "GET",
-			"pathVariables": {},
-			"url": "http://localhost:8080/api/ds/users/v1/user/distribution?zoom=1&geoLocation=AF&subject=MATHS&activeDuration=1m",
-			"preRequestScript": null,
-			"tests": null,
-			"currentHelper": null,
-			"helperAttributes": null,
-			"queryParams": [
-				{
-					"key": "zoom",
-					"value": "1",
-					"equals": true,
-					"enabled": true
-				},
-				{
-					"key": "geoLocation",
-					"value": "AF",
-					"equals": true,
-					"enabled": true
-				},
-				{
-					"key": "subject",
-					"value": "MATHS",
-					"equals": true,
-					"enabled": true
-				},
-				{
-					"key": "activeDuration",
-					"value": "1m",
-					"equals": true,
-					"enabled": true
-				}
-			],
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
-					"enabled": true
-				}
-			],
-			"pathVariableData": [],
-			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b"
-		},
-		{
-			"id": "c9ca9b80-ddc6-7841-719b-1330dc2f2d71",
-			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "http://localhost:8080/api/ds/users/v1/tx/competency/matrix/coordinates?subject=MA&filter=domains",
+			"url": "http://{{host}}/api/ds/users/v1/tx/competency/matrix/coordinates?subject=MA&filter=domains",
 			"queryParams": [
 				{
 					"key": "subject",
@@ -688,65 +114,28 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1516175168434,
+			"time": 1516688237124,
 			"name": "Competency Matrix Coordinates - domains",
 			"description": "",
-			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b",
+			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7",
 			"responses": []
 		},
 		{
-			"id": "d667e39b-0552-5394-b83c-505fa31d0948",
-			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
+			"id": "27d000d0-52bc-80b6-7574-b7ef0c7e0a54",
+			"headers": "Authorization: Token {{auth_token}}\n",
 			"headerData": [
 				{
 					"key": "Authorization",
-					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
+					"value": "Token {{auth_token}}",
 					"description": "",
 					"enabled": true
 				}
 			],
-			"url": "http://localhost:8080/api/ds/users/v1/user/prefs/providers?user=user0",
+			"url": "http://{{host}}/api/ds/users/v1/user/stats/curators?user={{user}}&activeDuration=1m",
 			"queryParams": [
 				{
 					"key": "user",
-					"value": "user0",
-					"equals": true,
-					"description": "",
-					"enabled": true
-				}
-			],
-			"preRequestScript": null,
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "GET",
-			"data": null,
-			"dataMode": "params",
-			"version": 2,
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1515837957569,
-			"name": "User Prefs Providers",
-			"description": "",
-			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b",
-			"responses": []
-		},
-		{
-			"id": "d70cec9c-d255-1bb6-ac71-0eeb2c541359",
-			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "http://localhost:8080/api/ds/users/v1/user/stats/courses?user=user0&activeDuration=1m",
-			"queryParams": [
-				{
-					"key": "user",
-					"value": "user0",
+					"value": "{{user}}",
 					"equals": true,
 					"description": "",
 					"enabled": true
@@ -769,91 +158,427 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1515826085866,
-			"name": "User Stats Courses",
+			"time": 1516688469337,
+			"name": "User Stats Curators",
 			"description": "",
-			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b",
+			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7",
 			"responses": []
 		},
 		{
+			"id": "2ef89a81-0f0c-329e-b516-b349905f5360",
+			"headers": "Authorization: Token {{auth_token}}\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token {{auth_token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://{{host}}/api/ds/users/v1/user/distribution?zoom=1&geoLocation=AF&activeDuration=1m",
 			"folder": null,
-			"id": "de7346d2-d3d1-5e0c-3d35-d827df8b9a3d",
-			"name": "Active Users List for Subject",
-			"dataMode": "params",
-			"data": null,
-			"auth": null,
-			"events": null,
-			"rawModeData": null,
-			"descriptionFormat": null,
-			"description": null,
-			"variables": null,
-			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
-			"method": "GET",
-			"pathVariables": {},
-			"url": "http://localhost:8080/api/ds/users/v1/user/distribution/active?subject=MATHS&activeDuration=1m&offset=0&limit=10",
+			"queryParams": [
+				{
+					"key": "zoom",
+					"value": "1",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "geoLocation",
+					"value": "AF",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "activeDuration",
+					"value": "1m",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
 			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"tests": null,
-			"currentHelper": null,
-			"helperAttributes": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1516687904220,
+			"name": "UserDistribution - By Geo Across Subjects",
+			"description": null,
+			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7"
+		},
+		{
+			"id": "35c5549a-464b-1aff-47a5-3a2efad148a4",
+			"headers": "Authorization: Token {{auth_token}}\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token {{auth_token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://{{host}}/api/ds/users/v1/user/profile?user={{user}}",
+			"queryParams": [
+				{
+					"key": "user",
+					"value": "{{user}}",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1516688418953,
+			"name": "User Profile",
+			"description": "",
+			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7",
+			"responses": []
+		},
+		{
+			"id": "500951ff-9261-ff6f-e5ae-e62fd6105d56",
+			"headers": "Authorization: Token {{auth_token}}\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token {{auth_token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://{{host}}/api/ds/users/v1/tx/competency/matrix?subject=MA&user={{user}}",
+			"queryParams": [
+				{
+					"key": "subject",
+					"value": "MA",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "user",
+					"value": "{{user}}",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1516688446860,
+			"name": "User Competency Matrix",
+			"description": "",
+			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7",
+			"responses": []
+		},
+		{
+			"id": "5028dc4b-1cb7-2aee-4e59-dad56c292ccf",
+			"headers": "Authorization: Token {{auth_token}}\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token {{auth_token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://{{host}}/api/ds/users/v1/tx/competency/matrix/coordinates?subject=MA&filter=courses",
+			"queryParams": [
+				{
+					"key": "subject",
+					"value": "MA",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "filter",
+					"value": "courses",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1516688225874,
+			"name": "Competency Matrix Coordinates - courses",
+			"description": "",
+			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7",
+			"responses": []
+		},
+		{
+			"id": "5d90ab25-14f2-2922-eb61-1fa1e3824e0a",
+			"headers": "Authorization: Token {{auth_token}}\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token {{auth_token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://{{host}}/api/ds/users/v1/user/stats/competency?user={{user}}&activeDuration=1m",
+			"folder": null,
+			"queryParams": [
+				{
+					"key": "user",
+					"value": "{{user}}",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "activeDuration",
+					"value": "1m",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1516688397357,
+			"name": "User Stats Competency",
+			"description": null,
+			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7"
+		},
+		{
+			"id": "5f3c7378-f017-af91-c77c-7957d039e645",
+			"headers": "Authorization: Token {{auth_token}}\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token {{auth_token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://{{host}}/api/ds/users/v1/user/prefs/providers?user={{user}}",
+			"queryParams": [
+				{
+					"key": "user",
+					"value": "{{user}}",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1516688411166,
+			"name": "User Prefs Providers",
+			"description": "",
+			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7",
+			"responses": []
+		},
+		{
+			"id": "78cd0858-efe2-aca0-e8cf-1836ec99f940",
+			"headers": "Authorization: Token {{auth_token}}\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token {{auth_token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://{{host}}/api/ds/users/v1/user/stats/timespent?user={{user}}&activeDuration=1m",
+			"folder": null,
+			"queryParams": [
+				{
+					"key": "user",
+					"value": "{{user}}",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "activeDuration",
+					"value": "1m",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1516688386071,
+			"name": "User Stats Timespent",
+			"description": null,
+			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7"
+		},
+		{
+			"id": "7c7dfcf8-5976-6a1e-5d7b-b4e64f620efa",
+			"headers": "Authorization: Token {{auth_token}}\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token {{auth_token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://{{host}}/api/ds/users/v1/user/distribution/active?subject=MATHS&activeDuration=1m&offset=0&limit=10",
+			"folder": null,
 			"queryParams": [
 				{
 					"key": "subject",
 					"value": "MATHS",
 					"equals": true,
+					"description": "",
 					"enabled": true
 				},
 				{
 					"key": "activeDuration",
 					"value": "1m",
 					"equals": true,
+					"description": "",
 					"enabled": true
 				},
 				{
 					"key": "offset",
 					"value": "0",
 					"equals": true,
+					"description": "",
 					"enabled": true
 				},
 				{
 					"key": "limit",
 					"value": "10",
 					"equals": true,
-					"enabled": true
-				}
-			],
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
-					"enabled": true
-				}
-			],
-			"pathVariableData": [],
-			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b"
-		},
-		{
-			"id": "df1387a4-4c13-9eb2-bcd5-fa713f0cdbda",
-			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
-			"headerData": [
-				{
-					"key": "Authorization",
-					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
 					"description": "",
 					"enabled": true
 				}
 			],
-			"url": "http://localhost:8080/api/ds/users/v1/tx/competency/matrix?subject=MA&user=user0",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1516687952145,
+			"name": "Active Users List for Subject",
+			"description": null,
+			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7"
+		},
+		{
+			"id": "9469801c-f2f9-cbf8-e4a6-4652d975cce3",
+			"headers": "Authorization: Token {{auth_token}}\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token {{auth_token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://{{host}}/api/ds/users/v1/user/prefs/curators?user={{user}}",
 			"queryParams": [
 				{
-					"key": "subject",
-					"value": "MA",
+					"key": "user",
+					"value": "{{user}}",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1516688414948,
+			"name": "User Prefs Curators",
+			"description": "",
+			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7",
+			"responses": []
+		},
+		{
+			"id": "9dbc6717-20ed-cb66-d28c-81bc04e11b68",
+			"headers": "Authorization: Token {{auth_token}}\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token {{auth_token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://{{host}}/api/ds/users/v1/user/stats/providers?user={{user}}&activeDuration=1m",
+			"queryParams": [
+				{
+					"key": "user",
+					"value": "{{user}}",
 					"equals": true,
 					"description": "",
 					"enabled": true
 				},
 				{
-					"key": "user",
-					"value": "user0",
+					"key": "activeDuration",
+					"value": "1m",
 					"equals": true,
 					"description": "",
 					"enabled": true
@@ -869,24 +594,205 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1516183971966,
-			"name": "User Competency Matrix",
+			"time": 1516688463828,
+			"name": "User Stats Providers",
 			"description": "",
-			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b",
+			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7",
 			"responses": []
 		},
 		{
-			"id": "e437b171-336d-eabe-21a1-966efe256feb",
-			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
+			"id": "a43bcc1d-1982-3cfe-dacd-29a53b97f26f",
+			"headers": "Authorization: Token {{auth_token}}\n",
 			"headerData": [
 				{
 					"key": "Authorization",
-					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
+					"value": "Token {{auth_token}}",
 					"description": "",
 					"enabled": true
 				}
 			],
-			"url": "http://localhost:8080/api/ds/users/v1/tx/competency/matrix/coordinates?subject=MA",
+			"url": "http://{{host}}/api/ds/users/v1/user/grades?user={{user}}",
+			"queryParams": [
+				{
+					"key": "user",
+					"value": "{{user}}",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1516688451306,
+			"name": "User Grades",
+			"description": "",
+			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7",
+			"responses": []
+		},
+		{
+			"id": "ae59f595-b42d-ac79-450f-a3b104c26dc4",
+			"headers": "Authorization: Token {{auth_token}}\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token {{auth_token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://{{host}}/api/ds/users/v1/user/stats/courses?user={{user}}&activeDuration=1m",
+			"queryParams": [
+				{
+					"key": "user",
+					"value": "{{user}}",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "activeDuration",
+					"value": "1m",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1516688401603,
+			"name": "User Stats Courses",
+			"description": "",
+			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7",
+			"responses": []
+		},
+		{
+			"id": "af682366-4ac4-72ad-5a56-80349a4f593e",
+			"headers": "Authorization: Token {{auth_token}}\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token {{auth_token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://{{host}}/api/ds/users/v1/user/stats/journeys?user={{user}}&activeDuration=1m",
+			"folder": null,
+			"queryParams": [
+				{
+					"key": "user",
+					"value": "{{user}}",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "activeDuration",
+					"value": "1m",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1516688391775,
+			"name": "User Stats Journeys",
+			"description": null,
+			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7"
+		},
+		{
+			"id": "b3227bad-f55a-62d7-e417-f4fec475bcbc",
+			"headers": "Authorization: Token {{auth_token}}\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token {{auth_token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://{{host}}/api/ds/users/v1/user/distribution?zoom=1&geoLocation=AF&subject=MATHS&activeDuration=1m",
+			"folder": null,
+			"queryParams": [
+				{
+					"key": "zoom",
+					"value": "1",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "geoLocation",
+					"value": "AF",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "subject",
+					"value": "MATHS",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "activeDuration",
+					"value": "1m",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1516687938377,
+			"name": "UserDistribution - Both Filters",
+			"description": null,
+			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7"
+		},
+		{
+			"id": "b89ff584-dd9a-4df0-721c-e252eeb460f5",
+			"headers": "Authorization: Token {{auth_token}}\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token {{auth_token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://{{host}}/api/ds/users/v1/tx/competency/matrix/coordinates?subject=MA",
 			"queryParams": [
 				{
 					"key": "subject",
@@ -906,28 +812,28 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1516174945424,
+			"time": 1516688207619,
 			"name": "Competency Matrix Coordinates - Unfiltered",
 			"description": "",
-			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b",
+			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7",
 			"responses": []
 		},
 		{
-			"id": "e476baf9-889c-94ec-704d-faef5275c72c",
-			"headers": "Authorization: Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==\n",
+			"id": "b8ef3e94-3fbb-4ff3-574f-8bd2d17cb901",
+			"headers": "Authorization: Token {{auth_token}}\n",
 			"headerData": [
 				{
 					"key": "Authorization",
-					"value": "Token Njg0OTIwMzktMzcxMy00MmRlLTkwYWQtOTRkNTk0NWNkNDgyOlR1ZSBGZWIgMTYgMDQ6NTI6MTUgVVRDIDIwMTY6MTQ1NTU5ODMzNTExNQ==",
+					"value": "Token {{auth_token}}",
 					"description": "",
 					"enabled": true
 				}
 			],
-			"url": "http://localhost:8080/api/ds/users/v1/user/prefs/content?user=user0",
+			"url": "http://{{host}}/api/ds/users/v1/user/prefs/content?user={{user}}",
 			"queryParams": [
 				{
 					"key": "user",
-					"value": "user0",
+					"value": "{{user}}",
 					"equals": true,
 					"description": "",
 					"enabled": true
@@ -943,11 +849,104 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1515837493291,
+			"time": 1516688406228,
 			"name": "User Prefs Content",
 			"description": "",
-			"collectionId": "53056526-e7b1-36ed-6afa-6585a6bfbf6b",
+			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7",
 			"responses": []
+		},
+		{
+			"id": "c6c56c5e-9b95-0b72-e22b-29cfeeb51e04",
+			"headers": "Authorization: Token {{auth_token}}\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token {{auth_token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://{{host}}/api/ds/users/v1/user/distribution?zoom=1&subject=MATHS&activeDuration=1m",
+			"folder": null,
+			"queryParams": [
+				{
+					"key": "zoom",
+					"value": "1",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "subject",
+					"value": "MATHS",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "activeDuration",
+					"value": "1m",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1516687888277,
+			"name": "UserDistribution - By Subject Across Geo",
+			"description": null,
+			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7"
+		},
+		{
+			"id": "f4f873a9-3e93-41cd-3e3b-906c684814e5",
+			"headers": "Authorization: Token {{auth_token}}\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Token {{auth_token}}",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://{{host}}/api/ds/users/v1/user/distribution?zoom=1&activeDuration=1m",
+			"folder": null,
+			"queryParams": [
+				{
+					"key": "zoom",
+					"value": "1",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "activeDuration",
+					"value": "1m",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1516687875125,
+			"name": "UserDistribution - default",
+			"description": null,
+			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7"
 		}
 	]
 }
