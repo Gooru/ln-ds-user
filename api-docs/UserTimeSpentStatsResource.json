@@ -1,0 +1,79 @@
+{
+	"name": "Resource Stats (timespent) for Resource Content Types",
+	"request": {
+		"method": "GET",
+		"headers": [{
+			"Authorization": "Token SessionToken"
+		}],
+		"endpoint": "/api/ds/users/v1/user/stats/resources",
+		"queryParams": [{
+				"name": "user",
+				"type": "string",
+				"validValues": "UUID of the user",
+				"isOptional": "No",
+				"comment": ""
+			},
+			{
+				"name": "activeDuration",
+				"type": "string",
+				"validValues": "Hard coded boundaries like 1w, 1m, 6m, 1y etc",
+				"isOptional": "No",
+				"comment": ""
+			},
+			{
+				"name": "contentType",
+				"type": "string",
+				"validValues": "webpage, interactive, video, audio, text, image",
+				"isOptional": "No",
+				"comment": "Content Type of a resource"
+			},
+			{
+				"name": "offset",
+				"type": "int",
+				"validValues": "positive integer",
+				"defaultValue": "0",
+				"isOptional": "Yes",
+				"comment": "defines offset from where to fetch the data"
+			},
+			{
+				"name": "limit",
+				"type": "int",
+				"validValues": "postive integer",
+				"defaultValue": "20",
+				"isOptional": "Yes",
+				"comment": "total number of records that need to be returned. Note that there may be a cap on backend API and thus it may not exceed some pre defined value"
+			}
+		]
+	},
+	"response": {
+		"body": {
+			"resources": [{
+					"resourceId": "Re572d4d-6331-4c63-89cf-0ddbb36ee3ce",
+					"resourceTitle": "Marine Biology Resource Audio4",
+					"pathId": 0,
+					"resourceTimeSpent": 445000
+				},
+				{
+					"resourceId": "Re562d4d-6331-4c63-89cf-0ddbb36ee3ce",
+					"resourceTitle": "Marine Biology Resource Audio3",
+					"pathId": 0,
+					"resourceTimeSpent": 345000
+				},
+				{
+					"resourceId": "Re552d4d-6331-4c63-89cf-0ddbb36ee3ce",
+					"resourceTitle": "Marine Biology Resource Audio2",
+					"pathId": 0,
+					"resourceTimeSpent": 245000
+				},
+				{
+					"resourceId": "Re542d4d-6331-4c63-89cf-0ddbb36ee3ce",
+					"resourceTitle": "Marine Biology Resource Audio1",
+					"pathId": 0,
+					"resourceTimeSpent": 145000
+				}
+			]
+		},
+		"comment": "pathId is used to identify if the resource is a suggested resource. pathId != 0 will mean its a suggested resource.",
+		"sampleURL": "http://localhost:8086/api/ds/users/v1/user/stats/resources?user=MuKuLd4d-6331-4c63-89cf-0ddbb36ee3ce&contentType=Audio&activeDuration=6m&offset=0&limit=10"
+	}
+}

@@ -35,6 +35,8 @@ public final class Constants {
         public static final String MSG_OP_USER_STATS_CONTENTS = "mb.op.user.stats.contents";
         public static final String MSG_OP_USER_STATS_PROVIDERS = "mb.op.user.stats.providers";
         public static final String MSG_OP_USER_STATS_CURATORS = "mb.op.user.stats.curators";
+        
+        public static final String MSG_OP_USER_STATS_RESOURCES = "mb.op.user.stats.resources";
         public static final String MSG_OP_USER_PREFS_CONTENT = "mb.op.user.prefs.content";
         public static final String MSG_OP_USER_PREFS_CURATORS = "mb.op.user.prefs.curators";
         public static final String MSG_OP_USER_PREFS_PROVIDERS = "mb.op.user.prefs.providers";
@@ -93,7 +95,8 @@ public final class Constants {
         public static final String API_ACTIVE_USER_LIST = API_BASE_ROUTE + "user/distribution/active";
         public static final String API_USER_STATS_JOURNEYS = API_BASE_ROUTE + "user/stats/journeys";
         public static final String API_USER_STATS_TIMESPENT = API_BASE_ROUTE + "user/stats/timespent";
-        public static final String API_USER_STATS_COMPETENCY = API_BASE_ROUTE + "user/stats/competency";
+        public static final String API_USER_STATS_COMPETENCY = API_BASE_ROUTE + "user/stats/competency";        
+        public static final String API_USER_STATS_RESOURCES = API_BASE_ROUTE + "user/stats/resources";
 
         public static final String API_USER_JOURNEY = API_BASE_ROUTE + "user/journey";
         public static final String API_USER_PERF_COURSE = API_BASE_ROUTE + "user/performance/course";

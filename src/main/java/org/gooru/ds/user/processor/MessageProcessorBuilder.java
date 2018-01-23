@@ -24,6 +24,7 @@ import org.gooru.ds.user.processor.userstats.courses.UserStatsCoursesProcessor;
 import org.gooru.ds.user.processor.userstats.curator.UserStatsCuratorProcessor;
 import org.gooru.ds.user.processor.userstats.journeys.UserStatsJourneysProcessor;
 import org.gooru.ds.user.processor.userstats.provider.UserStatsProviderProcessor;
+import org.gooru.ds.user.processor.userstats.resources.UserStatsResourcesProcessor;
 import org.gooru.ds.user.processor.userstats.timespent.UserStatsTimespentProcessor;
 
 import io.vertx.core.Vertx;
@@ -70,7 +71,9 @@ public final class MessageProcessorBuilder {
             return new UserPerfCollSummaryProcessor(vertx, message);
         case Constants.Message.MSG_OP_USER_PERF_COMPETENCY_COLLECTIONS:
             return new UserPerfCompetencyCollectionsProcessor(vertx, message);
-
+        case Constants.Message.MSG_OP_USER_STATS_RESOURCES:
+            return new UserStatsResourcesProcessor(vertx, message);
+            
             
         case Constants.Message.MSG_OP_USER_STATS_CONTENTS:
             return new UserStatsContentsProcessor(vertx, message);
