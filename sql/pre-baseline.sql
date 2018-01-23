@@ -162,6 +162,7 @@ CREATE TABLE user_stats_timespent (
     webpage bigint,
     text bigint,
     video bigint,
+    image bigint,
     updated_at timestamp without time zone DEFAULT timezone('UTC'::text, now()) NOT NULL,
     UNIQUE(user_id, duration)
 );

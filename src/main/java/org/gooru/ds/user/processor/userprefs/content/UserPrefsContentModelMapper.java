@@ -19,6 +19,7 @@ public class UserPrefsContentModelMapper implements ResultSetMapper<UserPrefsCon
         model.setText(r.getFloat(MapperFields.TEXT));
         model.setVideo(r.getFloat(MapperFields.VIDEO));
         model.setWebpage(r.getFloat(MapperFields.WEBPAGE));
+        model.setImage(r.getFloat(MapperFields.IMAGE));
         return model;
     }
 
@@ -33,6 +34,7 @@ public class UserPrefsContentModelMapper implements ResultSetMapper<UserPrefsCon
         private static final String WEBPAGE = "webpage";
         private static final String VIDEO = "video";
         private static final String TEXT = "textual";
+        private static final String IMAGE = "image";
     }
 
 }

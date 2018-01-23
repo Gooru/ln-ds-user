@@ -9,8 +9,9 @@ class UserStatsContentsModel {
     private Long text;
     private Long audio;
     private Long video;
+    private Long image;
 
-    public Long getWebpage() {
+	public Long getWebpage() {
         return webpage;
     }
 
@@ -49,4 +50,13 @@ class UserStatsContentsModel {
     public void setVideo(Long video) {
         this.video = video;
     }
+    
+    public Long getImage() {
+		return image;
+	}
+
+	public void setImage(Long image) {
+		this.image = image;
+	}
+
 }
