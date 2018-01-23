@@ -19,6 +19,7 @@ public class UserStatsTimespentModelMapper implements ResultSetMapper<UserStatsT
         model.setText(r.getLong(MapperFields.TEXT));
         model.setVideo(r.getLong(MapperFields.VIDEO));
         model.setWebpage(r.getLong(MapperFields.WEBPAGE));
+        model.setImage(r.getLong(MapperFields.IMAGE));
         return model;
     }
 
@@ -33,6 +34,7 @@ public class UserStatsTimespentModelMapper implements ResultSetMapper<UserStatsT
         private static final String WEBPAGE = "webpage";
         private static final String VIDEO = "video";
         private static final String TEXT = "text";
+        private static final String IMAGE = "image";
     }
 
 }

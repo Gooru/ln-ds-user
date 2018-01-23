@@ -19,6 +19,7 @@ public class UserStatsContentsModelMapper implements ResultSetMapper<UserStatsCo
         model.setText(r.getLong(MapperFields.TEXT));
         model.setVideo(r.getLong(MapperFields.VIDEO));
         model.setWebpage(r.getLong(MapperFields.WEBPAGE));
+        model.setWebpage(r.getLong(MapperFields.IMAGE));
         return model;
     }
 
@@ -33,6 +34,7 @@ public class UserStatsContentsModelMapper implements ResultSetMapper<UserStatsCo
         private static final String WEBPAGE = "webpage";
         private static final String VIDEO = "video";
         private static final String TEXT = "text";
+        private static final String IMAGE = "image";
     }
 
 }

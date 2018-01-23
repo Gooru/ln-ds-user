@@ -10,7 +10,7 @@ import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
 interface UserStatsTimespentDao {
 
     @Mapper(UserStatsTimespentModelMapper.class)
-    @SqlQuery("select audio, interactive, text, video, webpage from user_stats_timespent where "
+    @SqlQuery("select audio, interactive, text, video, webpage, image from user_stats_timespent where "
                   + "duration = :activeDuration and  user_id = :user")
     UserStatsTimespentModel fetchUserStatsTimespent(
         @BindBean UserStatsTimespentCommand.UserStatsTimespentCommandBean userStatsTimespentCommandBean);

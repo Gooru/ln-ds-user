@@ -25,7 +25,8 @@
       "interactive": 0.4,
       "video": 0.5,
       "text": 0.1,
-      "audio": 0.25
+      "audio": 0.25,
+      "image": 0.2
     },
     "comment": ""
   }

@@ -33,7 +33,8 @@
       "interactive": 4,
       "video": 5,
       "text": 10,
-      "audio": 10
+      "audio": 10,
+      "image": 3
     },
     "comment": "Time spent are in milliseconds"
   }

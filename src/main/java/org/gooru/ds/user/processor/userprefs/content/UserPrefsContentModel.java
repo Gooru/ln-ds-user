@@ -9,8 +9,9 @@ class UserPrefsContentModel {
     private Float text;
     private Float audio;
     private Float video;
+    private Float image;
 
-    public Float getWebpage() {
+	public Float getWebpage() {
         return webpage;
     }
 
@@ -49,4 +50,13 @@ class UserPrefsContentModel {
     public void setVideo(Float video) {
         this.video = video;
     }
+    
+    public Float getImage() {
+		return image;
+	}
+
+	public void setImage(Float image) {
+		this.image = image;
+	}
+
 }
