@@ -19,7 +19,7 @@ public class UserStatsContentsModelMapper implements ResultSetMapper<UserStatsCo
         model.setText(r.getLong(MapperFields.TEXT));
         model.setVideo(r.getLong(MapperFields.VIDEO));
         model.setWebpage(r.getLong(MapperFields.WEBPAGE));
-        model.setWebpage(r.getLong(MapperFields.IMAGE));
+        model.setImage(r.getLong(MapperFields.IMAGE));
         return model;
     }
 
