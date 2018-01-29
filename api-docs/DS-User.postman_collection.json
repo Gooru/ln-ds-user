@@ -43,7 +43,7 @@
 					"enabled": true
 				}
 			],
-			"url": "http://{{host}}/api/ds/users/v1/user/stats/contents?user={{user}}&activeDuration=1m",
+			"url": "http://{{host}}/api/ds/users/v1/user/stats/contents?user={{user}}&activeDuration=3m",
 			"queryParams": [
 				{
 					"key": "user",
@@ -54,7 +54,7 @@
 				},
 				{
 					"key": "activeDuration",
-					"value": "1m",
+					"value": "3m",
 					"equals": true,
 					"description": "",
 					"enabled": true
@@ -70,7 +70,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1516688458658,
+			"time": 1517210397194,
 			"name": "User Stats Content",
 			"description": "",
 			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7",
@@ -131,7 +131,7 @@
 					"enabled": true
 				}
 			],
-			"url": "http://{{host}}/api/ds/users/v1/user/stats/curators?user={{user}}&activeDuration=1m",
+			"url": "http://{{host}}/api/ds/users/v1/user/stats/curators?user={{user}}&activeDuration=3m",
 			"queryParams": [
 				{
 					"key": "user",
@@ -142,7 +142,7 @@
 				},
 				{
 					"key": "activeDuration",
-					"value": "1m",
+					"value": "3m",
 					"equals": true,
 					"description": "",
 					"enabled": true
@@ -158,7 +158,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1516688469337,
+			"time": 1517210431891,
 			"name": "User Stats Curators",
 			"description": "",
 			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7",
@@ -175,7 +175,7 @@
 					"enabled": true
 				}
 			],
-			"url": "http://{{host}}/api/ds/users/v1/user/distribution?zoom=1&geoLocation=AF&activeDuration=1m",
+			"url": "http://{{host}}/api/ds/users/v1/user/distribution?zoom=1&geoLocation=AME&activeDuration=3m",
 			"folder": null,
 			"queryParams": [
 				{
@@ -187,14 +187,14 @@
 				},
 				{
 					"key": "geoLocation",
-					"value": "AF",
+					"value": "AME",
 					"equals": true,
 					"description": "",
 					"enabled": true
 				},
 				{
 					"key": "activeDuration",
-					"value": "1m",
+					"value": "3m",
 					"equals": true,
 					"description": "",
 					"enabled": true
@@ -209,7 +209,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1516687904220,
+			"time": 1517209795524,
 			"name": "UserDistribution - By Geo Across Subjects",
 			"description": null,
 			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7"
@@ -262,11 +262,11 @@
 					"enabled": true
 				}
 			],
-			"url": "http://{{host}}/api/ds/users/v1/tx/competency/matrix?subject=MA&user={{user}}",
+			"url": "http://{{host}}/api/ds/users/v1/tx/competency/matrix?subject=K12.MA&user={{user}}",
 			"queryParams": [
 				{
 					"key": "subject",
-					"value": "MA",
+					"value": "K12.MA",
 					"equals": true,
 					"description": "",
 					"enabled": true
@@ -289,7 +289,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1516688446860,
+			"time": 1517210377267,
 			"name": "User Competency Matrix",
 			"description": "",
 			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7",
@@ -306,11 +306,11 @@
 					"enabled": true
 				}
 			],
-			"url": "http://{{host}}/api/ds/users/v1/tx/competency/matrix/coordinates?subject=MA&filter=courses",
+			"url": "http://{{host}}/api/ds/users/v1/tx/competency/matrix/coordinates?subject=K12.MA&filter=courses",
 			"queryParams": [
 				{
 					"key": "subject",
-					"value": "MA",
+					"value": "K12.MA",
 					"equals": true,
 					"description": "",
 					"enabled": true
@@ -333,7 +333,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1516688225874,
+			"time": 1517210259046,
 			"name": "Competency Matrix Coordinates - courses",
 			"description": "",
 			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7",
@@ -350,7 +350,7 @@
 					"enabled": true
 				}
 			],
-			"url": "http://{{host}}/api/ds/users/v1/user/stats/competency?user={{user}}&activeDuration=1m",
+			"url": "http://{{host}}/api/ds/users/v1/user/stats/competency?user={{user}}&activeDuration=3m",
 			"folder": null,
 			"queryParams": [
 				{
@@ -362,7 +362,7 @@
 				},
 				{
 					"key": "activeDuration",
-					"value": "1m",
+					"value": "3m",
 					"equals": true,
 					"description": "",
 					"enabled": true
@@ -377,7 +377,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1516688397357,
+			"time": 1517209960194,
 			"name": "User Stats Competency",
 			"description": null,
 			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7"
@@ -430,7 +430,7 @@
 					"enabled": true
 				}
 			],
-			"url": "http://{{host}}/api/ds/users/v1/user/stats/timespent?user={{user}}&activeDuration=1m",
+			"url": "http://{{host}}/api/ds/users/v1/user/stats/timespent?user={{user}}&activeDuration=3m",
 			"folder": null,
 			"queryParams": [
 				{
@@ -442,7 +442,7 @@
 				},
 				{
 					"key": "activeDuration",
-					"value": "1m",
+					"value": "3m",
 					"equals": true,
 					"description": "",
 					"enabled": true
@@ -457,7 +457,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1516688386071,
+			"time": 1517209941199,
 			"name": "User Stats Timespent",
 			"description": null,
 			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7"
@@ -473,19 +473,19 @@
 					"enabled": true
 				}
 			],
-			"url": "http://{{host}}/api/ds/users/v1/user/distribution/active?subject=MATHS&activeDuration=1m&offset=0&limit=10",
+			"url": "http://{{host}}/api/ds/users/v1/user/distribution/active?subject=K12.MA&activeDuration=3m&offset=0&limit=10",
 			"folder": null,
 			"queryParams": [
 				{
 					"key": "subject",
-					"value": "MATHS",
+					"value": "K12.MA",
 					"equals": true,
 					"description": "",
 					"enabled": true
 				},
 				{
 					"key": "activeDuration",
-					"value": "1m",
+					"value": "3m",
 					"equals": true,
 					"description": "",
 					"enabled": true
@@ -514,7 +514,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1516687952145,
+			"time": 1517209840397,
 			"name": "Active Users List for Subject",
 			"description": null,
 			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7"
@@ -567,7 +567,7 @@
 					"enabled": true
 				}
 			],
-			"url": "http://{{host}}/api/ds/users/v1/user/stats/providers?user={{user}}&activeDuration=1m",
+			"url": "http://{{host}}/api/ds/users/v1/user/stats/providers?user={{user}}&activeDuration=3m",
 			"queryParams": [
 				{
 					"key": "user",
@@ -578,7 +578,7 @@
 				},
 				{
 					"key": "activeDuration",
-					"value": "1m",
+					"value": "3m",
 					"equals": true,
 					"description": "",
 					"enabled": true
@@ -594,7 +594,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1516688463828,
+			"time": 1517210403012,
 			"name": "User Stats Providers",
 			"description": "",
 			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7",
@@ -648,7 +648,7 @@
 					"enabled": true
 				}
 			],
-			"url": "http://{{host}}/api/ds/users/v1/user/stats/courses?user={{user}}&activeDuration=1m",
+			"url": "http://{{host}}/api/ds/users/v1/user/stats/courses?user={{user}}&activeDuration=3m",
 			"queryParams": [
 				{
 					"key": "user",
@@ -659,7 +659,7 @@
 				},
 				{
 					"key": "activeDuration",
-					"value": "1m",
+					"value": "3m",
 					"equals": true,
 					"description": "",
 					"enabled": true
@@ -675,7 +675,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1516688401603,
+			"time": 1517209966086,
 			"name": "User Stats Courses",
 			"description": "",
 			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7",
@@ -692,7 +692,7 @@
 					"enabled": true
 				}
 			],
-			"url": "http://{{host}}/api/ds/users/v1/user/stats/journeys?user={{user}}&activeDuration=1m",
+			"url": "http://{{host}}/api/ds/users/v1/user/stats/journeys?user={{user}}&activeDuration=3m",
 			"folder": null,
 			"queryParams": [
 				{
@@ -704,7 +704,7 @@
 				},
 				{
 					"key": "activeDuration",
-					"value": "1m",
+					"value": "3m",
 					"equals": true,
 					"description": "",
 					"enabled": true
@@ -719,7 +719,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1516688391775,
+			"time": 1517209947636,
 			"name": "User Stats Journeys",
 			"description": null,
 			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7"
@@ -735,7 +735,7 @@
 					"enabled": true
 				}
 			],
-			"url": "http://{{host}}/api/ds/users/v1/user/distribution?zoom=1&geoLocation=AF&subject=MATHS&activeDuration=1m",
+			"url": "http://{{host}}/api/ds/users/v1/user/distribution?zoom=1&geoLocation=AME&subject=K12.MA&activeDuration=3m",
 			"folder": null,
 			"queryParams": [
 				{
@@ -747,21 +747,21 @@
 				},
 				{
 					"key": "geoLocation",
-					"value": "AF",
+					"value": "AME",
 					"equals": true,
 					"description": "",
 					"enabled": true
 				},
 				{
 					"key": "subject",
-					"value": "MATHS",
+					"value": "K12.MA",
 					"equals": true,
 					"description": "",
 					"enabled": true
 				},
 				{
 					"key": "activeDuration",
-					"value": "1m",
+					"value": "3m",
 					"equals": true,
 					"description": "",
 					"enabled": true
@@ -776,7 +776,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1516687938377,
+			"time": 1517209828249,
 			"name": "UserDistribution - Both Filters",
 			"description": null,
 			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7"
@@ -792,11 +792,11 @@
 					"enabled": true
 				}
 			],
-			"url": "http://{{host}}/api/ds/users/v1/tx/competency/matrix/coordinates?subject=MA",
+			"url": "http://{{host}}/api/ds/users/v1/tx/competency/matrix/coordinates?subject=K12.MA",
 			"queryParams": [
 				{
 					"key": "subject",
-					"value": "MA",
+					"value": "K12.MA",
 					"equals": true,
 					"description": "",
 					"enabled": true
@@ -812,7 +812,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1516688207619,
+			"time": 1517210256090,
 			"name": "Competency Matrix Coordinates - Unfiltered",
 			"description": "",
 			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7",
@@ -866,7 +866,7 @@
 					"enabled": true
 				}
 			],
-			"url": "http://{{host}}/api/ds/users/v1/user/distribution?zoom=1&subject=MATHS&activeDuration=1m",
+			"url": "http://{{host}}/api/ds/users/v1/user/distribution?zoom=1&subject=K12.MA&activeDuration=3m",
 			"folder": null,
 			"queryParams": [
 				{
@@ -878,14 +878,14 @@
 				},
 				{
 					"key": "subject",
-					"value": "MATHS",
+					"value": "K12.MA",
 					"equals": true,
 					"description": "",
 					"enabled": true
 				},
 				{
 					"key": "activeDuration",
-					"value": "1m",
+					"value": "3m",
 					"equals": true,
 					"description": "",
 					"enabled": true
@@ -900,7 +900,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1516687888277,
+			"time": 1517209799283,
 			"name": "UserDistribution - By Subject Across Geo",
 			"description": null,
 			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7"
@@ -916,7 +916,7 @@
 					"enabled": true
 				}
 			],
-			"url": "http://{{host}}/api/ds/users/v1/user/distribution?zoom=1&activeDuration=1m",
+			"url": "http://{{host}}/api/ds/users/v1/user/distribution?zoom=1&activeDuration=3m",
 			"folder": null,
 			"queryParams": [
 				{
@@ -928,7 +928,7 @@
 				},
 				{
 					"key": "activeDuration",
-					"value": "1m",
+					"value": "3m",
 					"equals": true,
 					"description": "",
 					"enabled": true
@@ -943,7 +943,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1516687875125,
+			"time": 1517209802376,
 			"name": "UserDistribution - default",
 			"description": null,
 			"collectionId": "34b79a17-6cdd-29ea-1d6b-e77b4562b1f7"
