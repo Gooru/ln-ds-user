@@ -74,6 +74,6 @@
 			]
 		},
 		"comment": "pathId is used to identify if the resource is a suggested resource. pathId != 0 will mean its a suggested resource.",
-		"sampleURL": "http://localhost:8086/api/ds/users/v1/user/stats/resources?user=MuKuLd4d-6331-4c63-89cf-0ddbb36ee3ce&contentType=Audio&activeDuration=6m&offset=0&limit=10"
+		"sampleURL": "http://localhost:8086/api/ds/users/v1/user/stats/resources?user=MuKuLd4d-6331-4c63-89cf-0ddbb36ee3ce&contentType=audio&activeDuration=6m&offset=0&limit=10"
 	}
 }

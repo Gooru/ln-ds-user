@@ -23,6 +23,7 @@
 -- drop table user_stats_provider
 -- drop table user_stats_curator
 -- drop table user_stats_resource_timespent
+-- drop table competency_status
 
 CREATE TABLE user_distribution_zoom1 (
     id bigserial PRIMARY KEY,
@@ -419,4 +420,18 @@ il_course_id text,
 il_course_title text,
 created_at timestamp NOT NULL DEFAULT (NOW() AT TIME ZONE 'UTC'),
 updated_at timestamp NOT NULL DEFAULT (NOW() AT TIME ZONE 'UTC'));
+
+CREATE TABLE competency_status (
+id BIGSERIAL PRIMARY KEY,
+user_id text,
+competency_code text,
+competency_display_code text,
+competency_title text,
+framework_code text,
+gut_code text,
+duration character varying(512),
+status text,
+created_at timestamp NOT NULL DEFAULT (NOW() AT TIME ZONE 'UTC'),
+updated_at timestamp NOT NULL DEFAULT (NOW() AT TIME ZONE 'UTC'));
+
 

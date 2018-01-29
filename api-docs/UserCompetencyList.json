@@ -1,0 +1,76 @@
+{
+	"name": "List User Competencies",
+	"request": {
+		"method": "GET",
+		"headers": [{
+			"Authorization": "Token SessionToken"
+		}],
+		"endpoint": "api/ds/users/v1/user/competency",
+		"queryParams": [{
+				"name": "user",
+				"type": "string",
+				"validValues": "UUID of the user",
+				"isOptional": "No",
+				"comment": ""
+			},
+			{
+				"name": "activeDuration",
+				"type": "string",
+				"validValues": "Hard coded boundaries like 1w, 1m, 3m, 6m, 1y etc",
+				"isOptional": "No",
+				"comment": ""
+			},
+			{
+				"name": "offset",
+				"type": "int",
+				"validValues": "positive integer",
+				"defaultValue": "0",
+				"isOptional": "Yes",
+				"comment": "defines offset from where to fetch the data"
+			},
+			{
+				"name": "limit",
+				"type": "int",
+				"validValues": "postive integer",
+				"defaultValue": "20",
+				"isOptional": "Yes",
+				"comment": "total number of records that need to be returned. Note that there may be a cap on backend API and thus it may not exceed some pre defined value"
+			}
+		]
+	},
+	"response": {
+		"body": {
+			"competencyList": [{
+					"competencyCode": "CCSS.K12.ELA-8-L-05",
+					"displayCode": "L.8.5",
+					"title": "Demonstrate understanding of figurative language, word relationships, and nuances in word meanings.",
+					"frameworkCode": "CCSS",
+					"status": "in_progress"
+				},
+				{
+					"competencyCode": "CCSS.K12.ELA-8-L-02",
+					"displayCode": "RL.8.2",
+					"title": "Determine a theme or central idea of a text and analyze its development over the course of the text",
+					"frameworkCode": "CCSS",
+					"status": "in_progress"
+				},
+				{
+					"competencyCode": "CCSS.K12.ELA-8-RI-01",
+					"displayCode": "RL.8.2",
+					"title": "Cite the textual evidence that most strongly supports an analysis of what the text says explicitly as well as inferences drawn from the text",
+					"frameworkCode": "CCSS",
+					"status": "completed"
+				},
+				{
+					"competencyCode": "CCSS.K12.ELA-8-W-08",
+					"displayCode": "W.8.8",
+					"title": "Gather relevant information from multiple print and digital sources, using search terms effectively",
+					"frameworkCode": "CCSS",
+					"status": "completed"
+				}
+			]
+		},
+		"comment": "Provides the list of Competencies completed or in_progress",
+		"sampleURL": "http://localhost:8086/api/ds/users/v1/user/competency?user=8ad3991a-91fb-43f2-9244-384b0e6821a4&activeDuration=3m&offset=2&limit=2"
+	}
+}
