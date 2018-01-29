@@ -3,6 +3,7 @@ package org.gooru.ds.user.processor;
 import org.gooru.ds.user.constants.Constants;
 import org.gooru.ds.user.processor.activeuserlist.ActiveUserListProcessor;
 import org.gooru.ds.user.processor.competencymatrixcoordinates.CompetencyMatrixCoordinatesProcessor;
+import org.gooru.ds.user.processor.user.competencylist.UserCompetencyListProcessor;
 import org.gooru.ds.user.processor.user.distribution.UserDistributionProcessor;
 import org.gooru.ds.user.processor.user.journey.UserJourneyProcessor;
 import org.gooru.ds.user.processor.usercompetencymatrix.UserCompetencyMatrixProcessor;
@@ -73,7 +74,9 @@ public final class MessageProcessorBuilder {
             return new UserPerfCompetencyCollectionsProcessor(vertx, message);
         case Constants.Message.MSG_OP_USER_STATS_RESOURCES:
             return new UserStatsResourcesProcessor(vertx, message);
-            
+        case Constants.Message.MSG_OP_USER_COMPETENCY:
+            return new UserCompetencyListProcessor(vertx, message);
+
             
         case Constants.Message.MSG_OP_USER_STATS_CONTENTS:
             return new UserStatsContentsProcessor(vertx, message);

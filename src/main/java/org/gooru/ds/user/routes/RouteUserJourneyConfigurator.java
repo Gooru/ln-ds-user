@@ -30,6 +30,7 @@ public class RouteUserJourneyConfigurator implements RouteConfigurator {
         router.get(Constants.Route.API_USER_PERF_COLLECTIONS).handler(this::userPerfCollections);
         router.get(Constants.Route.API_USER_SUMMARY_ASSESSMENT).handler(this::userSummaryAssessment);
         router.get(Constants.Route.API_USER_SUMMARY_COLLECTION).handler(this::userSummaryCollection);
+        router.get(Constants.Route.API_USER_COMPETENCY).handler(this::userCompetencyList);
         router.get(Constants.Route.API_USER_PERF_COMPETENCY_COLLECTIONS).handler(this::userPerfCompetencyCollections);
     }
 
@@ -61,6 +62,11 @@ public class RouteUserJourneyConfigurator implements RouteConfigurator {
 
     private void userSummaryCollection(RoutingContext routingContext) {
         RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_USER_SUMMARY_COLLECTION,
+            Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
+    }
+
+    private void userCompetencyList(RoutingContext routingContext) {
+        RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_USER_COMPETENCY,
             Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
     }
     
