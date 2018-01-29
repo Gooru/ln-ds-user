@@ -13,7 +13,7 @@ public final class ActiveDuration {
         throw new AssertionError();
     }
 
-    private static final List<String> VALID_DURATION = Arrays.asList("1w", "1m", "6m", "1y");
+    private static final List<String> VALID_DURATION = Arrays.asList("1w", "1m", "3m", "6m", "1y");
 
     private static final List<String> VALID_ACTIVE_DURATION = Collections.unmodifiableList(VALID_DURATION);
 
