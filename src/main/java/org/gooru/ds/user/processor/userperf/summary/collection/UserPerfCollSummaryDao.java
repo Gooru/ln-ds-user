@@ -19,6 +19,14 @@ interface UserPerfCollSummaryDao {
                   + "and event_name = 'collection.resource.play' and event_type = 'stop' and collection_type = "
                   + "'collection'")
     List<UserPerfCollSummaryModel> fetchUserPerfCollSummary(
-        @BindBean UserPerfCollSummaryCommand.UserPerfCollSummaryCommandBean userPerfAsmtSummaryCommandBean);
+        @BindBean UserPerfCollSummaryCommand.UserPerfCollSummaryCommandBean userPerfCollSummaryCommandBean);
+    
+    @Mapper(UserPerfCollSummaryModelMapper.class)
+    @SqlQuery("select resource_id, score, reaction, time_spent, resource_type, path_id, resource_title, resource_content_type " 
+                  + "from ds_master where actor_id = :user and collection_id = :collectionId and session_id = :sessionId "
+                  + "and event_name = 'collection.resource.play' and event_type = 'stop' and collection_type = "
+                  + "'collection'")
+    List<UserPerfCollSummaryModel> fetchUserPerfCollSummaryforComp(
+        @BindBean UserPerfCollSummaryCommand.UserPerfCollSummaryCommandBean userPerfCollSummaryCommandBean);
 
 }
