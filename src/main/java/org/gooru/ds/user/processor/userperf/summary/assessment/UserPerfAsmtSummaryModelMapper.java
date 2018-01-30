@@ -15,9 +15,9 @@ public class UserPerfAsmtSummaryModelMapper implements ResultSetMapper<UserPerfA
     public UserPerfAsmtSummaryModel map(int index, ResultSet r, StatementContext ctx) throws SQLException {
         UserPerfAsmtSummaryModel model = new UserPerfAsmtSummaryModel();
         model.setId(r.getString(MapperFields.RESOURCE_ID));
-        //model.setTitle(r.getString(MapperFields.RESOURCE_TITLE));
+        model.setTitle(r.getString(MapperFields.RESOURCE_TITLE));
         model.setType(r.getString(MapperFields.RESOURCE_TYPE));
-        //model.setContentType(r.getString(MapperFields.RESOURCE_CONTENT_TYPE));
+        model.setContentType(r.getString(MapperFields.RESOURCE_CONTENT_TYPE));
         model.setTimeSpent(r.getLong(MapperFields.RESOURCE_TIMESPENT));
         model.setScore(r.getDouble(MapperFields.RESOURCE_SCORE));
         model.setReaction(r.getInt(MapperFields.RESOURCE_REACTION));
