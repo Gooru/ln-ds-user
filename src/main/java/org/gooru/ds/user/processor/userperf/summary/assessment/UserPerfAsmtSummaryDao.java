@@ -20,4 +20,11 @@ interface UserPerfAsmtSummaryDao {
     List<UserPerfAsmtSummaryModel> fetchUserPerfAsmtSummary(
         @BindBean UserPerfAsmtSummaryCommand.UserPerfAsmtSummaryCommandBean userPerfAsmtSummaryCommandBean);
 
+    @Mapper(UserPerfAsmtSummaryModelMapper.class)
+    @SqlQuery("select resource_id, score, reaction, time_spent, resource_type, path_id, resource_title, resource_content_type " 
+                  + "from ds_master where actor_id = :user and collection_id = :assessmentId and session_id = :sessionId "
+                  + "and event_name = 'collection.resource.play' and event_type = 'stop'")
+    List<UserPerfAsmtSummaryModel> fetchUserPerfAsmtSummaryforComp(
+        @BindBean UserPerfAsmtSummaryCommand.UserPerfAsmtSummaryCommandBean userPerfAsmtSummaryCommandBean);
+
 }
