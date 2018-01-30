@@ -16,7 +16,8 @@ interface UserJourneyDao {
     @Mapper(UserJourneyModelMapper.class)
     @SqlQuery("select class_id, class_code, class_title, course_id, course_title, "
                   + "time_spent, average_score, assessments_completed, total_assessments "
-                  + "from overall_course_performance where " + "class_id = any(:classIds) ")
+                  + "from overall_course_performance where user_id = :user and " 
+                  + "class_id = any(:classIds) ")
     List<UserJourneyModel> fetchUserClassJourney(
         @BindBean UserJourneyCommand.UserJourneyCommandBean userJourneyCommandBean,
         @Bind("classIds") PGArray<String> classIds);
@@ -24,7 +25,8 @@ interface UserJourneyDao {
     @Mapper(UserJourneyModelMapper.class)
     @SqlQuery("select class_id, class_code, class_title, course_id, course_title, "
                   + "time_spent, average_score, assessments_completed, total_assessments "
-                  + "from overall_course_performance where " + "class_id IS NULL  and course_id = any(:courseIds)")
+                  + "from overall_course_performance where user_id = :user and " 
+                  + "class_id IS NULL  and course_id = any(:courseIds)")
     List<UserJourneyModel> fetchUserILJourney(
         @BindBean UserJourneyCommand.UserJourneyCommandBean userJourneyCommandBean,
         @Bind("courseIds") PGArray<String> courseIds);
