@@ -34,7 +34,7 @@ public final class Constants {
         public static final String MSG_OP_USER_STATS_CONTENTS = "mb.op.user.stats.contents";
         public static final String MSG_OP_USER_STATS_PROVIDERS = "mb.op.user.stats.providers";
         public static final String MSG_OP_USER_STATS_CURATORS = "mb.op.user.stats.curators";
-        
+
         public static final String MSG_OP_USER_STATS_RESOURCES = "mb.op.user.stats.resources";
         public static final String MSG_OP_USER_PREFS_CONTENT = "mb.op.user.prefs.content";
         public static final String MSG_OP_USER_PREFS_CURATORS = "mb.op.user.prefs.curators";
@@ -42,11 +42,13 @@ public final class Constants {
         public static final String MSG_OP_USER_PROFILE = "mb.op.user.profile";
         public static final String MSG_OP_USER_GRADES = "mb.op.user.grades";
         public static final String MSG_OP_COMPETENCY_MATRIX = "mb.op.competency.matrix";
+        public static final String MSG_OP_COMPETENCY_MATRIX_COURSE = "mb.op.competency.matrix.course";
+        public static final String MSG_OP_COMPETENCY_MATRIX_DOMAIN = "mb.op.competency.matrix.domain";
         public static final String MSG_OP_COMPETENCY_MATRIX_COORDS = "mb.op.competency.matrix.coords";
 
         public static final String MSG_OP_USER_JOURNEY = "mb.op.user.journey";
         public static final String MSG_OP_USER_PERF_COURSE = "mb.op.user.performance.course";
-        public static final String MSG_OP_USER_PERF_LESSONS = "mb.op.user.performance.lessons";        
+        public static final String MSG_OP_USER_PERF_LESSONS = "mb.op.user.performance.lessons";
         public static final String MSG_OP_USER_PERF_COLLECTIONS = "mb.op.user.performance.collections";
         public static final String MSG_OP_USER_COMPETENCY = "mb.op.user.competency";
         public static final String MSG_OP_USER_PERF_COMPETENCY_COLLECTIONS = "mb.op.user.performance.competency.collections";
@@ -95,12 +97,12 @@ public final class Constants {
         public static final String API_ACTIVE_USER_LIST = API_BASE_ROUTE + "user/distribution/active";
         public static final String API_USER_STATS_JOURNEYS = API_BASE_ROUTE + "user/stats/journeys";
         public static final String API_USER_STATS_TIMESPENT = API_BASE_ROUTE + "user/stats/timespent";
-        public static final String API_USER_STATS_COMPETENCY = API_BASE_ROUTE + "user/stats/competency";        
+        public static final String API_USER_STATS_COMPETENCY = API_BASE_ROUTE + "user/stats/competency";
         public static final String API_USER_STATS_RESOURCES = API_BASE_ROUTE + "user/stats/resources";
 
         public static final String API_USER_JOURNEY = API_BASE_ROUTE + "user/journey";
         public static final String API_USER_PERF_COURSE = API_BASE_ROUTE + "user/performance/course";
-        public static final String API_USER_PERF_LESSONS = API_BASE_ROUTE + "user/performance/lessons";        
+        public static final String API_USER_PERF_LESSONS = API_BASE_ROUTE + "user/performance/lessons";
         public static final String API_USER_PERF_COLLECTIONS = API_BASE_ROUTE + "user/performance/collections";
         public static final String API_USER_SUMMARY_ASSESSMENT = API_BASE_ROUTE + "user/summary/assessment";
         public static final String API_USER_SUMMARY_COLLECTION = API_BASE_ROUTE + "user/summary/collection";
@@ -118,6 +120,8 @@ public final class Constants {
         public static final String API_USER_GRADES = API_BASE_ROUTE + "user/grades";
 
         public static final String API_COMPETENCY_MATRIX = API_BASE_ROUTE + "tx/competency/matrix";
+        public static final String API_COURSE_COMPETENCY_MATRIX = API_BASE_ROUTE + "tx/competency/matrix/course";
+        public static final String API_DOMAIN_COMPETENCY_MATRIX = API_BASE_ROUTE + "tx/competency/matrix/domain";
         public static final String API_COMPETENCY_MATRIX_COORDS = API_BASE_ROUTE + "tx/competency/matrix/coordinates";
 
         private Route() {

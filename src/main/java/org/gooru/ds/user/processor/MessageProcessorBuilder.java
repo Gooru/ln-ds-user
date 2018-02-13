@@ -7,6 +7,8 @@ import org.gooru.ds.user.processor.user.competencylist.UserCompetencyListProcess
 import org.gooru.ds.user.processor.user.distribution.UserDistributionProcessor;
 import org.gooru.ds.user.processor.user.journey.UserJourneyProcessor;
 import org.gooru.ds.user.processor.usercompetencymatrix.UserCompetencyMatrixProcessor;
+import org.gooru.ds.user.processor.usercoursecompetencymatrix.UserCourseCompetencyMatrixProcessor;
+import org.gooru.ds.user.processor.userdomaincompetencymatrix.UserDomainCompetencyMatrixProcessor;
 import org.gooru.ds.user.processor.usergrades.UserGradesProcessor;
 import org.gooru.ds.user.processor.userperf.assessments.UserPerfAssessmentsProcessor;
 import org.gooru.ds.user.processor.userperf.collections.UserPerfCollectionsProcessor;
@@ -77,7 +79,7 @@ public final class MessageProcessorBuilder {
         case Constants.Message.MSG_OP_USER_COMPETENCY:
             return new UserCompetencyListProcessor(vertx, message);
 
-            
+
         case Constants.Message.MSG_OP_USER_STATS_CONTENTS:
             return new UserStatsContentsProcessor(vertx, message);
         case Constants.Message.MSG_OP_USER_STATS_PROVIDERS:
@@ -94,6 +96,10 @@ public final class MessageProcessorBuilder {
             return new UserPrefsProviderProcessor(vertx, message);
         case Constants.Message.MSG_OP_COMPETENCY_MATRIX:
             return new UserCompetencyMatrixProcessor(vertx, message);
+        case Constants.Message.MSG_OP_COMPETENCY_MATRIX_COURSE:
+            return new UserCourseCompetencyMatrixProcessor(vertx, message);
+        case Constants.Message.MSG_OP_COMPETENCY_MATRIX_DOMAIN:
+            return new UserDomainCompetencyMatrixProcessor(vertx, message);
         case Constants.Message.MSG_OP_COMPETENCY_MATRIX_COORDS:
             return new CompetencyMatrixCoordinatesProcessor(vertx, message);
         default:

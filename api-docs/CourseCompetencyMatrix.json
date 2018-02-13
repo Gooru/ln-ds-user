@@ -1,0 +1,50 @@
+{
+  "name": "Course Competency Matrix for Subject",
+  "request": {
+    "method": "GET",
+    "headers": [
+      {
+        "Authorization": "Token SessionToken"
+      }
+    ],
+    "endpoint": "/api/ds/users/v1/tx/competency/matrix/course",
+    "queryParams": [
+      {
+        "name": "user",
+        "type": "string",
+        "validValues": "UUID based user id of the user",
+        "defaultValue": null,
+        "multipleOccurrence": "Not supported, only one will be picked up",
+        "comment": ""
+      },
+      {
+        "name": "subject",
+        "type": "string",
+        "validValues": "As provided by subject list API",
+        "defaultValue": null,
+        "multipleOccurrence": "Not supported, only one will be picked up",
+        "comment": "Provides a filter for subject for which competency matrix needs to be generated"
+      }
+    ]
+  },
+  "response": {
+    "body": {
+      "userCourseCompetencyMatrix": [
+        {
+          "courseCode": "course-code",
+          "competencies": [
+            {
+              "competencyCode": "competency-code",
+              "competencyName": "competency-name",
+              "competencyDesc": "competency-desc",
+              "competencyStudentDesc": "competencyStudentDesc",
+              "competencySeq": 1,
+              "status": 0
+            }
+          ]
+        }
+      ]
+    },
+    "comment": "Status values ranges from 0 10 5. O means not started, 1 means progress, 2 means inferred, 3 means in asserted, 4 means completed, 5 means mastered"
+  }
+}
