@@ -32,7 +32,9 @@
       "courses": [
         {
           "courseId": "courseId",
+          "courseTitle": "This is Course Title",
           "classId": "classIdCouldBeNull",
+          "classTitle": "This is Class Title",
           "completion": 30,
           "timespent": 12000,
           "performance": 38,

@@ -7,6 +7,8 @@ package org.gooru.ds.user.processor.userstats.courses;
 class UserStatsCoursesModel {
     private String courseId;
     private String classId;
+	private String courseTitle;
+    private String classTitle;
     private Float completion;
     private Float performance;
     private Long timespent;
@@ -27,6 +29,22 @@ class UserStatsCoursesModel {
     public void setClassId(String classId) {
         this.classId = classId;
     }
+    
+    public String getCourseTitle() {
+		return courseTitle;
+	}
+
+	public void setCourseTitle(String courseTitle) {
+		this.courseTitle = courseTitle;
+	}
+
+	public String getClassTitle() {
+		return classTitle;
+	}
+
+	public void setClassTitle(String classTitle) {
+		this.classTitle = classTitle;
+	}
 
     public Float getCompletion() {
         return completion;

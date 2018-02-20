@@ -12,8 +12,9 @@ import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
 interface UserStatsCoursesDao {
 
     @Mapper(UserStatsCoursesModelMapper.class)
-    @SqlQuery("select class_id, course_id, performance, completion, timespent, started_in_duration from "
-                  + " user_stats_courses where user_id = :user and duration = :activeDuration")
+    @SqlQuery("select class_id, course_id, class_title, course_title, performance, "
+    		+ "completion, timespent, started_in_duration from "
+            + " user_stats_courses where user_id = :user and duration = :activeDuration")
     List<UserStatsCoursesModel> fetchUserStatsCourses(
         @BindBean UserStatsCoursesCommand.UserStatsCoursesCommandBean bean);
 }

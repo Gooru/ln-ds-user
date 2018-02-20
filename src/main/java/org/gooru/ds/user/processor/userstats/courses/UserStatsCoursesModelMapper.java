@@ -16,6 +16,8 @@ public class UserStatsCoursesModelMapper implements ResultSetMapper<UserStatsCou
         UserStatsCoursesModel model = new UserStatsCoursesModel();
         model.setClassId(r.getString(MapperFields.CLASS_ID));
         model.setCourseId(r.getString(MapperFields.COURSE_ID));
+        model.setClassTitle(r.getString(MapperFields.CLASS_TITLE));
+        model.setCourseTitle(r.getString(MapperFields.COURSE_TITLE));
         model.setCompletion(r.getFloat(MapperFields.COMPLETION));
         model.setPerformance(r.getFloat(MapperFields.PERFORMANCE));
         model.setTimespent(r.getLong(MapperFields.TIMESPENT));
@@ -30,6 +32,8 @@ public class UserStatsCoursesModelMapper implements ResultSetMapper<UserStatsCou
 
         private static final String COURSE_ID = "course_id";
         private static final String CLASS_ID = "class_id";
+        private static final String COURSE_TITLE = "course_title";
+        private static final String CLASS_TITLE = "class_title";
         private static final String COMPLETION = "completion";
         private static final String PERFORMANCE = "performance";
         private static final String TIMESPENT = "timespent";
