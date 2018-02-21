@@ -43,7 +43,11 @@ public class DispatcherVerticle extends AbstractVerticle {
         String op = message.headers().get(Constants.Message.MSG_OP);
         MessageProcessor processor = MessageProcessorBuilder.buildProcessor(vertx, message, op);
         if (processor != null) {
-            processor.process().setHandler(event -> finishResponse(message, event));
+            vertx.<MessageResponse>executeBlocking(future -> {
+                processor.process().setHandler(asyncResult -> future.complete(asyncResult.result()));
+            }, event -> {
+                finishResponse(message, event);
+            });
         } else {
             LOGGER.warn("Invalid operation type");
             ResponseUtil.processFailure(message);
