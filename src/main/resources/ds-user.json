@@ -6,7 +6,15 @@
       "username": "dsuser",
       "password": "dspass",
       "autoCommit": true,
-      "jdbcUrl": "jdbc:postgresql://localhost:5432/datascopedb",
+      "jdbcUrl": "jdbc:postgresql://localhost:5433/dsdb",
+      "maximumPoolSize": 5
+    },
+    "coreDataSource": {
+      "ds.type": "hikari",
+      "username": "nucleus",
+      "password": "nucleus",
+      "autoCommit": true,
+      "jdbcUrl": "jdbc:postgresql://localhost:5432/nucleus",
       "maximumPoolSize": 5
     }
   },

@@ -29,7 +29,7 @@ public class UserPerfCompetencyCollectionsProcessor implements MessageProcessor 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserPerfCompetencyCollectionsProcessor.class);
     private EventBusMessage eventBusMessage;
     private final UserPerfCompetencyCollectionsService userPerfCompetencyCollectionsService =
-        new UserPerfCompetencyCollectionsService(DBICreator.getDbiForDefaultDS());
+        new UserPerfCompetencyCollectionsService(DBICreator.getDbiForDefaultDS(), DBICreator.getDbiForCoreDS());
 
     public UserPerfCompetencyCollectionsProcessor(Vertx vertx, Message<JsonObject> message) {
         this.vertx = vertx;

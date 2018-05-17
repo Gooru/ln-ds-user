@@ -24,11 +24,12 @@ public final class DataSourceRegistry implements Initializer, Finalizer {
     private static final String CONFIG_DS_KEY = "datasources";
     private static final String DEFAULT_DATA_SOURCE = "defaultDataSource";
     private static final String ANALYTICS_DATA_SOURCE = "analyticsDataSource";
+    private static final String CORE_DATA_SOURCE = "coreDataSource";
     private static final Logger LOGGER = LoggerFactory.getLogger(DataSourceRegistry.class);
     // All the elements in this array are supposed to be present in config file
     // as keys as we are going to initialize them with the value associated with
     // that key
-    private final List<String> datasources = Arrays.asList(DEFAULT_DATA_SOURCE, ANALYTICS_DATA_SOURCE);
+    private final List<String> datasources = Arrays.asList(DEFAULT_DATA_SOURCE, ANALYTICS_DATA_SOURCE, CORE_DATA_SOURCE);
     private final Map<String, DataSource> registry = new HashMap<>();
     private volatile boolean initialized = false;
 
@@ -76,6 +77,10 @@ public final class DataSourceRegistry implements Initializer, Finalizer {
 
     public DataSource getAnalyticsDataSource() {
         return registry.get(ANALYTICS_DATA_SOURCE);
+    }
+    
+    public DataSource getCoreDataSource() {
+    	return registry.get(CORE_DATA_SOURCE);
     }
 
     public DataSource getDataSourceByName(String name) {
