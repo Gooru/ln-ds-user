@@ -24,6 +24,7 @@ public class RouteCompetencyMatrixConfigurator implements RouteConfigurator {
         eb = vertx.eventBus();
         mbusTimeout = config.getLong(Constants.EventBus.MBUS_TIMEOUT, 30L) * 1000;
         router.get(Constants.Route.API_COMPETENCY_MATRIX).handler(this::userCompetencyMatrix);
+        router.get(Constants.Route.API_COMPETENCY_SUBJECTS).handler(this::competencySubjects);
         router.get(Constants.Route.API_COURSE_COMPETENCY_MATRIX).handler(this::userCourseCompetencyMatrix);
         router.get(Constants.Route.API_DOMAIN_COMPETENCY_MATRIX).handler(this::userDomainCompetencyMatrix);
         router.get(Constants.Route.API_COMPETENCY_MATRIX_COORDS).handler(this::userCompetencyMatrixCoords);
@@ -31,6 +32,11 @@ public class RouteCompetencyMatrixConfigurator implements RouteConfigurator {
 
     private void userCompetencyMatrix(RoutingContext routingContext) {
         RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_COMPETENCY_MATRIX,
+            Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
+    }
+    
+    private void competencySubjects(RoutingContext routingContext) {
+        RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_COMPETENCY_SUBJECTS,
             Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
     }
 
