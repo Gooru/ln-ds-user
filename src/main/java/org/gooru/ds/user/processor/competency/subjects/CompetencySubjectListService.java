@@ -23,7 +23,7 @@ public class CompetencySubjectListService {
     public CompetencySubjectListModelResponse fetchCompetencySubjects(CompetencySubjectListCommand command) {
         List<CompetencySubjectListModel> models = competencySubjectListDao.fetchCompetencySubjectList(command.asBean());
         CompetencySubjectListModelResponse result = new CompetencySubjectListModelResponse();
-        result.setCompetencySubjectList(models);
+        result.setSubjects(models);
         return result;
     }
 

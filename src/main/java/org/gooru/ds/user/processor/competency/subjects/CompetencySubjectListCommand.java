@@ -13,9 +13,7 @@ import io.vertx.core.json.JsonObject;
  * @author mukul@gooru
  * 
  */
-public class CompetencySubjectListCommand {
-	
-	//http://staging.gooru.org/api/nucleus/v1/taxonomy/subjects?classification_type=k_12&_=1526902023345
+public class CompetencySubjectListCommand {	
 	
     private String classificationType;
     private Integer offset;
@@ -54,10 +52,10 @@ public class CompetencySubjectListCommand {
 
     private void validate() {
         
-//        if (offset == null || limit == null) {
-//            LOGGER.info("Invalid offset/limit provided for request");
-//            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Invalid offset/limit");
-//        }
+        if (classificationType == null) {
+            LOGGER.info("Classification Type not provided with the request");
+            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Invalid classficationType");
+        }
     }
 
     private static void setOffsetAndLimit(Integer offset, Integer limit, CompetencySubjectListCommand command) {
