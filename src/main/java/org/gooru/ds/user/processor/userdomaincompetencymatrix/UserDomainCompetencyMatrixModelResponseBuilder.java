@@ -43,21 +43,6 @@ final class UserDomainCompetencyMatrixModelResponseBuilder {
         return response;
     }
     
-    public static UserDomainCompetencyMatrixModelResponse build(Map<String, Map<String, UserDomainCompetencyMatrixModel>> models) {
-    	UserDomainCompetencyMatrixModelResponse response = new UserDomainCompetencyMatrixModelResponse();
-    	response.setUserCompetencyMatrix(new ArrayList<>());
-    	
-    	for (String domainCode : models.keySet()) {
-    		UserCompetencyMatrixDomainModelResponse domainModelResponse = createDomainModelInResponse(response, domainCode);
-    		
-    		Map<String, UserDomainCompetencyMatrixModel> competencies = models.get(domainCode);
-    		for (String compCode : competencies.keySet()) {
-    			createCompetencyModelInResponse(domainModelResponse, competencies.get(compCode));
-    		}
-    	}
-    	return response;
-    }
-
     private static void createCompetencyModelInResponse(UserCompetencyMatrixDomainModelResponse courseModelResponse,
         UserDomainCompetencyMatrixModel model) {
         UserCompetencyMatrixCompetencyModelResponse competencyModelResponse =
@@ -75,16 +60,6 @@ final class UserDomainCompetencyMatrixModelResponseBuilder {
         return domainModelResponse;
     }
     
-    private static UserCompetencyMatrixDomainModelResponse createDomainModelInResponse(
-            UserDomainCompetencyMatrixModelResponse response, String domainCode) {
-            UserCompetencyMatrixDomainModelResponse domainModelResponse;
-            domainModelResponse = new UserCompetencyMatrixDomainModelResponse();
-            domainModelResponse.setDomainCode(domainCode);
-            domainModelResponse.setCompetencies(new ArrayList<>());
-            response.getUserCompetencyMatrix().add(domainModelResponse);
-            return domainModelResponse;
-        }
-
     private static UserCompetencyMatrixCompetencyModelResponse createCompetencyModelResponseFromModel(
         UserDomainCompetencyMatrixModel model) {
         UserCompetencyMatrixCompetencyModelResponse competencyModelResponse =
