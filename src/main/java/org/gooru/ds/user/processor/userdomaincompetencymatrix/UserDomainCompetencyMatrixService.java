@@ -37,7 +37,7 @@ class UserDomainCompetencyMatrixService {
 		} else {
 
 			List<UserDomainCompetencyMatrixModel> completed = userCompetencyMatrixModels.stream()
-					.filter(model -> model.getStatus() >= 4).collect(Collectors.toList());
+					.filter(model -> model.getStatus() >= COMPLETED).collect(Collectors.toList());
 			
 			Map<String, Map<String, UserDomainCompetencyMatrixModel>> competencyMatrixMap = new HashMap<>();
 			userCompetencyMatrixModels.forEach(model -> {
@@ -67,7 +67,7 @@ class UserDomainCompetencyMatrixService {
 				competencies.entrySet().stream().filter(entry -> entry.getValue().getCompetencySeq() < sequence)
 						.forEach(entry -> {
 							int status = entry.getValue().getStatus();
-							if (status < 4) {
+							if (status < COMPLETED) {
 								entry.getValue().setStatus(INFERRED);
 							}
 						});
@@ -79,21 +79,6 @@ class UserDomainCompetencyMatrixService {
 				competencyMatrixMap.put(domainCode, competencies);
 			}
 
-			
-			/*Set<String> keys = competencyMatrixMap.keySet();
-			for (String key : keys) {
-				Map<String, UserDomainCompetencyMatrixModel> competencies = competencyMatrixMap.get(key);
-				for (Map.Entry<String, UserDomainCompetencyMatrixModel> entry : competencies.entrySet()) {
-					UserDomainCompetencyMatrixModel model  = entry.getValue();
-					int status = model.getStatus();
-					LOGGER.debug("processing competency '{}' having seq '{}'", entry.getKey(), model.getCompetencySeq());
-					if (status == COMPLETED || status == MASTERED) {
-						LOGGER.debug("has status completed or mastered");
-					}
-				}
-			}*/
-			
-			//return UserDomainCompetencyMatrixModelResponseBuilder.build(userCompetencyMatrixModels);
 			return UserDomainCompetencyMatrixModelResponseBuilder.build(competencyMatrixMap);
 		}
 	}
