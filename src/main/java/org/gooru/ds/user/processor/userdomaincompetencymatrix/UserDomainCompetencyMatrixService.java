@@ -72,10 +72,6 @@ class UserDomainCompetencyMatrixService {
 							}
 						});
 				
-				for (String key : competencies.keySet()) {
-					LOGGER.debug(competencies.get(key).toString());
-				}
-				
 				competencyMatrixMap.put(domainCode, competencies);
 			}
 
