@@ -12,12 +12,11 @@ public class UserPerfCompetencyCollectionsModelMapper implements ResultSetMapper
     public UserPerfCompetencyCollectionsModel map(int index, ResultSet r, StatementContext ctx) throws SQLException {
     	UserPerfCompetencyCollectionsModel model = new UserPerfCompetencyCollectionsModel();
         model.setId(r.getString(MapperFields.COLLECTION_ID));
-        model.setTitle(r.getString(MapperFields.COLLECTION_TITLE));
         model.setSessionId(r.getString(MapperFields.COLLECTION_SESSION_ID));
         model.setCollectionType(r.getString(MapperFields.COLLECTION_TYPE));
-        model.setTimeSpent(r.getLong(MapperFields.COLLECTION_TIMESPENT));
+        //model.setTimeSpent(r.getLong(MapperFields.COLLECTION_TIMESPENT));
         model.setScore(r.getDouble(MapperFields.COLLECTION_SCORE));
-        model.setReaction(r.getInt(MapperFields.COLLECTION_REACTION));
+        //model.setReaction(r.getInt(MapperFields.COLLECTION_REACTION));
 
         return model;
     }
@@ -29,7 +28,6 @@ public class UserPerfCompetencyCollectionsModelMapper implements ResultSetMapper
 
         //generically referred to as collection_id in analytics DB
         private static final String COLLECTION_ID = "collection_id";
-        private static final String COLLECTION_TITLE = "collection_title";
         private static final String COLLECTION_SESSION_ID = "latest_session_id";
         private static final String COLLECTION_TYPE = "collection_type";
         private static final String COLLECTION_TIMESPENT = "collection_time_spent";

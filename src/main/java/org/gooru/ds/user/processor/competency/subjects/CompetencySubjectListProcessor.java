@@ -1,11 +1,8 @@
-package org.gooru.ds.user.processor.userperf.competency.collections;
+package org.gooru.ds.user.processor.competency.subjects;
 
 import org.gooru.ds.user.app.data.EventBusMessage;
 import org.gooru.ds.user.app.jdbi.DBICreator;
 import org.gooru.ds.user.processor.MessageProcessor;
-import org.gooru.ds.user.processor.userperf.competency.collections.UserPerfCompetencyCollectionsCommand;
-import org.gooru.ds.user.processor.userperf.competency.collections.UserPerfCompetencyCollectionsModelResponse;
-import org.gooru.ds.user.processor.userperf.competency.collections.UserPerfCompetencyCollectionsService;
 import org.gooru.ds.user.responses.MessageResponse;
 import org.gooru.ds.user.responses.MessageResponseFactory;
 import org.slf4j.Logger;
@@ -13,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 import io.vertx.core.Future;
 import io.vertx.core.Vertx;
@@ -20,18 +18,21 @@ import io.vertx.core.eventbus.Message;
 import io.vertx.core.json.DecodeException;
 import io.vertx.core.json.JsonObject;
 
-public class UserPerfCompetencyCollectionsProcessor implements MessageProcessor {
-
-
+/**
+ * @author mukul@gooru
+ * 
+ */
+public class CompetencySubjectListProcessor implements MessageProcessor {
+	
     private final Vertx vertx;
     private final Message<JsonObject> message;
     private final Future<MessageResponse> result;
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserPerfCompetencyCollectionsProcessor.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CompetencySubjectListProcessor.class);
     private EventBusMessage eventBusMessage;
-    private final UserPerfCompetencyCollectionsService userPerfCompetencyCollectionsService =
-        new UserPerfCompetencyCollectionsService(DBICreator.getDbiForDefaultDS(), DBICreator.getDbiForCoreDS());
+    private final CompetencySubjectListService competencySubjectListService =
+        new CompetencySubjectListService(DBICreator.getDbiForDefaultDS());
 
-    public UserPerfCompetencyCollectionsProcessor(Vertx vertx, Message<JsonObject> message) {
+    public CompetencySubjectListProcessor(Vertx vertx, Message<JsonObject> message) {
         this.vertx = vertx;
         this.message = message;
         this.result = Future.future();
@@ -41,8 +42,8 @@ public class UserPerfCompetencyCollectionsProcessor implements MessageProcessor 
     public Future<MessageResponse> process() {
         try {
             this.eventBusMessage = EventBusMessage.eventBusMessageBuilder(message);
-            UserPerfCompetencyCollectionsCommand command = UserPerfCompetencyCollectionsCommand.builder(eventBusMessage.getRequestBody());
-            fetchUserCollectionsPerf(command);
+            CompetencySubjectListCommand command = CompetencySubjectListCommand.builder(eventBusMessage.getRequestBody());
+            fetchCompetencySubjectList(command);
         } catch (Throwable throwable) {
             LOGGER.warn("Encountered exception", throwable);
             result.fail(throwable);
@@ -50,9 +51,9 @@ public class UserPerfCompetencyCollectionsProcessor implements MessageProcessor 
         return result;
     }
 
-    private void fetchUserCollectionsPerf(UserPerfCompetencyCollectionsCommand command) {
+    private void fetchCompetencySubjectList(CompetencySubjectListCommand command) {
         try {
-            UserPerfCompetencyCollectionsModelResponse outcome = userPerfCompetencyCollectionsService.fetchUserCollectionsPerf(command);
+            CompetencySubjectListModelResponse outcome = competencySubjectListService.fetchCompetencySubjects(command);
             String resultString = new ObjectMapper().writeValueAsString(outcome);
             result.complete(MessageResponseFactory.createOkayResponse(new JsonObject(resultString)));
         } catch (JsonProcessingException e) {
@@ -67,5 +68,7 @@ public class UserPerfCompetencyCollectionsProcessor implements MessageProcessor 
         }
 
     }
+
+
 
 }

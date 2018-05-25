@@ -2,6 +2,7 @@ package org.gooru.ds.user.processor;
 
 import org.gooru.ds.user.constants.Constants;
 import org.gooru.ds.user.processor.activeuserlist.ActiveUserListProcessor;
+import org.gooru.ds.user.processor.competency.subjects.CompetencySubjectListProcessor;
 import org.gooru.ds.user.processor.competencymatrixcoordinates.CompetencyMatrixCoordinatesProcessor;
 import org.gooru.ds.user.processor.user.competencylist.UserCompetencyListProcessor;
 import org.gooru.ds.user.processor.user.distribution.UserDistributionProcessor;
@@ -102,6 +103,8 @@ public final class MessageProcessorBuilder {
             return new UserDomainCompetencyMatrixProcessor(vertx, message);
         case Constants.Message.MSG_OP_COMPETENCY_MATRIX_COORDS:
             return new CompetencyMatrixCoordinatesProcessor(vertx, message);
+        case Constants.Message.MSG_OP_COMPETENCY_SUBJECTS:
+            return new CompetencySubjectListProcessor(vertx, message);
         default:
             return null;
         }

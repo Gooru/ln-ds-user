@@ -7,6 +7,7 @@ import static org.gooru.ds.user.processor.userdomaincompetencymatrix.UserDomainC
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -41,7 +42,7 @@ final class UserDomainCompetencyMatrixModelResponseBuilder {
 
         return response;
     }
-
+    
     private static void createCompetencyModelInResponse(UserCompetencyMatrixDomainModelResponse courseModelResponse,
         UserDomainCompetencyMatrixModel model) {
         UserCompetencyMatrixCompetencyModelResponse competencyModelResponse =
@@ -58,7 +59,7 @@ final class UserDomainCompetencyMatrixModelResponseBuilder {
         response.getUserCompetencyMatrix().add(domainModelResponse);
         return domainModelResponse;
     }
-
+    
     private static UserCompetencyMatrixCompetencyModelResponse createCompetencyModelResponseFromModel(
         UserDomainCompetencyMatrixModel model) {
         UserCompetencyMatrixCompetencyModelResponse competencyModelResponse =

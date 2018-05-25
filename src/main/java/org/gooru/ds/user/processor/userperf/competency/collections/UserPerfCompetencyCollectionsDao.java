@@ -11,15 +11,15 @@ import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
 
 interface UserPerfCompetencyCollectionsDao {
 
-    @Mapper(UserPerfCompetencyCollectionsModelMapper.class)
-    @SqlQuery(
-        "select collection_id, collection_title, latest_session_id, collection_time_spent, collection_score, "
-            + "collection_average_reaction, collection_type "
-            + " from competency_collection_performance where "
-            + " competency_code = :competencyCode and "            
-            + " user_id = :user")
-    List<UserPerfCompetencyCollectionsModel> fetchUserPerfCompetencyCollections(
-        @BindBean UserPerfCompetencyCollectionsCommand.UserPerfCompetencyCollectionsCommandBean userPerfCompetencyCollectionsCommandBean);
+	@Mapper(UserPerfCompetencyCollectionsModelMapper.class)
+	@SqlQuery("select collection_id, latest_session_id, collection_score, collection_type "
+			+ " from content_competency_evidence where competency_code = :competencyCode and " + " user_id = :user")
+	List<UserPerfCompetencyCollectionsModel> fetchUserPerfCompetencyCollections(
+			@BindBean UserPerfCompetencyCollectionsCommand.UserPerfCompetencyCollectionsCommandBean userPerfCompetencyCollectionsCommandBean);
 
-
+	@Mapper(UserPerfCompetencyCollectionsModelMapper.class)
+	@SqlQuery("select collection_id, latest_session_id, collection_score, collection_type "
+			+ " from learner_profile_competency_evidence where gut_code = :gutCode and " + " user_id = :user")
+	List<UserPerfCompetencyCollectionsModel> fetchUserPerfCompetencyCollectionsGut(
+			@BindBean UserPerfCompetencyCollectionsCommand.UserPerfCompetencyCollectionsCommandBean userPerfCompetencyCollectionsCommandBean);
 }
