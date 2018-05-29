@@ -7,6 +7,7 @@ import java.util.List;
  */
 class UserDomainCompetencyMatrixModelResponse {
     List<UserCompetencyMatrixDomainModelResponse> userCompetencyMatrix;
+    long lastUpdated;
 
     public List<UserCompetencyMatrixDomainModelResponse> getUserCompetencyMatrix() {
         return userCompetencyMatrix;
@@ -15,8 +16,16 @@ class UserDomainCompetencyMatrixModelResponse {
     public void setUserCompetencyMatrix(List<UserCompetencyMatrixDomainModelResponse> userCompetencyMatrix) {
         this.userCompetencyMatrix = userCompetencyMatrix;
     }
+    
+    public long getLastUpdated() {
+		return lastUpdated;
+	}
 
-    static class UserCompetencyMatrixDomainModelResponse {
+	public void setLastUpdated(long lastUpdated) {
+		this.lastUpdated = lastUpdated;
+	}
+
+	static class UserCompetencyMatrixDomainModelResponse {
         private String domainCode;
         private List<UserCompetencyMatrixCompetencyModelResponse> competencies;
 
