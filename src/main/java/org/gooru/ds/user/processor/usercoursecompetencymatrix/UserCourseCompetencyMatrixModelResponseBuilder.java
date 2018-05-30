@@ -19,7 +19,7 @@ final class UserCourseCompetencyMatrixModelResponseBuilder {
      * Note that models are supposed to be ordered by course. This logic works off change of
      * domain and/or course
      */
-    public static UserCourseCompetencyMatrixModelResponse build(List<UserCourseCompetencyMatrixModel> models) {
+    public static UserCourseCompetencyMatrixModelResponse build(List<UserCourseCompetencyMatrixModel> models, long lastUpdated) {
         UserCourseCompetencyMatrixModelResponse response = new UserCourseCompetencyMatrixModelResponse();
         response.setUserCompetencyMatrix(new ArrayList<>());
         String previousCourseCode = null;
@@ -39,6 +39,7 @@ final class UserCourseCompetencyMatrixModelResponseBuilder {
             previousCourseCode = model.getCourseCode();
         }
 
+        response.setLastUpdated(lastUpdated);
         return response;
     }
 

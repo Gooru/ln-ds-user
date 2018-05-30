@@ -1,5 +1,6 @@
 package org.gooru.ds.user.processor.usercoursecompetencymatrix;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.skife.jdbi.v2.DBI;
@@ -24,7 +25,8 @@ class UserCourseCompetencyMatrixService {
         if (userCompetencyMatrixModels.isEmpty()) {
             return new UserCourseCompetencyMatrixModelResponse();
         } else {
-            return UserCourseCompetencyMatrixModelResponseBuilder.build(userCompetencyMatrixModels);
+        	Timestamp lastUpdated = userCompetencyMatrixDao.fetchLastUpdatedTime(command.getUser(), command.getSubject());
+            return UserCourseCompetencyMatrixModelResponseBuilder.build(userCompetencyMatrixModels, lastUpdated.getTime());
         }
     }
 }

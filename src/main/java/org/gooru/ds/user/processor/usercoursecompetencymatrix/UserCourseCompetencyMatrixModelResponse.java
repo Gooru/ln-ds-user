@@ -7,6 +7,7 @@ import java.util.List;
  */
 class UserCourseCompetencyMatrixModelResponse {
     List<UserCompetencyMatrixCourseModelResponse> userCompetencyMatrix;
+    long lastUpdated;
 
     public List<UserCompetencyMatrixCourseModelResponse> getUserCompetencyMatrix() {
         return userCompetencyMatrix;
@@ -15,6 +16,14 @@ class UserCourseCompetencyMatrixModelResponse {
     public void setUserCompetencyMatrix(List<UserCompetencyMatrixCourseModelResponse> userCompetencyMatrix) {
         this.userCompetencyMatrix = userCompetencyMatrix;
     }
+    
+    public long getLastUpdated() {
+		return lastUpdated;
+	}
+
+	public void setLastUpdated(long lastUpdated) {
+		this.lastUpdated = lastUpdated;
+	}
 
     static class UserCompetencyMatrixCourseModelResponse {
         private String courseCode;
