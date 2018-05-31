@@ -35,14 +35,15 @@ public class CompetencySubjectListCommand {
     public CompetencySubjectListCommandBean asBean() {
         CompetencySubjectListCommandBean bean = new CompetencySubjectListCommandBean();
         bean.classificationType = classificationType;
+        bean.offset = offset;
+        bean.limit = limit;
         
         return bean;
     }
 
     private static CompetencySubjectListCommand buildFromJsonObject(JsonObject requestBody) {
         CompetencySubjectListCommand result = new CompetencySubjectListCommand();
-
-        result.classificationType = requestBody.getString(CommandAttributes.CLASSIFICATION_TYPE);
+        result.classificationType = requestBody.getString(CommandAttributes.CLASSIFICATION_TYPE);        
         Integer offset = getAsInt(requestBody, CommandAttributes.OFFSET);
         Integer limit = getAsInt(requestBody, CommandAttributes.LIMIT);
         setOffsetAndLimit(offset, limit, result);
@@ -61,7 +62,7 @@ public class CompetencySubjectListCommand {
     private static void setOffsetAndLimit(Integer offset, Integer limit, CompetencySubjectListCommand command) {
         if (offset == null) {
             command.offset = AppConfiguration.getInstance().getDefaultOffset();
-        } else {
+        } else {        	
             if (offset >= 0) {
                 command.offset = offset;
             } else {
@@ -72,7 +73,7 @@ public class CompetencySubjectListCommand {
             command.limit = AppConfiguration.getInstance().getDefaultLimit();
         } else {
             Integer maxLimit = AppConfiguration.getInstance().getDefaultMaxLimit();
-            if (limit > 0 && limit <= maxLimit) {
+            if (limit > 0 && limit <= maxLimit) {            	
                 command.limit = limit;
             } else if (limit > maxLimit) {
                 command.limit = maxLimit;
