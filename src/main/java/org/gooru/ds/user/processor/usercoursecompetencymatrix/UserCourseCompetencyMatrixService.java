@@ -26,7 +26,7 @@ class UserCourseCompetencyMatrixService {
             return new UserCourseCompetencyMatrixModelResponse();
         } else {
         	Timestamp lastUpdated = userCompetencyMatrixDao.fetchLastUpdatedTime(command.getUser(), command.getSubject());
-            return UserCourseCompetencyMatrixModelResponseBuilder.build(userCompetencyMatrixModels, lastUpdated.getTime());
+            return UserCourseCompetencyMatrixModelResponseBuilder.build(userCompetencyMatrixModels, lastUpdated);
         }
     }
 }
