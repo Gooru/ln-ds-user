@@ -28,7 +28,7 @@ public class UserPerfAsmtSummaryProcessor implements MessageProcessor {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserPerfAsmtSummaryProcessor.class);
     private EventBusMessage eventBusMessage;
     private final UserPerfAsmtSummaryService UserPerfAsmtSummaryService =
-        new UserPerfAsmtSummaryService(DBICreator.getDbiForDefaultDS());
+        new UserPerfAsmtSummaryService(DBICreator.getDbiForAnalyticsDS());
 
     public UserPerfAsmtSummaryProcessor(Vertx vertx, Message<JsonObject> message) {
         this.vertx = vertx;
