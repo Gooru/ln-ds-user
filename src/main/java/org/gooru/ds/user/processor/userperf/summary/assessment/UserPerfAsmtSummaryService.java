@@ -1,10 +1,9 @@
 package org.gooru.ds.user.processor.userperf.summary.assessment;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
-import org.gooru.ds.user.app.jdbi.PGArrayUtils;
 import org.skife.jdbi.v2.DBI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +14,7 @@ import org.slf4j.LoggerFactory;
 class UserPerfAsmtSummaryService {
 
     private final UserPerfAsmtSummaryDao userPerfAsmtSummaryDao;
+    private final CoreContentsService coreContentsService;
     private UserPerfAsmtSummaryCommand command;
     private String classId;
     private String courseId;
@@ -23,8 +23,9 @@ class UserPerfAsmtSummaryService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserPerfAsmtSummaryService.class);
 
-    UserPerfAsmtSummaryService(DBI dbi) {
+    UserPerfAsmtSummaryService(DBI dbi, DBI coreDbi) {
         this.userPerfAsmtSummaryDao = dbi.onDemand(UserPerfAsmtSummaryDao.class);
+        this.coreContentsService = new CoreContentsService(coreDbi);
     }
 
     public UserPerfAsmtSummaryModelResponse fetchUserAsmtSummary(UserPerfAsmtSummaryCommand command) {
@@ -35,16 +36,29 @@ class UserPerfAsmtSummaryService {
         courseId = this.command.getcourseId();
         lessonId = this.command.getlessonId();
         unitId = this.command.getunitId();
-        List<UserPerfAsmtSummaryModel> model = new ArrayList<>();
+        List<UserPerfAsmtSummaryModel> models = new ArrayList<>();
 
         if (courseId == null && lessonId == null && unitId == null) {
-            model = fetchAsmtSummaryforComp(this.command);
+            models = fetchAsmtSummaryforComp(this.command);
         } else {
-            model = fetchAsmtSummary(this.command);
+            models = fetchAsmtSummary(this.command);
         }
 
+        List<String> contentIds = new ArrayList<>();
+        models.forEach(model -> {
+        	contentIds.add(model.getId());
+        });
+        
+        Map<String, CoreContentsModel> contentTitles = this.coreContentsService.fetchContentTitles(contentIds);
+        models.forEach(model -> {
+        	CoreContentsModel coreModel = contentTitles.get(model.getId());
+        	
+        	model.setTitle(coreModel.getTitle());
+        	model.setContentType(coreModel.getContentType());
+        });
+        
         UserPerfAsmtSummaryModelResponse result = new UserPerfAsmtSummaryModelResponse();
-        result.setResources(model);
+        result.setResources(models);
         return result;
 
     }
