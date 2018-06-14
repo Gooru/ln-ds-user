@@ -1,14 +1,12 @@
 package org.gooru.ds.user.processor.userdomaincompetencymatrix;
 
-import static org.gooru.ds.user.processor.userdomaincompetencymatrix.UserDomainCompetencyMatrixModelResponse
-    .UserCompetencyMatrixCompetencyModelResponse;
-import static org.gooru.ds.user.processor.userdomaincompetencymatrix.UserDomainCompetencyMatrixModelResponse
-    .UserCompetencyMatrixDomainModelResponse;
-
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
+
+import org.gooru.ds.user.processor.userdomaincompetencymatrix.UserDomainCompetencyMatrixModelResponse.UserCompetencyMatrixCompetencyModelResponse;
+import org.gooru.ds.user.processor.userdomaincompetencymatrix.UserDomainCompetencyMatrixModelResponse.UserCompetencyMatrixDomainModelResponse;
 
 /**
  * @author ashish on 13/2/18.
@@ -20,7 +18,7 @@ final class UserDomainCompetencyMatrixModelResponseBuilder {
      * Note that models are supposed to be ordered by domains. This logic works off change of
      * domain and/or course
      */
-    public static UserDomainCompetencyMatrixModelResponse build(List<UserDomainCompetencyMatrixModel> models) {
+    public static UserDomainCompetencyMatrixModelResponse build(List<UserDomainCompetencyMatrixModel> models, Timestamp lastUpdated) {
         UserDomainCompetencyMatrixModelResponse response = new UserDomainCompetencyMatrixModelResponse();
         response.setUserCompetencyMatrix(new ArrayList<>());
         String previousDomainCode = null;
@@ -40,6 +38,9 @@ final class UserDomainCompetencyMatrixModelResponseBuilder {
             previousDomainCode = model.getDomainCode();
         }
 
+        if (lastUpdated != null) {
+        	response.setLastUpdated(lastUpdated.getTime());
+        }
         return response;
     }
     

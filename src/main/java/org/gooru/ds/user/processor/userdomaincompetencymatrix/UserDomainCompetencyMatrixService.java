@@ -1,5 +1,6 @@
 package org.gooru.ds.user.processor.userdomaincompetencymatrix;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -66,7 +67,8 @@ class UserDomainCompetencyMatrixService {
 				}
 			});
 
-			return UserDomainCompetencyMatrixModelResponseBuilder.build(userCompetencyMatrixModels);
+			Timestamp lastUpdated = userCompetencyMatrixDao.fetchLastUpdatedTime(command.getUser(), command.getSubject());
+			return UserDomainCompetencyMatrixModelResponseBuilder.build(userCompetencyMatrixModels, lastUpdated);
 		}
 	}
 }

@@ -1,7 +1,9 @@
 package org.gooru.ds.user.processor.usercoursecompetencymatrix;
 
+import java.sql.Timestamp;
 import java.util.List;
 
+import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.BindBean;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
@@ -20,4 +22,6 @@ interface UserCourseCompetencyMatrixDao {
     List<UserCourseCompetencyMatrixModel> fetchUserCourseCompetencyMatrix(@BindBean
         UserCourseCompetencyMatrixCommand.UserCourseCompetencyMatrixCommandBean userCompetencyMatrixCommandBean);
 
+	@SqlQuery("SELECT MAX(updated_at) FROM learner_profile_competency_status WHERE user_id = :userId AND tx_subject_code = :subjectCode")
+	Timestamp fetchLastUpdatedTime(@Bind("userId") String userId, @Bind("subjectCode") String subjectCode);
 }

@@ -1,5 +1,6 @@
 package org.gooru.ds.user.processor.userdomaincompetencymatrix;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.skife.jdbi.v2.sqlobject.Bind;
@@ -20,9 +21,7 @@ interface UserDomainCompetencyMatrixDao {
 			+ " order by cm.tx_domain_code, cm.tx_comp_seq asc")
 	List<UserDomainCompetencyMatrixModel> fetchUserDomainCompetencyMatrix(
 			@BindBean UserDomainCompetencyMatrixCommand.UserCourseCompetencyMatrixCommandBean userCompetencyMatrixCommandBean);
-
-	@SqlQuery("SELECT tx_comp_code FROM domain_competency_matrix WHERE tx_subject_code = :subjectCode AND "
-			+ "tx_domain_code = :domainCode AND tx_comp_seq < :competencySequence ORDER BY tx_comp_seq")
-	List<String> fetchCompetencyForDomainAndSubject(@Bind("subjectCode") String subjectCode,
-			@Bind("domainCode") String domainCode, @Bind("competencySequence") int competencySequence);
+	
+	@SqlQuery("SELECT MAX(updated_at) FROM learner_profile_competency_status WHERE user_id = :userId AND tx_subject_code = :subjectCode")
+	Timestamp fetchLastUpdatedTime(@Bind("userId") String userId, @Bind("subjectCode") String subjectCode);
 }
