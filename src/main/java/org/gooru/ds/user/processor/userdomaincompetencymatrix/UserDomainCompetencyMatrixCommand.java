@@ -36,10 +36,6 @@ class UserDomainCompetencyMatrixCommand {
 		return year;
 	}
 
-	public static Logger getLogger() {
-		return LOGGER;
-	}
-
 	static UserDomainCompetencyMatrixCommand builder(JsonObject requestBody) {
         UserDomainCompetencyMatrixCommand result = buildFromJsonObject(requestBody);
         result.validate();

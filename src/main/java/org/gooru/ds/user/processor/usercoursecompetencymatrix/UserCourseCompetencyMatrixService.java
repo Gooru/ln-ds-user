@@ -20,8 +20,14 @@ class UserCourseCompetencyMatrixService {
     }
 
     UserCourseCompetencyMatrixModelResponse fetchUserCourseCompetencyMatrix(UserCourseCompetencyMatrixCommand command) {
-        final List<UserCourseCompetencyMatrixModel> userCompetencyMatrixModels =
-            userCompetencyMatrixDao.fetchUserCourseCompetencyMatrix(command.asBean());
+        List<UserCourseCompetencyMatrixModel> userCompetencyMatrixModels = null;
+        
+        if (command.getMonth() != null && command.getYear() != null) {
+        	userCompetencyMatrixModels = userCompetencyMatrixDao.fetchUserCourseCompetencyMatrixTillMonth(command.asBean());
+        } else {
+        	userCompetencyMatrixModels = userCompetencyMatrixDao.fetchUserCourseCompetencyMatrix(command.asBean());
+        }
+        
         if (userCompetencyMatrixModels.isEmpty()) {
             return new UserCourseCompetencyMatrixModelResponse();
         } else {
