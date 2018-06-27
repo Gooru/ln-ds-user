@@ -1,7 +1,6 @@
 package org.gooru.ds.user.processor.usercoursecompetencymatrix;
 
-import java.util.Calendar;
-
+import org.gooru.ds.user.app.components.utilities.CommonUtils;
 import org.gooru.ds.user.constants.HttpConstants;
 import org.gooru.ds.user.exceptions.HttpResponseWrapperException;
 import org.slf4j.Logger;
@@ -60,27 +59,17 @@ class UserCourseCompetencyMatrixCommand {
             throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Invalid user");
         }
         
-		if (month != null && (month < 1 || month > 12)) {
-			month = currentMonth();
-		}
+        if (month == null || (month < 1 || month > 12)) {
+        	month = CommonUtils.currentMonth();
+        } 
 
-		int currentYear = currentYear();
-		if (year != null && year > currentYear) {
+		int currentYear = CommonUtils.currentYear();
+		if (year == null || year > currentYear) {
 			year = currentYear;
-			month = currentMonth();
+			month = CommonUtils.currentMonth();
 		}
-
     }
     
-    private static int currentYear() {
-    	return Calendar.getInstance().get(Calendar.YEAR);
-    }
-
-    private static int currentMonth() {
-    	return Calendar.getInstance().get(Calendar.MONTH);
-    }
-
-
     private static UserCourseCompetencyMatrixCommand buildFromJsonObject(JsonObject requestBody) {
         UserCourseCompetencyMatrixCommand command = new UserCourseCompetencyMatrixCommand();
         command.user = requestBody.getString(CommandAttributes.USER);

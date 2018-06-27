@@ -1,7 +1,6 @@
 package org.gooru.ds.user.processor.userdomaincompetencymatrix;
 
-import java.util.Calendar;
-
+import org.gooru.ds.user.app.components.utilities.CommonUtils;
 import org.gooru.ds.user.constants.HttpConstants;
 import org.gooru.ds.user.exceptions.HttpResponseWrapperException;
 import org.slf4j.Logger;
@@ -42,8 +41,8 @@ class UserDomainCompetencyMatrixCommand {
         return result;
     }
 
-    public UserCourseCompetencyMatrixCommandBean asBean() {
-        UserCourseCompetencyMatrixCommandBean bean = new UserCourseCompetencyMatrixCommandBean();
+    public UserDomainCompetencyMatrixCommandBean asBean() {
+        UserDomainCompetencyMatrixCommandBean bean = new UserDomainCompetencyMatrixCommandBean();
         bean.user = user;
         bean.subject = subject;
         bean.month = month;
@@ -60,23 +59,15 @@ class UserDomainCompetencyMatrixCommand {
             throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Invalid user");
         }
         
-        if (month != null && (month < 1 || month > 12)) {
-        	month = currentMonth();
-        }
-        
-        int currentYear = currentYear();
-        if (year != null && year > currentYear) {
-        	year = currentYear;
-        	month = currentMonth();
-        }
-    }
-    
-    private static int currentYear() {
-    	return Calendar.getInstance().get(Calendar.YEAR);
-    }
-    
-    private static int currentMonth() {
-    	return Calendar.getInstance().get(Calendar.MONTH);
+        if (month == null || (month < 1 || month > 12)) {
+        	month = CommonUtils.currentMonth();
+        } 
+
+		int currentYear = CommonUtils.currentYear();
+		if (year == null || year > currentYear) {
+			year = currentYear;
+			month = CommonUtils.currentMonth();
+		}
     }
 
     private static UserDomainCompetencyMatrixCommand buildFromJsonObject(JsonObject requestBody) {
@@ -93,7 +84,7 @@ class UserDomainCompetencyMatrixCommand {
         return command;
     }
 
-    public static class UserCourseCompetencyMatrixCommandBean {
+    public static class UserDomainCompetencyMatrixCommandBean {
         private String subject;
         private String user;
         private Integer month;
