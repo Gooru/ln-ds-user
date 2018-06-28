@@ -26,7 +26,11 @@ public class UserPerfCompetencyCollectionsService {
 		List<UserPerfCompetencyCollectionsModel> models = userPerfCompetencyCollectionsDao
 				.fetchUserPerfCompetencyCollections(command.asBean());
 		if (gutCode != null && !gutCode.isEmpty()) {
-			models = userPerfCompetencyCollectionsDao.fetchUserPerfCompetencyCollectionsGut(command.asBean());
+			if (command.getStatus() != null) {
+				models = userPerfCompetencyCollectionsDao.fetchUserPerfCompetencyCollectionsByGutAndStatus(command.asBean());
+			} else {
+				models = userPerfCompetencyCollectionsDao.fetchUserPerfCompetencyCollectionsByGut(command.asBean());
+			}
 		} else {
 			models = userPerfCompetencyCollectionsDao.fetchUserPerfCompetencyCollections(command.asBean());
 		}

@@ -24,8 +24,10 @@ class UserDomainCompetencyMatrixService {
 	}
 
 	UserDomainCompetencyMatrixModelResponse fetchUserDomainCompetencyMatrix(UserDomainCompetencyMatrixCommand command) {
+		
 		final List<UserDomainCompetencyMatrixModel> userCompetencyMatrixModels = userCompetencyMatrixDao
-				.fetchUserDomainCompetencyMatrix(command.asBean());
+				.fetchUserDomainCompetencyMatrixTillMonth(command.asBean());
+		
 		if (userCompetencyMatrixModels.isEmpty()) {
 			return new UserDomainCompetencyMatrixModelResponse();
 		} else {
