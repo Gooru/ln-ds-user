@@ -61,7 +61,8 @@
   "app.configuration": {
     "default.offset": 0,
     "default.limit": 20,
-    "default.max.limit": 30
+    "default.max.limit": 30,
+    "user.distribution.json" : "src/main/resources/user-distribution.json"
   },
   "vertxOptions": {
     "workerPoolSize": 40,

@@ -1,5 +1,10 @@
 package org.gooru.ds.user.processor.user.distribution;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+import org.gooru.ds.user.app.components.AppConfiguration;
 import org.gooru.ds.user.app.data.EventBusMessage;
 import org.gooru.ds.user.app.jdbi.DBICreator;
 import org.gooru.ds.user.processor.MessageProcessor;
@@ -50,13 +55,30 @@ public class UserDistributionProcessor implements MessageProcessor {
 
     private void fetchUserDistribution(UserDistributionCommand command) {
         try {
-            UserDistributionModelResponse outcome = userDistributionService.fetchUserDistribution(command);
-            String resultString = new ObjectMapper().writeValueAsString(outcome);
-            result.complete(MessageResponseFactory.createOkayResponse(new JsonObject(resultString)));
-        } catch (JsonProcessingException e) {
+            //UserDistributionModelResponse outcome = userDistributionService.fetchUserDistribution(command);
+            //String resultString = new ObjectMapper().writeValueAsString(outcome);
+            String stubPath = AppConfiguration.getInstance().getConfigAsString("user.distribution.json");
+            
+            JsonObject response = null;
+            Scanner scan = null;
+            try {
+            	scan = new Scanner(new File(stubPath));
+                String content = scan.useDelimiter("\\Z").next();
+                response = new JsonObject(content);
+            } catch (FileNotFoundException e) {
+                LOGGER.error("error while reading file");
+                result.fail(e);
+            } finally {
+            	if (scan != null) {
+            		scan.close();
+            	}
+            }
+            
+            result.complete(MessageResponseFactory.createOkayResponse(response));
+        } /*catch (JsonProcessingException e) {
             LOGGER.error("Not able to convert data to JSON", e);
             result.fail(e);
-        } catch (DecodeException e) {
+        } */catch (DecodeException e) {
             LOGGER.warn("Not able to convert data to JSON", e);
             result.fail(e);
         } catch (Throwable throwable) {
