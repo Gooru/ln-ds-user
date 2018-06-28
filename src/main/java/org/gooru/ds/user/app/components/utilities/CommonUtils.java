@@ -16,6 +16,7 @@ public final class CommonUtils {
     }
     
     public static int currentMonth() {
-    	return Calendar.getInstance().get(Calendar.MONTH);
+    	// Adding 1 to match with actual value of month 1 to 12 instead 0 to 11
+    	return Calendar.getInstance().get(Calendar.MONTH) + 1;
     }
 }
