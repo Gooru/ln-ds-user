@@ -25,27 +25,9 @@ class UserDomainCompetencyMatrixService {
 
 	UserDomainCompetencyMatrixModelResponse fetchUserDomainCompetencyMatrix(UserDomainCompetencyMatrixCommand command) {
 		
-		List<UserDomainCompetencyMatrixModel> userCompetencyMatrixModels = null;
+		final List<UserDomainCompetencyMatrixModel> userCompetencyMatrixModels = userCompetencyMatrixDao
+				.fetchUserDomainCompetencyMatrixTillMonth(command.asBean());
 		
-//		List<UserDomainCompetencyMatrixModel> userCompetencyMatrixModels = userCompetencyMatrixDao
-//				.fetchUserDomainCompetencyMatrixTillMonth(command.asBean());
-		
-		//TEMPORARY CODE: PLEASE REMOVE ONCE WE START GETTING DATE/MONTH RANGES FROM FRONT END
-		//REFER NILE-2786
-		//The Original Code defaults to the current month and current year to generate the Learner Profile data.
-		//However currently we don't need Duration based data, but we need to return data "from the beginning" of time
-		//Revert this code, once FE starts sending the Duration values in the API
-		//Similar Temp Code is also needed in "UserCourseCompetencyMatrixService.java"
-		//If-Else although seems redundant right now, its there to serve as a reminder that we may also need data
-		//from the "beginning of time"
-		if (command.getMonth() != null && command.getYear() != null) {
-//			userCompetencyMatrixModels = userCompetencyMatrixDao
-//					.fetchUserDomainCompetencyMatrixTillMonth(command.asBean());
-			userCompetencyMatrixModels = userCompetencyMatrixDao.fetchUserDomainCompetencyMatrix(command.asBean());
-		} else {
-		userCompetencyMatrixModels = userCompetencyMatrixDao.fetchUserDomainCompetencyMatrix(command.asBean());
-		}
-		//END TEMPORARY CODE ******************************************************
 		if (userCompetencyMatrixModels.isEmpty()) {
 			return new UserDomainCompetencyMatrixModelResponse();
 		} else {

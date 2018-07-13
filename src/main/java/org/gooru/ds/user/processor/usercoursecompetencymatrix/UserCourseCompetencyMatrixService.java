@@ -17,20 +17,9 @@ class UserCourseCompetencyMatrixService {
 	}
 
 	UserCourseCompetencyMatrixModelResponse fetchUserCourseCompetencyMatrix(UserCourseCompetencyMatrixCommand command) {
-//		final List<UserCourseCompetencyMatrixModel> userCompetencyMatrixModels = userCompetencyMatrixDao
-//				.fetchUserCourseCompetencyMatrixTillMonth(command.asBean());
+		final List<UserCourseCompetencyMatrixModel> userCompetencyMatrixModels = userCompetencyMatrixDao
+				.fetchUserCourseCompetencyMatrixTillMonth(command.asBean());
 		
-		//TEMPORARY CODE: For details please refer UserDomainCompetencyMatrixService.java & NILE-2786 
-		List<UserCourseCompetencyMatrixModel> userCompetencyMatrixModels = null;		
-		if (command.getMonth() != null && command.getYear() != null) {
-//			userCompetencyMatrixModels = userCompetencyMatrixDao
-//					.fetchUserDomainCompetencyMatrixTillMonth(command.asBean());
-			userCompetencyMatrixModels = userCompetencyMatrixDao.fetchUserCourseCompetencyMatrix(command.asBean());
-		} else {
-			userCompetencyMatrixModels = userCompetencyMatrixDao.fetchUserCourseCompetencyMatrix(command.asBean());
-		}
-		//END TEMPORARY CODE ******************************************************
-
 		if (userCompetencyMatrixModels.isEmpty()) {
 			return new UserCourseCompetencyMatrixModelResponse();
 		} else {
