@@ -1,0 +1,154 @@
+{
+	"name": "List Taxonomy Subjects",
+	"request": {
+		"method": "GET",
+		"headers": [{
+			"Authorization": "Token SessionToken"
+		}],
+		"endpoint": "api/ds/users/v1/tx/subjects",
+		"queryParams": [{
+				"name": "classificationType",
+				"type": "string",
+				"validValues": "Subject Classification Type eg. k_12",
+				"isOptional": "No",
+				"comment": ""
+			},
+			{
+				"name": "offset",
+				"type": "int",
+				"validValues": "positive integer",
+				"defaultValue": "0",
+				"isOptional": "Yes",
+				"comment": "defines offset from where to fetch the data"
+			},
+			{
+				"name": "limit",
+				"type": "int",
+				"validValues": "postive integer",
+				"defaultValue": "20",
+				"isOptional": "Yes",
+				"comment": "total number of records that need to be returned. Note that there may be a cap on backend API and thus it may not exceed some pre defined value"
+			}
+		]
+	},
+	"response": {
+		"body": {
+    "subjects": [
+        {
+            "id": "K12.SC",
+            "title": "Science",
+            "description": null,
+            "code": "K12.SC",
+            "frameworkId": null,
+            "sequenceId": "1"
+        },
+        {
+            "id": "K12.MA",
+            "title": "Math",
+            "description": null,
+            "code": "K12.MA",
+            "frameworkId": null,
+            "sequenceId": "2"
+        },
+        {
+            "id": "K12.SS",
+            "title": "Social Sciences",
+            "description": null,
+            "code": "K12.SS",
+            "frameworkId": null,
+            "sequenceId": "3"
+        },
+        {
+            "id": "K12.ELA",
+            "title": "English Language Arts",
+            "description": null,
+            "code": "K12.ELA",
+            "frameworkId": null,
+            "sequenceId": "4"
+        },
+        {
+            "id": "K12.VPA",
+            "title": "Visual & Performing Arts",
+            "description": null,
+            "code": "K12.VPA",
+            "frameworkId": null,
+            "sequenceId": "5"
+        },
+        {
+            "id": "K12.HE",
+            "title": "Health",
+            "description": null,
+            "code": "K12.HE",
+            "frameworkId": null,
+            "sequenceId": "6"
+        },
+        {
+            "id": "K12.PE",
+            "title": "Physical Education",
+            "description": null,
+            "code": "K12.PE",
+            "frameworkId": null,
+            "sequenceId": "7"
+        },
+        {
+            "id": "K12.WL",
+            "title": "World Languages",
+            "description": null,
+            "code": "K12.WL",
+            "frameworkId": null,
+            "sequenceId": "8"
+        },
+        {
+            "id": "K12.CTE",
+            "title": "Career Technical Education",
+            "description": null,
+            "code": "K12.CTE",
+            "frameworkId": null,
+            "sequenceId": "9"
+        },
+        {
+            "id": "K12.SLA",
+            "title": "Spanish Language Arts",
+            "description": null,
+            "code": "K12.SLA",
+            "frameworkId": null,
+            "sequenceId": "10"
+        },
+        {
+            "id": "K12.ELD",
+            "title": "English Language Development",
+            "description": null,
+            "code": "K12.ELD",
+            "frameworkId": null,
+            "sequenceId": "11"
+        },
+        {
+            "id": "K12.CS",
+            "title": "Computer Science",
+            "description": null,
+            "code": "K12.CS",
+            "frameworkId": null,
+            "sequenceId": "12"
+        },
+        {
+            "id": "K12.PF",
+            "title": "Personal Finance",
+            "description": null,
+            "code": "K12.PF",
+            "frameworkId": null,
+            "sequenceId": "13"
+        },
+        {
+            "id": "K12.OT",
+            "title": "Other (K-12)",
+            "description": null,
+            "code": "K12.OT",
+            "frameworkId": null,
+            "sequenceId": "14"
+        }
+    ]
+},
+		"comment": "Provides the list of Taxonomy Subjects ordered by Sequence Id",
+		"sampleURL": "http://localhost:8086/api/ds/users/v1/tx/subjects?classificationType=k_12"
+	}
+}

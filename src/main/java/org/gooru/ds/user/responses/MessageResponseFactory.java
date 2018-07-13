@@ -55,6 +55,10 @@ public final class MessageResponseFactory {
         return new MessageResponse.Builder().setStatusOkay().setResponseBody(body).build();
     }
 
+    public static MessageResponse createOkayResponse() {
+        return new MessageResponse.Builder().setStatusOkay().build();
+    }
+    
     public static MessageResponse createCreatedResponse(String location) {
         return new MessageResponse.Builder().setStatusCreated().setHeader(HttpConstants.HEADER_LOCATION, location)
             .build();

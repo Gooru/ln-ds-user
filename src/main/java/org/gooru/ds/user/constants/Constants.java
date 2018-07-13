@@ -55,7 +55,12 @@ public final class Constants {
         public static final String MSG_OP_USER_PERF_COMPETENCY_COLLECTIONS = "mb.op.user.performance.competency.collections";
         public static final String MSG_OP_USER_SUMMARY_ASSESSMENT = "mb.op.user.summary.assessment";
         public static final String MSG_OP_USER_SUMMARY_COLLECTION = "mb.op.user.summary.collection";
-
+        
+        //Initial Learner Profile
+        public static final String MSG_OP_INITIAL_LEARNER_PROFILE = "mb.op.initial.learner.profile";
+        //Baseline Learner Profile
+        public static final String MSG_OP_BASE_LEARNER_PROFILE = "mb.op.base.learner.profile";
+        
         public static final String MSG_API_VERSION = "api.version";
         public static final String MSG_SESSION_TOKEN = "session.token";
         public static final String MSG_KEY_SESSION = "session";
@@ -125,6 +130,10 @@ public final class Constants {
         public static final String API_COURSE_COMPETENCY_MATRIX = API_BASE_ROUTE + "tx/competency/matrix/course";
         public static final String API_DOMAIN_COMPETENCY_MATRIX = API_BASE_ROUTE + "tx/competency/matrix/domain";
         public static final String API_COMPETENCY_MATRIX_COORDS = API_BASE_ROUTE + "tx/competency/matrix/coordinates";
+        
+        //Initial Learner Profile Setup
+        public static final String API_INITIAL_LEARNER_PROFILE = API_BASE_ROUTE + "internal/lp/initial";
+        public static final String API_BASE_LEARNER_PROFILE = API_BASE_ROUTE + "internal/lp/baseline";
 
         private Route() {
             throw new AssertionError();
