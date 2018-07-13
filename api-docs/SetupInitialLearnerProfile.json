@@ -1,0 +1,36 @@
+{
+	"name": "Setup an Initial Learner Profile for a Student",
+	"request": {
+		"method": "GET",
+		"headers": [{
+			"Authorization": "Token SessionToken"
+		}],
+		"endpoint": "/api/ds/users/v1/internal/lp/initial",
+		"queryParams": [{
+				"name": "user",
+				"type": "String",
+				"validValues": "UUID of the user",
+				"isOptional": "No",
+				"comment": ""
+			},
+			{
+				"name": "grade",
+				"type": "String",
+				"validValues": "Grade values as stored in the System",
+				"isOptional": "No",
+				"comment": "Grade of the users based on which the Initial Profile will be generated"
+			},
+			{
+				"name": "subject",
+				"type": "String",
+				"validValues": "Taxonomy Subject Code",
+				"isOptional": "No",
+				"comment": ""
+			}
+		]
+	},
+	"response": { 
+		"comment": "Fire & Forget API, 200OK response",
+		"sampleURL": "http://localhost:8082/api/ds/users/v1/internal/lp/initial?subject=K12.MA&grade=GRADE%204&user=fe3c31a1-8419-4c32-ba66-a623428ef354"
+	}
+}

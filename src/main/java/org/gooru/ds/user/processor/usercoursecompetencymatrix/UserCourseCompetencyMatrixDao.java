@@ -24,7 +24,8 @@ interface UserCourseCompetencyMatrixDao {
 
 	@SqlQuery("SELECT MAX(updated_at) FROM learner_profile_competency_status WHERE user_id = :userId AND tx_subject_code = :subjectCode")
 	Timestamp fetchLastUpdatedTime(@Bind("userId") String userId, @Bind("subjectCode") String subjectCode);
-	
+
+
     @Mapper(UserCourseCompetencyMatrixModelMapper.class)
     @SqlQuery("select distinct(cm.tx_comp_code), cm.tx_course_code, cm.tx_comp_name, cm.tx_comp_desc, cm.tx_comp_student_desc, cm.tx_comp_seq,"
     		+ " (SELECT DISTINCT ON (lpcs.gut_code) FIRST_VALUE(lpcs.status) OVER (PARTITION BY lpcs.gut_code ORDER BY lpcs.updated_at desc) as"
@@ -35,5 +36,6 @@ interface UserCourseCompetencyMatrixDao {
     		+ " cm.tx_subject_code = :subject order by cm.tx_course_code, cm.tx_comp_seq asc")
     List<UserCourseCompetencyMatrixModel> fetchUserCourseCompetencyMatrixTillMonth(@BindBean
         UserCourseCompetencyMatrixCommand.UserCourseCompetencyMatrixCommandBean userCompetencyMatrixCommandBean);
+
 
 }
