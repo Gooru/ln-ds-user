@@ -70,10 +70,10 @@ public class LearnerProfileBaselineUpdateCommand {
 
     private void validate() {
         if (courseId == null) {
-            LOGGER.debug("Provided null subjectCode");
+            LOGGER.debug("Invalid Course Id");
             throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Invalid courseId1");
         } else if (user == null) {
-            LOGGER.debug("Provided null user");
+            LOGGER.debug("Invalid user");
             throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Invalid user");
         }
 
@@ -81,15 +81,10 @@ public class LearnerProfileBaselineUpdateCommand {
 
     private static LearnerProfileBaselineUpdateCommand buildFromJsonObject(JsonObject requestBody) {
         LearnerProfileBaselineUpdateCommand command = new LearnerProfileBaselineUpdateCommand();
-        command.user = requestBody.getString(CommandAttributes.USER);
+        command.user = requestBody.getString(CommandAttributes.USER_ID);
         command.courseId = requestBody.getString(CommandAttributes.COURSE_ID);
-        command.classId = requestBody.getString(CommandAttributes.CLASS_ID);
-        
+        command.classId = requestBody.getString(CommandAttributes.CLASS_ID);        
         command.subjectCode = initializeSubjectCode(command.courseId);
-        
-        LOGGER.info("User: " + command.user);
-        LOGGER.info("COURSE ID: " + command.courseId);
-        LOGGER.info("CLASS ID: " + command.classId);
         
         return command;
     }
@@ -102,7 +97,7 @@ public class LearnerProfileBaselineUpdateCommand {
     				"Not able to find subject code for specified course " +  courseId);
     	}
     	
-    	LOGGER.info("The Subject Code is" + sc);
+    	LOGGER.debug("The Subject Code is" + sc);
     	return sc;
     }
 
@@ -125,7 +120,7 @@ public class LearnerProfileBaselineUpdateCommand {
     }
 
     static class CommandAttributes {
-        private static final String USER = "user";
+        private static final String USER_ID = "userId";
         private static final String COURSE_ID = "courseId";
         private static final String CLASS_ID = "classId";
 

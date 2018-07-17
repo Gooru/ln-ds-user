@@ -2,6 +2,7 @@ package org.gooru.ds.user.processor.baselearnerprofile;
 
 import org.gooru.ds.user.app.data.EventBusMessage;
 import org.gooru.ds.user.app.jdbi.DBICreator;
+import org.gooru.ds.user.constants.Constants;
 import org.gooru.ds.user.constants.ExecutionStatus;
 import org.gooru.ds.user.processor.MessageProcessor;
 import org.gooru.ds.user.responses.MessageResponse;
@@ -24,8 +25,7 @@ public class LearnerProfileBaselineUpdateProcessor implements MessageProcessor {
     private final Message<JsonObject> message;
     private final Future<MessageResponse> result;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(LearnerProfileBaselineUpdateProcessor.class);
-    private EventBusMessage eventBusMessage;
+    private static final Logger LOGGER = LoggerFactory.getLogger(LearnerProfileBaselineUpdateProcessor.class);    
     private final LearnerProfileReadService learnerProfileReadService =
             new LearnerProfileReadService(DBICreator.getDbiForDefaultDS());
 
@@ -37,9 +37,9 @@ public class LearnerProfileBaselineUpdateProcessor implements MessageProcessor {
 
     @Override
     public Future<MessageResponse> process() {
-        try {
-            this.eventBusMessage = EventBusMessage.eventBusMessageBuilder(message);
-            LearnerProfileBaselineUpdateCommand command = LearnerProfileBaselineUpdateCommand.builder(eventBusMessage.getRequestBody());
+        try {            
+        	JsonObject requestBody = message.body().getJsonObject(Constants.Message.MSG_HTTP_BODY);
+            LearnerProfileBaselineUpdateCommand command = LearnerProfileBaselineUpdateCommand.builder(requestBody);
             updateBaselineLearnerProfile(command);
         } catch (Throwable throwable) {
             LOGGER.warn("Encountered exception", throwable);

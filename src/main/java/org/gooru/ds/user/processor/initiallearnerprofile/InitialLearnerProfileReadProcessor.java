@@ -2,6 +2,7 @@ package org.gooru.ds.user.processor.initiallearnerprofile;
 
 import org.gooru.ds.user.app.data.EventBusMessage;
 import org.gooru.ds.user.app.jdbi.DBICreator;
+import org.gooru.ds.user.constants.Constants;
 import org.gooru.ds.user.constants.ExecutionStatus;
 import org.gooru.ds.user.processor.MessageProcessor;
 import org.gooru.ds.user.responses.MessageResponse;
@@ -25,8 +26,7 @@ public class InitialLearnerProfileReadProcessor implements MessageProcessor {
     private final Vertx vertx;
     private final Message<JsonObject> message;
     private final Future<MessageResponse> result;
-    private static final Logger LOGGER = LoggerFactory.getLogger(InitialLearnerProfileReadProcessor.class);
-    private EventBusMessage eventBusMessage;
+    private static final Logger LOGGER = LoggerFactory.getLogger(InitialLearnerProfileReadProcessor.class);    
     private final InitialLearnerProfileReadService baseUserProfileReadService =
         new InitialLearnerProfileReadService(DBICreator.getDbiForDefaultDS());
 
@@ -38,9 +38,9 @@ public class InitialLearnerProfileReadProcessor implements MessageProcessor {
 
     @Override
     public Future<MessageResponse> process() {
-        try {
-            this.eventBusMessage = EventBusMessage.eventBusMessageBuilder(message);
-            InitialLearnerProfileReadCommand command = InitialLearnerProfileReadCommand.builder(eventBusMessage.getRequestBody());
+        try {            
+            JsonObject requestBody = message.body().getJsonObject(Constants.Message.MSG_HTTP_BODY);
+            InitialLearnerProfileReadCommand command = InitialLearnerProfileReadCommand.builder(requestBody);
             updateInitialLearnerProfile(command);
         } catch (Throwable throwable) {
             LOGGER.warn("Encountered exception", throwable);
