@@ -132,8 +132,8 @@ public final class Constants {
         public static final String API_COMPETENCY_MATRIX_COORDS = API_BASE_ROUTE + "tx/competency/matrix/coordinates";
         
         //Initial Learner Profile Setup
-        public static final String API_INITIAL_LEARNER_PROFILE = API_BASE_ROUTE + "internal/lp/initial";
-        public static final String API_BASE_LEARNER_PROFILE = API_BASE_ROUTE + "internal/lp/baseline";
+        public static final String API_INTERNAL_INITIAL_LEARNER_PROFILE = "/api/internal/lp/initial";
+        public static final String API_INTERNAL_BASE_LEARNER_PROFILE = "/api/internal/lp/baseline";
 
         private Route() {
             throw new AssertionError();

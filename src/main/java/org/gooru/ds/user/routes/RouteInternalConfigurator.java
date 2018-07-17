@@ -31,8 +31,8 @@ class RouteInternalConfigurator implements RouteConfigurator {
     
         eb = vertx.eventBus();
         mbusTimeout = config.getLong(Constants.EventBus.MBUS_TIMEOUT, 30L) * 1000;
-        router.get(Constants.Route.API_INITIAL_LEARNER_PROFILE).handler(this::initialLearnerProfile);
-        router.get(Constants.Route.API_BASE_LEARNER_PROFILE).handler(this::baseLearnerProfile);
+        router.get(Constants.Route.API_INTERNAL_INITIAL_LEARNER_PROFILE).handler(this::initialLearnerProfile);
+        router.get(Constants.Route.API_INTERNAL_BASE_LEARNER_PROFILE).handler(this::baseLearnerProfile);
         
         LOGGER.debug("Configuring routes for internal route");
         router.route(Constants.Route.API_INTERNAL_BANNER).handler(routingContext -> {
@@ -51,7 +51,7 @@ class RouteInternalConfigurator implements RouteConfigurator {
     }
  
     private void initialLearnerProfile(RoutingContext routingContext) {
-    	DeliveryOptions options = DeliveryOptionsBuilder.buildWithApiVersion(routingContext).setSendTimeout(mbusTimeout)
+    	DeliveryOptions options = new DeliveryOptions().setSendTimeout(mbusTimeout)
     			.addHeader(Constants.Message.MSG_OP, Constants.Message.MSG_OP_INITIAL_LEARNER_PROFILE);
     	eb.<JsonObject>send(Constants.EventBus.MBEP_DISPATCHER, RouteRequestUtility.getBodyForMessage(routingContext, true), options);            
     	routingContext.response().setStatusCode(200).end();   
@@ -60,7 +60,7 @@ class RouteInternalConfigurator implements RouteConfigurator {
     }
 
     private void baseLearnerProfile(RoutingContext routingContext) {
-    	DeliveryOptions options = DeliveryOptionsBuilder.buildWithApiVersion(routingContext).setSendTimeout(mbusTimeout)
+    	DeliveryOptions options = new DeliveryOptions().setSendTimeout(mbusTimeout)
     			.addHeader(Constants.Message.MSG_OP, Constants.Message.MSG_OP_BASE_LEARNER_PROFILE);
     	eb.<JsonObject>send(Constants.EventBus.MBEP_DISPATCHER, RouteRequestUtility.getBodyForMessage(routingContext, true), options);            
     	routingContext.response().setStatusCode(200).end();   
