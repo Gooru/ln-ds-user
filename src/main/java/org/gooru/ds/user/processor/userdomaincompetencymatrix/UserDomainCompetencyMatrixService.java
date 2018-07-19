@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.gooru.ds.user.constants.StatusConstants;
 import org.skife.jdbi.v2.DBI;
 
 /**
@@ -14,10 +15,6 @@ import org.skife.jdbi.v2.DBI;
 class UserDomainCompetencyMatrixService {
 
 	private final UserDomainCompetencyMatrixDao userCompetencyMatrixDao;
-
-	private static final int INFERRED = 2;
-	private static final int ASSERTED = 3;
-	private static final int COMPLETED = 4;
 
 	UserDomainCompetencyMatrixService(DBI dbi) {
 		this.userCompetencyMatrixDao = dbi.onDemand(UserDomainCompetencyMatrixDao.class);
@@ -33,7 +30,7 @@ class UserDomainCompetencyMatrixService {
 		} else {
 
 			List<UserDomainCompetencyMatrixModel> completed = userCompetencyMatrixModels.stream()
-					.filter(model -> model.getStatus() >= COMPLETED).collect(Collectors.toList());
+					.filter(model -> model.getStatus() >= StatusConstants.COMPLETED).collect(Collectors.toList());
 
 			Map<String, Map<String, UserDomainCompetencyMatrixModel>> completedCompMatrixMap = new HashMap<>();
 			completed.forEach(model -> {
@@ -62,8 +59,8 @@ class UserDomainCompetencyMatrixService {
 						UserDomainCompetencyMatrixModel compModel = entry.getValue();
 						int compSeq = compModel.getCompetencySeq();
 
-						if (sequence < compSeq && status < ASSERTED) {
-							model.setStatus(INFERRED);
+						if (sequence < compSeq && status < StatusConstants.ASSERTED) {
+							model.setStatus(StatusConstants.INFERRED);
 						}
 					}
 				}

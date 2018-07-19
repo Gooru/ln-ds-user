@@ -7,6 +7,7 @@ import org.gooru.ds.user.processor.competency.subjects.CompetencySubjectListProc
 import org.gooru.ds.user.processor.competencymatrixcoordinates.CompetencyMatrixCoordinatesProcessor;
 import org.gooru.ds.user.processor.initiallearnerprofile.InitialLearnerProfileReadProcessor;
 import org.gooru.ds.user.processor.user.competencylist.UserCompetencyListProcessor;
+import org.gooru.ds.user.processor.user.course.competency.report.UserCourseCompetencyReportProcessor;
 import org.gooru.ds.user.processor.user.distribution.UserDistributionProcessor;
 import org.gooru.ds.user.processor.user.journey.UserJourneyProcessor;
 import org.gooru.ds.user.processor.usercompetencymatrix.UserCompetencyMatrixProcessor;
@@ -82,6 +83,8 @@ public final class MessageProcessorBuilder {
         case Constants.Message.MSG_OP_USER_COMPETENCY:
             return new UserCompetencyListProcessor(vertx, message);
 
+        case Constants.Message.MSG_OP_USER_COURSE_COMPETENCY_REPORT:
+        	return new UserCourseCompetencyReportProcessor(vertx, message);
 
         case Constants.Message.MSG_OP_USER_STATS_CONTENTS:
             return new UserStatsContentsProcessor(vertx, message);
