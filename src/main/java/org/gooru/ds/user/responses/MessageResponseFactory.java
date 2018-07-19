@@ -54,6 +54,11 @@ public final class MessageResponseFactory {
     public static MessageResponse createOkayResponse(JsonObject body) {
         return new MessageResponse.Builder().setStatusOkay().setResponseBody(body).build();
     }
+    
+	public static MessageResponse createOkayResponseWithCompression(JsonObject body) {
+		return new MessageResponse.Builder().setStatusOkay().setResponseBody(body).setHeader("Content-Encoding", "gzip")
+				.build();
+	}
 
     public static MessageResponse createOkayResponse() {
         return new MessageResponse.Builder().setStatusOkay().build();

@@ -56,6 +56,9 @@ public final class Constants {
         public static final String MSG_OP_USER_SUMMARY_ASSESSMENT = "mb.op.user.summary.assessment";
         public static final String MSG_OP_USER_SUMMARY_COLLECTION = "mb.op.user.summary.collection";
         
+        // User course competency report - domain level summary
+        public static final String MSG_OP_USER_COURSE_COMPETENCY_REPORT = "mb.op.user.course.competency.report";
+        
         //Initial Learner Profile
         public static final String MSG_OP_INITIAL_LEARNER_PROFILE = "mb.op.initial.learner.profile";
         //Baseline Learner Profile
@@ -135,6 +138,10 @@ public final class Constants {
         public static final String API_INITIAL_LEARNER_PROFILE = API_BASE_ROUTE + "internal/lp/initial";
         public static final String API_BASE_LEARNER_PROFILE = API_BASE_ROUTE + "internal/lp/baseline";
 
+        // User course competency report - domain level summary
+        //http://staging.gooru.org/api/ds/users/v2/user/competency/report/course
+        public static final String API_USER_COURSE_COMPETENCY_REPORT = API_BASE_ROUTE + "user/competency/report/course";
+        
         private Route() {
             throw new AssertionError();
         }
