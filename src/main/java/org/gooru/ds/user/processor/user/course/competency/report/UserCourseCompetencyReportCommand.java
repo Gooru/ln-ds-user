@@ -18,8 +18,8 @@ public class UserCourseCompetencyReportCommand {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserCourseCompetencyReportCommand.class);
 
-	private String FILTER_CUMULATIVE = "cumulative";
-	private String FILTER_WINDOW = "window";
+	public static final String FILTER_CUMULATIVE = "cumulative";
+	public static final String FILTER_WINDOW = "window";
 	private List<String> VALID_FILTERS = Arrays.asList(FILTER_CUMULATIVE, FILTER_WINDOW);
 
 	private String classId;
@@ -107,6 +107,11 @@ public class UserCourseCompetencyReportCommand {
 		if (classId == null || classId.isEmpty()) {
 			LOGGER.debug("invalid class id provided");
 			throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Invalid classId");
+		}
+		
+		if (courseId == null || courseId.isEmpty()) {
+			LOGGER.debug("invalid course id provided");
+			throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Invalid course id");
 		}
 
 		if (filter == null || filter.isEmpty() || !VALID_FILTERS.contains(filter)) {

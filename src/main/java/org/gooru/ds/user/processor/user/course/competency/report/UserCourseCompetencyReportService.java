@@ -48,8 +48,14 @@ public class UserCourseCompetencyReportService {
 			bean.setStudentId(studentId);
 			bean.setSubject(subjectCode);
 
-			final List<UserCourseCompetencyReportModel> competencyReportModels = this.dao
-					.fetchUserDomainCompetencyMatrixCumulative(bean);
+			List<UserCourseCompetencyReportModel> competencyReportModels = null;
+			if (command.getFilter().equalsIgnoreCase(UserCourseCompetencyReportCommand.FILTER_WINDOW)) {
+				competencyReportModels = this.dao
+						.fetchUserDomainCompetencyMatrixWindow(bean);
+			} else {
+				competencyReportModels = this.dao
+						.fetchUserDomainCompetencyMatrixCumulative(bean);
+			}
 			LOGGER.debug("report for user:{} returned {} rows", studentId, competencyReportModels.size());
 
 			if (!competencyReportModels.isEmpty()) {
