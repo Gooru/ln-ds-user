@@ -40,7 +40,15 @@ public class UserCourseCompetencyReportService {
 			return new UserCourseCompetencyReportModelResponse();
 		}
 
-		List<String> studentIds = this.coreService.fetchClassMembers(command.getClassId());
+		// If student id is not null then fetch the report for single student
+		// else for all class
+		List<String> studentIds = null;
+		if (command.getStudentId() != null && !command.getStudentId().isEmpty()) {
+			studentIds = new ArrayList<>();
+			studentIds.add(command.getStudentId());
+		} else {
+			studentIds = this.coreService.fetchClassMembers(command.getClassId());
+		}
 
 		for (String studentId : studentIds) {
 
@@ -50,11 +58,9 @@ public class UserCourseCompetencyReportService {
 
 			List<UserCourseCompetencyReportModel> competencyReportModels = null;
 			if (command.getFilter().equalsIgnoreCase(UserCourseCompetencyReportCommand.FILTER_WINDOW)) {
-				competencyReportModels = this.dao
-						.fetchUserDomainCompetencyMatrixWindow(bean);
+				competencyReportModels = this.dao.fetchUserDomainCompetencyMatrixWindow(bean);
 			} else {
-				competencyReportModels = this.dao
-						.fetchUserDomainCompetencyMatrixCumulative(bean);
+				competencyReportModels = this.dao.fetchUserDomainCompetencyMatrixCumulative(bean);
 			}
 			LOGGER.debug("report for user:{} returned {} rows", studentId, competencyReportModels.size());
 
@@ -108,7 +114,8 @@ public class UserCourseCompetencyReportService {
 		response.setContext(
 				UserCourseCompetencyReportModelResponseBuilder.buildContextResponseModel(command, subjectCode));
 
-		// Fetch course competencies from core and populate details from domain competencies matrix table
+		// Fetch course competencies from core and populate details from domain
+		// competencies matrix table
 		List<String> courseCompetencies = this.coreService.fetchCourseCompetencies(command.getCourseId());
 		List<DomainCompetenciesModel> domainCompetenciesModels = this.dao
 				.fetchDomainCompetencies(toPostgresArrayString(courseCompetencies));
