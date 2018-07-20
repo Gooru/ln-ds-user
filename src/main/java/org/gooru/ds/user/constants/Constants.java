@@ -64,6 +64,9 @@ public final class Constants {
         //Baseline Learner Profile
         public static final String MSG_OP_BASE_LEARNER_PROFILE = "mb.op.base.learner.profile";
         
+        //Read baseline learner profile
+        public static final String MSG_OP_READ_BASELINE_LEARNER_PROFILE = "mb.op.base.learner.profile.read";
+        
         public static final String MSG_API_VERSION = "api.version";
         public static final String MSG_SESSION_TOKEN = "session.token";
         public static final String MSG_KEY_SESSION = "session";
@@ -141,6 +144,10 @@ public final class Constants {
         // User course competency report - domain level summary
         //http://staging.gooru.org/api/ds/users/v2/user/competency/report/course
         public static final String API_USER_COURSE_COMPETENCY_REPORT = API_BASE_ROUTE + "user/competency/report/course";
+        
+        // Baseline learner profile
+        // http://staging.gooru.org/api/ds/users/v2/user/baseline/learnerprofile
+        public static final String API_USER_BASELINE_LEARNER_PROFILE = API_BASE_ROUTE + "user/baseline/learnerprofile";
         
         private Route() {
             throw new AssertionError();
