@@ -92,7 +92,7 @@ public class UserCourseCompetencyReportCommand {
 		UserCourseCompetencyReportCommand command = new UserCourseCompetencyReportCommand();
 		command.classId = requestBody.getString(CommandAttributes.CLASS_ID);
 		command.courseId = requestBody.getString(CommandAttributes.COURSE_ID);
-		command.studentId = requestBody.getString(CommandAttributes.STUDENT_ID);
+		command.studentId = requestBody.getString(CommandAttributes.STUDENT_ID, null);
 		command.filter = requestBody.getString(CommandAttributes.FILTER);
 
 		command.fromMonth = getAsInt(requestBody, CommandAttributes.FROM_MONTH);
