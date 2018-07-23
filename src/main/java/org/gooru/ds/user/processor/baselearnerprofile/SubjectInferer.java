@@ -8,7 +8,7 @@ import org.skife.jdbi.v2.DBI;
 /**
  * @author ashish.
  */
-interface SubjectInferer {
+public interface SubjectInferer {
 
     String inferSubjectForCourse(UUID courseId);
 
