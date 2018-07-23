@@ -63,7 +63,8 @@ public final class Constants {
         public static final String MSG_OP_INITIAL_LEARNER_PROFILE = "mb.op.initial.learner.profile";
         //Baseline Learner Profile
         public static final String MSG_OP_BASE_LEARNER_PROFILE = "mb.op.base.learner.profile";
-        
+        //Navigator Course Reports
+        public static final String MSG_OP_USERS_PERF_VS_COMPLETION = "mb.op.users.performance.vs.completion";
         //Read baseline learner profile
         public static final String MSG_OP_READ_BASELINE_LEARNER_PROFILE = "mb.op.base.learner.profile.read";
         
@@ -140,11 +141,11 @@ public final class Constants {
         //Initial Learner Profile Setup
         public static final String API_INTERNAL_INITIAL_LEARNER_PROFILE = "/api/internal/lp/initial";
         public static final String API_INTERNAL_BASE_LEARNER_PROFILE = "/api/internal/lp/baseline";
-
+        //Navigator Course Reports
+        public static final String API_NC_PERF_VS_COMPLETION = API_BASE_ROUTE + "nc/atc/pvc";
         // User course competency report - domain level summary
         //http://staging.gooru.org/api/ds/users/v2/user/competency/report/course
-        public static final String API_USER_COURSE_COMPETENCY_REPORT = API_BASE_ROUTE + "user/competency/report/course";
-        
+        public static final String API_USER_COURSE_COMPETENCY_REPORT = API_BASE_ROUTE + "user/competency/report/course";        
         // Baseline learner profile
         // http://staging.gooru.org/api/ds/users/v2/user/baseline/learnerprofile
         public static final String API_USER_BASELINE_LEARNER_PROFILE = API_BASE_ROUTE + "user/baseline/learnerprofile";
