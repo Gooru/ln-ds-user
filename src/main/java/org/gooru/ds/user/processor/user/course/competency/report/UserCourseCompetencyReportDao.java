@@ -38,10 +38,11 @@ public interface UserCourseCompetencyReportDao {
 			@BindBean UserCourseCompetencyReportCommandBean bean);
 	
 	@Mapper(DomainCompetenciesModelMapper.class)
-	@SqlQuery("SELECT DISTINCT(dcm.tx_comp_code), dcm.tx_domain_code, dcm.tx_comp_name, dcm.tx_comp_desc, dcm.tx_comp_student_desc, dcm.tx_comp_seq,"
-			+ " d.tx_domain_name, d.tx_domain_seq FROM domain_competency_matrix dcm, tx_domains d WHERE tx_comp_code = ANY(:competencyCodes::text[])"
-			+ " AND d.tx_domain_code = dcm.tx_domain_code ORDER BY dcm.tx_domain_code, dcm.tx_comp_seq")
-	List<DomainCompetenciesModel> fetchDomainCompetencies(@Bind("competencyCodes") String competencyCodes);
+	@SqlQuery("SELECT dcm.tx_comp_code, dcm.tx_domain_code, dcm.tx_comp_name, dcm.tx_comp_desc, dcm.tx_comp_student_desc, dcm.tx_comp_seq,"
+			+ " d.tx_domain_name, d.tx_domain_seq FROM domain_competency_matrix dcm, tx_domains d WHERE dcm.tx_subject_code = :subjectCode AND"
+			+ " d.tx_domain_code = dcm.tx_domain_code ORDER BY d.tx_domain_seq, dcm.tx_comp_seq")
+	List<DomainCompetenciesModel> fetchAllDomainCompetencies(@Bind("subjectCode") String subjectCode);
+	
 	
 	
 }

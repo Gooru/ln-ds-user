@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
 import io.vertx.core.http.HttpServer;
+import io.vertx.core.http.HttpServerOptions;
 import io.vertx.ext.web.Router;
 
 /**
@@ -24,7 +25,10 @@ public class HttpVerticle extends AbstractVerticle {
     @Override
     public void start(Future<Void> startFuture) throws Exception {
         LOGGER.info("Starting Http Verticle ...");
-        final HttpServer httpServer = vertx.createHttpServer();
+        
+        HttpServerOptions serverOptions = new HttpServerOptions();
+        serverOptions.setCompressionSupported(config().getBoolean("isCompressionSupported", false));
+        final HttpServer httpServer = vertx.createHttpServer(serverOptions);
 
         final Router router = Router.router(vertx);
         configureRoutes(router);

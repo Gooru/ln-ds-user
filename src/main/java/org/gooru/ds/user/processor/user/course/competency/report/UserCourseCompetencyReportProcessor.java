@@ -15,6 +15,7 @@ import io.vertx.core.Future;
 import io.vertx.core.Vertx;
 import io.vertx.core.eventbus.Message;
 import io.vertx.core.json.DecodeException;
+import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 
 /**
@@ -52,9 +53,22 @@ public class UserCourseCompetencyReportProcessor implements MessageProcessor {
 
 	private void fetchUserCourseCompetencyReport(UserCourseCompetencyReportCommand command) {
 		try {
-			UserCourseCompetencyReportModelResponse response = this.reportService.fetchCourseCompetencies(command);
-			String resultString = new ObjectMapper().writeValueAsString(response);
-			result.complete(MessageResponseFactory.createOkayResponse(new JsonObject(resultString)));
+			String subjectCode = this.reportService.fetchSubjectCode(command);
+			if (subjectCode == null) {
+				result.complete(
+						MessageResponseFactory.createInvalidRequestResponse("course is not assigned to any subject"));
+			} else {
+				JsonArray studentReport = this.reportService.fetchUserCourseCompetencyMatrix(command, subjectCode);
+
+				UserCourseCompetencyReportModelResponse domainCompetencies = this.reportService
+						.fetchDomainCompetencies(command, subjectCode);
+				String resultString = new ObjectMapper().writeValueAsString(domainCompetencies);
+
+				JsonObject response = new JsonObject(resultString);
+				response.put(UserCourseCompetencyReportModelResponseConstants.JSON_RESP_KEY_STUDENTS, studentReport);
+
+				result.complete(MessageResponseFactory.createOkayResponse(response));
+			}
 		} catch (JsonProcessingException e) {
 			LOGGER.error("Not able to convert data to JSON", e);
 			result.fail(e);

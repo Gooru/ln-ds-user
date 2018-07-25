@@ -1,7 +1,6 @@
 package org.gooru.ds.user.processor.user.course.competency.report;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -10,11 +9,11 @@ import java.util.stream.Collectors;
 
 import org.gooru.ds.user.constants.StatusConstants;
 import org.gooru.ds.user.processor.dbhelpers.core.CoreService;
-import org.gooru.ds.user.processor.user.course.competency.report.UserCourseCompetencyReportModelResponse.ClassCompetenciesResponseModel;
-import org.gooru.ds.user.processor.user.course.competency.report.UserCourseCompetencyReportModelResponse.StudentsResponseModel;
 import org.skife.jdbi.v2.DBI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import io.vertx.core.json.JsonArray;
 
 /**
  * @author szgooru on 17-Jul-2018
@@ -31,14 +30,18 @@ public class UserCourseCompetencyReportService {
 		this.coreService = new CoreService(coreDbi);
 	}
 
-	public UserCourseCompetencyReportModelResponse fetchCourseCompetencies(UserCourseCompetencyReportCommand command) {
-
-		List<StudentsResponseModel> studentReport = new ArrayList<>();
+	public String fetchSubjectCode(UserCourseCompetencyReportCommand command) {
 		final String subjectCode = this.coreService.fetchCourseSubject(command.getCourseId());
 		if (subjectCode == null || subjectCode.isEmpty()) {
 			LOGGER.debug("Subject code is not present at course, returning empty");
-			return new UserCourseCompetencyReportModelResponse();
+			return null;
 		}
+
+		return subjectCode;
+	}
+
+	public JsonArray fetchUserCourseCompetencyMatrix(UserCourseCompetencyReportCommand command, String subjectCode) {
+		JsonArray studentReport = new JsonArray();
 
 		// If student id is not null then fetch the report for single student
 		// else for all class
@@ -104,30 +107,43 @@ public class UserCourseCompetencyReportService {
 					}
 				});
 
-				StudentsResponseModel studentsResponseModel = UserCourseCompetencyReportModelResponseBuilder
-						.buildStudentsResponseModel(competencyReportModels, studentId);
-				studentReport.add(studentsResponseModel);
+				studentReport.add(UserCourseCompetencyReportModelResponseBuilder
+						.buildStudentsResponseModel(competencyReportModels, studentId));
 			}
 		}
+
+		return studentReport;
+	}
+
+	public UserCourseCompetencyReportModelResponse fetchDomainCompetencies(UserCourseCompetencyReportCommand command,
+			String subjectCode) {
 
 		UserCourseCompetencyReportModelResponse response = new UserCourseCompetencyReportModelResponse();
 		response.setContext(
 				UserCourseCompetencyReportModelResponseBuilder.buildContextResponseModel(command, subjectCode));
 
-		// Fetch course competencies from core and populate details from domain
-		// competencies matrix table
-		List<String> courseCompetencies = this.coreService.fetchCourseCompetencies(command.getCourseId());
-		List<DomainCompetenciesModel> domainCompetenciesModels = this.dao
-				.fetchDomainCompetencies(toPostgresArrayString(courseCompetencies));
-		Collection<ClassCompetenciesResponseModel> domainCompetencies = UserCourseCompetencyReportModelResponseBuilder
-				.buildClassCompetenciesResponseModel(domainCompetenciesModels);
-		List<ClassCompetenciesResponseModel> listdomainCompetencies = new ArrayList<>();
-		domainCompetencies.forEach(entry -> {
-			listdomainCompetencies.add(entry);
-		});
-		response.setClassCompetencies(listdomainCompetencies);
+		List<DomainCompetenciesModel> allDomainCompetenciesList = this.dao.fetchAllDomainCompetencies(subjectCode);
+		response.setDomainCompetencies(UserCourseCompetencyReportModelResponseBuilder
+				.buildDomainCompetenciesResponseModel(allDomainCompetenciesList).getDomainCompetencies());
 
-		response.setStudents(studentReport);
+		List<String> courseCompetencies = this.coreService.fetchCourseCompetencies(command.getCourseId());
+		Map<String, DomainCompetenciesModel> allDomainCompetencyMap = new HashMap<>();
+
+		allDomainCompetenciesList.forEach(competency -> {
+			allDomainCompetencyMap.put(competency.getCompetencyCode(), competency);
+		});
+
+		List<DomainCompetenciesModel> courseCompetencyList = new ArrayList<>();
+		courseCompetencies.forEach(comp -> {
+			// Just in case where course aggregated tags may be of different subject. We
+			// need the data to be filtered only for the subject asked for
+			if (comp.startsWith(subjectCode)) {
+				courseCompetencyList.add(allDomainCompetencyMap.get(comp));
+			}
+		});
+		response.setClassCompetencies(UserCourseCompetencyReportModelResponseBuilder
+				.buildDomainCompetenciesResponseModel(courseCompetencyList).getDomainCompetencies());
+
 		return response;
 	}
 

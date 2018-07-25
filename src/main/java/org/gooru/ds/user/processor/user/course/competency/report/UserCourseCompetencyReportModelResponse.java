@@ -8,8 +8,8 @@ import java.util.List;
 public class UserCourseCompetencyReportModelResponse {
 
 	private ContextResponseModel context;
-	private List<ClassCompetenciesResponseModel> classCompetencies;
-	private List<StudentsResponseModel> students;
+	private List<DomainsResponseModel> classCompetencies;
+	private List<DomainsResponseModel> domainCompetencies;
 
 	public ContextResponseModel getContext() {
 		return context;
@@ -19,20 +19,20 @@ public class UserCourseCompetencyReportModelResponse {
 		this.context = context;
 	}
 
-	public List<ClassCompetenciesResponseModel> getClassCompetencies() {
+	public List<DomainsResponseModel> getClassCompetencies() {
 		return classCompetencies;
 	}
 
-	public void setClassCompetencies(List<ClassCompetenciesResponseModel> classCompetencies) {
+	public void setClassCompetencies(List<DomainsResponseModel> classCompetencies) {
 		this.classCompetencies = classCompetencies;
 	}
 
-	public List<StudentsResponseModel> getStudents() {
-		return students;
+	public List<DomainsResponseModel> getDomainCompetencies() {
+		return domainCompetencies;
 	}
 
-	public void setStudents(List<StudentsResponseModel> students) {
-		this.students = students;
+	public void setDomainCompetencies(List<DomainsResponseModel> domainCompetencies) {
+		this.domainCompetencies = domainCompetencies;
 	}
 
 	static class ContextResponseModel {
@@ -108,10 +108,9 @@ public class UserCourseCompetencyReportModelResponse {
 		public void setSubjectCode(String subjectCode) {
 			this.subjectCode = subjectCode;
 		}
-
 	}
 
-	static class ClassCompetenciesResponseModel {
+	static class DomainsResponseModel {
 		private String domainCode;
 		private String domainName;
 		private Integer domainSeq;
@@ -149,7 +148,7 @@ public class UserCourseCompetencyReportModelResponse {
 			this.competencies = competencies;
 		}
 	}
-	
+
 	static class DomainCompetenciesResponseModel {
 		private String competencyCode;
 		private String competencyName;
@@ -200,10 +199,6 @@ public class UserCourseCompetencyReportModelResponse {
 
 	static class CompetenciesResponseModel {
 		private String competencyCode;
-		private String competencyName;
-		private String competencyDesc;
-		private String competencyStudentDesc;
-		private Integer competencySeq;
 		private Integer status;
 
 		public String getCompetencyCode() {
@@ -214,88 +209,12 @@ public class UserCourseCompetencyReportModelResponse {
 			this.competencyCode = competencyCode;
 		}
 
-		public String getCompetencyName() {
-			return competencyName;
-		}
-
-		public void setCompetencyName(String competencyName) {
-			this.competencyName = competencyName;
-		}
-
-		public String getCompetencyDesc() {
-			return competencyDesc;
-		}
-
-		public void setCompetencyDesc(String competencyDesc) {
-			this.competencyDesc = competencyDesc;
-		}
-
-		public String getCompetencyStudentDesc() {
-			return competencyStudentDesc;
-		}
-
-		public void setCompetencyStudentDesc(String competencyStudentDesc) {
-			this.competencyStudentDesc = competencyStudentDesc;
-		}
-
-		public Integer getCompetencySeq() {
-			return competencySeq;
-		}
-
-		public void setCompetencySeq(Integer competencySeq) {
-			this.competencySeq = competencySeq;
-		}
-
 		public Integer getStatus() {
 			return status;
 		}
 
 		public void setStatus(Integer status) {
 			this.status = status;
-		}
-
-	}
-
-	static class StudentsResponseModel {
-		private String id;
-		List<UserCompetencyMatrixResponseModel> userCompetencyMatrix;
-
-		public String getId() {
-			return id;
-		}
-
-		public void setId(String id) {
-			this.id = id;
-		}
-
-		public List<UserCompetencyMatrixResponseModel> getUserCompetencyMatrix() {
-			return userCompetencyMatrix;
-		}
-
-		public void setUserCompetencyMatrix(List<UserCompetencyMatrixResponseModel> userCompetencyMatrix) {
-			this.userCompetencyMatrix = userCompetencyMatrix;
-		}
-
-	}
-
-	static class UserCompetencyMatrixResponseModel {
-		String domainCode;
-		private List<CompetenciesResponseModel> competencies;
-
-		public String getDomainCode() {
-			return domainCode;
-		}
-
-		public void setDomainCode(String domainCode) {
-			this.domainCode = domainCode;
-		}
-
-		public List<CompetenciesResponseModel> getCompetencies() {
-			return competencies;
-		}
-
-		public void setCompetencies(List<CompetenciesResponseModel> competencies) {
-			this.competencies = competencies;
 		}
 
 	}
