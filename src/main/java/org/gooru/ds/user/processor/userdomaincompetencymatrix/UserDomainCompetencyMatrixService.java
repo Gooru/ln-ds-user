@@ -66,7 +66,7 @@ class UserDomainCompetencyMatrixService {
 				}
 			});
 
-			Timestamp lastUpdated = userCompetencyMatrixDao.fetchLastUpdatedTime(command.getUser(), command.getSubject());
+			Timestamp lastUpdated = userCompetencyMatrixDao.fetchLastUpdatedTime(command.asBean());
 			return UserDomainCompetencyMatrixModelResponseBuilder.build(userCompetencyMatrixModels, lastUpdated);
 		}
 	}

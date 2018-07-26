@@ -3,7 +3,6 @@ package org.gooru.ds.user.processor.userdomaincompetencymatrix;
 import java.sql.Timestamp;
 import java.util.List;
 
-import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.BindBean;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
@@ -20,10 +19,12 @@ interface UserDomainCompetencyMatrixDao {
 			+ " cm.tx_comp_seq asc")
 	List<UserDomainCompetencyMatrixModel> fetchUserDomainCompetencyMatrix(
 			@BindBean UserDomainCompetencyMatrixCommand.UserDomainCompetencyMatrixCommandBean userCompetencyMatrixCommandBean);
-	
-	@SqlQuery("SELECT MAX(updated_at) FROM learner_profile_competency_status WHERE user_id = :userId AND tx_subject_code = :subjectCode")
-	Timestamp fetchLastUpdatedTime(@Bind("userId") String userId, @Bind("subjectCode") String subjectCode);
-	
+
+	@SqlQuery("SELECT MAX(updated_at) FROM learner_profile_competency_status_ts WHERE user_id = :user AND tx_subject_code = :subject AND"
+			+ " extract(month from updated_at) <= :month AND extract(year from updated_at) <= :year")
+	Timestamp fetchLastUpdatedTime(
+			@BindBean UserDomainCompetencyMatrixCommand.UserDomainCompetencyMatrixCommandBean userCompetencyMatrixCommandBean);
+
 	@Mapper(UserDomainCompetencyMatrixModelMapper.class)
 	@SqlQuery("select distinct(cm.tx_comp_code), cm.tx_domain_code, cm.tx_comp_name, cm.tx_comp_desc, cm.tx_comp_student_desc, cm.tx_comp_seq,"
 			+ " (SELECT DISTINCT ON (lpcs.gut_code) FIRST_VALUE(lpcs.status) OVER (PARTITION BY lpcs.gut_code ORDER BY lpcs.updated_at desc) as status"
