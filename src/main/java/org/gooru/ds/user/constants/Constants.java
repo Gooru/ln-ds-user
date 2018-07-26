@@ -55,7 +55,19 @@ public final class Constants {
         public static final String MSG_OP_USER_PERF_COMPETENCY_COLLECTIONS = "mb.op.user.performance.competency.collections";
         public static final String MSG_OP_USER_SUMMARY_ASSESSMENT = "mb.op.user.summary.assessment";
         public static final String MSG_OP_USER_SUMMARY_COLLECTION = "mb.op.user.summary.collection";
-
+        
+        // User course competency report - domain level summary
+        public static final String MSG_OP_USER_COURSE_COMPETENCY_REPORT = "mb.op.user.course.competency.report";
+        
+        //Initial Learner Profile
+        public static final String MSG_OP_INITIAL_LEARNER_PROFILE = "mb.op.initial.learner.profile";
+        //Baseline Learner Profile
+        public static final String MSG_OP_BASE_LEARNER_PROFILE = "mb.op.base.learner.profile";
+        //Navigator Course Reports
+        public static final String MSG_OP_USERS_PERF_VS_COMPLETION = "mb.op.users.performance.vs.completion";
+        //Read baseline learner profile
+        public static final String MSG_OP_READ_BASELINE_LEARNER_PROFILE = "mb.op.base.learner.profile.read";
+        
         public static final String MSG_API_VERSION = "api.version";
         public static final String MSG_SESSION_TOKEN = "session.token";
         public static final String MSG_KEY_SESSION = "session";
@@ -125,7 +137,19 @@ public final class Constants {
         public static final String API_COURSE_COMPETENCY_MATRIX = API_BASE_ROUTE + "tx/competency/matrix/course";
         public static final String API_DOMAIN_COMPETENCY_MATRIX = API_BASE_ROUTE + "tx/competency/matrix/domain";
         public static final String API_COMPETENCY_MATRIX_COORDS = API_BASE_ROUTE + "tx/competency/matrix/coordinates";
-
+        
+        //Initial Learner Profile Setup
+        public static final String API_INTERNAL_INITIAL_LEARNER_PROFILE = "/api/internal/lp/initial";
+        public static final String API_INTERNAL_BASE_LEARNER_PROFILE = "/api/internal/lp/baseline";
+        //Navigator Course Reports
+        public static final String API_NC_PERF_VS_COMPLETION = API_BASE_ROUTE + "nc/atc/pvc";
+        // User course competency report - domain level summary
+        //http://staging.gooru.org/api/ds/users/v2/user/competency/report/course
+        public static final String API_USER_COURSE_COMPETENCY_REPORT = API_BASE_ROUTE + "user/competency/report/course";        
+        // Baseline learner profile
+        // http://staging.gooru.org/api/ds/users/v2/user/baseline/learnerprofile
+        public static final String API_USER_BASELINE_LEARNER_PROFILE = API_BASE_ROUTE + "user/baseline/learnerprofile";
+        
         private Route() {
             throw new AssertionError();
         }

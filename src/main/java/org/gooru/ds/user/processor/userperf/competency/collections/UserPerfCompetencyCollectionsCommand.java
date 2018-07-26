@@ -12,6 +12,7 @@ public class UserPerfCompetencyCollectionsCommand {
     private String competencyCode;
     private String gutCode;
     private String user;
+    private Integer status;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserPerfCompetencyCollectionsCommand.class);
 
@@ -26,6 +27,10 @@ public class UserPerfCompetencyCollectionsCommand {
     public String getUserId() {
         return user;
     }
+    
+    public Integer getStatus() {
+    	return status;
+    }
 
     static UserPerfCompetencyCollectionsCommand builder(JsonObject requestBody) {
         UserPerfCompetencyCollectionsCommand result = UserPerfCompetencyCollectionsCommand.buildFromJsonObject(requestBody);
@@ -38,6 +43,7 @@ public class UserPerfCompetencyCollectionsCommand {
         bean.user = user;
         bean.competencyCode = competencyCode;
         bean.gutCode = gutCode;
+        bean.status = status;
         return bean;
     }
 
@@ -47,6 +53,15 @@ public class UserPerfCompetencyCollectionsCommand {
         result.competencyCode = requestBody.getString(CommandAttributes.COMPETENCY_CODE);
         result.gutCode = requestBody.getString(CommandAttributes.GUT_CODE);
         result.user = requestBody.getString(CommandAttributes.USER_ID);
+        
+        String strStatus = requestBody.getString(CommandAttributes.STATUS);
+        try {
+        	result.status = strStatus != null ? Integer.parseInt(strStatus) : null;
+        } catch(NumberFormatException nfe) {
+        	LOGGER.info("status is not valid integer");
+            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Status should be valid integer between 1 to 5");
+        }
+        
         return result;
     }
 
@@ -63,12 +78,17 @@ public class UserPerfCompetencyCollectionsCommand {
             throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Either Competency or gut code should be provided");
         }
 
+        if (status != null && (status < 1 || status > 5)) {
+        	LOGGER.info("status is not provided correctly");
+            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Status should be between 1 to 5");
+        }
     }
 
     public static class UserPerfCompetencyCollectionsCommandBean {
         private String competencyCode;
         private String gutCode;
 		private String user;
+		private Integer status;
 
         public String getUser() {
             return user;
@@ -93,12 +113,22 @@ public class UserPerfCompetencyCollectionsCommand {
 		public void setGutCode(String gutCode) {
 			this.gutCode = gutCode;
 		}
+
+		public Integer getStatus() {
+			return status;
+		}
+
+		public void setStatus(Integer status) {
+			this.status = status;
+		}
+		
     }
 
     static class CommandAttributes {
         private static final String COMPETENCY_CODE = "competencyCode";
         private static final String GUT_CODE = "gutCode";
         private static final String USER_ID = "user";
+        private static final String STATUS = "status";
 
         private CommandAttributes() {
             throw new AssertionError();

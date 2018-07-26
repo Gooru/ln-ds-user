@@ -2,9 +2,14 @@ package org.gooru.ds.user.processor;
 
 import org.gooru.ds.user.constants.Constants;
 import org.gooru.ds.user.processor.activeuserlist.ActiveUserListProcessor;
+import org.gooru.ds.user.processor.atc.pvc.CompetencyPerfVsCompletionProcessor;
+import org.gooru.ds.user.processor.baselearnerprofile.LearnerProfileBaselineUpdateProcessor;
+import org.gooru.ds.user.processor.baselearnerprofile.read.ReadBaselineLearnerProfileProcessor;
 import org.gooru.ds.user.processor.competency.subjects.CompetencySubjectListProcessor;
 import org.gooru.ds.user.processor.competencymatrixcoordinates.CompetencyMatrixCoordinatesProcessor;
+import org.gooru.ds.user.processor.initiallearnerprofile.InitialLearnerProfileReadProcessor;
 import org.gooru.ds.user.processor.user.competencylist.UserCompetencyListProcessor;
+import org.gooru.ds.user.processor.user.course.competency.report.UserCourseCompetencyReportProcessor;
 import org.gooru.ds.user.processor.user.distribution.UserDistributionProcessor;
 import org.gooru.ds.user.processor.user.journey.UserJourneyProcessor;
 import org.gooru.ds.user.processor.usercompetencymatrix.UserCompetencyMatrixProcessor;
@@ -80,6 +85,8 @@ public final class MessageProcessorBuilder {
         case Constants.Message.MSG_OP_USER_COMPETENCY:
             return new UserCompetencyListProcessor(vertx, message);
 
+        case Constants.Message.MSG_OP_USER_COURSE_COMPETENCY_REPORT:
+        	return new UserCourseCompetencyReportProcessor(vertx, message);
 
         case Constants.Message.MSG_OP_USER_STATS_CONTENTS:
             return new UserStatsContentsProcessor(vertx, message);
@@ -105,6 +112,14 @@ public final class MessageProcessorBuilder {
             return new CompetencyMatrixCoordinatesProcessor(vertx, message);
         case Constants.Message.MSG_OP_COMPETENCY_SUBJECTS:
             return new CompetencySubjectListProcessor(vertx, message);
+        case Constants.Message.MSG_OP_INITIAL_LEARNER_PROFILE:
+            return new InitialLearnerProfileReadProcessor(vertx, message);
+        case Constants.Message.MSG_OP_BASE_LEARNER_PROFILE:
+            return new LearnerProfileBaselineUpdateProcessor(vertx, message);
+        case Constants.Message.MSG_OP_USERS_PERF_VS_COMPLETION:
+        	return new CompetencyPerfVsCompletionProcessor(vertx, message);     
+        case Constants.Message.MSG_OP_READ_BASELINE_LEARNER_PROFILE:
+        	return new ReadBaselineLearnerProfileProcessor(vertx, message);
         default:
             return null;
         }

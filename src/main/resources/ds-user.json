@@ -54,14 +54,16 @@
         "http.port": 8080,
         "metrics.periodicity.seconds": 300,
         "event.bus.send.timeout.seconds": 180,
-        "request.body.size.max.mb": 5
+        "request.body.size.max.mb": 5,
+        "isCompressionSupported":true
       }
     }
   },
   "app.configuration": {
     "default.offset": 0,
     "default.limit": 20,
-    "default.max.limit": 30
+    "default.max.limit": 30,
+    "user.distribution.json" : "src/main/resources/user-distribution.json"
   },
   "vertxOptions": {
     "workerPoolSize": 40,
