@@ -147,7 +147,7 @@ public class UserCourseCompetencyReportService {
 		Collections.sort(courseCompetencyList, new Comparator<DomainCompetenciesModel>() {
 			@Override
 			public int compare(DomainCompetenciesModel o1, DomainCompetenciesModel o2) {
-				return o1.getDomainCode().compareToIgnoreCase(o1.getDomainCode());
+				return o1.getDomainCode().toUpperCase().compareTo(o2.getDomainCode().toUpperCase());
 			}
 		});
 		
