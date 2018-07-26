@@ -1,6 +1,8 @@
 package org.gooru.ds.user.processor.user.course.competency.report;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -141,6 +143,14 @@ public class UserCourseCompetencyReportService {
 				courseCompetencyList.add(allDomainCompetencyMap.get(comp));
 			}
 		});
+		
+		Collections.sort(courseCompetencyList, new Comparator<DomainCompetenciesModel>() {
+			@Override
+			public int compare(DomainCompetenciesModel o1, DomainCompetenciesModel o2) {
+				return o1.getDomainCode().compareToIgnoreCase(o1.getDomainCode());
+			}
+		});
+		
 		response.setClassCompetencies(UserCourseCompetencyReportModelResponseBuilder
 				.buildDomainCompetenciesResponseModel(courseCompetencyList).getDomainCompetencies());
 

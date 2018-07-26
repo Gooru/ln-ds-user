@@ -40,7 +40,7 @@ public interface UserCourseCompetencyReportDao {
 	@Mapper(DomainCompetenciesModelMapper.class)
 	@SqlQuery("SELECT dcm.tx_comp_code, dcm.tx_domain_code, dcm.tx_comp_name, dcm.tx_comp_desc, dcm.tx_comp_student_desc, dcm.tx_comp_seq,"
 			+ " d.tx_domain_name, d.tx_domain_seq FROM domain_competency_matrix dcm, tx_domains d WHERE dcm.tx_subject_code = :subjectCode AND"
-			+ " d.tx_domain_code = dcm.tx_domain_code ORDER BY d.tx_domain_seq, dcm.tx_comp_seq")
+			+ " d.tx_subject_code = dcm.tx_subject_code AND d.tx_domain_code = dcm.tx_domain_code ORDER BY d.tx_domain_seq, dcm.tx_comp_seq")
 	List<DomainCompetenciesModel> fetchAllDomainCompetencies(@Bind("subjectCode") String subjectCode);
 	
 	
