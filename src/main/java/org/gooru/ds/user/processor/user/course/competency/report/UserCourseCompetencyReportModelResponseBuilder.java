@@ -1,115 +1,107 @@
 package org.gooru.ds.user.processor.user.course.competency.report;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
-import org.gooru.ds.user.processor.user.course.competency.report.UserCourseCompetencyReportModelResponse.ClassCompetenciesResponseModel;
-import org.gooru.ds.user.processor.user.course.competency.report.UserCourseCompetencyReportModelResponse.CompetenciesResponseModel;
 import org.gooru.ds.user.processor.user.course.competency.report.UserCourseCompetencyReportModelResponse.ContextResponseModel;
 import org.gooru.ds.user.processor.user.course.competency.report.UserCourseCompetencyReportModelResponse.DomainCompetenciesResponseModel;
-import org.gooru.ds.user.processor.user.course.competency.report.UserCourseCompetencyReportModelResponse.StudentsResponseModel;
-import org.gooru.ds.user.processor.user.course.competency.report.UserCourseCompetencyReportModelResponse.UserCompetencyMatrixResponseModel;
+import org.gooru.ds.user.processor.user.course.competency.report.UserCourseCompetencyReportModelResponse.DomainsResponseModel;
+
+import io.vertx.core.json.JsonArray;
+import io.vertx.core.json.JsonObject;
 
 /**
  * @author szgooru on 17-Jul-2018
  */
 public final class UserCourseCompetencyReportModelResponseBuilder {
 
-	public static StudentsResponseModel buildStudentsResponseModel(List<UserCourseCompetencyReportModel> models,
+	public static JsonObject buildStudentsResponseModel(List<UserCourseCompetencyReportModel> models,
 			String studentId) {
-		StudentsResponseModel response = new StudentsResponseModel();
-		response.setUserCompetencyMatrix(new ArrayList<>());
+		JsonObject result = new JsonObject();
+		result.put(UserCourseCompetencyReportModelResponseConstants.ID, studentId);
+		result.put(UserCourseCompetencyReportModelResponseConstants.JSON_RESP_KEY_USERCOMPETENCY_MATRIX,
+				new JsonArray());
 
 		String previousDomainCode = null;
-		UserCompetencyMatrixResponseModel competencyMatrixReponse = null;
+		JsonObject competencyMatrixReponse = null;
 
 		for (UserCourseCompetencyReportModel model : models) {
 			if (competencyMatrixReponse == null) {
-				competencyMatrixReponse = createDomainModelInResponse(response, model);
+				competencyMatrixReponse = createDomainModelInResponse(result, model);
 			}
 
 			if (previousDomainCode != null) {
 				if (!Objects.equals(previousDomainCode, model.getDomainCode())) {
-					competencyMatrixReponse = createDomainModelInResponse(response, model);
+					competencyMatrixReponse = createDomainModelInResponse(result, model);
 				}
 			}
 
 			createCompetencyModelInResponse(competencyMatrixReponse, model);
-			response.setId(studentId);
 			previousDomainCode = model.getDomainCode();
 		}
-		return response;
+		return result;
 	}
 
-	private static void createCompetencyModelInResponse(UserCompetencyMatrixResponseModel competencyMatrixReponse,
+	private static void createCompetencyModelInResponse(JsonObject competencyMatrixReponse,
 			UserCourseCompetencyReportModel model) {
-		CompetenciesResponseModel competencyResponseModel = createCompetencyResponseModel(model);
-		competencyMatrixReponse.getCompetencies().add(competencyResponseModel);
+		competencyMatrixReponse
+				.getJsonObject(UserCourseCompetencyReportModelResponseConstants.JSON_RESP_KEY_COMPETENCIES)
+				.put(model.getCompetencyCode(), model.getStatus());
 	}
 
-	private static UserCompetencyMatrixResponseModel createDomainModelInResponse(StudentsResponseModel response,
-			UserCourseCompetencyReportModel model) {
-		UserCompetencyMatrixResponseModel responseModel = new UserCompetencyMatrixResponseModel();
-		responseModel.setDomainCode(model.getDomainCode());
-		responseModel.setCompetencies(new ArrayList<>());
-		response.getUserCompetencyMatrix().add(responseModel);
-		return responseModel;
+	private static JsonObject createDomainModelInResponse(JsonObject response, UserCourseCompetencyReportModel model) {
+		JsonObject result = new JsonObject();
+		result.put(UserCourseCompetencyReportModelResponseConstants.JSON_RESP_KEY_DOMAIN_CODE, model.getDomainCode());
+		result.put(UserCourseCompetencyReportModelResponseConstants.JSON_RESP_KEY_COMPETENCIES, new JsonObject());
+		response.getJsonArray(UserCourseCompetencyReportModelResponseConstants.JSON_RESP_KEY_USERCOMPETENCY_MATRIX)
+				.add(result);
+		return result;
 	}
 
-	private static CompetenciesResponseModel createCompetencyResponseModel(UserCourseCompetencyReportModel model) {
-		CompetenciesResponseModel responseModel = new CompetenciesResponseModel();
-		responseModel.setCompetencyCode(model.getCompetencyCode());
-		responseModel.setCompetencyName(model.getCompetencyName());
-		responseModel.setCompetencyDesc(model.getCompetencyDesc());
-		responseModel.setCompetencyStudentDesc(model.getCompetencyStudentDesc());
-		responseModel.setCompetencySeq(model.getCompetencySeq());
-		responseModel.setStatus(model.getStatus());
-		return responseModel;
-	}
-
-	public static Collection<ClassCompetenciesResponseModel> buildClassCompetenciesResponseModel(
+	public static UserCourseCompetencyReportModelResponse buildDomainCompetenciesResponseModel(
 			List<DomainCompetenciesModel> models) {
-		Map<String, ClassCompetenciesResponseModel> response = new HashMap<>();
+		UserCourseCompetencyReportModelResponse response = new UserCourseCompetencyReportModelResponse();
+		response.setDomainCompetencies(new ArrayList<>());
 
-		ClassCompetenciesResponseModel classCompetencyModel  = null;
+		DomainsResponseModel classCompetencyModel = null;
 		String previousDomainCode = null;
-		
+
 		for (DomainCompetenciesModel model : models) {
 			if (classCompetencyModel == null) {
 				classCompetencyModel = createDomainModel(response, model);
 			}
-			
+
 			if (previousDomainCode != null) {
 				if (!Objects.equals(previousDomainCode, model.getDomainCode())) {
 					classCompetencyModel = createDomainModel(response, model);
 				}
 			}
-			
-			createCompetencyModelInResponse(response, model);
+
+			createCompetencyModelInResponse(classCompetencyModel, model);
 			previousDomainCode = model.getDomainCode();
 		}
-		return response.values();
+
+		return response;
 	}
-	
-	public static ClassCompetenciesResponseModel createDomainModel(Map<String, ClassCompetenciesResponseModel> response, DomainCompetenciesModel model) {
-		ClassCompetenciesResponseModel responseModel = new ClassCompetenciesResponseModel();
+
+	public static DomainsResponseModel createDomainModel(UserCourseCompetencyReportModelResponse response,
+			DomainCompetenciesModel model) {
+		DomainsResponseModel responseModel = new DomainsResponseModel();
 		responseModel.setDomainCode(model.getDomainCode());
 		responseModel.setDomainName(model.getDomainName());
 		responseModel.setDomainSeq(model.getDomainSeq());
 		responseModel.setCompetencies(new ArrayList<>());
-		response.put(model.getDomainCode(), responseModel);
+		response.getDomainCompetencies().add(responseModel);
 		return responseModel;
 	}
-	
-	private static void createCompetencyModelInResponse(Map<String, ClassCompetenciesResponseModel> response, DomainCompetenciesModel model) {
+
+	private static void createCompetencyModelInResponse(DomainsResponseModel classCompetencyModel,
+			DomainCompetenciesModel model) {
 		DomainCompetenciesResponseModel competencyResponseModel = createCompetencyResponseModel(model);
-		response.get(model.getDomainCode()).getCompetencies().add(competencyResponseModel);
+		classCompetencyModel.getCompetencies().add(competencyResponseModel);
 	}
-	
+
 	private static DomainCompetenciesResponseModel createCompetencyResponseModel(DomainCompetenciesModel model) {
 		DomainCompetenciesResponseModel responseModel = new DomainCompetenciesResponseModel();
 		responseModel.setCompetencyCode(model.getCompetencyCode());
@@ -119,7 +111,6 @@ public final class UserCourseCompetencyReportModelResponseBuilder {
 		responseModel.setCompetencySeq(model.getCompetencySeq());
 		return responseModel;
 	}
-	
 
 	public static ContextResponseModel buildContextResponseModel(UserCourseCompetencyReportCommand command,
 			String subjectCode) {

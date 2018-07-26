@@ -54,7 +54,8 @@
         "http.port": 8080,
         "metrics.periodicity.seconds": 300,
         "event.bus.send.timeout.seconds": 180,
-        "request.body.size.max.mb": 5
+        "request.body.size.max.mb": 5,
+        "isCompressionSupported":true
       }
     }
   },
