@@ -30,4 +30,6 @@ public abstract class LearnerProfileStatusUpdateDao {
 			+ "<= EXCLUDED.status")
 	protected abstract void UpdateLearnerProfileCompetencyStatusTs(@BindBean List<InitialLearnerProfileReadModel> models, @Bind("userId") String userId,
 			@Bind("createdAt") Timestamp createdAt, @Bind("updatedAt") Timestamp updatedAt);
+	
+	
 }

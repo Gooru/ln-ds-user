@@ -20,10 +20,14 @@ public class InitialLearnerProfileReadService {
     private final InitialLearnerProfileReadDao baseUserProfileReadDao;    
     private static final Logger LOGGER = LoggerFactory.getLogger(InitialLearnerProfileReadService.class);
     private final LearnerProfileStatusUpdateDao learnerProfileStatusUpdateDao;
+    private final UserCompetencyStatusUpdateDao userCompetencyStatusUpdateDao;
+    private final GradeMapUpdateDao gradeMapUpdateDao;
 
-    InitialLearnerProfileReadService(DBI dbi) {
+    InitialLearnerProfileReadService(DBI dbi, DBI coreDbi) {
         this.baseUserProfileReadDao = dbi.onDemand(InitialLearnerProfileReadDao.class);     
         this.learnerProfileStatusUpdateDao = dbi.onDemand(LearnerProfileStatusUpdateDao.class);
+        this.userCompetencyStatusUpdateDao = coreDbi.onDemand(UserCompetencyStatusUpdateDao.class);
+        this.gradeMapUpdateDao = dbi.onDemand(GradeMapUpdateDao.class);
     }
     
     public ExecutionStatus fetchBaseProfile(InitialLearnerProfileReadCommand command) {
@@ -34,12 +38,20 @@ public class InitialLearnerProfileReadService {
         
         learnerProfileStatusUpdateDao.UpdateLearnerProfileCompetencyStatus(models, command.getUser(), createdAt, updatedAt);
         
-        LOGGER.debug("Initial Profile for the User" + command.getUser() + "updated in the LP Status table.");
+        LOGGER.info("Initial Profile for the User" + command.getUser() + "updated in the LP Status table.");
         
         learnerProfileStatusUpdateDao.UpdateLearnerProfileCompetencyStatusTs(models, command.getUser(), createdAt, updatedAt);
         
-        LOGGER.debug("Initial Profile for the User" + command.getUser() + "updated in the LP TS table.");
-       
+        LOGGER.info("Initial Profile for the User" + command.getUser() + "updated in the LP TS table.");
+
+        userCompetencyStatusUpdateDao.UpdateUserCompetencyStatus(models, command.getUser(), createdAt, updatedAt);
+        
+        LOGGER.info("Initial Profile for the User" + command.getUser() + "updated in the User Competency Status Table");
+        
+        gradeMapUpdateDao.UpdateLearnerProfileCompetencyStatus(command.getUser(), command.getSubjectCode(), command.getGrade());
+        
+        LOGGER.info("Grade Information for " + command.getUser() + "updated in the User Grade Map Table");
+
         if (models.isEmpty() || models == null) {
         	LOGGER.info("No Profile records available for " + command.getGrade());
         	return ExecutionStatus.SUCCESSFUL;
