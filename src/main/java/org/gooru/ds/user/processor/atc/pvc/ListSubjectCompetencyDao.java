@@ -2,6 +2,7 @@ package org.gooru.ds.user.processor.atc.pvc;
 
 import java.util.List;
 
+import org.gooru.ds.user.app.jdbi.PGArray;
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.BindBean;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
@@ -18,4 +19,9 @@ interface ListSubjectCompetencyDao {
    List<String> fetchGradeCompetencyList (
        @Bind("subjectCode") String subjectCode, @Bind("grade") String grade);
    
+   
+   @SqlQuery("select tx_comp_code from domain_competency_matrix where tx_subject_code = :subjectCode "
+	   		+ "and tx_comp_code = ANY(:competencyCodes)")
+	   List<String> fetchCourseCompetencyList (@Bind("subjectCode") String subjectCode, 
+			   @Bind("competencyCodes") PGArray<String> competencyCodes);
 }
