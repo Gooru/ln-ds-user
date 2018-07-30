@@ -27,7 +27,7 @@ public class CompetencyPerfVsCompletionProcessor implements MessageProcessor {
     private final Future<MessageResponse> result;
     private EventBusMessage eventBusMessage;
     private CompetencyPerfVsCompletionService perfVsCompetencyService =
-        new CompetencyPerfVsCompletionService(DBICreator.getDbiForDefaultDS(), DBICreator.getDbiForCoreDS());
+        new CompetencyPerfVsCompletionService();
 
     public CompetencyPerfVsCompletionProcessor(Vertx vertx, Message<JsonObject> message) {
         this.vertx = vertx;

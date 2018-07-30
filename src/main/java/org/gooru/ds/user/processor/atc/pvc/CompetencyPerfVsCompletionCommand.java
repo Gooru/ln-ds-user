@@ -21,6 +21,8 @@ public class CompetencyPerfVsCompletionCommand {
 	private String grade;
 	private String classId;
 	private String courseId;
+	private Integer month;
+    private Integer year;
 	
     public String getSubjectCode() {
 		return subjectCode;
@@ -52,6 +54,22 @@ public class CompetencyPerfVsCompletionCommand {
 	public void setCourseId(String courseId) {
 		this.courseId = courseId;
 	}
+	
+    public Integer getMonth() {
+		return month;
+	}
+
+	public void setMonth(Integer month) {
+		this.month = month;
+	}
+
+	public Integer getYear() {
+		return year;
+	}
+
+	public void setYear(Integer year) {
+		this.year = year;
+	}
 
 
 	static CompetencyPerfVsCompletionCommand builder(JsonObject requestBody) {
@@ -60,19 +78,13 @@ public class CompetencyPerfVsCompletionCommand {
         command.classId = requestBody.getString(CommandAttributes.CLASS_ID);        
         command.subjectCode = requestBody.getString(CommandAttributes.SUBJECT_CODE);
         command.grade = requestBody.getString(CommandAttributes.GRADE);
+        command.year = requestBody.getString(CommandAttributes.YEAR) != null ? 
+        		Integer.valueOf(requestBody.getString(CommandAttributes.YEAR)) : null;
+        command.month = requestBody.getString(CommandAttributes.MONTH) != null ? 
+        		Integer.valueOf(requestBody.getString(CommandAttributes.MONTH)) : null;
 
         command.validate();
         return command;
-    }
-
-    public LearnerProfileReadCommandBean asBean() {
-        LearnerProfileReadCommandBean bean = new LearnerProfileReadCommandBean();        
-        bean.subjectCode = subjectCode;
-        bean.grade = grade;
-        bean.classId = classId;
-        bean.courseId = courseId;
-
-        return bean;
     }
 
     private void validate() {
@@ -89,48 +101,8 @@ public class CompetencyPerfVsCompletionCommand {
     }
 
     private static CompetencyPerfVsCompletionCommand buildFromJsonObject(JsonObject requestBody) {
-        CompetencyPerfVsCompletionCommand command = new CompetencyPerfVsCompletionCommand();
-        
+        CompetencyPerfVsCompletionCommand command = new CompetencyPerfVsCompletionCommand();        
         return command;
-    }
-
-
-    public static class LearnerProfileReadCommandBean {
-		private String subjectCode;
-		private String grade;
-		private String classId;
-		private String courseId;
-		
-		public String getSubjectCode() {
-			return subjectCode;
-		}
-		public void setSubjectCode(String subjectCode) {
-			this.subjectCode = subjectCode;
-		}
-		public String getGrade() {
-			return grade;
-		}
-		public void setGrade(String grade) {
-			this.grade = grade;
-		}
-		
-		public String getClassId() {
-			return classId;
-		}
-
-		public void setClassId(String classId) {
-			this.classId = classId;
-		}
-
-		public String getCourseId() {
-			return courseId;
-		}
-
-		public void setCourseId(String courseId) {
-			this.courseId = courseId;
-		}
-
-
     }
 
     static class CommandAttributes {
@@ -138,6 +110,8 @@ public class CompetencyPerfVsCompletionCommand {
         private static final String COURSE_ID = "courseId";
         private static final String CLASS_ID = "classId";
         private static final String GRADE = "grade";
+        private static final String YEAR = "year";
+        private static final String MONTH = "month";
 
         private CommandAttributes() {
             throw new AssertionError();
