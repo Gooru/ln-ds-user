@@ -39,20 +39,26 @@ public class DispatcherVerticle extends AbstractVerticle {
         });
     }
 
-    private void processMessage(Message<JsonObject> message) {
-        String op = message.headers().get(Constants.Message.MSG_OP);
-        MessageProcessor processor = MessageProcessorBuilder.buildProcessor(vertx, message, op);
-        if (processor != null) {
-            vertx.<MessageResponse>executeBlocking(future -> {
-                processor.process().setHandler(asyncResult -> future.complete(asyncResult.result()));
-            }, event -> {
-                finishResponse(message, event);
-            });
-        } else {
-            LOGGER.warn("Invalid operation type");
-            ResponseUtil.processFailure(message);
-        }
-    }
+	private void processMessage(Message<JsonObject> message) {
+		String op = message.headers().get(Constants.Message.MSG_OP);
+		MessageProcessor processor = MessageProcessorBuilder.buildProcessor(vertx, message, op);
+		if (processor != null) {
+			vertx.<MessageResponse>executeBlocking(future -> {
+				processor.process().setHandler(asyncResult -> {
+					if (asyncResult.succeeded()) {
+						future.complete(asyncResult.result());
+					} else {
+						future.fail(asyncResult.cause());
+					}
+				});
+			}, event -> {
+				finishResponse(message, event);
+			});
+		} else {
+			LOGGER.warn("Invalid operation type");
+			ResponseUtil.processFailure(message);
+		}
+	}
 
     private void finishResponse(Message<JsonObject> message, AsyncResult<MessageResponse> asyncResult) {
         if (asyncResult.succeeded()) {
