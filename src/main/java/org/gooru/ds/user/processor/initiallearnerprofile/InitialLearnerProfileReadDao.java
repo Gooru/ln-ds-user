@@ -18,10 +18,9 @@ interface InitialLearnerProfileReadDao {
 	
     @Mapper(InitialLearnerProfileReadModelMapper.class)
     @SqlQuery("select tx_subject_code, tx_grade, gut_code, status, profile_source from grade_competency_profile where "
-    		+ "tx_subject_code = :subjectCode and tx_grade = :grade")
+    		+ "tx_subject_code = :subjectCode and grade_competency_profile.grade_seq < "
+    		+ "(select grade_seq from grade_competency_profile where tx_grade = :grade LIMIT 1)")
     List<InitialLearnerProfileReadModel> fetchBaseUserProfile (
         @BindBean InitialLearnerProfileReadCommand.BaseUserProfileCommandBean bean, @Bind("grade") String grade);
-
-	
 
 }
