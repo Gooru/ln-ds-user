@@ -1,5 +1,6 @@
 package org.gooru.ds.user.processor.baselearnerprofile.read;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -12,7 +13,7 @@ import org.gooru.ds.user.processor.baselearnerprofile.read.ReadBaselineLearnerPr
  */
 public final class ReadBaselineLearnerProfileModelResponseBuilder {
 
-	public static ReadBaselineLearnerProfileModelResponse build(List<ReadBaselineLearnerProfileModel> models) {
+	public static ReadBaselineLearnerProfileModelResponse build(List<ReadBaselineLearnerProfileModel> models, Timestamp lastCreated) {
 		ReadBaselineLearnerProfileModelResponse response = new ReadBaselineLearnerProfileModelResponse();
 		response.setUserCompetencyMatrix(new ArrayList<>());
         String previousDomainCode = null;
@@ -31,7 +32,10 @@ public final class ReadBaselineLearnerProfileModelResponseBuilder {
             createCompetencyModelInResponse(domainModelResponse, model);
             previousDomainCode = model.getDomainCode();
         }
-
+        
+        if (lastCreated != null) {
+            response.setCreatedAt(lastCreated.getTime());
+        }
         return response;
 	}
 	

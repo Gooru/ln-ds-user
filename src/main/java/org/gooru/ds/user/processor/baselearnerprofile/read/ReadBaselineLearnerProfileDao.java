@@ -1,5 +1,6 @@
 package org.gooru.ds.user.processor.baselearnerprofile.read;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.skife.jdbi.v2.sqlobject.BindBean;
@@ -26,4 +27,19 @@ public interface ReadBaselineLearnerProfileDao {
 			+ " cm.tx_subject_code = :subject ORDER BY cm.tx_domain_code, cm.tx_comp_seq ASC")
 	List<ReadBaselineLearnerProfileModel> readBaselineLearnerProfileIL(
 			@BindBean ReadBaselineLearnerProfileCommand.ReadBaselineLearnerProfileCommandBean bean);
+	
+    @SqlQuery("SELECT MAX(blp.created_at) FROM "
+            + "domain_competency_matrix cm LEFT JOIN baseline_learner_profile blp ON cm.tx_subject_code = blp.tx_subject_code AND "
+            + "cm.tx_comp_code = blp.gut_code AND blp.class_id = :classId AND blp.course_id = :courseId AND blp.user_id = :user WHERE "
+            + "cm.tx_subject_code = :subject")
+	Timestamp fetchLastCreatedTimeInClass(
+            @BindBean ReadBaselineLearnerProfileCommand.ReadBaselineLearnerProfileCommandBean bean);
+
+	@SqlQuery("SELECT MAX(blp.created_at) FROM "
+	    + "domain_competency_matrix cm LEFT JOIN baseline_learner_profile blp ON cm.tx_subject_code = blp.tx_subject_code AND "
+	    + "cm.tx_comp_code = blp.gut_code AND blp.course_id = :courseId AND blp.user_id = :user WHERE "
+	    + "cm.tx_subject_code = :subject")
+	Timestamp fetchLastCreatedTimeIL(
+            @BindBean ReadBaselineLearnerProfileCommand.ReadBaselineLearnerProfileCommandBean bean);
+	
 }

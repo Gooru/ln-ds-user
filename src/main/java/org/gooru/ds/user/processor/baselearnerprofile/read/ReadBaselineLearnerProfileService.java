@@ -1,5 +1,6 @@
 package org.gooru.ds.user.processor.baselearnerprofile.read;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,11 +28,15 @@ public class ReadBaselineLearnerProfileService {
 			ReadBaselineLearnerProfileCommand command) {
 
 		List<ReadBaselineLearnerProfileModel> models = null;
+		
+		Timestamp lastCreated = null;
 
 		if (command.getClassId() != null && !command.getClassId().isEmpty()) {
 			models = this.dao.readBaselineLearnerProfile(command.asBean(command));
+			lastCreated = this.dao.fetchLastCreatedTimeInClass(command.asBean(command));
 		} else {
 			models = this.dao.readBaselineLearnerProfileIL(command.asBean(command));
+			lastCreated = this.dao.fetchLastCreatedTimeIL(command.asBean(command));
 		}
 
 		if (models == null || models.isEmpty()) {
@@ -76,7 +81,7 @@ public class ReadBaselineLearnerProfileService {
 			}
 		});
 
-		return ReadBaselineLearnerProfileModelResponseBuilder.build(models);
+		return ReadBaselineLearnerProfileModelResponseBuilder.build(models, lastCreated);
 
 	}
 }
