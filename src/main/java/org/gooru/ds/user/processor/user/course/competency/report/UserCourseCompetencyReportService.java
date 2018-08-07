@@ -144,7 +144,10 @@ public class UserCourseCompetencyReportService {
 			// Just in case where course aggregated tags may be of different subject. We
 			// need the data to be filtered only for the subject asked for
 			if (comp.startsWith(subjectCode)) {
-				courseCompetencyList.add(allDomainCompetencyMap.get(comp));
+				DomainCompetenciesModel model = allDomainCompetencyMap.get(comp);
+				if (model != null) {
+					courseCompetencyList.add(allDomainCompetencyMap.get(comp));
+				}
 			}
 		});
 		
