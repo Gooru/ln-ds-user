@@ -7,6 +7,7 @@ import java.util.List;
  */
 public class ReadBaselineLearnerProfileModelResponse {
 	List<UserCompetencyMatrixDomainModelResponse> userCompetencyMatrix;
+	long createdAt;
 
 	public List<UserCompetencyMatrixDomainModelResponse> getUserCompetencyMatrix() {
 		return userCompetencyMatrix;
@@ -14,6 +15,14 @@ public class ReadBaselineLearnerProfileModelResponse {
 
 	public void setUserCompetencyMatrix(List<UserCompetencyMatrixDomainModelResponse> userCompetencyMatrix) {
 		this.userCompetencyMatrix = userCompetencyMatrix;
+	}
+	
+	public Long getCreatedAt() {
+        return createdAt;
+	}
+	
+	public void setCreatedAt(Long createdAt) {
+	    this.createdAt = createdAt;
 	}
 
 	static class UserCompetencyMatrixDomainModelResponse {

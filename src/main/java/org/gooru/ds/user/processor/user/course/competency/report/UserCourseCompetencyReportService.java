@@ -7,9 +7,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.gooru.ds.user.constants.StatusConstants;
+import org.gooru.ds.user.processor.baselearnerprofile.SubjectInferer;
 import org.gooru.ds.user.processor.dbhelpers.core.CoreService;
 import org.skife.jdbi.v2.DBI;
 import org.slf4j.Logger;
@@ -33,13 +35,15 @@ public class UserCourseCompetencyReportService {
 	}
 
 	public String fetchSubjectCode(UserCourseCompetencyReportCommand command) {
-		final String subjectCode = this.coreService.fetchCourseSubject(command.getCourseId());
-		if (subjectCode == null || subjectCode.isEmpty()) {
-			LOGGER.debug("Subject code is not present at course, returning empty");
-			return null;
+		String courseId = command.getCourseId();
+		String sc = SubjectInferer.build().inferSubjectForCourse(UUID.fromString(courseId));
+		if (sc == null) {
+			LOGGER.warn("Not able to find subject code for specified course '{}'", courseId);
+			throw new IllegalStateException("Not able to find subject code for specified course " + courseId);
 		}
 
-		return subjectCode;
+		LOGGER.debug("The Subject Code is" + sc);
+		return sc;
 	}
 
 	public JsonArray fetchUserCourseCompetencyMatrix(UserCourseCompetencyReportCommand command, String subjectCode) {
@@ -140,7 +144,10 @@ public class UserCourseCompetencyReportService {
 			// Just in case where course aggregated tags may be of different subject. We
 			// need the data to be filtered only for the subject asked for
 			if (comp.startsWith(subjectCode)) {
-				courseCompetencyList.add(allDomainCompetencyMap.get(comp));
+				DomainCompetenciesModel model = allDomainCompetencyMap.get(comp);
+				if (model != null) {
+					courseCompetencyList.add(allDomainCompetencyMap.get(comp));
+				}
 			}
 		});
 		

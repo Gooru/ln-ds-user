@@ -31,19 +31,19 @@ public class CompetencyCompletionService {
 		this.competencyCompletionDao = dbi.onDemand(CompetencyCompletionDao.class);
 	}
 	
-	JsonObject fetchUserCompetencyStatus(String user, String subjectCode, List<String> competencyCodes) {
+	JsonObject fetchUserCompetencyStatus(String user, String subjectCode, List<String> competencyCodes, 
+			Integer month, Integer year) {
 		
 		JsonObject counts = new JsonObject();
 		completionCount = 0;
 		List<CompetencyCompletionModel> userCompetencyCompletionModels = new ArrayList<>();
 		
-		if (competencyCodes != null && !competencyCodes.isEmpty()) {
+		if (competencyCodes != null && !competencyCodes.isEmpty() && (month == null || year == null)) {
 			userCompetencyCompletionModels = competencyCompletionDao.
-					fetchGradeCompetencyCompletion(user, subjectCode, PGArrayUtils.convertFromListStringToSqlArrayOfString(competencyCodes));
-		} else {
-			userCompetencyCompletionModels = competencyCompletionDao.
-					fetchSubjectCompetencyCompletion(user, subjectCode);
-			counts.put("totalCount", userCompetencyCompletionModels.size() + 1);
+					fetchCompetencyCompletion(user, subjectCode, PGArrayUtils.convertFromListStringToSqlArrayOfString(competencyCodes));
+		} else if (competencyCodes != null && !competencyCodes.isEmpty() && (month != null && year != null)){
+			userCompetencyCompletionModels = competencyCompletionDao.fetchCompetencyCompletionMonthBased(user, subjectCode, 
+					PGArrayUtils.convertFromListStringToSqlArrayOfString(competencyCodes), month, year);
 		}
 		
 		if (userCompetencyCompletionModels.isEmpty()) {
@@ -51,7 +51,7 @@ public class CompetencyCompletionService {
 		} else {
 			List<CompetencyCompletionModel> completed = userCompetencyCompletionModels.stream()
 					.filter(model -> model.getStatus() >= COMPLETED).collect(Collectors.toList());
-			completionCount = (completed.size() + 1);
+			completionCount = completed.size();
 			LOGGER.debug("Completed/Mastered Competencies " + completionCount);
 
 			
@@ -59,6 +59,7 @@ public class CompetencyCompletionService {
 			completed.forEach(model -> {
 				String domain = model.getDomainCode();
 				String compCode = model.getCompetencyCode();
+				LOGGER.debug("Completed/Mastered Competencies Code" + compCode);
 
 				if (completedCompMap.containsKey(domain)) {
 					Map<String, CompetencyCompletionModel> competencies = completedCompMap.get(domain);

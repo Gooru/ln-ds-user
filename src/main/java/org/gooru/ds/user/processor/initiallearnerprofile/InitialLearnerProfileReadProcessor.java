@@ -28,7 +28,7 @@ public class InitialLearnerProfileReadProcessor implements MessageProcessor {
     private final Future<MessageResponse> result;
     private static final Logger LOGGER = LoggerFactory.getLogger(InitialLearnerProfileReadProcessor.class);    
     private final InitialLearnerProfileReadService baseUserProfileReadService =
-        new InitialLearnerProfileReadService(DBICreator.getDbiForDefaultDS());
+        new InitialLearnerProfileReadService(DBICreator.getDbiForDefaultDS(), DBICreator.getDbiForCoreDS());
 
     public InitialLearnerProfileReadProcessor(Vertx vertx, Message<JsonObject> message) {
         this.vertx = vertx;
