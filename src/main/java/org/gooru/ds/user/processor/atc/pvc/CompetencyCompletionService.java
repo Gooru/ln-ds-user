@@ -83,7 +83,7 @@ public class CompetencyCompletionService {
 						CompetencyCompletionModel compModel = entry.getValue();
 						int compSeq = compModel.getCompetencySeq();
 
-						if (sequence < compSeq && status < ASSERTED) {
+						if (sequence < compSeq && status < ASSERTED && model.getStatus() != INFERRED) {							
 							model.setStatus(INFERRED);
 							completionCount++;
 						}

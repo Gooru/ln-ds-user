@@ -50,35 +50,40 @@ public class GradeBasedPerfVsCompletionCalculator {
 		List<String> classMembers = classMembersDao.fetchClassMembers(UUID.fromString(command.getClassId()));         
 		CompetencyCompletionService competencyCompletionService = new CompetencyCompletionService(DBICreator.getDbiForDefaultDS());
 
-		compCodes = listSubjectCompetencyDao.fetchGradeCompetencyList(command.getSubjectCode(), command.getGrade());
-		for(String cc : compCodes) {
-			LOGGER.debug("The grade competencies are " + cc);
-		}
-		totalCompetencies = Double.valueOf(compCodes.size());
-		LOGGER.debug("Total competencies for the grade are " + totalCompetencies);
-		//For each user - fetch %Score & %Completion
 		if (classMembers != null && !classMembers.isEmpty()) {
-			for (String cm : classMembers) {
-				JsonObject userPvC = new JsonObject();
-				userPvC.put(USERID, cm);
-				userPvC.put(TOTAL_COMPETENCIES, totalCompetencies);    				
-				counts = competencyCompletionService.fetchUserCompetencyStatus(cm, command.getSubjectCode(), compCodes, 
-						command.getMonth(), command.getYear()); 
-				LOGGER.debug("Total Grade Competencies completed " + counts.getDouble("completionCount"));
-				Double compCount = counts.getDouble("completionCount");
-				userPvC.put(COMPLETED_COMPETENCIES, compCount);
-				userPvC.put(PERCENT_COMPLETION, totalCompetencies != 0 ? (Double.valueOf(compCount/totalCompetencies) *100) : 0);
-				if (compCodes != null && !compCodes.isEmpty() && (command.getMonth() == null || command.getYear() == null)) {
-					userAvgScore = competencyPerformanceDao.fetchGradeCompetencyPerformance(cm, 
-							PGArrayUtils.convertFromListStringToSqlArrayOfString(compCodes));    					
-				} else if (compCodes != null && !compCodes.isEmpty() && (command.getMonth() != null && command.getYear() != null)) {
-					userAvgScore = competencyPerformanceDao.fetchGradeCompetencyPerformance(cm, 
-							PGArrayUtils.convertFromListStringToSqlArrayOfString(compCodes));    					
-				}    				
-				userPvC.put(PERCENT_SCORE, userAvgScore);
-				pvcArray.add(userPvC);            
-			}  		
-		}
+			
+			compCodes = listSubjectCompetencyDao.fetchGradeCompetencyList(command.getSubjectCode(), command.getGrade());
+			if (compCodes != null && compCodes.isEmpty()) {
+				for(String cc : compCodes) {
+					LOGGER.debug("The grade competencies are " + cc);
+				}
+				totalCompetencies = Double.valueOf(compCodes.size());
+				LOGGER.debug("Total competencies for the grade are " + totalCompetencies);
+				
+				for (String cm : classMembers) {
+					JsonObject userPvC = new JsonObject();
+					userPvC.put(USERID, cm);
+					userPvC.put(TOTAL_COMPETENCIES, totalCompetencies);    				
+					counts = competencyCompletionService.fetchUserCompetencyStatus(cm, command.getSubjectCode(), compCodes, 
+							command.getMonth(), command.getYear()); 
+					LOGGER.debug("Total Grade Competencies completed " + counts.getDouble("completionCount"));
+					Double compCount = counts.getDouble("completionCount");
+					userPvC.put(COMPLETED_COMPETENCIES, compCount);
+					userPvC.put(PERCENT_COMPLETION, totalCompetencies != 0 ? (Double.valueOf(compCount/totalCompetencies) *100) : 0);
+					if (compCodes != null && !compCodes.isEmpty() && (command.getMonth() == null || command.getYear() == null)) {
+						userAvgScore = competencyPerformanceDao.fetchGradeCompetencyPerformance(cm, 
+								PGArrayUtils.convertFromListStringToSqlArrayOfString(compCodes));    					
+					} else if (compCodes != null && !compCodes.isEmpty() && (command.getMonth() != null && command.getYear() != null)) {
+						userAvgScore = competencyPerformanceDao.fetchGradeCompetencyPerformance(cm, 
+								PGArrayUtils.convertFromListStringToSqlArrayOfString(compCodes));    					
+					}    				
+					userPvC.put(PERCENT_SCORE, userAvgScore);
+					pvcArray.add(userPvC);            
+				}  		
+				
+			}
+
+		} //classMembers
 		
 		return pvcArray;
 	}
