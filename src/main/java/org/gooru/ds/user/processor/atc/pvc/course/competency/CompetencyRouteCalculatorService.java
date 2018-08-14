@@ -50,25 +50,30 @@ class CompetencyRouteCalculatorService implements CompetencyRouteCalculator {
     }
 
     private CompetencyRouteModel doProcess() {
-        LOGGER.debug("Validating class/course");
-        validateClassCourse();
-        LOGGER.debug("Initializing subject code");
-        initializeSubjectCode();
-        LOGGER.debug("Fetching destination gut codes");
-        fetchDestinationGutCodes();
-        LOGGER.debug("Filtering gut codes for competencies");
-        filterGutCodesForCompetencyForSpecifiedSubject();
-        LOGGER.debug("Creating destination competency map");
-        createDestinationCompetencyMap();
-        LOGGER.debug("User user proficiency for specified subject and domains");
-        fetchUserProficiencyInSpecifiedSubjectAndDomains();
-        LOGGER.debug("Creating proficiency competency map");
-        createProficiencyCompetencyMap();
-        LOGGER.debug("Calculating competency route");
-        calculateCompetencyRoute();
-        LOGGER.debug("Building competency route model");
-        return new CompetencyRouteModelBuilder(getTaxonomyDao())
-            .build(new SubjectCode(subjectCode), competencyRouteToDestination);
+    	try {
+            LOGGER.debug("Validating class/course");
+            validateClassCourse();
+            LOGGER.debug("Initializing subject code");
+            initializeSubjectCode();
+            LOGGER.debug("Fetching destination gut codes");
+            fetchDestinationGutCodes();
+            LOGGER.debug("Filtering gut codes for competencies");
+            filterGutCodesForCompetencyForSpecifiedSubject();
+            LOGGER.debug("Creating destination competency map");
+            createDestinationCompetencyMap();
+            LOGGER.debug("User user proficiency for specified subject and domains");
+            fetchUserProficiencyInSpecifiedSubjectAndDomains();
+            LOGGER.debug("Creating proficiency competency map");
+            createProficiencyCompetencyMap();
+            LOGGER.debug("Calculating competency route");
+            calculateCompetencyRoute();
+            LOGGER.debug("Building competency route model");
+            return new CompetencyRouteModelBuilder(getTaxonomyDao())
+                .build(new SubjectCode(subjectCode), competencyRouteToDestination);    		
+    	} catch ( IllegalStateException ex) {
+    		LOGGER.warn("Caught IllegalStateException ");
+    		return null;    		
+    	}
     }
 
     private void calculateCompetencyRoute() {

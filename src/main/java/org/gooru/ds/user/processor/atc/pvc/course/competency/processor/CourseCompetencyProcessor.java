@@ -20,12 +20,15 @@ public class CourseCompetencyProcessor {
     public List<String> getCourseCompetency(String courseId) {
     	
     	CourseCompetencyCommand command = CourseCompetencyCommand.builder(userUUIDStr, courseId);
-    	JsonObject competencyRoute = courseCompetencyService.calculateCompetencyRoute(command);
-    	
+    	JsonObject competencyRoute = courseCompetencyService.calculateCompetencyRoute(command);    	
     	LOGGER.debug("The Route Map is " + competencyRoute.encodePrettily());
-		List competencyList = courseCompetencyService.calculateCourseCompetencies(command);
-
-    	return competencyList;
+    	
+    	if (!competencyRoute.isEmpty()) {
+    		List competencyList = courseCompetencyService.calculateCourseCompetencies(command);
+        	return (competencyList != null) ? competencyList : null;    		
+    	} else {
+    		return null;
+    	}
 
     }
 }
