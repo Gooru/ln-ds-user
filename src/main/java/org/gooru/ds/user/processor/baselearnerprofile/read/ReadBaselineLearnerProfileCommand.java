@@ -69,23 +69,37 @@ public class ReadBaselineLearnerProfileCommand {
 	}
 
 	private void validate() {
-        if (courseId == null) {
-            LOGGER.debug("Invalid Course Id");
-            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Invalid courseId1");
-        } else if (user == null) {
-            LOGGER.debug("Invalid user");
-            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Invalid user");
-        }
+		validateCourseId(courseId);
+		validateUser(user);
+	}
+
+	private void validateCourseId(String courseId) {
+		if (!validateParam(courseId)) {
+			LOGGER.debug("Invalid Course Id");
+			throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Invalid courseId");
+		}
+	}
+
+	private void validateUser(String userId) {
+		if (!validateParam(userId)) {
+			LOGGER.debug("Invalid user");
+			throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Invalid user");
+		}
+	}
+
+	private boolean validateParam(String param) {
+		return !(param == null || param.isEmpty() || param.trim().isEmpty());
 	}
 
 	private static String initializeSubjectCode(String courseId) {
 		String sc = SubjectInferer.build().inferSubjectForCourse(UUID.fromString(courseId));
 		if (sc == null) {
-			LOGGER.warn("Not able to find subject code for specified course '{}'", courseId);
-			throw new IllegalStateException("Not able to find subject code for specified course " + courseId);
+			LOGGER.warn("Specified course '{}' is not mapped to any subject", courseId);
+			throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
+					"Specified course " + courseId + " is not mapped to any subject");
 		}
 
-		LOGGER.debug("The Subject Code is" + sc);
+		LOGGER.debug("The Subject Code is '{}'", sc);
 		return sc;
 	}
 
