@@ -24,10 +24,10 @@ public class CourseCompetencyService {
     }
 
     JsonObject calculateCompetencyRoute(CourseCompetencyCommand command) {
-        CompetencyRouteCalculator competencyRouteCalculator = CompetencyRouteCalculator.build();
+        CompetencyRouteCalculator competencyRouteCalculatorService = CompetencyRouteCalculator.build();
         CompetencyRouteModel competencyRouteModel =
-            competencyRouteCalculator.calculateCompetencyRoute(command.asRouteCalculatorModel());
-        return competencyRouteModel.toJson();
+            competencyRouteCalculatorService.calculateCompetencyRoute(command.asRouteCalculatorModel());        
+        return (competencyRouteModel== null) ? new JsonObject() : competencyRouteModel.toJson();
     }
     
     
@@ -35,8 +35,12 @@ public class CourseCompetencyService {
         CompetencyRouteCalculator competencyRouteCalculator = CompetencyRouteCalculator.build();
         CompetencyRouteModel competencyRouteModel =
             competencyRouteCalculator.calculateCompetencyRoute(command.asRouteCalculatorModel());
-        List<String> competencyList = createCompetencyList(competencyRouteModel);        
-        return competencyList;
+        if (competencyRouteModel != null) {
+            List<String> competencyList = createCompetencyList(competencyRouteModel);        
+            return competencyList;        	
+        } else {
+        	return null;
+        }
     }
 
     private List<String> createCompetencyList(CompetencyRouteModel competencyRouteModel) {    	

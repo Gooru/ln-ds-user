@@ -45,9 +45,10 @@ public class CompetencyCompletionService {
 			userCompetencyCompletionModels = competencyCompletionDao.fetchCompetencyCompletionMonthBased(user, subjectCode, 
 					PGArrayUtils.convertFromListStringToSqlArrayOfString(competencyCodes), month, year);
 		}
-		
+
 		if (userCompetencyCompletionModels.isEmpty()) {
-			return null;			
+			LOGGER.info("The User competency Status model is empty");
+			return new JsonObject();
 		} else {
 			List<CompetencyCompletionModel> completed = userCompetencyCompletionModels.stream()
 					.filter(model -> model.getStatus() >= COMPLETED).collect(Collectors.toList());
@@ -83,7 +84,7 @@ public class CompetencyCompletionService {
 						CompetencyCompletionModel compModel = entry.getValue();
 						int compSeq = compModel.getCompetencySeq();
 
-						if (sequence < compSeq && status < ASSERTED) {
+						if (sequence < compSeq && status < ASSERTED && model.getStatus() != INFERRED) {							
 							model.setStatus(INFERRED);
 							completionCount++;
 						}
