@@ -5,6 +5,7 @@ import java.util.UUID;
 import org.gooru.ds.user.constants.HttpConstants;
 import org.gooru.ds.user.exceptions.HttpResponseWrapperException;
 import org.gooru.ds.user.processor.baselearnerprofile.SubjectInferer;
+import org.gooru.ds.user.processor.utils.ValidatorUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -71,24 +72,28 @@ public class ReadBaselineLearnerProfileCommand {
 	private void validate() {
 		validateCourseId(courseId);
 		validateUser(user);
+		validateClassId(classId);
 	}
 
 	private void validateCourseId(String courseId) {
-		if (!validateParam(courseId)) {
-			LOGGER.debug("Invalid Course Id");
-			throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Invalid courseId");
+		if (!ValidatorUtils.isValidUUID(courseId)) {
+			LOGGER.debug("Invalid Course Id '{}'", courseId);
+			throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Invalid value of courseId");
 		}
 	}
 
 	private void validateUser(String userId) {
-		if (!validateParam(userId)) {
-			LOGGER.debug("Invalid user");
-			throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Invalid user");
+		if (!ValidatorUtils.isValidUUID(userId)) {
+			LOGGER.debug("Invalid user '{}'", userId);
+			throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Invalid value of user");
 		}
 	}
 
-	private boolean validateParam(String param) {
-		return !(param == null || param.isEmpty() || param.trim().isEmpty());
+	private void validateClassId(String classId) {
+		if (classId != null && !ValidatorUtils.isValidUUID(classId)) {
+			LOGGER.debug("Invalid class id '{}'", classId);
+			throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Invalid value of class id");
+		}
 	}
 
 	private static String initializeSubjectCode(String courseId) {
