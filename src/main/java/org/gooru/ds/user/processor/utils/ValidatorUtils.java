@@ -23,10 +23,10 @@ public final class ValidatorUtils {
 	public static boolean isValidUUID(String id) {
 		try {
 			if (!isNullOrEmpty(id) && id.length() == 36) {
-				UUID uuid = UUID.fromString(id);
-				return (uuid != null);
+				UUID.fromString(id);
+				return true;
 			}
-			
+
 			return false;
 		} catch (IllegalArgumentException iae) {
 			LOGGER.warn("invalid UUID string '{}'", id);
