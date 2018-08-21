@@ -2,6 +2,7 @@ package org.gooru.ds.user.processor.baselearnerprofile;
 
 import java.util.UUID;
 
+import org.gooru.ds.user.processor.utils.ValidatorUtils;
 import org.skife.jdbi.v2.DBI;
 
 /**
@@ -20,7 +21,7 @@ class SubjectInfererImpl implements SubjectInferer {
     public String inferSubjectForCourse(UUID courseId) {
         if (courseId != null) {
             String subjectCode = getSubjectInfererDao().fetchSubjectBucketForCourse(courseId);
-            if (subjectCode != null) {
+            if (!ValidatorUtils.isNullOrEmpty(subjectCode)) {
                 if (isFrameworkCode(subjectCode)) {
                     subjectCode = getSubjectInfererDao().fetchGutSubjectCodeForFrameworkSubjectCode(subjectCode);
                 }
