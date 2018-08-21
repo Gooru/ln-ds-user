@@ -97,15 +97,7 @@ public class ReadBaselineLearnerProfileCommand {
 	}
 
 	private static String initializeSubjectCode(String courseId) {
-		String sc = SubjectInferer.build().inferSubjectForCourse(UUID.fromString(courseId));
-		if (sc == null) {
-			LOGGER.warn("Specified course '{}' is not mapped to any subject", courseId);
-			throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
-					"Specified course " + courseId + " is not mapped to any subject");
-		}
-
-		LOGGER.debug("The Subject Code is '{}'", sc);
-		return sc;
+		return SubjectInferer.build().inferSubjectForCourse(UUID.fromString(courseId));
 	}
 
 	public static class ReadBaselineLearnerProfileCommandBean {

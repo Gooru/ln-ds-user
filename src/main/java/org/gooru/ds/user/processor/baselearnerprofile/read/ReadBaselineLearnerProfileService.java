@@ -30,13 +30,18 @@ public class ReadBaselineLearnerProfileService {
 		List<ReadBaselineLearnerProfileModel> models = null;
 		
 		Timestamp lastCreated = null;
-
+		ReadBaselineLearnerProfileCommand.ReadBaselineLearnerProfileCommandBean bean = command.asBean(command);
+		if (bean.getSubject() == null) {
+			LOGGER.debug("no subject found, returning empty response");
+			return new ReadBaselineLearnerProfileModelResponse();
+		}
+		
 		if (command.getClassId() != null && !command.getClassId().isEmpty()) {
-			models = this.dao.readBaselineLearnerProfile(command.asBean(command));
-			lastCreated = this.dao.fetchLastCreatedTimeInClass(command.asBean(command));
+			models = this.dao.readBaselineLearnerProfile(bean);
+			lastCreated = this.dao.fetchLastCreatedTimeInClass(bean);
 		} else {
-			models = this.dao.readBaselineLearnerProfileIL(command.asBean(command));
-			lastCreated = this.dao.fetchLastCreatedTimeIL(command.asBean(command));
+			models = this.dao.readBaselineLearnerProfileIL(bean);
+			lastCreated = this.dao.fetchLastCreatedTimeIL(bean);
 		}
 
 		if (models == null || models.isEmpty()) {
