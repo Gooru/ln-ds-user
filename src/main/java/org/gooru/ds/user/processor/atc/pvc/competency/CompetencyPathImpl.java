@@ -5,6 +5,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * @author ashish.
  */
@@ -16,6 +19,8 @@ class CompetencyPathImpl implements CompetencyPath {
     private final List<ProgressionLevel> path;
     private boolean isProgressionOrder;
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(CompetencyPathImpl.class);
+    		
     CompetencyPathImpl(Competency startPoint, Competency endPoint) {
         Objects.requireNonNull(startPoint);
         Objects.requireNonNull(endPoint);
@@ -35,9 +40,10 @@ class CompetencyPathImpl implements CompetencyPath {
     private List<ProgressionLevel> calculatePath() {
         int beginningProgression = startPoint.getProgressionLevel().getProgressionLevel();
         int endProgression = endPoint.getProgressionLevel().getProgressionLevel();
+        
         List<ProgressionLevel> result = new ArrayList<>();
-        if ((beginningProgression == endProgression) || (beginningProgression == endProgression - 1)) {
-            return Collections.emptyList();
+        if ((beginningProgression == endProgression)) {
+            return Collections.emptyList();            
         } else if (beginningProgression < endProgression) {
             isProgressionOrder = true;
             //Mukul - I need it inclusive, i.e the Top Competency should be included in the path
