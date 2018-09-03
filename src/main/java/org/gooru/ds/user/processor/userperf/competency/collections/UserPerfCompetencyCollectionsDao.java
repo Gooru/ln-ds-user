@@ -18,13 +18,13 @@ interface UserPerfCompetencyCollectionsDao {
 			@BindBean UserPerfCompetencyCollectionsCommand.UserPerfCompetencyCollectionsCommandBean userPerfCompetencyCollectionsCommandBean);
 
 	@Mapper(UserPerfCompetencyCollectionsModelMapper.class)
-	@SqlQuery("select collection_id, latest_session_id, collection_score, collection_type "
+	@SqlQuery("select collection_id, latest_session_id, collection_score, collection_type, class_id, course_id, unit_id, lesson_id "
 			+ " from learner_profile_competency_evidence where gut_code = :gutCode and user_id = :user")
 	List<UserPerfCompetencyCollectionsModel> fetchUserPerfCompetencyCollectionsByGut(
 			@BindBean UserPerfCompetencyCollectionsCommand.UserPerfCompetencyCollectionsCommandBean userPerfCompetencyCollectionsCommandBean);
 	
 	@Mapper(UserPerfCompetencyCollectionsModelMapper.class)
-	@SqlQuery("select collection_id, latest_session_id, collection_score, collection_type "
+	@SqlQuery("select collection_id, latest_session_id, collection_score, collection_type, class_id, course_id, unit_id, lesson_id "
 			+ " from learner_profile_competency_evidence_ts where status = :status and gut_code = :gutCode and user_id = :user")
 	List<UserPerfCompetencyCollectionsModel> fetchUserPerfCompetencyCollectionsByGutAndStatus(
 			@BindBean UserPerfCompetencyCollectionsCommand.UserPerfCompetencyCollectionsCommandBean userPerfCompetencyCollectionsCommandBean);

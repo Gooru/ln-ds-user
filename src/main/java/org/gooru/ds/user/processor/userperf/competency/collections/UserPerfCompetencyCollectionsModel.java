@@ -6,6 +6,11 @@ public class UserPerfCompetencyCollectionsModel {
 	private String title;
 	private String sessionId;
 	private String collectionType;
+	private String classId;
+	private String courseId;
+	private String unitId;
+	private String lessonId;
+	
 	private Long timeSpent;
 	private Integer reaction;
 	private Double score;
@@ -32,6 +37,38 @@ public class UserPerfCompetencyCollectionsModel {
 
 	public void setSessionId(String sessionId) {
 		this.sessionId = sessionId;
+	}
+	
+	public String getClassId() {
+		return classId;
+	}
+
+	public void setClassId(String classId) {
+		this.classId = classId;
+	}
+
+	public String getCourseId() {
+		return courseId;
+	}
+
+	public void setCourseId(String courseId) {
+		this.courseId = courseId;
+	}
+
+	public String getUnitId() {
+		return unitId;
+	}
+
+	public void setUnitId(String unitId) {
+		this.unitId = unitId;
+	}
+
+	public String getLessonId() {
+		return lessonId;
+	}
+
+	public void setLessonId(String lessonId) {
+		this.lessonId = lessonId;
 	}
 
 	public Long getTimeSpent() {
