@@ -1,6 +1,5 @@
 package org.gooru.ds.user.processor.atc.pvc;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +23,7 @@ public class CompetencyCompletionService {
 	private static final int INFERRED = 2;
 	private static final int ASSERTED = 3;
 	private static final int COMPLETED = 4;
+	private static final int INPROGRESS = 1;
 	private final CompetencyCompletionDao competencyCompletionDao;
 	private Integer completionCount;
 
@@ -54,7 +54,6 @@ public class CompetencyCompletionService {
 					.filter(model -> model.getStatus() >= COMPLETED).collect(Collectors.toList());
 			completionCount = completed.size();
 			LOGGER.debug("Completed/Mastered Competencies " + completionCount);
-
 			
 			Map<String, Map<String, CompetencyCompletionModel>> completedCompMap = new HashMap<>();
 			completed.forEach(model -> {
@@ -94,6 +93,12 @@ public class CompetencyCompletionService {
 			
 			counts.put("completionCount", completionCount);
 			LOGGER.debug("Completed/Mastered/Inferred " + completionCount);
+			
+			List<CompetencyCompletionModel> inProgress = userCompetencyCompletionModels.stream()
+			    .filter(model -> model.getStatus() >= INPROGRESS).collect(Collectors.toList());
+			counts.put("inprogressCount", inProgress.size());
+			LOGGER.debug("InProgress Competencies " + inProgress.size());
+			
 			return counts;
 		}
 	}
