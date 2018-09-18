@@ -95,7 +95,7 @@ public class CompetencyCompletionService {
 			LOGGER.debug("Completed/Mastered/Inferred " + completionCount);
 			
 			List<CompetencyCompletionModel> inProgress = userCompetencyCompletionModels.stream()
-			    .filter(model -> model.getStatus() >= INPROGRESS).collect(Collectors.toList());
+			    .filter(model -> model.getStatus() == INPROGRESS).collect(Collectors.toList());
 			counts.put("inprogressCount", inProgress.size());
 			LOGGER.debug("InProgress Competencies " + inProgress.size());
 			
