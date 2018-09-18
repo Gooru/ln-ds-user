@@ -1,6 +1,5 @@
 package org.gooru.ds.user.processor.baselearnerprofile;
 
-import org.gooru.ds.user.app.data.EventBusMessage;
 import org.gooru.ds.user.app.jdbi.DBICreator;
 import org.gooru.ds.user.constants.Constants;
 import org.gooru.ds.user.constants.ExecutionStatus;
