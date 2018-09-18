@@ -2,7 +2,6 @@ package org.gooru.ds.user.processor.atc.pvc;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 import org.gooru.ds.user.app.jdbi.DBICreator;
@@ -25,6 +24,7 @@ public class CourseBasedPerfVsCompletionCalculator {
 	
 	public static final String PERCENT_COMPLETION = "percentCompletion";
 	public static final String COMPLETED_COMPETENCIES = "completedCompetencies";
+	public static final String INPROGRESS_COMPETENCIES = "inprogressCompetencies";
 	public static final String TOTAL_COMPETENCIES = "totalCompetencies";
 	public static final String PERCENT_SCORE = "percentScore";
 	public static final String USERID = "userId";
@@ -39,10 +39,8 @@ public class CourseBasedPerfVsCompletionCalculator {
 
 	public JsonArray fetchCourseBasedUserPerformanceCompletion (CompetencyPerfVsCompletionCommand command) {		   
     	JsonArray pvcArray = new JsonArray();
-    	List<String> compCodes = new ArrayList<>();
     	List<String> courseCompList = new ArrayList<>();
     	JsonObject counts;
-    	JsonObject courseCompetency;
     	Double totalCompetencies = 0.0;
     	Double userAvgScore = 0.0;
 	
@@ -70,6 +68,8 @@ public class CourseBasedPerfVsCompletionCalculator {
 					if (!counts.isEmpty() && counts != null) {
 						Double compCount = counts.getDouble("completionCount");  
 						userPvC.put(COMPLETED_COMPETENCIES, compCount);
+						Double inprogressCount = counts.getDouble("inprogressCount");
+						userPvC.put(INPROGRESS_COMPETENCIES, inprogressCount);
 						userPvC.put(PERCENT_COMPLETION, totalCompetencies != 0 ? (Double.valueOf(compCount/totalCompetencies) *100) : 0);
 						
 						if (courseCompList != null && !courseCompList.isEmpty() && (command.getMonth() == null || command.getYear() == null)) {
