@@ -28,6 +28,7 @@ public class RouteCompetencyMatrixConfigurator implements RouteConfigurator {
         router.get(Constants.Route.API_COURSE_COMPETENCY_MATRIX).handler(this::userCourseCompetencyMatrix);
         router.get(Constants.Route.API_DOMAIN_COMPETENCY_MATRIX).handler(this::userDomainCompetencyMatrix);
         router.get(Constants.Route.API_COMPETENCY_MATRIX_COORDS).handler(this::userCompetencyMatrixCoords);
+        router.get(Constants.Route.API_GRADE_BOUNDARY).handler(this::gradeBoundary);
     }
 
     private void userCompetencyMatrix(RoutingContext routingContext) {
@@ -53,6 +54,11 @@ public class RouteCompetencyMatrixConfigurator implements RouteConfigurator {
     private void userCompetencyMatrixCoords(RoutingContext routingContext) {
         RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_COMPETENCY_MATRIX_COORDS,
             Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
+    }
+    
+    private void gradeBoundary(RoutingContext routingContext) {
+    	RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_GRADE_BOUNDARY,
+                Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
     }
 }
 
