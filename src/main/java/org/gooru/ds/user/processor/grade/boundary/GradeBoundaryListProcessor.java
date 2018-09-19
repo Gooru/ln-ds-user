@@ -3,7 +3,6 @@ package org.gooru.ds.user.processor.grade.boundary;
 import org.gooru.ds.user.app.data.EventBusMessage;
 import org.gooru.ds.user.app.jdbi.DBICreator;
 import org.gooru.ds.user.processor.MessageProcessor;
-import org.gooru.ds.user.processor.competency.subjects.CompetencySubjectListModelResponse;
 import org.gooru.ds.user.responses.MessageResponse;
 import org.gooru.ds.user.responses.MessageResponseFactory;
 import org.slf4j.Logger;
