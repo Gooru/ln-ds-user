@@ -9,8 +9,7 @@ import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
 public interface GradeBoundaryListDao {
 
 	@Mapper(GradeBoundaryListModelMapper.class)
-	@SqlQuery("SELECT gcb.tx_domain_code, gcb.highline_tx_comp_code FROM grade_master gm, grade_competency_bound gcb WHERE gcb.grade_id = gm.id"
-			+ " AND gm.tx_subject_code = :subject AND gm.grade = :grade")
+	@SqlQuery("SELECT tx_domain_code, highline_tx_comp_code FROM grade_competency_bound WHERE grade_id = :grade")
 	List<GradeBoundaryListModel> fetchGradeBoundaryList(
 			@BindBean GradeBoundaryListCommand.GradeBoundaryListCommandBean bean);
 }

@@ -2,7 +2,6 @@ package org.gooru.ds.user.processor.grade.boundary;
 
 import org.gooru.ds.user.constants.HttpConstants;
 import org.gooru.ds.user.exceptions.HttpResponseWrapperException;
-import org.gooru.ds.user.processor.utils.ValidatorUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,8 +12,7 @@ import io.vertx.core.json.JsonObject;
  */
 public class GradeBoundaryListCommand {
 
-	private String grade;
-	private String subject;
+	private int grade;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(GradeBoundaryListCommand.class);
 
@@ -25,57 +23,47 @@ public class GradeBoundaryListCommand {
 	}
 
 	private void validate() {
-		if (ValidatorUtils.isNullOrEmpty(grade)) {
+		if (grade <= 0) {
 			LOGGER.debug("invalid grade sent in request");
 			throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Invalid grade");
 		}
 
-		if (ValidatorUtils.isNullOrEmpty(subject)) {
-			LOGGER.debug("invalid subject sent in request");
-			throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Invalid subject");
-		}
-		
-		LOGGER.info("GRADE:={} || SUBJECT:={}", grade, subject);
+		LOGGER.info("GRADE:={}", grade);
 	}
 
 	private static GradeBoundaryListCommand buildFromJson(JsonObject requestBody) {
 		GradeBoundaryListCommand command = new GradeBoundaryListCommand();
-		command.grade = requestBody.getString(CommandAttributes.GRADE);
-		command.subject = requestBody.getString(CommandAttributes.SUBJECT);
+		String strGrade = requestBody.getString(CommandAttributes.GRADE);
+		try {
+		command.grade = Integer.parseInt(strGrade);
+		} catch (NumberFormatException nfe) {
+			LOGGER.debug("invalid format of the grade");
+			throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Invalid grade format");
+		}
+		
 		return command;
 	}
 	
 	public GradeBoundaryListCommandBean asBean() {
 		GradeBoundaryListCommandBean bean = new GradeBoundaryListCommandBean();
 		bean.grade = grade;
-		bean.subject = subject;
 		return bean;
 	}
 
 	public static class GradeBoundaryListCommandBean {
-		private String grade;
-		private String subject;
+		private int grade;
 
-		public String getGrade() {
+		public int getGrade() {
 			return grade;
 		}
 
-		public void setGrade(String grade) {
+		public void setGrade(int grade) {
 			this.grade = grade;
-		}
-
-		public String getSubject() {
-			return subject;
-		}
-
-		public void setSubject(String subject) {
-			this.subject = subject;
 		}
 	}
 
 	static class CommandAttributes {
-		private static final String GRADE = "grade";
-		private static final String SUBJECT = "subject";
+		private static final String GRADE = "gradeId";
 
 		private CommandAttributes() {
 			throw new AssertionError();
