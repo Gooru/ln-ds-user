@@ -7,6 +7,8 @@ public class GradeMasterModel {
 
 	private int id;
 	private String grade;
+	private String description;
+	private String thumbnail;
 	private int sequence;
 
 	public int getId() {
@@ -23,6 +25,22 @@ public class GradeMasterModel {
 
 	public void setGrade(String grade) {
 		this.grade = grade;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
 	}
 
 	public int getSequence() {
