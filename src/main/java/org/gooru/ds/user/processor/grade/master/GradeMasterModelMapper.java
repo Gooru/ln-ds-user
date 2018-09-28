@@ -16,6 +16,8 @@ public class GradeMasterModelMapper implements ResultSetMapper<GradeMasterModel>
 		GradeMasterModel model = new GradeMasterModel();
 		model.setId(r.getInt("id"));
 		model.setGrade(r.getString("grade"));
+		model.setDescription(r.getString("description"));
+		model.setThumbnail(r.getString("thumbnail"));
 		model.setSequence(r.getInt("grade_seq"));
 		return model;
 	}

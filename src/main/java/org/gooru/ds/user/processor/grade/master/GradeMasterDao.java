@@ -12,6 +12,6 @@ import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
 public interface GradeMasterDao {
 
 	@Mapper(GradeMasterModelMapper.class)
-	@SqlQuery("SELECT id, grade, grade_seq FROM grade_master WHERE tx_subject_code = :subject")
+	@SqlQuery("SELECT id, grade, description, thumbnail, grade_seq FROM grade_master WHERE tx_subject_code = :subject")
 	List<GradeMasterModel> fetchGrades(@Bind("subject") String subject);
 }

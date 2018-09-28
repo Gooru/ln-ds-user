@@ -1,6 +1,8 @@
 create table grade_master (
 	id bigserial PRIMARY KEY,
 	grade text NOT NULL,
+	description text,
+	thumbnail text,
 	tx_subject_code text NOT NULL,
 	grade_seq int NOT NULL,
 	created_at timestamp NOT NULL DEFAULT (NOW() AT TIME ZONE 'UTC'),
@@ -25,7 +27,7 @@ INSERT INTO grade_master(grade, tx_subject_code, grade_seq) VALUES ('Pre-calculu
 
 create table grade_competency_bound (
 	id bigserial PRIMARY KEY,
-	grade_id int references grade_master(id),
+	grade_id bigint references grade_master(id),
 	tx_subject_code text NOT NULL,
 	tx_domain_code text NOT NULL,
 	highline_tx_comp_code text,
