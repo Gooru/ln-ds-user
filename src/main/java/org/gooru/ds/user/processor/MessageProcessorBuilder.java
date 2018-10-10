@@ -7,6 +7,8 @@ import org.gooru.ds.user.processor.baselearnerprofile.LearnerProfileBaselineUpda
 import org.gooru.ds.user.processor.baselearnerprofile.read.ReadBaselineLearnerProfileProcessor;
 import org.gooru.ds.user.processor.competency.subjects.CompetencySubjectListProcessor;
 import org.gooru.ds.user.processor.competencymatrixcoordinates.CompetencyMatrixCoordinatesProcessor;
+import org.gooru.ds.user.processor.grade.boundary.GradeBoundaryListProcessor;
+import org.gooru.ds.user.processor.grade.master.GradeMasterProcessor;
 import org.gooru.ds.user.processor.initiallearnerprofile.InitialLearnerProfileReadProcessor;
 import org.gooru.ds.user.processor.user.competencylist.UserCompetencyListProcessor;
 import org.gooru.ds.user.processor.user.course.competency.report.UserCourseCompetencyReportProcessor;
@@ -112,6 +114,10 @@ public final class MessageProcessorBuilder {
             return new CompetencyMatrixCoordinatesProcessor(vertx, message);
         case Constants.Message.MSG_OP_COMPETENCY_SUBJECTS:
             return new CompetencySubjectListProcessor(vertx, message);
+        case Constants.Message.MSG_OP_GRADES:
+        	return new GradeMasterProcessor(vertx, message);
+        case Constants.Message.MSG_OP_GRADE_BOUNDARY:
+        	return new GradeBoundaryListProcessor(vertx, message);
         case Constants.Message.MSG_OP_INITIAL_LEARNER_PROFILE:
             return new InitialLearnerProfileReadProcessor(vertx, message);
         case Constants.Message.MSG_OP_BASE_LEARNER_PROFILE:

@@ -3,7 +3,6 @@ package org.gooru.ds.user.processor.baselearnerprofile;
 import java.sql.Timestamp;
 import java.util.List;
 
-import org.gooru.ds.user.app.jdbi.DBICreator;
 import org.gooru.ds.user.constants.ExecutionStatus;
 import org.skife.jdbi.v2.DBI;
 import org.slf4j.Logger;
@@ -26,13 +25,19 @@ public class LearnerProfileReadService {
     }
     
     public ExecutionStatus fetchCurrentLearnerProfileAndSetBaseline(LearnerProfileBaselineUpdateCommand command) {
+    	LearnerProfileBaselineUpdateCommand.LearnerProfileReadCommandBean bean = command.asBean();
+    	
+    	// If no subject assigned to course return empty response.
+    	if (bean.getSubjectCode() == null) {
+    		LOGGER.warn("No subject found for course '{}', returning empty", command.getCourseId());
+    		return ExecutionStatus.SUCCESSFUL;
+    	}
+    	
         List<LearnerProfileReadModel> models = learnerProfileReadDao.fetchCurrentLearnerProfile(command.asBean());         
-
         if (models.isEmpty() || models == null) {
         	LOGGER.info("No Profile records available for " + command.getUser());
         	return ExecutionStatus.SUCCESSFUL;
         }
-
         
 		Timestamp createdAt = new Timestamp(System.currentTimeMillis());
 		LOGGER.info("Timestamp is: " + createdAt);

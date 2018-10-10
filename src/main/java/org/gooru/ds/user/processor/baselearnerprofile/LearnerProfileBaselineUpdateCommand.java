@@ -93,8 +93,7 @@ public class LearnerProfileBaselineUpdateCommand {
     	String sc = SubjectInferer.build().inferSubjectForCourse(UUID.fromString(courseId));
     	if (sc == null) {
     		LOGGER.warn("Not able to find subject code for specified course '{}'", courseId);
-    		throw new IllegalStateException(
-    				"Not able to find subject code for specified course " +  courseId);
+    		return null;
     	}
     	
     	LOGGER.debug("The Subject Code is" + sc);
