@@ -25,10 +25,12 @@ public class CompetencyCompletionService {
 	private static final int COMPLETED = 4;
 	private static final int INPROGRESS = 1;
 	private final CompetencyCompletionDao competencyCompletionDao;
+	private final UserSkylineDao userSkylineDao;
 	private Integer completionCount;
 
 	CompetencyCompletionService(DBI dbi) {
 		this.competencyCompletionDao = dbi.onDemand(CompetencyCompletionDao.class);
+		this.userSkylineDao = dbi.onDemand(UserSkylineDao.class);
 	}
 	
 	JsonObject fetchUserCompetencyStatus(String user, String subjectCode, List<String> competencyCodes, 
@@ -37,13 +39,16 @@ public class CompetencyCompletionService {
 		JsonObject counts = new JsonObject();
 		completionCount = 0;
 		List<CompetencyCompletionModel> userCompetencyCompletionModels = new ArrayList<>();
+		List<UserSkylineModel> userSkylineModels = new ArrayList<>();
 		
 		if (competencyCodes != null && !competencyCodes.isEmpty() && (month == null || year == null)) {
 			userCompetencyCompletionModels = competencyCompletionDao.
 					fetchCompetencyCompletion(user, subjectCode, PGArrayUtils.convertFromListStringToSqlArrayOfString(competencyCodes));
+			userSkylineModels = userSkylineDao.fetchUserSkyline(user, subjectCode);
 		} else if (competencyCodes != null && !competencyCodes.isEmpty() && (month != null && year != null)){
 			userCompetencyCompletionModels = competencyCompletionDao.fetchCompetencyCompletionMonthBased(user, subjectCode, 
 					PGArrayUtils.convertFromListStringToSqlArrayOfString(competencyCodes), month, year);
+			userSkylineModels = userSkylineDao.fetchUserSkylineMonthBased(user, subjectCode, month, year);
 		}
 
 		if (userCompetencyCompletionModels.isEmpty()) {
@@ -56,6 +61,8 @@ public class CompetencyCompletionService {
 			LOGGER.debug("Completed/Mastered Competencies " + completionCount);
 			
 			Map<String, Map<String, CompetencyCompletionModel>> completedCompMap = new HashMap<>();
+			Map<String, Map<String, UserSkylineModel>> skylineCompletedCompMap = new HashMap<>();
+			
 			completed.forEach(model -> {
 				String domain = model.getDomainCode();
 				String compCode = model.getCompetencyCode();
@@ -72,6 +79,29 @@ public class CompetencyCompletionService {
 				}
 			});
 
+			if (!userSkylineModels.isEmpty()) {
+				//We need to filter out completed/mastered specifically since in the L_p_C_s_ts table
+				//in-progress is also stored.			
+				List<UserSkylineModel> skylineCompleted = userSkylineModels.stream()
+						.filter(skymodel -> skymodel.getStatus() >= COMPLETED).collect(Collectors.toList());
+				
+				skylineCompleted.forEach(model -> {
+					String domain = model.getDomainCode();
+					String compCode = model.getCompetencyCode();
+					LOGGER.debug("Skyline Completed/Mastered Competencies Code" + compCode);
+
+					if (skylineCompletedCompMap.containsKey(domain)) {
+						Map<String, UserSkylineModel> skyCompetencies = skylineCompletedCompMap.get(domain);
+						skyCompetencies.put(compCode, model);
+						skylineCompletedCompMap.put(domain, skyCompetencies);
+					} else {
+						Map<String, UserSkylineModel> skyCompetencies = new HashMap<>();
+						skyCompetencies.put(compCode, model);
+						skylineCompletedCompMap.put(domain, skyCompetencies);
+					}
+				});				
+			}			
+			
 			userCompetencyCompletionModels.forEach(model -> {
 				String domainCode = model.getDomainCode();
 				int sequence = model.getCompetencySeq();
@@ -84,6 +114,19 @@ public class CompetencyCompletionService {
 						int compSeq = compModel.getCompetencySeq();
 
 						if (sequence < compSeq && status < ASSERTED && model.getStatus() != INFERRED) {							
+							model.setStatus(INFERRED);
+							completionCount++;
+						}
+					}
+				}
+				//Run through the skyline to check for completion
+				if (skylineCompletedCompMap != null && !skylineCompletedCompMap.isEmpty() && skylineCompletedCompMap.containsKey(domainCode)) {
+					Map<String, UserSkylineModel> skyCompetencies = skylineCompletedCompMap.get(domainCode);
+					for (Map.Entry<String, UserSkylineModel> entry : skyCompetencies.entrySet()) {
+						UserSkylineModel skyCompModel = entry.getValue();
+						int skyCompSeq = skyCompModel.getCompetencySeq();
+
+						if (sequence < skyCompSeq && status < ASSERTED && model.getStatus() != INFERRED) {							
 							model.setStatus(INFERRED);
 							completionCount++;
 						}
