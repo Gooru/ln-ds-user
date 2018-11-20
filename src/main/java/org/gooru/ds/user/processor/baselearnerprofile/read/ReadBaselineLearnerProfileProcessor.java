@@ -46,6 +46,10 @@ public class ReadBaselineLearnerProfileProcessor implements MessageProcessor {
 
   private void readBaselineLearnerProfile(ReadBaselineLearnerProfileCommand command) {
     String outcome = this.service.fetchBaselineLearnerProfile(command);
-    result.complete(MessageResponseFactory.createOkayResponse(new JsonObject(outcome)));
+		if (outcome == null || outcome.isEmpty()) {
+			result.complete(MessageResponseFactory.createOkayResponse(new JsonObject()));
+		} else {
+			result.complete(MessageResponseFactory.createOkayResponse(new JsonObject(outcome)));
+		}
   }
 }
