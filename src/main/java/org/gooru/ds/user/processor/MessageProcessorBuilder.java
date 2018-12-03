@@ -14,6 +14,7 @@ import org.gooru.ds.user.processor.user.competencylist.UserCompetencyListProcess
 import org.gooru.ds.user.processor.user.course.competency.report.UserCourseCompetencyReportProcessor;
 import org.gooru.ds.user.processor.user.distribution.UserDistributionProcessor;
 import org.gooru.ds.user.processor.user.journey.UserJourneyProcessor;
+import org.gooru.ds.user.processor.user.skylinecompetency.next.UserSkylineCompetencyNextProcessor;
 import org.gooru.ds.user.processor.usercompetencymatrix.UserCompetencyMatrixProcessor;
 import org.gooru.ds.user.processor.usercoursecompetencymatrix.UserCourseCompetencyMatrixProcessor;
 import org.gooru.ds.user.processor.userdomaincompetencymatrix.UserDomainCompetencyMatrixProcessor;
@@ -110,6 +111,9 @@ public final class MessageProcessorBuilder {
             return new UserCourseCompetencyMatrixProcessor(vertx, message);
         case Constants.Message.MSG_OP_COMPETENCY_MATRIX_DOMAIN:
             return new UserDomainCompetencyMatrixProcessor(vertx, message);
+
+        case Constants.Message.MSG_OP_SKYLINE_COMPETENCY_NEXT:
+            return new UserSkylineCompetencyNextProcessor(vertx, message);
         case Constants.Message.MSG_OP_COMPETENCY_MATRIX_COORDS:
             return new CompetencyMatrixCoordinatesProcessor(vertx, message);
         case Constants.Message.MSG_OP_COMPETENCY_SUBJECTS:
