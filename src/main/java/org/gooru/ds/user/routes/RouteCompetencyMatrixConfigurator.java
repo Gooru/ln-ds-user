@@ -27,6 +27,8 @@ public class RouteCompetencyMatrixConfigurator implements RouteConfigurator {
 		router.get(Constants.Route.API_COMPETENCY_SUBJECTS).handler(this::competencySubjects);
 		router.get(Constants.Route.API_COURSE_COMPETENCY_MATRIX).handler(this::userCourseCompetencyMatrix);
 		router.get(Constants.Route.API_DOMAIN_COMPETENCY_MATRIX).handler(this::userDomainCompetencyMatrix);
+
+		router.get(Constants.Route.API_SKYLINE_COMPETENCY_NEXT).handler(this::userSkylineCompetencyNext);
 		router.get(Constants.Route.API_COMPETENCY_MATRIX_COORDS).handler(this::userCompetencyMatrixCoords);
 		router.get(Constants.Route.API_GRADE_BOUNDARY).handler(this::gradeBoundary);
 		router.get(Constants.Route.API_GRADES).handler(this::grades);
@@ -49,6 +51,12 @@ public class RouteCompetencyMatrixConfigurator implements RouteConfigurator {
 
 	private void userDomainCompetencyMatrix(RoutingContext routingContext) {
 		RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_COMPETENCY_MATRIX_DOMAIN,
+				Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
+	}
+	
+	//Mukul
+	private void userSkylineCompetencyNext(RoutingContext routingContext) {
+		RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_SKYLINE_COMPETENCY_NEXT,
 				Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
 	}
 
