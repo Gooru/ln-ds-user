@@ -3,6 +3,7 @@ package org.gooru.ds.user.processor;
 import org.gooru.ds.user.constants.Constants;
 import org.gooru.ds.user.processor.activeuserlist.ActiveUserListProcessor;
 import org.gooru.ds.user.processor.atc.pvc.CompetencyPerfVsCompletionProcessor;
+import org.gooru.ds.user.processor.atc.recompute.GradeBasedCompetencyStatsProcessor;
 import org.gooru.ds.user.processor.baselearnerprofile.LearnerProfileBaselineUpdateProcessor;
 import org.gooru.ds.user.processor.baselearnerprofile.read.ReadBaselineLearnerProfileProcessor;
 import org.gooru.ds.user.processor.competency.subjects.CompetencySubjectListProcessor;
@@ -128,6 +129,8 @@ public final class MessageProcessorBuilder {
             return new LearnerProfileBaselineUpdateProcessor(vertx, message);
         case Constants.Message.MSG_OP_USERS_PERF_VS_COMPLETION:
         	return new CompetencyPerfVsCompletionProcessor(vertx, message);     
+        case Constants.Message.MSG_OP_ATC:
+        	return new GradeBasedCompetencyStatsProcessor(vertx, message);     
         case Constants.Message.MSG_OP_READ_BASELINE_LEARNER_PROFILE:
         	return new ReadBaselineLearnerProfileProcessor(vertx, message);
         default:
