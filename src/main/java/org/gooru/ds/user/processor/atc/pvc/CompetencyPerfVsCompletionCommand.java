@@ -18,7 +18,6 @@ public class CompetencyPerfVsCompletionCommand {
 	private static final Logger LOGGER = LoggerFactory.getLogger(CompetencyPerfVsCompletionCommand.class);
 
 	private String subjectCode;
-	private String grade;
 	private String classId;
 	private String courseId;
 	private Integer month;
@@ -30,13 +29,6 @@ public class CompetencyPerfVsCompletionCommand {
 
 	public void setSubjectCode(String subjectCode) {
 		this.subjectCode = subjectCode;
-	}
-	public String getGrade() {
-		return grade;
-	}
-
-	public void setGrade(String grade) {
-		this.grade = grade;
 	}
 
 	public String getClassId() {
@@ -77,7 +69,6 @@ public class CompetencyPerfVsCompletionCommand {
         command.courseId = requestBody.getString(CommandAttributes.COURSE_ID);
         command.classId = requestBody.getString(CommandAttributes.CLASS_ID);        
         command.subjectCode = requestBody.getString(CommandAttributes.SUBJECT_CODE);
-        command.grade = requestBody.getString(CommandAttributes.GRADE);
         command.year = requestBody.getString(CommandAttributes.YEAR) != null ? 
         		Integer.valueOf(requestBody.getString(CommandAttributes.YEAR)) : null;
         command.month = requestBody.getString(CommandAttributes.MONTH) != null ? 
@@ -109,7 +100,6 @@ public class CompetencyPerfVsCompletionCommand {
         private static final String SUBJECT_CODE = "subjectCode";
         private static final String COURSE_ID = "courseId";
         private static final String CLASS_ID = "classId";
-        private static final String GRADE = "grade";
         private static final String YEAR = "year";
         private static final String MONTH = "month";
 

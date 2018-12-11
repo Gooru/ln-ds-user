@@ -14,16 +14,9 @@ public class CompetencyPerfVsCompletionService {
  
     public JsonArray fetchUserPerformanceCompletion (CompetencyPerfVsCompletionCommand command) {	   
     	JsonArray pvcArray = new JsonArray();
-    	if (!StringUtil.isNullOrEmpty(command.getGrade())) {
-    	    GradeBasedPerfVsCompletionCalculator gradeBasedPerfVsCompletionCalculator =
-    	            new GradeBasedPerfVsCompletionCalculator(DBICreator.getDbiForDefaultDS(), DBICreator.getDbiForCoreDS());
-    	    pvcArray = gradeBasedPerfVsCompletionCalculator.fetchGradeBasedUserPerformanceCompletion(command);
-    	} else if (StringUtil.isNullOrEmpty(command.getGrade())) {    		
     	    CourseBasedPerfVsCompletionCalculator courseBasedPerfVsCompletionCalculator =
     	            new CourseBasedPerfVsCompletionCalculator(DBICreator.getDbiForDefaultDS(), DBICreator.getDbiForCoreDS());
     	    pvcArray = courseBasedPerfVsCompletionCalculator.fetchCourseBasedUserPerformanceCompletion(command);
-    	}
-
     	return pvcArray;
     }
 
