@@ -123,8 +123,6 @@ public final class MessageProcessorBuilder {
         	return new GradeMasterProcessor(vertx, message);
         case Constants.Message.MSG_OP_GRADE_BOUNDARY:
         	return new GradeBoundaryListProcessor(vertx, message);
-        case Constants.Message.MSG_OP_INITIAL_LEARNER_PROFILE:
-            return new InitialLearnerProfileReadProcessor(vertx, message);
         case Constants.Message.MSG_OP_BASE_LEARNER_PROFILE:
             return new LearnerProfileBaselineUpdateProcessor(vertx, message);
         case Constants.Message.MSG_OP_USERS_PERF_VS_COMPLETION:

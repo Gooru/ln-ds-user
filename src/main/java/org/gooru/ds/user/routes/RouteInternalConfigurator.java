@@ -31,7 +31,7 @@ class RouteInternalConfigurator implements RouteConfigurator {
     
         eb = vertx.eventBus();
         mbusTimeout = config.getLong(Constants.EventBus.MBUS_TIMEOUT, 30L) * 1000;
-        router.get(Constants.Route.API_INTERNAL_INITIAL_LEARNER_PROFILE).handler(this::initialLearnerProfile);
+//        router.get(Constants.Route.API_INTERNAL_INITIAL_LEARNER_PROFILE).handler(this::initialLearnerProfile);
         router.get(Constants.Route.API_INTERNAL_BASE_LEARNER_PROFILE).handler(this::baseLearnerProfile);
         
         LOGGER.debug("Configuring routes for internal route");
@@ -50,14 +50,14 @@ class RouteInternalConfigurator implements RouteConfigurator {
 
     }
  
-    private void initialLearnerProfile(RoutingContext routingContext) {
-    	DeliveryOptions options = new DeliveryOptions().setSendTimeout(mbusTimeout)
-    			.addHeader(Constants.Message.MSG_OP, Constants.Message.MSG_OP_INITIAL_LEARNER_PROFILE);
-    	eb.<JsonObject>send(Constants.EventBus.MBEP_DISPATCHER, RouteRequestUtility.getBodyForMessage(routingContext, true), options);            
-    	routingContext.response().setStatusCode(200).end();   
-
-
-    }
+//    private void initialLearnerProfile(RoutingContext routingContext) {
+//    	DeliveryOptions options = new DeliveryOptions().setSendTimeout(mbusTimeout)
+//    			.addHeader(Constants.Message.MSG_OP, Constants.Message.MSG_OP_INITIAL_LEARNER_PROFILE);
+//    	eb.<JsonObject>send(Constants.EventBus.MBEP_DISPATCHER, RouteRequestUtility.getBodyForMessage(routingContext, true), options);            
+//    	routingContext.response().setStatusCode(200).end();   
+//
+//
+//    }
 
     private void baseLearnerProfile(RoutingContext routingContext) {
     	DeliveryOptions options = new DeliveryOptions().setSendTimeout(mbusTimeout)
