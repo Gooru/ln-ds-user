@@ -44,6 +44,8 @@ public final class Constants {
         public static final String MSG_OP_COMPETENCY_MATRIX = "mb.op.competency.matrix";
         public static final String MSG_OP_COMPETENCY_MATRIX_COURSE = "mb.op.competency.matrix.course";
         public static final String MSG_OP_COMPETENCY_MATRIX_DOMAIN = "mb.op.competency.matrix.domain";
+
+        public static final String MSG_OP_SKYLINE_COMPETENCY_NEXT = "mb.op.skyline.competency.next";
         public static final String MSG_OP_COMPETENCY_MATRIX_COORDS = "mb.op.competency.matrix.coords";
         public static final String MSG_OP_COMPETENCY_SUBJECTS = "mb.op.competency.subjects";
         public static final String MSG_OP_GRADES = "mb.op.grades";
@@ -138,6 +140,8 @@ public final class Constants {
         public static final String API_COMPETENCY_SUBJECTS = API_BASE_ROUTE + "tx/subjects";
         public static final String API_COURSE_COMPETENCY_MATRIX = API_BASE_ROUTE + "tx/competency/matrix/course";
         public static final String API_DOMAIN_COMPETENCY_MATRIX = API_BASE_ROUTE + "tx/competency/matrix/domain";
+        //Mukul
+        public static final String API_SKYLINE_COMPETENCY_NEXT = API_BASE_ROUTE + "tx/competency/next";
         public static final String API_COMPETENCY_MATRIX_COORDS = API_BASE_ROUTE + "tx/competency/matrix/coordinates";
         
         public static final String API_GRADES = API_BASE_ROUTE + "tx/grades";
