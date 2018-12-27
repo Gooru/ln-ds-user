@@ -1,4 +1,4 @@
-package org.gooru.ds.user.processor.atc.pvc;
+package org.gooru.ds.user.processor.atc.recompute;
 
 import java.util.UUID;
 
@@ -13,13 +13,12 @@ import io.vertx.core.json.JsonObject;
 /**
  * @author mukul@gooru
  */
-public class CompetencyPerfVsCompletionCommand {
+public class GradeBasedCompetencyStatsCommand {
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(CompetencyPerfVsCompletionCommand.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(GradeBasedCompetencyStatsCommand.class);
 
 	private String subjectCode;
 	private String classId;
-	private String courseId;
 	private Integer month;
     private Integer year;
 	
@@ -37,14 +36,6 @@ public class CompetencyPerfVsCompletionCommand {
 
 	public void setClassId(String classId) {
 		this.classId = classId;
-	}
-
-	public String getCourseId() {
-		return courseId;
-	}
-
-	public void setCourseId(String courseId) {
-		this.courseId = courseId;
 	}
 	
     public Integer getMonth() {
@@ -64,9 +55,8 @@ public class CompetencyPerfVsCompletionCommand {
 	}
 
 
-	static CompetencyPerfVsCompletionCommand builder(JsonObject requestBody) {
-        CompetencyPerfVsCompletionCommand command = buildFromJsonObject(requestBody);
-        command.courseId = requestBody.getString(CommandAttributes.COURSE_ID);
+	static GradeBasedCompetencyStatsCommand builder(JsonObject requestBody) {
+        GradeBasedCompetencyStatsCommand command = buildFromJsonObject(requestBody);
         command.classId = requestBody.getString(CommandAttributes.CLASS_ID);        
         command.subjectCode = requestBody.getString(CommandAttributes.SUBJECT_CODE);
         command.year = requestBody.getString(CommandAttributes.YEAR) != null ? 
@@ -78,27 +68,24 @@ public class CompetencyPerfVsCompletionCommand {
         return command;
     }
 
-    private void validate() {
-        if (classId == null) {
-            LOGGER.debug("Invalid ClassId");
-            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Invalid classId");
-        } else if (courseId == null) {
-            LOGGER.debug("Invalid courseId");
-            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Invalid courseId");
-        } else if (subjectCode == null) {
-            LOGGER.debug("Invalid subjectCode");
-            throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Invalid subjectCode");
-        }
-    }
+	private void validate() {
+		if (classId == null) {
+			LOGGER.debug("Invalid ClassId");
+			throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Invalid classId");
+		}
+		else if (subjectCode == null) {
+			LOGGER.debug("Invalid subjectCode");
+			throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Invalid subjectCode");
+		}
+		}
 
-    private static CompetencyPerfVsCompletionCommand buildFromJsonObject(JsonObject requestBody) {
-        CompetencyPerfVsCompletionCommand command = new CompetencyPerfVsCompletionCommand();        
+    private static GradeBasedCompetencyStatsCommand buildFromJsonObject(JsonObject requestBody) {
+        GradeBasedCompetencyStatsCommand command = new GradeBasedCompetencyStatsCommand();        
         return command;
     }
 
     static class CommandAttributes {
         private static final String SUBJECT_CODE = "subjectCode";
-        private static final String COURSE_ID = "courseId";
         private static final String CLASS_ID = "classId";
         private static final String YEAR = "year";
         private static final String MONTH = "month";

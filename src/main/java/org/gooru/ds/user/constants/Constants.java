@@ -64,11 +64,13 @@ public final class Constants {
         public static final String MSG_OP_USER_COURSE_COMPETENCY_REPORT = "mb.op.user.course.competency.report";
         
         //Initial Learner Profile
-        public static final String MSG_OP_INITIAL_LEARNER_PROFILE = "mb.op.initial.learner.profile";
+//        public static final String MSG_OP_INITIAL_LEARNER_PROFILE = "mb.op.initial.learner.profile";
         //Baseline Learner Profile
         public static final String MSG_OP_BASE_LEARNER_PROFILE = "mb.op.base.learner.profile";
         //Navigator Course Reports
         public static final String MSG_OP_USERS_PERF_VS_COMPLETION = "mb.op.users.performance.vs.completion";
+        //Mukul - Update
+        public static final String MSG_OP_ATC = "mb.op.atc";
         //Read baseline learner profile
         public static final String MSG_OP_READ_BASELINE_LEARNER_PROFILE = "mb.op.base.learner.profile.read";
         
@@ -148,10 +150,12 @@ public final class Constants {
         public static final String API_GRADE_BOUNDARY = API_BASE_ROUTE + "tx/grade/boundary/:gradeId";
         
         //Initial Learner Profile Setup
-        public static final String API_INTERNAL_INITIAL_LEARNER_PROFILE = "/api/internal/lp/initial";
+//        public static final String API_INTERNAL_INITIAL_LEARNER_PROFILE = "/api/internal/lp/initial";
         public static final String API_INTERNAL_BASE_LEARNER_PROFILE = "/api/internal/lp/baseline";
         //Navigator Course Reports
         public static final String API_NC_PERF_VS_COMPLETION = API_BASE_ROUTE + "nc/atc/pvc";
+        //Mukul - Update
+        public static final String API_ATC = API_BASE_ROUTE + "nc/atc/recompute";
         // User course competency report - domain level summary
         //http://staging.gooru.org/api/ds/users/v2/user/competency/report/course
         public static final String API_USER_COURSE_COMPETENCY_REPORT = API_BASE_ROUTE + "user/competency/report/course";        
