@@ -1,5 +1,7 @@
 package org.gooru.ds.user.processor.usercoursecompetencymatrix;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import org.gooru.ds.user.app.components.utilities.CommonUtils;
 import org.gooru.ds.user.constants.HttpConstants;
 import org.gooru.ds.user.exceptions.HttpResponseWrapperException;
@@ -47,6 +49,11 @@ class UserCourseCompetencyMatrixCommand {
     bean.subject = subject;
     bean.month = month;
     bean.year = year;
+
+    LocalDateTime ldt = LocalDateTime.of(year, month, 1, 0, 0);
+    LocalDateTime endOfMonth = ldt.withDayOfYear(ldt.toLocalDate().lengthOfMonth());
+    bean.toDate = Timestamp.valueOf(endOfMonth);
+
     return bean;
   }
 
@@ -90,6 +97,7 @@ class UserCourseCompetencyMatrixCommand {
     private String user;
     private Integer month;
     private Integer year;
+    private Timestamp toDate;
 
     public String getSubject() {
       return subject;
@@ -121,6 +129,14 @@ class UserCourseCompetencyMatrixCommand {
 
     public void setYear(Integer year) {
       this.year = year;
+    }
+
+    public Timestamp getToDate() {
+      return toDate;
+    }
+
+    public void setToDate(Timestamp toDate) {
+      this.toDate = toDate;
     }
 
   }

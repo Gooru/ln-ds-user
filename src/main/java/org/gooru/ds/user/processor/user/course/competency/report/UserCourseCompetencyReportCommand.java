@@ -1,5 +1,7 @@
 package org.gooru.ds.user.processor.user.course.competency.report;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import org.gooru.ds.user.app.components.utilities.CommonUtils;
@@ -76,6 +78,20 @@ public class UserCourseCompetencyReportCommand {
     bean.fromYear = fromYear;
     bean.toMonth = toMonth;
     bean.toYear = toYear;
+    
+    if (bean.filter.equalsIgnoreCase(FILTER_CUMULATIVE)) {
+      LocalDateTime ldt = LocalDateTime.of(bean.toYear, bean.toMonth, 1, 0, 0);
+      LocalDateTime endOfMonth = ldt.withDayOfYear(ldt.toLocalDate().lengthOfMonth());
+      bean.toDate = Timestamp.valueOf(endOfMonth);
+    } else {
+      LocalDateTime frmLdt = LocalDateTime.of(bean.fromYear, bean.fromMonth, 1, 0, 0);
+      LocalDateTime frmEndOfMonth = frmLdt.withDayOfYear(frmLdt.toLocalDate().lengthOfMonth());
+      bean.fromDate = Timestamp.valueOf(frmEndOfMonth);
+      
+      LocalDateTime ldt = LocalDateTime.of(bean.toYear, bean.toMonth, 1, 0, 0);
+      LocalDateTime endOfMonth = ldt.withDayOfYear(ldt.toLocalDate().lengthOfMonth());
+      bean.toDate = Timestamp.valueOf(endOfMonth);
+    }
 
     return bean;
   }
@@ -185,6 +201,8 @@ public class UserCourseCompetencyReportCommand {
     private Integer toMonth;
     private Integer toYear;
     private String subject;
+    private Timestamp fromDate;
+    private Timestamp toDate; 
 
     public String getClassId() {
       return classId;
@@ -257,6 +275,23 @@ public class UserCourseCompetencyReportCommand {
     public void setSubject(String subject) {
       this.subject = subject;
     }
+
+    public Timestamp getFromDate() {
+      return fromDate;
+    }
+
+    public void setFromDate(Timestamp fromDate) {
+      this.fromDate = fromDate;
+    }
+
+    public Timestamp getToDate() {
+      return toDate;
+    }
+
+    public void setToDate(Timestamp toDate) {
+      this.toDate = toDate;
+    }
+    
   }
 
   static class CommandAttributes {
