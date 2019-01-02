@@ -1,7 +1,9 @@
 package org.gooru.ds.user.processor.user.course.competency.report;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 import org.gooru.ds.user.app.components.utilities.CommonUtils;
@@ -80,14 +82,15 @@ public class UserCourseCompetencyReportCommand {
     bean.toYear = toYear;
     
     if (bean.filter.equalsIgnoreCase(FILTER_CUMULATIVE)) {
-      LocalDateTime ldt = LocalDateTime.of(bean.toYear, bean.toMonth, 1, 0, 0);
-      LocalDateTime endOfMonth = ldt.withDayOfMonth(ldt.toLocalDate().lengthOfMonth());
-      bean.toDate = Timestamp.valueOf(endOfMonth);
+      LocalDate localDate = LocalDate.of(bean.toYear, bean.toMonth, 1);
+      LocalDate boundary = localDate.plusMonths(1);
+      LocalDateTime ts = LocalDateTime.of(boundary, LocalTime.of(0, 0));
+      bean.toDate = Timestamp.valueOf(ts);
       LOGGER.debug("setting toDate: {}", bean.toDate.toString());
     } else {
-      LocalDateTime frmLdt = LocalDateTime.of(bean.fromYear, bean.fromMonth, 1, 0, 0);
-      LocalDateTime frmEndOfMonth = frmLdt.withDayOfMonth(frmLdt.toLocalDate().lengthOfMonth());
-      bean.fromDate = Timestamp.valueOf(frmEndOfMonth);
+      LocalDate fromLocalDate = LocalDate.of(bean.fromYear, bean.fromMonth, 1);
+      LocalDateTime fromTS = LocalDateTime.of(fromLocalDate, LocalTime.of(0, 0));
+      bean.fromDate = Timestamp.valueOf(fromTS);
       LOGGER.debug("setting fromDate: {}", bean.fromDate.toString());
       
       LocalDateTime ldt = LocalDateTime.of(bean.toYear, bean.toMonth, 1, 0, 0);

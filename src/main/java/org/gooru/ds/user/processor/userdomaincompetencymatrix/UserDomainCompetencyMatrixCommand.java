@@ -3,6 +3,7 @@ package org.gooru.ds.user.processor.userdomaincompetencymatrix;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import org.gooru.ds.user.app.components.utilities.CommonUtils;
 import org.gooru.ds.user.constants.HttpConstants;
 import org.gooru.ds.user.exceptions.HttpResponseWrapperException;
@@ -51,10 +52,15 @@ class UserDomainCompetencyMatrixCommand {
     bean.month = month;
     bean.year = year;
     
-    LocalDateTime ldt = LocalDateTime.of(year, month, 1, 0, 0);
-    LocalDateTime endOfMonth = ldt.withDayOfMonth(ldt.toLocalDate().lengthOfMonth());
-    bean.toDate = Timestamp.valueOf(endOfMonth);
+    LocalDate localDate = LocalDate.of(year, month, 1);
+    LocalDate boundary = localDate.plusMonths(1);
+    LocalDateTime ts = LocalDateTime.of(boundary, LocalTime.of(0, 0));
+    
+    //LocalDateTime ldt = LocalDateTime.of(year, month, 1, 0, 0);
+    //LocalDateTime endOfMonth = ldt.withDayOfMonth(ldt.toLocalDate().lengthOfMonth());
+    bean.toDate = Timestamp.valueOf(ts);
     LOGGER.debug("setting toDate: {}", bean.toDate.toString());
+    
     return bean;
   }
 
