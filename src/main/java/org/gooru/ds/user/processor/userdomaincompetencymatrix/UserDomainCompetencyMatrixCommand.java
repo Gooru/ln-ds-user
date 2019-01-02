@@ -52,9 +52,9 @@ class UserDomainCompetencyMatrixCommand {
     bean.year = year;
     
     LocalDateTime ldt = LocalDateTime.of(year, month, 1, 0, 0);
-    LocalDateTime endOfMonth = ldt.withDayOfYear(ldt.toLocalDate().lengthOfMonth());
+    LocalDateTime endOfMonth = ldt.withDayOfMonth(ldt.toLocalDate().lengthOfMonth());
     bean.toDate = Timestamp.valueOf(endOfMonth);
-    
+    LOGGER.debug("setting toDate: {}", bean.toDate.toString());
     return bean;
   }
 

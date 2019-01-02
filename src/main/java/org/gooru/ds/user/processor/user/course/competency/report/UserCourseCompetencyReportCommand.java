@@ -81,16 +81,19 @@ public class UserCourseCompetencyReportCommand {
     
     if (bean.filter.equalsIgnoreCase(FILTER_CUMULATIVE)) {
       LocalDateTime ldt = LocalDateTime.of(bean.toYear, bean.toMonth, 1, 0, 0);
-      LocalDateTime endOfMonth = ldt.withDayOfYear(ldt.toLocalDate().lengthOfMonth());
+      LocalDateTime endOfMonth = ldt.withDayOfMonth(ldt.toLocalDate().lengthOfMonth());
       bean.toDate = Timestamp.valueOf(endOfMonth);
+      LOGGER.debug("setting toDate: {}", bean.toDate.toString());
     } else {
       LocalDateTime frmLdt = LocalDateTime.of(bean.fromYear, bean.fromMonth, 1, 0, 0);
-      LocalDateTime frmEndOfMonth = frmLdt.withDayOfYear(frmLdt.toLocalDate().lengthOfMonth());
+      LocalDateTime frmEndOfMonth = frmLdt.withDayOfMonth(frmLdt.toLocalDate().lengthOfMonth());
       bean.fromDate = Timestamp.valueOf(frmEndOfMonth);
+      LOGGER.debug("setting fromDate: {}", bean.fromDate.toString());
       
       LocalDateTime ldt = LocalDateTime.of(bean.toYear, bean.toMonth, 1, 0, 0);
-      LocalDateTime endOfMonth = ldt.withDayOfYear(ldt.toLocalDate().lengthOfMonth());
+      LocalDateTime endOfMonth = ldt.withDayOfMonth(ldt.toLocalDate().lengthOfMonth());
       bean.toDate = Timestamp.valueOf(endOfMonth);
+      LOGGER.debug("setting toDate: {}", bean.toDate.toString());
     }
 
     return bean;
