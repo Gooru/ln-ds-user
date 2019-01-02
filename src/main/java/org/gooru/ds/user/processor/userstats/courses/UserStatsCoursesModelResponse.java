@@ -7,13 +7,13 @@ import java.util.List;
  */
 class UserStatsCoursesModelResponse {
 
-    private List<UserStatsCoursesModel> courses;
+  private List<UserStatsCoursesModel> courses;
 
-    public List<UserStatsCoursesModel> getCourses() {
-        return courses;
-    }
+  public List<UserStatsCoursesModel> getCourses() {
+    return courses;
+  }
 
-    public void setCourses(List<UserStatsCoursesModel> courses) {
-        this.courses = courses;
-    }
+  public void setCourses(List<UserStatsCoursesModel> courses) {
+    this.courses = courses;
+  }
 }

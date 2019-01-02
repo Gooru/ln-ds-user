@@ -6,13 +6,13 @@ import java.util.List;
  * @author ashish on 13/1/18.
  */
 class UserPrefsCuratorModelResponse {
-    private List<UserPrefsCuratorModel> curators;
+  private List<UserPrefsCuratorModel> curators;
 
-    public List<UserPrefsCuratorModel> getCurators() {
-        return curators;
-    }
+  public List<UserPrefsCuratorModel> getCurators() {
+    return curators;
+  }
 
-    public void setCurators(List<UserPrefsCuratorModel> curators) {
-        this.curators = curators;
-    }
+  public void setCurators(List<UserPrefsCuratorModel> curators) {
+    this.curators = curators;
+  }
 }

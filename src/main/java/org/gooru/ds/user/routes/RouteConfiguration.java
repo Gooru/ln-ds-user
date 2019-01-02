@@ -9,45 +9,45 @@ import java.util.List;
  */
 public class RouteConfiguration implements Iterable<RouteConfigurator> {
 
-    private final Iterator<RouteConfigurator> internalIterator;
+  private final Iterator<RouteConfigurator> internalIterator;
 
-    public RouteConfiguration() {
-        List<RouteConfigurator> configurators = new ArrayList<>(32);
-        // First the global handler to enable to body reading etc
-        configurators.add(new RouteGlobalConfigurator());
+  public RouteConfiguration() {
+    List<RouteConfigurator> configurators = new ArrayList<>(32);
+    // First the global handler to enable to body reading etc
+    configurators.add(new RouteGlobalConfigurator());
 
-        // For rest of handlers, Auth should always be first one
-        configurators.add(new RouteAuthConfigurator());
-        configurators.add(new RouteInternalConfigurator());
-        configurators.add(new RouteFailureConfigurator());
-        configurators.add(new RouteUserDistributionConfigurator());
-        configurators.add(new RouteUserStatsConfigurator());
-        configurators.add(new RouteUserJourneyConfigurator());
-        configurators.add(new RouteUserPrefsConfigurator());
-        configurators.add(new RouteCompetencyMatrixConfigurator());
-        configurators.add(new RouteUserCourseCompetencyReportConfigurator());
-        configurators.add(new RouteUserLearnerProfileConfigurator());
-        configurators.add(new RouteUserDetailsConfigurator());
-        configurators.add(new RouteNavigatorCourseConfigurator());
+    // For rest of handlers, Auth should always be first one
+    configurators.add(new RouteAuthConfigurator());
+    configurators.add(new RouteInternalConfigurator());
+    configurators.add(new RouteFailureConfigurator());
+    configurators.add(new RouteUserDistributionConfigurator());
+    configurators.add(new RouteUserStatsConfigurator());
+    configurators.add(new RouteUserJourneyConfigurator());
+    configurators.add(new RouteUserPrefsConfigurator());
+    configurators.add(new RouteCompetencyMatrixConfigurator());
+    configurators.add(new RouteUserCourseCompetencyReportConfigurator());
+    configurators.add(new RouteUserLearnerProfileConfigurator());
+    configurators.add(new RouteUserDetailsConfigurator());
+    configurators.add(new RouteNavigatorCourseConfigurator());
 
-        internalIterator = configurators.iterator();
-    }
+    internalIterator = configurators.iterator();
+  }
 
-    @Override
-    public Iterator<RouteConfigurator> iterator() {
-        return new Iterator<RouteConfigurator>() {
+  @Override
+  public Iterator<RouteConfigurator> iterator() {
+    return new Iterator<RouteConfigurator>() {
 
-            @Override
-            public boolean hasNext() {
-                return internalIterator.hasNext();
-            }
+      @Override
+      public boolean hasNext() {
+        return internalIterator.hasNext();
+      }
 
-            @Override
-            public RouteConfigurator next() {
-                return internalIterator.next();
-            }
+      @Override
+      public RouteConfigurator next() {
+        return internalIterator.next();
+      }
 
-        };
-    }
+    };
+  }
 
 }

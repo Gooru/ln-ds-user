@@ -14,15 +14,15 @@ import org.slf4j.LoggerFactory;
 
 public class ReadBaselineLearnerProfileProcessor implements MessageProcessor {
 
-  private static final Logger LOGGER = LoggerFactory
-      .getLogger(ReadBaselineLearnerProfileProcessor.class);
+  private static final Logger LOGGER =
+      LoggerFactory.getLogger(ReadBaselineLearnerProfileProcessor.class);
   private final Vertx vertx;
   private final Message<JsonObject> message;
   private final Future<MessageResponse> result;
   private EventBusMessage eventBusMessage;
 
-  private final ReadBaselineLearnerProfileService service = new ReadBaselineLearnerProfileService(
-      DBICreator.getDbiForDefaultDS());
+  private final ReadBaselineLearnerProfileService service =
+      new ReadBaselineLearnerProfileService(DBICreator.getDbiForDefaultDS());
 
   public ReadBaselineLearnerProfileProcessor(Vertx vertx, Message<JsonObject> message) {
     this.vertx = vertx;
@@ -34,8 +34,8 @@ public class ReadBaselineLearnerProfileProcessor implements MessageProcessor {
   public Future<MessageResponse> process() {
     try {
       this.eventBusMessage = EventBusMessage.eventBusMessageBuilder(message);
-      ReadBaselineLearnerProfileCommand command = ReadBaselineLearnerProfileCommand
-          .build(this.eventBusMessage.getRequestBody());
+      ReadBaselineLearnerProfileCommand command =
+          ReadBaselineLearnerProfileCommand.build(this.eventBusMessage.getRequestBody());
       readBaselineLearnerProfile(command);
     } catch (Throwable throwable) {
       LOGGER.warn("Encountered exception", throwable);
@@ -46,10 +46,10 @@ public class ReadBaselineLearnerProfileProcessor implements MessageProcessor {
 
   private void readBaselineLearnerProfile(ReadBaselineLearnerProfileCommand command) {
     String outcome = this.service.fetchBaselineLearnerProfile(command);
-		if (outcome == null || outcome.isEmpty()) {
-			result.complete(MessageResponseFactory.createOkayResponse(new JsonObject()));
-		} else {
-			result.complete(MessageResponseFactory.createOkayResponse(new JsonObject(outcome)));
-		}
+    if (outcome == null || outcome.isEmpty()) {
+      result.complete(MessageResponseFactory.createOkayResponse(new JsonObject()));
+    } else {
+      result.complete(MessageResponseFactory.createOkayResponse(new JsonObject(outcome)));
+    }
   }
 }

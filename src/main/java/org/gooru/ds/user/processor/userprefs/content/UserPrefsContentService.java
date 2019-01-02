@@ -9,16 +9,16 @@ import org.slf4j.LoggerFactory;
  */
 class UserPrefsContentService {
 
-    private final UserPrefsContentDao userPrefsContentDao;
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserPrefsContentService.class);
+  private final UserPrefsContentDao userPrefsContentDao;
+  private static final Logger LOGGER = LoggerFactory.getLogger(UserPrefsContentService.class);
 
-    UserPrefsContentService(DBI dbi) {
-        this.userPrefsContentDao = dbi.onDemand(UserPrefsContentDao.class);
-    }
+  UserPrefsContentService(DBI dbi) {
+    this.userPrefsContentDao = dbi.onDemand(UserPrefsContentDao.class);
+  }
 
-    public UserPrefsContentModel fetchUserPrefsContent(UserPrefsContentCommand command) {
-        UserPrefsContentModel result = userPrefsContentDao.fetchUserPrefsContent(command.asBean());
-        return result != null ? result : new UserPrefsContentModel();
-    }
+  public UserPrefsContentModel fetchUserPrefsContent(UserPrefsContentCommand command) {
+    UserPrefsContentModel result = userPrefsContentDao.fetchUserPrefsContent(command.asBean());
+    return result != null ? result : new UserPrefsContentModel();
+  }
 
 }

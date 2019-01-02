@@ -9,16 +9,16 @@ import org.slf4j.LoggerFactory;
  */
 class UserStatsJourneysService {
 
-    private final UserStatsJourneysDao userStatsJourneysDao;
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserStatsJourneysService.class);
+  private final UserStatsJourneysDao userStatsJourneysDao;
+  private static final Logger LOGGER = LoggerFactory.getLogger(UserStatsJourneysService.class);
 
-    UserStatsJourneysService(DBI dbi) {
-        this.userStatsJourneysDao = dbi.onDemand(UserStatsJourneysDao.class);
-    }
+  UserStatsJourneysService(DBI dbi) {
+    this.userStatsJourneysDao = dbi.onDemand(UserStatsJourneysDao.class);
+  }
 
-    public UserStatsJourneysModel fetchUserStatsJourneys(UserStatsJourneysCommand command) {
-        UserStatsJourneysModel result = userStatsJourneysDao.fetchUserStatsJourneys(command.asBean());
-        return result != null ? result : new UserStatsJourneysModel();
-    }
+  public UserStatsJourneysModel fetchUserStatsJourneys(UserStatsJourneysCommand command) {
+    UserStatsJourneysModel result = userStatsJourneysDao.fetchUserStatsJourneys(command.asBean());
+    return result != null ? result : new UserStatsJourneysModel();
+  }
 
 }

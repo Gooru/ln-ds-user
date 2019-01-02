@@ -1,7 +1,6 @@
 package org.gooru.ds.user.processor.userstats.resources;
 
 import java.util.List;
-
 import org.gooru.ds.user.processor.userstats.resources.UserStatsResourcesModel;
 
 
@@ -10,14 +9,14 @@ import org.gooru.ds.user.processor.userstats.resources.UserStatsResourcesModel;
  */
 public class UserStatsResourcesModelResponse {
 
-    private List<UserStatsResourcesModel> resources;
+  private List<UserStatsResourcesModel> resources;
 
-    public List<UserStatsResourcesModel> getResources() {
-        return resources;
-    }
+  public List<UserStatsResourcesModel> getResources() {
+    return resources;
+  }
 
-    public void setLessons(List<UserStatsResourcesModel> resources) {
-        this.resources = resources;
-    }
+  public void setLessons(List<UserStatsResourcesModel> resources) {
+    this.resources = resources;
+  }
 
 }

@@ -6,8 +6,8 @@ import org.slf4j.LoggerFactory;
 
 class ReadBaselineLearnerProfileService {
 
-  private final static Logger LOGGER = LoggerFactory
-      .getLogger(ReadBaselineLearnerProfileService.class);
+  private final static Logger LOGGER =
+      LoggerFactory.getLogger(ReadBaselineLearnerProfileService.class);
 
   private final ReadBaselineLearnerProfileDao dao;
 
@@ -15,8 +15,7 @@ class ReadBaselineLearnerProfileService {
     this.dao = dbi.onDemand(ReadBaselineLearnerProfileDao.class);
   }
 
-  String fetchBaselineLearnerProfile(
-      ReadBaselineLearnerProfileCommand command) {
+  String fetchBaselineLearnerProfile(ReadBaselineLearnerProfileCommand command) {
     if (command.getClassId() != null) {
       return dao.fetchProfileBaselinedForUserInClass(command.asBean());
     } else {

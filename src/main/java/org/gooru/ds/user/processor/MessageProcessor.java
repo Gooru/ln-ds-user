@@ -1,7 +1,6 @@
 package org.gooru.ds.user.processor;
 
 import org.gooru.ds.user.responses.MessageResponse;
-
 import io.vertx.core.Future;
 
 /**
@@ -9,6 +8,6 @@ import io.vertx.core.Future;
  */
 public interface MessageProcessor {
 
-    Future<MessageResponse> process();
+  Future<MessageResponse> process();
 
 }

@@ -2,105 +2,105 @@ package org.gooru.ds.user.processor.userperf.competency.collections;
 
 public class UserPerfCompetencyCollectionsModel {
 
-	private String id;
-	private String title;
-	private String sessionId;
-	private String collectionType;
-	private String classId;
-	private String courseId;
-	private String unitId;
-	private String lessonId;
-	
-	private Long timeSpent;
-	private Integer reaction;
-	private Double score;
+  private String id;
+  private String title;
+  private String sessionId;
+  private String collectionType;
+  private String classId;
+  private String courseId;
+  private String unitId;
+  private String lessonId;
 
-	public String getId() {
-		return id;
-	}
+  private Long timeSpent;
+  private Integer reaction;
+  private Double score;
 
-	public void setId(String id) {
-		this.id = id;
-	}
+  public String getId() {
+    return id;
+  }
 
-	public String getSessionId() {
-		return sessionId;
-	}
+  public void setId(String id) {
+    this.id = id;
+  }
 
-	public String getTitle() {
-		return title;
-	}
+  public String getSessionId() {
+    return sessionId;
+  }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+  public String getTitle() {
+    return title;
+  }
 
-	public void setSessionId(String sessionId) {
-		this.sessionId = sessionId;
-	}
-	
-	public String getClassId() {
-		return classId;
-	}
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
-	public void setClassId(String classId) {
-		this.classId = classId;
-	}
+  public void setSessionId(String sessionId) {
+    this.sessionId = sessionId;
+  }
 
-	public String getCourseId() {
-		return courseId;
-	}
+  public String getClassId() {
+    return classId;
+  }
 
-	public void setCourseId(String courseId) {
-		this.courseId = courseId;
-	}
+  public void setClassId(String classId) {
+    this.classId = classId;
+  }
 
-	public String getUnitId() {
-		return unitId;
-	}
+  public String getCourseId() {
+    return courseId;
+  }
 
-	public void setUnitId(String unitId) {
-		this.unitId = unitId;
-	}
+  public void setCourseId(String courseId) {
+    this.courseId = courseId;
+  }
 
-	public String getLessonId() {
-		return lessonId;
-	}
+  public String getUnitId() {
+    return unitId;
+  }
 
-	public void setLessonId(String lessonId) {
-		this.lessonId = lessonId;
-	}
+  public void setUnitId(String unitId) {
+    this.unitId = unitId;
+  }
 
-	public Long getTimeSpent() {
-		return timeSpent;
-	}
+  public String getLessonId() {
+    return lessonId;
+  }
 
-	public void setTimeSpent(Long timeSpent) {
-		this.timeSpent = timeSpent;
-	}
+  public void setLessonId(String lessonId) {
+    this.lessonId = lessonId;
+  }
 
-	public Integer getReaction() {
-		return reaction;
-	}
+  public Long getTimeSpent() {
+    return timeSpent;
+  }
 
-	public void setReaction(Integer reaction) {
-		this.reaction = reaction;
-	}
+  public void setTimeSpent(Long timeSpent) {
+    this.timeSpent = timeSpent;
+  }
 
-	public Double getScore() {
-		return score;
-	}
+  public Integer getReaction() {
+    return reaction;
+  }
 
-	public void setScore(Double score) {
-		this.score = score;
-	}
+  public void setReaction(Integer reaction) {
+    this.reaction = reaction;
+  }
 
-	public String getCollectionType() {
-		return collectionType;
-	}
+  public Double getScore() {
+    return score;
+  }
 
-	public void setCollectionType(String collectionType) {
-		this.collectionType = collectionType;
-	}
+  public void setScore(Double score) {
+    this.score = score;
+  }
+
+  public String getCollectionType() {
+    return collectionType;
+  }
+
+  public void setCollectionType(String collectionType) {
+    this.collectionType = collectionType;
+  }
 
 }

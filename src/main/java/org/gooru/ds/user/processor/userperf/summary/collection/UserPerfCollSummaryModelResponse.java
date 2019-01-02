@@ -7,14 +7,14 @@ import java.util.List;
  */
 public class UserPerfCollSummaryModelResponse {
 
-    private List<UserPerfCollSummaryModel> resources;
+  private List<UserPerfCollSummaryModel> resources;
 
-    public List<UserPerfCollSummaryModel> getResources() {
-        return resources;
-    }
+  public List<UserPerfCollSummaryModel> getResources() {
+    return resources;
+  }
 
-    public void setResources(List<UserPerfCollSummaryModel> resources) {
-        this.resources = resources;
-    }
+  public void setResources(List<UserPerfCollSummaryModel> resources) {
+    this.resources = resources;
+  }
 
 }

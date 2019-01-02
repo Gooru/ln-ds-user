@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
 import org.gooru.ds.user.constants.StatusConstants;
 import org.skife.jdbi.v2.DBI;
 
@@ -14,60 +13,66 @@ import org.skife.jdbi.v2.DBI;
  */
 class UserDomainCompetencyMatrixService {
 
-	private final UserDomainCompetencyMatrixDao userCompetencyMatrixDao;
+  private final UserDomainCompetencyMatrixDao userCompetencyMatrixDao;
 
-	UserDomainCompetencyMatrixService(DBI dbi) {
-		this.userCompetencyMatrixDao = dbi.onDemand(UserDomainCompetencyMatrixDao.class);
-	}
+  UserDomainCompetencyMatrixService(DBI dbi) {
+    this.userCompetencyMatrixDao = dbi.onDemand(UserDomainCompetencyMatrixDao.class);
+  }
 
-	UserDomainCompetencyMatrixModelResponse fetchUserDomainCompetencyMatrix(UserDomainCompetencyMatrixCommand command) {
-		
-		final List<UserDomainCompetencyMatrixModel> userCompetencyMatrixModels = userCompetencyMatrixDao
-				.fetchUserDomainCompetencyMatrixTillMonth(command.asBean());
-		
-		if (userCompetencyMatrixModels.isEmpty()) {
-			return new UserDomainCompetencyMatrixModelResponse();
-		} else {
+  UserDomainCompetencyMatrixModelResponse fetchUserDomainCompetencyMatrix(
+      UserDomainCompetencyMatrixCommand command) {
 
-			List<UserDomainCompetencyMatrixModel> completed = userCompetencyMatrixModels.stream()
-					.filter(model -> model.getStatus() >= StatusConstants.COMPLETED).collect(Collectors.toList());
+    final List<UserDomainCompetencyMatrixModel> userCompetencyMatrixModels =
+        userCompetencyMatrixDao.fetchUserDomainCompetencyMatrixTillMonth(command.asBean());
 
-			Map<String, Map<String, UserDomainCompetencyMatrixModel>> completedCompMatrixMap = new HashMap<>();
-			completed.forEach(model -> {
-				String domain = model.getDomainCode();
-				String compCode = model.getCompetencyCode();
+    if (userCompetencyMatrixModels.isEmpty()) {
+      return new UserDomainCompetencyMatrixModelResponse();
+    } else {
 
-				if (completedCompMatrixMap.containsKey(domain)) {
-					Map<String, UserDomainCompetencyMatrixModel> competencies = completedCompMatrixMap.get(domain);
-					competencies.put(compCode, model);
-					completedCompMatrixMap.put(domain, competencies);
-				} else {
-					Map<String, UserDomainCompetencyMatrixModel> competencies = new HashMap<>();
-					competencies.put(compCode, model);
-					completedCompMatrixMap.put(domain, competencies);
-				}
-			});
+      List<UserDomainCompetencyMatrixModel> completed = userCompetencyMatrixModels.stream()
+          .filter(model -> model.getStatus() >= StatusConstants.COMPLETED)
+          .collect(Collectors.toList());
 
-			userCompetencyMatrixModels.forEach(model -> {
-				String domainCode = model.getDomainCode();
-				int sequence = model.getCompetencySeq();
-				int status = model.getStatus();
+      Map<String, Map<String, UserDomainCompetencyMatrixModel>> completedCompMatrixMap =
+          new HashMap<>();
+      completed.forEach(model -> {
+        String domain = model.getDomainCode();
+        String compCode = model.getCompetencyCode();
 
-				if (completedCompMatrixMap.containsKey(domainCode)) {
-					Map<String, UserDomainCompetencyMatrixModel> competencies = completedCompMatrixMap.get(domainCode);
-					for (Map.Entry<String, UserDomainCompetencyMatrixModel> entry : competencies.entrySet()) {
-						UserDomainCompetencyMatrixModel compModel = entry.getValue();
-						int compSeq = compModel.getCompetencySeq();
+        if (completedCompMatrixMap.containsKey(domain)) {
+          Map<String, UserDomainCompetencyMatrixModel> competencies =
+              completedCompMatrixMap.get(domain);
+          competencies.put(compCode, model);
+          completedCompMatrixMap.put(domain, competencies);
+        } else {
+          Map<String, UserDomainCompetencyMatrixModel> competencies = new HashMap<>();
+          competencies.put(compCode, model);
+          completedCompMatrixMap.put(domain, competencies);
+        }
+      });
 
-						if (sequence < compSeq && status < StatusConstants.ASSERTED) {
-							model.setStatus(StatusConstants.INFERRED);
-						}
-					}
-				}
-			});
+      userCompetencyMatrixModels.forEach(model -> {
+        String domainCode = model.getDomainCode();
+        int sequence = model.getCompetencySeq();
+        int status = model.getStatus();
 
-			Timestamp lastUpdated = userCompetencyMatrixDao.fetchLastUpdatedTime(command.asBean());
-			return UserDomainCompetencyMatrixModelResponseBuilder.build(userCompetencyMatrixModels, lastUpdated);
-		}
-	}
+        if (completedCompMatrixMap.containsKey(domainCode)) {
+          Map<String, UserDomainCompetencyMatrixModel> competencies =
+              completedCompMatrixMap.get(domainCode);
+          for (Map.Entry<String, UserDomainCompetencyMatrixModel> entry : competencies.entrySet()) {
+            UserDomainCompetencyMatrixModel compModel = entry.getValue();
+            int compSeq = compModel.getCompetencySeq();
+
+            if (sequence < compSeq && status < StatusConstants.ASSERTED) {
+              model.setStatus(StatusConstants.INFERRED);
+            }
+          }
+        }
+      });
+
+      Timestamp lastUpdated = userCompetencyMatrixDao.fetchLastUpdatedTime(command.asBean());
+      return UserDomainCompetencyMatrixModelResponseBuilder.build(userCompetencyMatrixModels,
+          lastUpdated);
+    }
+  }
 }

@@ -9,10 +9,10 @@ import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
  */
 interface UserStatsCompetencyDao {
 
-    @Mapper(UserStatsCompetencyModelMapper.class)
-    @SqlQuery("select in_progress, completed from user_stats_competency where duration = :activeDuration and "
-                  + " user_id = :user")
-    UserStatsCompetencyModel fetchUserStatsCompetency(
-        @BindBean UserStatsCompetencyCommand.UserStatsCompetencyCommandBean uerStatsCompetencyCommandBean);
+  @Mapper(UserStatsCompetencyModelMapper.class)
+  @SqlQuery("select in_progress, completed from user_stats_competency where duration = :activeDuration and "
+      + " user_id = :user")
+  UserStatsCompetencyModel fetchUserStatsCompetency(
+      @BindBean UserStatsCompetencyCommand.UserStatsCompetencyCommandBean uerStatsCompetencyCommandBean);
 
 }

@@ -7,14 +7,14 @@ import java.util.List;
  */
 public class UserPerfAssessmentsModelResponse {
 
-    private List<UserPerfAssessmentsModel> assessments;
+  private List<UserPerfAssessmentsModel> assessments;
 
-    public List<UserPerfAssessmentsModel> getAssessments() {
-        return assessments;
-    }
+  public List<UserPerfAssessmentsModel> getAssessments() {
+    return assessments;
+  }
 
-    public void setAssessments(List<UserPerfAssessmentsModel> assessments) {
-        this.assessments = assessments;
-    }
+  public void setAssessments(List<UserPerfAssessmentsModel> assessments) {
+    this.assessments = assessments;
+  }
 
 }
