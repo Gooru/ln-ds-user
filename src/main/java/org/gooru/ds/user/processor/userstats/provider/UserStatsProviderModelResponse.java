@@ -6,13 +6,13 @@ import java.util.List;
  * @author ashish on 13/1/18.
  */
 class UserStatsProviderModelResponse {
-    private List<UserStatsProviderModel> providers;
+  private List<UserStatsProviderModel> providers;
 
-    public List<UserStatsProviderModel> getProviders() {
-        return providers;
-    }
+  public List<UserStatsProviderModel> getProviders() {
+    return providers;
+  }
 
-    public void setProviders(List<UserStatsProviderModel> providers) {
-        this.providers = providers;
-    }
+  public void setProviders(List<UserStatsProviderModel> providers) {
+    this.providers = providers;
+  }
 }

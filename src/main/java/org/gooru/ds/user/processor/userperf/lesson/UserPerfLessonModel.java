@@ -5,60 +5,60 @@ package org.gooru.ds.user.processor.userperf.lesson;
  */
 public class UserPerfLessonModel {
 
-    private String lessonId;
-    private String lessonTitle;
-    private Long lessonAsmtTimeSpent;
-    private Double lessonAsmtScore;
-    private Long lessonCollTimeSpent;
-    private Integer lessonSequenceId;
+  private String lessonId;
+  private String lessonTitle;
+  private Long lessonAsmtTimeSpent;
+  private Double lessonAsmtScore;
+  private Long lessonCollTimeSpent;
+  private Integer lessonSequenceId;
 
-	public String getLessonId() {
-        return lessonId;
-    }
+  public String getLessonId() {
+    return lessonId;
+  }
 
-    public void setLessonId(String lessonId) {
-        this.lessonId = lessonId;
-    }
+  public void setLessonId(String lessonId) {
+    this.lessonId = lessonId;
+  }
 
-    public String getLessonTitle() {
-        return lessonTitle;
-    }
+  public String getLessonTitle() {
+    return lessonTitle;
+  }
 
-    public void setLessonTitle(String lessonTitle) {
-        this.lessonTitle = lessonTitle;
-    }
+  public void setLessonTitle(String lessonTitle) {
+    this.lessonTitle = lessonTitle;
+  }
 
-    public Long getLessonAsmtTimeSpent() {
-        return lessonAsmtTimeSpent;
-    }
+  public Long getLessonAsmtTimeSpent() {
+    return lessonAsmtTimeSpent;
+  }
 
-    public void setLessonAsmtTimeSpent(Long lessonAsmtTimeSpent) {
-        this.lessonAsmtTimeSpent = lessonAsmtTimeSpent;
-    }
+  public void setLessonAsmtTimeSpent(Long lessonAsmtTimeSpent) {
+    this.lessonAsmtTimeSpent = lessonAsmtTimeSpent;
+  }
 
-    public Double getLessonAsmtScore() {
-        return lessonAsmtScore;
-    }
+  public Double getLessonAsmtScore() {
+    return lessonAsmtScore;
+  }
 
-    public void setLessonAsmtScore(Double lessonAsmtScore) {
-        this.lessonAsmtScore = lessonAsmtScore;
-    }
+  public void setLessonAsmtScore(Double lessonAsmtScore) {
+    this.lessonAsmtScore = lessonAsmtScore;
+  }
 
-    public Long getLessonCollTimeSpent() {
-        return lessonCollTimeSpent;
-    }
+  public Long getLessonCollTimeSpent() {
+    return lessonCollTimeSpent;
+  }
 
-    public void setLessonCollTimeSpent(Long lessonCollTimeSpent) {
-        this.lessonCollTimeSpent = lessonCollTimeSpent;
-    }
-    
-    public Integer getLessonSequenceId() {
-		return lessonSequenceId;
-	}
+  public void setLessonCollTimeSpent(Long lessonCollTimeSpent) {
+    this.lessonCollTimeSpent = lessonCollTimeSpent;
+  }
 
-	public void setLessonSequenceId(Integer lessonSequenceId) {
-		this.lessonSequenceId = lessonSequenceId;
-	}
+  public Integer getLessonSequenceId() {
+    return lessonSequenceId;
+  }
+
+  public void setLessonSequenceId(Integer lessonSequenceId) {
+    this.lessonSequenceId = lessonSequenceId;
+  }
 
 
 }

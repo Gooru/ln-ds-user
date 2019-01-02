@@ -7,14 +7,14 @@ import java.util.List;
  */
 public class UserJourneyModelResponse {
 
-    private List<UserJourneyModel> journeys;
+  private List<UserJourneyModel> journeys;
 
-    public List<UserJourneyModel> getJourneys() {
-        return journeys;
-    }
+  public List<UserJourneyModel> getJourneys() {
+    return journeys;
+  }
 
-    public void setJourneys(List<UserJourneyModel> journeys) {
-        this.journeys = journeys;
-    }
+  public void setJourneys(List<UserJourneyModel> journeys) {
+    this.journeys = journeys;
+  }
 
 }

@@ -5,50 +5,50 @@ package org.gooru.ds.user.processor.grade.master;
  */
 public class GradeMasterModel {
 
-	private int id;
-	private String grade;
-	private String description;
-	private String thumbnail;
-	private int sequence;
+  private int id;
+  private String grade;
+  private String description;
+  private String thumbnail;
+  private int sequence;
 
-	public int getId() {
-		return id;
-	}
+  public int getId() {
+    return id;
+  }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+  public void setId(int id) {
+    this.id = id;
+  }
 
-	public String getGrade() {
-		return grade;
-	}
+  public String getGrade() {
+    return grade;
+  }
 
-	public void setGrade(String grade) {
-		this.grade = grade;
-	}
-	
-	public String getDescription() {
-		return description;
-	}
+  public void setGrade(String grade) {
+    this.grade = grade;
+  }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+  public String getDescription() {
+    return description;
+  }
 
-	public String getThumbnail() {
-		return thumbnail;
-	}
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-	public void setThumbnail(String thumbnail) {
-		this.thumbnail = thumbnail;
-	}
+  public String getThumbnail() {
+    return thumbnail;
+  }
 
-	public int getSequence() {
-		return sequence;
-	}
+  public void setThumbnail(String thumbnail) {
+    this.thumbnail = thumbnail;
+  }
 
-	public void setSequence(int sequence) {
-		this.sequence = sequence;
-	}
+  public int getSequence() {
+    return sequence;
+  }
+
+  public void setSequence(int sequence) {
+    this.sequence = sequence;
+  }
 
 }

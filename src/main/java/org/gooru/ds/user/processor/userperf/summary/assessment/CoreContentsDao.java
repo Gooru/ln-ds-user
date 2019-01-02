@@ -1,7 +1,6 @@
 package org.gooru.ds.user.processor.userperf.summary.assessment;
 
 import java.util.List;
-
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
@@ -11,7 +10,7 @@ import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
  */
 public interface CoreContentsDao {
 
-	@Mapper(CoreContentsModelMapper.class)
-	@SqlQuery("SELECT id, title, content_subformat FROM content WHERE id = ANY(:contentIds::uuid[])")
-	List<CoreContentsModel> fetchContentTitles(@Bind("contentIds") String contentIds);
+  @Mapper(CoreContentsModelMapper.class)
+  @SqlQuery("SELECT id, title, content_subformat FROM content WHERE id = ANY(:contentIds::uuid[])")
+  List<CoreContentsModel> fetchContentTitles(@Bind("contentIds") String contentIds);
 }

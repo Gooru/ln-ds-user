@@ -9,16 +9,17 @@ import org.slf4j.LoggerFactory;
  */
 class UserStatsCompetencyService {
 
-    private final UserStatsCompetencyDao userStatsCompetencyDao;
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserStatsCompetencyService.class);
+  private final UserStatsCompetencyDao userStatsCompetencyDao;
+  private static final Logger LOGGER = LoggerFactory.getLogger(UserStatsCompetencyService.class);
 
-    UserStatsCompetencyService(DBI dbi) {
-        this.userStatsCompetencyDao = dbi.onDemand(UserStatsCompetencyDao.class);
-    }
+  UserStatsCompetencyService(DBI dbi) {
+    this.userStatsCompetencyDao = dbi.onDemand(UserStatsCompetencyDao.class);
+  }
 
-    public UserStatsCompetencyModel fetchUserStatsCompetency(UserStatsCompetencyCommand command) {
-        UserStatsCompetencyModel result = userStatsCompetencyDao.fetchUserStatsCompetency(command.asBean());
-        return result != null ? result : new UserStatsCompetencyModel();
-    }
+  public UserStatsCompetencyModel fetchUserStatsCompetency(UserStatsCompetencyCommand command) {
+    UserStatsCompetencyModel result =
+        userStatsCompetencyDao.fetchUserStatsCompetency(command.asBean());
+    return result != null ? result : new UserStatsCompetencyModel();
+  }
 
 }

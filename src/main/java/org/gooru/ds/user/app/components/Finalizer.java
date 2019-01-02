@@ -5,6 +5,6 @@ package org.gooru.ds.user.app.components;
  */
 public interface Finalizer {
 
-    void finalizeComponent();
+  void finalizeComponent();
 
 }

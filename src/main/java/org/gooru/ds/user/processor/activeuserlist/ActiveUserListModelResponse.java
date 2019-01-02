@@ -7,13 +7,13 @@ import java.util.List;
  */
 class ActiveUserListModelResponse {
 
-    private List<ActiveUserListModel> users;
+  private List<ActiveUserListModel> users;
 
-    public List<ActiveUserListModel> getUsers() {
-        return users;
-    }
+  public List<ActiveUserListModel> getUsers() {
+    return users;
+  }
 
-    public void setUsers(List<ActiveUserListModel> users) {
-        this.users = users;
-    }
+  public void setUsers(List<ActiveUserListModel> users) {
+    this.users = users;
+  }
 }

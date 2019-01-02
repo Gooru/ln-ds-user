@@ -1,7 +1,6 @@
 package org.gooru.ds.user.responses.transformers;
 
 import org.gooru.ds.user.exceptions.HttpResponseWrapperException;
-
 import io.vertx.core.eventbus.Message;
 import io.vertx.core.json.JsonObject;
 
@@ -10,15 +9,16 @@ import io.vertx.core.json.JsonObject;
  */
 public final class ResponseTransformerBuilder {
 
-    public static ResponseTransformer build(Message<JsonObject> message) {
-        return new HttpResponseTransformer(message);
-    }
+  public static ResponseTransformer build(Message<JsonObject> message) {
+    return new HttpResponseTransformer(message);
+  }
 
-    public static ResponseTransformer buildHttpResponseWrapperExceptionBuild(HttpResponseWrapperException ex) {
-        return new HttpResponseWrapperExceptionTransformer(ex);
-    }
+  public static ResponseTransformer buildHttpResponseWrapperExceptionBuild(
+      HttpResponseWrapperException ex) {
+    return new HttpResponseWrapperExceptionTransformer(ex);
+  }
 
-    private ResponseTransformerBuilder() {
-        throw new AssertionError();
-    }
+  private ResponseTransformerBuilder() {
+    throw new AssertionError();
+  }
 }

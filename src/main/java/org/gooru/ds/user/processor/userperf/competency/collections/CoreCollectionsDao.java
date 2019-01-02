@@ -1,7 +1,6 @@
 package org.gooru.ds.user.processor.userperf.competency.collections;
 
 import java.util.List;
-
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
@@ -11,7 +10,7 @@ import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
  */
 public interface CoreCollectionsDao {
 
-	@Mapper(CoreCollectionsModelMapper.class)
-	@SqlQuery("SELECT id, title FROM collection WHERE id = ANY(:collectionIds::uuid[])")
-	List<CoreCollectionsModel> fetchCollectionTitles(@Bind("collectionIds") String collectionIds);
+  @Mapper(CoreCollectionsModelMapper.class)
+  @SqlQuery("SELECT id, title FROM collection WHERE id = ANY(:collectionIds::uuid[])")
+  List<CoreCollectionsModel> fetchCollectionTitles(@Bind("collectionIds") String collectionIds);
 }

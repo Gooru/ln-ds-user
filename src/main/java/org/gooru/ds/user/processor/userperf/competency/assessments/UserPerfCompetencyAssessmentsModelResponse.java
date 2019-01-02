@@ -1,7 +1,6 @@
 package org.gooru.ds.user.processor.userperf.competency.assessments;
 
 import java.util.List;
-
 import org.gooru.ds.user.processor.userperf.competency.assessments.UserPerfCompetencyAssessmentsModel;
 
 /**
@@ -9,15 +8,15 @@ import org.gooru.ds.user.processor.userperf.competency.assessments.UserPerfCompe
  */
 public class UserPerfCompetencyAssessmentsModelResponse {
 
-    private List<UserPerfCompetencyAssessmentsModel> assessments;
+  private List<UserPerfCompetencyAssessmentsModel> assessments;
 
-    public List<UserPerfCompetencyAssessmentsModel> getAssessments() {
-        return assessments;
-    }
+  public List<UserPerfCompetencyAssessmentsModel> getAssessments() {
+    return assessments;
+  }
 
-    public void setAssessments(List<UserPerfCompetencyAssessmentsModel> assessments) {
-        this.assessments = assessments;
-    }
+  public void setAssessments(List<UserPerfCompetencyAssessmentsModel> assessments) {
+    this.assessments = assessments;
+  }
 
 
 }

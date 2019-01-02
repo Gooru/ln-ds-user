@@ -9,10 +9,10 @@ import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
  */
 interface UserStatsJourneysDao {
 
-    @Mapper(UserStatsJourneysModelMapper.class)
-    @SqlQuery("select independent_journeys, class_journeys from user_stats_journeys where duration = "
-                  + ":activeDuration and  user_id = :user")
-    UserStatsJourneysModel fetchUserStatsJourneys(
-        @BindBean UserStatsJourneysCommand.UserStatsJourneysCommandBean userStatsJourneysCommandBean);
+  @Mapper(UserStatsJourneysModelMapper.class)
+  @SqlQuery("select independent_journeys, class_journeys from user_stats_journeys where duration = "
+      + ":activeDuration and  user_id = :user")
+  UserStatsJourneysModel fetchUserStatsJourneys(
+      @BindBean UserStatsJourneysCommand.UserStatsJourneysCommandBean userStatsJourneysCommandBean);
 
 }

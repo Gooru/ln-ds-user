@@ -8,10 +8,11 @@ import org.gooru.ds.user.processor.atc.pvc.course.competency.model.RouteCalculat
  */
 public interface CompetencyRouteCalculator {
 
-    CompetencyRouteModel calculateCompetencyRoute(RouteCalculatorModel model);
+  CompetencyRouteModel calculateCompetencyRoute(RouteCalculatorModel model);
 
-    
-    static CompetencyRouteCalculator build() {
-        return new CompetencyRouteCalculatorService(DBICreator.getDbiForCoreDS(), DBICreator.getDbiForDefaultDS());
-    }
+
+  static CompetencyRouteCalculator build() {
+    return new CompetencyRouteCalculatorService(DBICreator.getDbiForCoreDS(),
+        DBICreator.getDbiForDefaultDS());
+  }
 }

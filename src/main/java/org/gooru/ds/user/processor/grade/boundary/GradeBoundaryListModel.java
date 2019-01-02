@@ -5,23 +5,23 @@ package org.gooru.ds.user.processor.grade.boundary;
  */
 public class GradeBoundaryListModel {
 
-	private String domainCode;
-	private String highline;
+  private String domainCode;
+  private String highline;
 
-	public String getDomainCode() {
-		return domainCode;
-	}
+  public String getDomainCode() {
+    return domainCode;
+  }
 
-	public void setDomainCode(String domainCode) {
-		this.domainCode = domainCode;
-	}
+  public void setDomainCode(String domainCode) {
+    this.domainCode = domainCode;
+  }
 
-	public String getHighline() {
-		return highline;
-	}
+  public String getHighline() {
+    return highline;
+  }
 
-	public void setHighline(String highline) {
-		this.highline = highline;
-	}
+  public void setHighline(String highline) {
+    this.highline = highline;
+  }
 
 }
