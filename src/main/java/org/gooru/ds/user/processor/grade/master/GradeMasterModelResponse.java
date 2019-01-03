@@ -7,14 +7,14 @@ import java.util.List;
  */
 public class GradeMasterModelResponse {
 
-	private List<GradeMasterModel> grades;
+  private List<GradeMasterModel> grades;
 
-	public List<GradeMasterModel> getGrades() {
-		return grades;
-	}
+  public List<GradeMasterModel> getGrades() {
+    return grades;
+  }
 
-	public void setGrades(List<GradeMasterModel> grades) {
-		this.grades = grades;
-	}
+  public void setGrades(List<GradeMasterModel> grades) {
+    this.grades = grades;
+  }
 
 }

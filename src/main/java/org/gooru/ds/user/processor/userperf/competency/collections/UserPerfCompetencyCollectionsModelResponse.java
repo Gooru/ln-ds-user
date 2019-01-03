@@ -5,14 +5,14 @@ import org.gooru.ds.user.processor.userperf.competency.collections.UserPerfCompe
 
 public class UserPerfCompetencyCollectionsModelResponse {
 
-    private List<UserPerfCompetencyCollectionsModel> collections;
+  private List<UserPerfCompetencyCollectionsModel> collections;
 
-    public List<UserPerfCompetencyCollectionsModel> getCollections() {
-        return collections;
-    }
+  public List<UserPerfCompetencyCollectionsModel> getCollections() {
+    return collections;
+  }
 
-    public void setCollections(List<UserPerfCompetencyCollectionsModel> collections) {
-        this.collections = collections;
-    }
+  public void setCollections(List<UserPerfCompetencyCollectionsModel> collections) {
+    this.collections = collections;
+  }
 
 }

@@ -11,8 +11,8 @@ import org.slf4j.LoggerFactory;
 
 public class ReadBaselineLearnerProfileCommand {
 
-  private static final Logger LOGGER = LoggerFactory
-      .getLogger(ReadBaselineLearnerProfileCommand.class);
+  private static final Logger LOGGER =
+      LoggerFactory.getLogger(ReadBaselineLearnerProfileCommand.class);
 
   private String courseId;
   private String classId;

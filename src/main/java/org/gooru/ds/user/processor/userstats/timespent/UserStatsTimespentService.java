@@ -9,16 +9,17 @@ import org.slf4j.LoggerFactory;
  */
 class UserStatsTimespentService {
 
-    private final UserStatsTimespentDao userStatsTimespentDao;
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserStatsTimespentService.class);
+  private final UserStatsTimespentDao userStatsTimespentDao;
+  private static final Logger LOGGER = LoggerFactory.getLogger(UserStatsTimespentService.class);
 
-    UserStatsTimespentService(DBI dbi) {
-        this.userStatsTimespentDao = dbi.onDemand(UserStatsTimespentDao.class);
-    }
+  UserStatsTimespentService(DBI dbi) {
+    this.userStatsTimespentDao = dbi.onDemand(UserStatsTimespentDao.class);
+  }
 
-    public UserStatsTimespentModel fetchUserStatsTimespent(UserStatsTimespentCommand command) {
-        UserStatsTimespentModel result = userStatsTimespentDao.fetchUserStatsTimespent(command.asBean());
-        return result != null ? result : new UserStatsTimespentModel();
-    }
+  public UserStatsTimespentModel fetchUserStatsTimespent(UserStatsTimespentCommand command) {
+    UserStatsTimespentModel result =
+        userStatsTimespentDao.fetchUserStatsTimespent(command.asBean());
+    return result != null ? result : new UserStatsTimespentModel();
+  }
 
 }

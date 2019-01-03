@@ -7,7 +7,6 @@ import org.gooru.ds.user.responses.MessageResponse;
 import org.gooru.ds.user.responses.MessageResponseFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import io.vertx.core.Future;
 import io.vertx.core.Vertx;
 import io.vertx.core.eventbus.Message;
@@ -20,49 +19,49 @@ import io.vertx.core.json.JsonObject;
  */
 public class CompetencyPerfVsCompletionProcessor implements MessageProcessor {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CompetencyPerfVsCompletionProcessor.class);
-    private static final String PVC = "pvc";
-    private final Vertx vertx;
-    private final Message<JsonObject> message;
-    private final Future<MessageResponse> result;
-    private EventBusMessage eventBusMessage;
-    private CompetencyPerfVsCompletionService perfVsCompetencyService =
-        new CompetencyPerfVsCompletionService();
+  private static final Logger LOGGER =
+      LoggerFactory.getLogger(CompetencyPerfVsCompletionProcessor.class);
+  private static final String PVC = "pvc";
+  private final Vertx vertx;
+  private final Message<JsonObject> message;
+  private final Future<MessageResponse> result;
+  private EventBusMessage eventBusMessage;
+  private CompetencyPerfVsCompletionService perfVsCompetencyService =
+      new CompetencyPerfVsCompletionService();
 
-    public CompetencyPerfVsCompletionProcessor(Vertx vertx, Message<JsonObject> message) {
-        this.vertx = vertx;
-        this.message = message;
-        this.result = Future.future();
+  public CompetencyPerfVsCompletionProcessor(Vertx vertx, Message<JsonObject> message) {
+    this.vertx = vertx;
+    this.message = message;
+    this.result = Future.future();
+  }
+
+  @Override
+  public Future<MessageResponse> process() {
+    try {
+      this.eventBusMessage = EventBusMessage.eventBusMessageBuilder(message);
+      CompetencyPerfVsCompletionCommand command =
+          CompetencyPerfVsCompletionCommand.builder(eventBusMessage.getRequestBody());
+      fetchUserCompetencyMatrix(command);
+    } catch (Throwable throwable) {
+      LOGGER.warn("Encountered exception", throwable);
+      result.fail(throwable);
+    }
+    return result;
+  }
+
+  private void fetchUserCompetencyMatrix(CompetencyPerfVsCompletionCommand command) {
+    JsonObject jsonObj = new JsonObject();
+    try {
+      JsonArray pvcArray = perfVsCompetencyService.fetchUserPerformanceCompletion(command);
+      result.complete(MessageResponseFactory.createOkayResponse(jsonObj.put(PVC, pvcArray)));
+    } catch (DecodeException e) {
+      LOGGER.warn("Not able to convert data to JSON", e);
+      result.fail(e);
+    } catch (Throwable throwable) {
+      LOGGER.warn("Encountered exception", throwable);
+      result.fail(throwable);
     }
 
-    @Override
-    public Future<MessageResponse> process() {
-        try {
-            this.eventBusMessage = EventBusMessage.eventBusMessageBuilder(message);
-            CompetencyPerfVsCompletionCommand command =
-                CompetencyPerfVsCompletionCommand.builder(eventBusMessage.getRequestBody());
-            fetchUserCompetencyMatrix(command);
-        } catch (Throwable throwable) {
-            LOGGER.warn("Encountered exception", throwable);
-            result.fail(throwable);
-        }
-        return result;
-    }
-
-    private void fetchUserCompetencyMatrix(CompetencyPerfVsCompletionCommand command) {
-    	JsonObject jsonObj = new JsonObject();
-        try {
-            JsonArray pvcArray =
-            		perfVsCompetencyService.fetchUserPerformanceCompletion(command);            
-            result.complete(MessageResponseFactory.createOkayResponse(jsonObj.put(PVC, pvcArray)));
-        } catch (DecodeException e) {
-            LOGGER.warn("Not able to convert data to JSON", e);
-            result.fail(e);
-        } catch (Throwable throwable) {
-            LOGGER.warn("Encountered exception", throwable);
-            result.fail(throwable);
-        }
-
-    }
+  }
 
 }

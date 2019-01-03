@@ -1,7 +1,6 @@
 package org.gooru.ds.user.app.components.utilities;
 
 import javax.sql.DataSource;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,34 +9,33 @@ import org.slf4j.LoggerFactory;
  */
 public final class DbLookupUtility {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DbLookupUtility.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(DbLookupUtility.class);
 
-    public static DbLookupUtility getInstance() {
-        return DbLookupUtility.Holder.INSTANCE;
-    }
+  public static DbLookupUtility getInstance() {
+    return DbLookupUtility.Holder.INSTANCE;
+  }
 
-    private volatile boolean initialized = false;
+  private volatile boolean initialized = false;
 
-    private DbLookupUtility() {
-    }
+  private DbLookupUtility() {}
 
-    public void initialize(DataSource defaultDataSource) {
+  public void initialize(DataSource defaultDataSource) {
+    if (!initialized) {
+      synchronized (DbLookupUtility.Holder.INSTANCE) {
         if (!initialized) {
-            synchronized (DbLookupUtility.Holder.INSTANCE) {
-                if (!initialized) {
-                    initializeFromDb(defaultDataSource);
-                    initialized = true;
-                }
-            }
+          initializeFromDb(defaultDataSource);
+          initialized = true;
         }
+      }
     }
+  }
 
-    private void initializeFromDb(DataSource dataSource) {
+  private void initializeFromDb(DataSource dataSource) {
 
-    }
+  }
 
-    private static final class Holder {
-        private static final DbLookupUtility INSTANCE = new DbLookupUtility();
-    }
+  private static final class Holder {
+    private static final DbLookupUtility INSTANCE = new DbLookupUtility();
+  }
 
 }

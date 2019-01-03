@@ -2,7 +2,6 @@ package org.gooru.ds.user.processor.usercoursecompetencymatrix;
 
 import java.sql.Timestamp;
 import java.util.List;
-
 import org.skife.jdbi.v2.DBI;
 
 /**
@@ -10,21 +9,23 @@ import org.skife.jdbi.v2.DBI;
  */
 class UserCourseCompetencyMatrixService {
 
-	private final UserCourseCompetencyMatrixDao userCompetencyMatrixDao;
+  private final UserCourseCompetencyMatrixDao userCompetencyMatrixDao;
 
-	UserCourseCompetencyMatrixService(DBI dbi) {
-		this.userCompetencyMatrixDao = dbi.onDemand(UserCourseCompetencyMatrixDao.class);
-	}
+  UserCourseCompetencyMatrixService(DBI dbi) {
+    this.userCompetencyMatrixDao = dbi.onDemand(UserCourseCompetencyMatrixDao.class);
+  }
 
-	UserCourseCompetencyMatrixModelResponse fetchUserCourseCompetencyMatrix(UserCourseCompetencyMatrixCommand command) {
-		final List<UserCourseCompetencyMatrixModel> userCompetencyMatrixModels = userCompetencyMatrixDao
-				.fetchUserCourseCompetencyMatrixTillMonth(command.asBean());
-		
-		if (userCompetencyMatrixModels.isEmpty()) {
-			return new UserCourseCompetencyMatrixModelResponse();
-		} else {
-			Timestamp lastUpdated = userCompetencyMatrixDao.fetchLastUpdatedTime(command.asBean());
-			return UserCourseCompetencyMatrixModelResponseBuilder.build(userCompetencyMatrixModels, lastUpdated);
-		}
-	}
+  UserCourseCompetencyMatrixModelResponse fetchUserCourseCompetencyMatrix(
+      UserCourseCompetencyMatrixCommand command) {
+    final List<UserCourseCompetencyMatrixModel> userCompetencyMatrixModels =
+        userCompetencyMatrixDao.fetchUserCourseCompetencyMatrixTillMonth(command.asBean());
+
+    if (userCompetencyMatrixModels.isEmpty()) {
+      return new UserCourseCompetencyMatrixModelResponse();
+    } else {
+      Timestamp lastUpdated = userCompetencyMatrixDao.fetchLastUpdatedTime(command.asBean());
+      return UserCourseCompetencyMatrixModelResponseBuilder.build(userCompetencyMatrixModels,
+          lastUpdated);
+    }
+  }
 }

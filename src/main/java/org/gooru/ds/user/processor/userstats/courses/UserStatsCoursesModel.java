@@ -5,76 +5,76 @@ package org.gooru.ds.user.processor.userstats.courses;
  */
 
 class UserStatsCoursesModel {
-    private String courseId;
-    private String classId;
-	private String courseTitle;
-    private String classTitle;
-    private Float completion;
-    private Float performance;
-    private Long timespent;
-    private Boolean startedInDuration;
+  private String courseId;
+  private String classId;
+  private String courseTitle;
+  private String classTitle;
+  private Float completion;
+  private Float performance;
+  private Long timespent;
+  private Boolean startedInDuration;
 
-    public String getCourseId() {
-        return courseId;
-    }
+  public String getCourseId() {
+    return courseId;
+  }
 
-    public void setCourseId(String courseId) {
-        this.courseId = courseId;
-    }
+  public void setCourseId(String courseId) {
+    this.courseId = courseId;
+  }
 
-    public String getClassId() {
-        return classId;
-    }
+  public String getClassId() {
+    return classId;
+  }
 
-    public void setClassId(String classId) {
-        this.classId = classId;
-    }
-    
-    public String getCourseTitle() {
-		return courseTitle;
-	}
+  public void setClassId(String classId) {
+    this.classId = classId;
+  }
 
-	public void setCourseTitle(String courseTitle) {
-		this.courseTitle = courseTitle;
-	}
+  public String getCourseTitle() {
+    return courseTitle;
+  }
 
-	public String getClassTitle() {
-		return classTitle;
-	}
+  public void setCourseTitle(String courseTitle) {
+    this.courseTitle = courseTitle;
+  }
 
-	public void setClassTitle(String classTitle) {
-		this.classTitle = classTitle;
-	}
+  public String getClassTitle() {
+    return classTitle;
+  }
 
-    public Float getCompletion() {
-        return completion;
-    }
+  public void setClassTitle(String classTitle) {
+    this.classTitle = classTitle;
+  }
 
-    public void setCompletion(Float completion) {
-        this.completion = completion;
-    }
+  public Float getCompletion() {
+    return completion;
+  }
 
-    public Float getPerformance() {
-        return performance;
-    }
+  public void setCompletion(Float completion) {
+    this.completion = completion;
+  }
 
-    public void setPerformance(Float performance) {
-        this.performance = performance;
-    }
+  public Float getPerformance() {
+    return performance;
+  }
 
-    public Long getTimespent() {
-        return timespent;
-    }
+  public void setPerformance(Float performance) {
+    this.performance = performance;
+  }
 
-    public void setTimespent(Long timespent) {
-        this.timespent = timespent;
-    }
+  public Long getTimespent() {
+    return timespent;
+  }
 
-    public Boolean getStartedInDuration() {
-        return startedInDuration;
-    }
+  public void setTimespent(Long timespent) {
+    this.timespent = timespent;
+  }
 
-    public void setStartedInDuration(Boolean startedInDuration) {
-        this.startedInDuration = startedInDuration;
-    }
+  public Boolean getStartedInDuration() {
+    return startedInDuration;
+  }
+
+  public void setStartedInDuration(Boolean startedInDuration) {
+    this.startedInDuration = startedInDuration;
+  }
 }

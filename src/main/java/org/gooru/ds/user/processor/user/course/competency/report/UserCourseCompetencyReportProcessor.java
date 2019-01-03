@@ -7,10 +7,8 @@ import org.gooru.ds.user.responses.MessageResponse;
 import org.gooru.ds.user.responses.MessageResponseFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import io.vertx.core.Future;
 import io.vertx.core.Vertx;
 import io.vertx.core.eventbus.Message;
@@ -22,62 +20,66 @@ import io.vertx.core.json.JsonObject;
  * @author szgooru on 17-Jul-2018
  */
 public class UserCourseCompetencyReportProcessor implements MessageProcessor {
-	private static final Logger LOGGER = LoggerFactory.getLogger(UserCourseCompetencyReportProcessor.class);
-	private final Vertx vertx;
-	private final Message<JsonObject> message;
-	private final Future<MessageResponse> result;
-	private EventBusMessage eventBusMessage;
+  private static final Logger LOGGER =
+      LoggerFactory.getLogger(UserCourseCompetencyReportProcessor.class);
+  private final Vertx vertx;
+  private final Message<JsonObject> message;
+  private final Future<MessageResponse> result;
+  private EventBusMessage eventBusMessage;
 
-	private final UserCourseCompetencyReportService reportService = new UserCourseCompetencyReportService(
-			DBICreator.getDbiForDefaultDS(), DBICreator.getDbiForCoreDS());
+  private final UserCourseCompetencyReportService reportService =
+      new UserCourseCompetencyReportService(DBICreator.getDbiForDefaultDS(),
+          DBICreator.getDbiForCoreDS());
 
-	public UserCourseCompetencyReportProcessor(Vertx vertx, Message<JsonObject> message) {
-		this.vertx = vertx;
-		this.message = message;
-		this.result = Future.future();
-	}
+  public UserCourseCompetencyReportProcessor(Vertx vertx, Message<JsonObject> message) {
+    this.vertx = vertx;
+    this.message = message;
+    this.result = Future.future();
+  }
 
-	@Override
-	public Future<MessageResponse> process() {
-		try {
-			this.eventBusMessage = EventBusMessage.eventBusMessageBuilder(message);
-			UserCourseCompetencyReportCommand command = UserCourseCompetencyReportCommand
-					.build(this.eventBusMessage.getRequestBody());
-			fetchUserCourseCompetencyReport(command);
-		} catch (Throwable throwable) {
-			LOGGER.warn("Encountered exception", throwable);
-			result.fail(throwable);
-		}
-		return result;
-	}
+  @Override
+  public Future<MessageResponse> process() {
+    try {
+      this.eventBusMessage = EventBusMessage.eventBusMessageBuilder(message);
+      UserCourseCompetencyReportCommand command =
+          UserCourseCompetencyReportCommand.build(this.eventBusMessage.getRequestBody());
+      fetchUserCourseCompetencyReport(command);
+    } catch (Throwable throwable) {
+      LOGGER.warn("Encountered exception", throwable);
+      result.fail(throwable);
+    }
+    return result;
+  }
 
-	private void fetchUserCourseCompetencyReport(UserCourseCompetencyReportCommand command) {
-		try {
-			String subjectCode = this.reportService.fetchSubjectCode(command);
-			if (subjectCode == null) {
-				result.complete(
-						MessageResponseFactory.createInvalidRequestResponse("course is not assigned to any subject"));
-			} else {
-				JsonArray studentReport = this.reportService.fetchUserCourseCompetencyMatrix(command, subjectCode);
+  private void fetchUserCourseCompetencyReport(UserCourseCompetencyReportCommand command) {
+    try {
+      String subjectCode = this.reportService.fetchSubjectCode(command);
+      if (subjectCode == null) {
+        result.complete(MessageResponseFactory
+            .createInvalidRequestResponse("course is not assigned to any subject"));
+      } else {
+        JsonArray studentReport =
+            this.reportService.fetchUserCourseCompetencyMatrix(command, subjectCode);
 
-				UserCourseCompetencyReportModelResponse domainCompetencies = this.reportService
-						.fetchDomainCompetencies(command, subjectCode);
-				String resultString = new ObjectMapper().writeValueAsString(domainCompetencies);
+        UserCourseCompetencyReportModelResponse domainCompetencies =
+            this.reportService.fetchDomainCompetencies(command, subjectCode);
+        String resultString = new ObjectMapper().writeValueAsString(domainCompetencies);
 
-				JsonObject response = new JsonObject(resultString);
-				response.put(UserCourseCompetencyReportModelResponseConstants.JSON_RESP_KEY_STUDENTS, studentReport);
+        JsonObject response = new JsonObject(resultString);
+        response.put(UserCourseCompetencyReportModelResponseConstants.JSON_RESP_KEY_STUDENTS,
+            studentReport);
 
-				result.complete(MessageResponseFactory.createOkayResponse(response));
-			}
-		} catch (JsonProcessingException e) {
-			LOGGER.error("Not able to convert data to JSON", e);
-			result.fail(e);
-		} catch (DecodeException e) {
-			LOGGER.warn("Not able to convert data to JSON", e);
-			result.fail(e);
-		} catch (Throwable throwable) {
-			LOGGER.warn("Encountered exception", throwable);
-			result.fail(throwable);
-		}
-	}
+        result.complete(MessageResponseFactory.createOkayResponse(response));
+      }
+    } catch (JsonProcessingException e) {
+      LOGGER.error("Not able to convert data to JSON", e);
+      result.fail(e);
+    } catch (DecodeException e) {
+      LOGGER.warn("Not able to convert data to JSON", e);
+      result.fail(e);
+    } catch (Throwable throwable) {
+      LOGGER.warn("Encountered exception", throwable);
+      result.fail(throwable);
+    }
+  }
 }

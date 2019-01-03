@@ -9,10 +9,10 @@ import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
  */
 interface UserStatsContentsDao {
 
-    @Mapper(UserStatsContentsModelMapper.class)
-    @SqlQuery("select audio, interactive, text, video, webpage, image from user_stats_content where "
-                  + "duration = :activeDuration and  user_id = :user")
-    UserStatsContentsModel fetchUserStatsContents(
-        @BindBean UserStatsContentsCommand.UserStatsContentsCommandBean userStatsContentsCommandBean);
+  @Mapper(UserStatsContentsModelMapper.class)
+  @SqlQuery("select audio, interactive, text, video, webpage, image from user_stats_content where "
+      + "duration = :activeDuration and  user_id = :user")
+  UserStatsContentsModel fetchUserStatsContents(
+      @BindBean UserStatsContentsCommand.UserStatsContentsCommandBean userStatsContentsCommandBean);
 
 }

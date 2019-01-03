@@ -5,68 +5,68 @@ package org.gooru.ds.user.processor.user.course.competency.report;
  */
 public class UserCourseCompetencyReportModel {
 
-	private String domainCode;
-	private String competencyCode;
-	private String competencyName;
-	private String competencyDesc;
-	private String competencyStudentDesc;
-	private Integer competencySeq;
-	private Integer status;
-	
-	public String getDomainCode() {
-		return domainCode;
-	}
+  private String domainCode;
+  private String competencyCode;
+  private String competencyName;
+  private String competencyDesc;
+  private String competencyStudentDesc;
+  private Integer competencySeq;
+  private Integer status;
 
-	public void setDomainCode(String domainCode) {
-		this.domainCode = domainCode;
-	}
+  public String getDomainCode() {
+    return domainCode;
+  }
 
-	public String getCompetencyCode() {
-		return competencyCode;
-	}
+  public void setDomainCode(String domainCode) {
+    this.domainCode = domainCode;
+  }
 
-	public void setCompetencyCode(String competencyCode) {
-		this.competencyCode = competencyCode;
-	}
+  public String getCompetencyCode() {
+    return competencyCode;
+  }
 
-	public String getCompetencyName() {
-		return competencyName;
-	}
+  public void setCompetencyCode(String competencyCode) {
+    this.competencyCode = competencyCode;
+  }
 
-	public void setCompetencyName(String competencyName) {
-		this.competencyName = competencyName;
-	}
+  public String getCompetencyName() {
+    return competencyName;
+  }
 
-	public String getCompetencyDesc() {
-		return competencyDesc;
-	}
+  public void setCompetencyName(String competencyName) {
+    this.competencyName = competencyName;
+  }
 
-	public void setCompetencyDesc(String competencyDesc) {
-		this.competencyDesc = competencyDesc;
-	}
+  public String getCompetencyDesc() {
+    return competencyDesc;
+  }
 
-	public String getCompetencyStudentDesc() {
-		return competencyStudentDesc;
-	}
+  public void setCompetencyDesc(String competencyDesc) {
+    this.competencyDesc = competencyDesc;
+  }
 
-	public void setCompetencyStudentDesc(String competencyStudentDesc) {
-		this.competencyStudentDesc = competencyStudentDesc;
-	}
+  public String getCompetencyStudentDesc() {
+    return competencyStudentDesc;
+  }
 
-	public Integer getCompetencySeq() {
-		return competencySeq;
-	}
+  public void setCompetencyStudentDesc(String competencyStudentDesc) {
+    this.competencyStudentDesc = competencyStudentDesc;
+  }
 
-	public void setCompetencySeq(Integer competencySeq) {
-		this.competencySeq = competencySeq;
-	}
+  public Integer getCompetencySeq() {
+    return competencySeq;
+  }
 
-	public Integer getStatus() {
-		return status;
-	}
+  public void setCompetencySeq(Integer competencySeq) {
+    this.competencySeq = competencySeq;
+  }
 
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
+  public Integer getStatus() {
+    return status;
+  }
+
+  public void setStatus(Integer status) {
+    this.status = status;
+  }
 
 }

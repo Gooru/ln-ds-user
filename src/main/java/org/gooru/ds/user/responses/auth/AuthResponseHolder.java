@@ -5,9 +5,9 @@ package org.gooru.ds.user.responses.auth;
  */
 
 public interface AuthResponseHolder {
-    boolean isAuthorized();
+  boolean isAuthorized();
 
-    boolean isAnonymous();
+  boolean isAnonymous();
 
-    String getUser();
+  String getUser();
 }

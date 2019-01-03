@@ -7,14 +7,14 @@ import java.util.List;
  */
 public class UserPerfLessonModelResponse {
 
-    private List<UserPerfLessonModel> lessons;
+  private List<UserPerfLessonModel> lessons;
 
-    public List<UserPerfLessonModel> getLessons() {
-        return lessons;
-    }
+  public List<UserPerfLessonModel> getLessons() {
+    return lessons;
+  }
 
-    public void setLessons(List<UserPerfLessonModel> lessons) {
-        this.lessons = lessons;
-    }
+  public void setLessons(List<UserPerfLessonModel> lessons) {
+    this.lessons = lessons;
+  }
 
 }
