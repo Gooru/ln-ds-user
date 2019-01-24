@@ -49,6 +49,7 @@ public final class Constants {
     public static final String MSG_OP_COMPETENCY_SUBJECTS = "mb.op.competency.subjects";
     public static final String MSG_OP_GRADES = "mb.op.grades";
     public static final String MSG_OP_GRADE_BOUNDARY = "mb.op.grade.boundary";
+    public static final String MSG_OP_GRADE_COMPETENCIES = "mb.op.grade.competencies";
 
     public static final String MSG_OP_USER_JOURNEY = "mb.op.user.journey";
     public static final String MSG_OP_USER_PERF_COURSE = "mb.op.user.performance.course";
@@ -158,6 +159,7 @@ public final class Constants {
 
     public static final String API_GRADES = API_BASE_ROUTE + "tx/grades";
     public static final String API_GRADE_BOUNDARY = API_BASE_ROUTE + "tx/grade/boundary/:gradeId";
+    public static final String API_GRADE_COMPETENCIES = API_BASE_ROUTE + "tx/grade/competency";
 
     // Initial Learner Profile Setup
     // public static final String API_INTERNAL_INITIAL_LEARNER_PROFILE = "/api/internal/lp/initial";

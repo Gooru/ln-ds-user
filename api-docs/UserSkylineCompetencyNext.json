@@ -1,0 +1,48 @@
+{
+	"name": "Fetch the next in progression Competency, above of the mastered/completed competency from the User Skyline for each domain",
+	"request": {
+		"method": "GET",
+		"headers": [
+			{
+				"Authorization": "Token SessionToken"
+			}
+		],
+		"endpoint": "/api/ds/users/v2/tx/competency/next",
+		"queryParams": [
+			{
+				"name": "subject",
+				"type": "string",
+				"validValues": "Taxonomy Subject Code, eg. K12.MA",
+				"isOptional": "No",
+				"comment": ""
+			},
+			{
+				"name": "user",
+				"type": "string",
+				"validValues": "User UUID as String",
+				"isOptional": "No",
+				"comment": ""
+			}
+		]
+	},
+	"response": {
+		"body": {
+			"CC": "K12.MA-MAK-CC-A.01",
+			"EE": "K12.MA-MA6-EE-A.01",
+			"A": "K12.MA-A1-A-SSE.A.01",
+			"OAT": "K12.MA-MA3-OAT-A.02",
+			"NQ": "K12.MA-A1-NQ-RN.A.01",
+			"NOF": "K12.MA-MA3-NOF-A.01",
+			"F": "K12.MA-MA8-F-A.01",
+			"G": "K12.MA-MA4-G-A.02",
+			"RPS": "K12.MA-MA6-RPS-A.01",
+			"SMP": "K12.MA-SMP-SMP-SMP.01",
+			"MD": "K12.MA-MAK-MD-A.01",
+			"NOBT": "K12.MA-MA1-NOBT-A.01",
+			"TNS": "K12.MA-MA6-TNS-A.01",
+			"SP": "K12.MA-MA6-SP-A.01"
+		},
+		"comment": "API primarily serves Inspect Competency Feature",
+		"sampleCURL": "curl 'http://localhost:8086/api/ds/users/v2/tx/competency/next?user=8845d6dd-fd7c-4c21-85dd-dd0488825bc1&subject=K12.MA' -H 'Content-Type: application/json; charset=utf-8' -H 'Authorization: Token MjoxNTQ4MjQxMDAyMDQzOjk1YTc0NGUxLTYzMWUtNDY0Mi04NzVkLThiMDdhNWUzYjQyMTo6YmE5NTZhOTctYWUxNS0xMWU1LWEzMDItZjhhOTYzMDY1OTc2' -H 'Connection: keep-alive'"
+	}
+}

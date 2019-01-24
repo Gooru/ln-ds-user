@@ -1,0 +1,32 @@
+{
+	"name": "Fetch Competency Counts for a Grade",
+	"request": {
+		"method": "GET",
+		"headers": [{
+			"Authorization": "Token SessionToken"
+		}],
+		"endpoint": "/api/ds/users/v2/tx/grade/competency",
+		"queryParams": [{
+			"name": "subject",
+			"type": "string",
+			"validValues": "Taxonomy Subject Code, eg. K12.MA",
+			"isOptional": "No",
+			"comment": ""
+		}, {
+			"name": "gradeId",
+			"type": "string",
+			"validValues": "Grade Id's, eg. 1-13",
+			"isOptional": "No",
+			"comment": "Grade Id is non-zero"
+		}]
+	},
+	"response": {
+		"body": 
+		{
+		"totalCompetencies":121,
+		"gradeId":8
+		},
+		"comment": "Currently this API gives the Count of total Competencies for a particular Grade. Specific to the ATC View.This API may be futher enhanced to provide Competency Lists for an array of grades if needed",
+		"sampleCURL": "curl 'http://localhost:8086/api/ds/users/v2/tx/grade/competency?subject=K12.MA&gradeId=8' -H 'Content-Type: application/json; charset=utf-8' -H 'Authorization: Token MjoxNTQ4MjQxMDAyMDQzOjk1YTc0NGUxLTYzMWUtNDY0Mi04NzVkLThiMDdhNWUzYjQyMTo6YmE5NTZhOTctYWUxNS0xMWU1LWEzMDItZjhhOTYzMDY1OTc2' -H 'Connection: keep-alive'"
+	}
+}
