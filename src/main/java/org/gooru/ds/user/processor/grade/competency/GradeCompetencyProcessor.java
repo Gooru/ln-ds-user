@@ -1,4 +1,4 @@
-package org.gooru.ds.user.processor.atc.recompute;
+package org.gooru.ds.user.processor.grade.competency;
 
 import org.gooru.ds.user.app.data.EventBusMessage;
 import org.gooru.ds.user.processor.MessageProcessor;
@@ -16,18 +16,18 @@ import io.vertx.core.json.JsonObject;
 /**
  * @author mukul@gooru
  */
-public class GradeBasedCompetencyStatsProcessor implements MessageProcessor {
+public class GradeCompetencyProcessor implements MessageProcessor {
 
   private static final Logger LOGGER =
-      LoggerFactory.getLogger(GradeBasedCompetencyStatsProcessor.class);
+      LoggerFactory.getLogger(GradeCompetencyProcessor.class);
   private final Vertx vertx;
   private final Message<JsonObject> message;
   private final Future<MessageResponse> result;
   private EventBusMessage eventBusMessage;
-  private GradeBasedCompetencyStatsService competencyStatsService =
-      new GradeBasedCompetencyStatsService();
+  private GradeCompetencyService competencyStatsService =
+      new GradeCompetencyService();
 
-  public GradeBasedCompetencyStatsProcessor(Vertx vertx, Message<JsonObject> message) {
+  public GradeCompetencyProcessor(Vertx vertx, Message<JsonObject> message) {
     this.vertx = vertx;
     this.message = message;
     this.result = Future.future();
@@ -37,9 +37,9 @@ public class GradeBasedCompetencyStatsProcessor implements MessageProcessor {
   public Future<MessageResponse> process() {
     try {
       this.eventBusMessage = EventBusMessage.eventBusMessageBuilder(message);
-      GradeBasedCompetencyStatsCommand command =
-          GradeBasedCompetencyStatsCommand.builder(eventBusMessage.getRequestBody());
-      fetchUserCompetencyStats(command);
+      GradeCompetencyCommand command =
+          GradeCompetencyCommand.builder(eventBusMessage.getRequestBody());
+      fetchGradeCompetencyCount(command);
     } catch (Throwable throwable) {
       LOGGER.warn("Encountered exception", throwable);
       result.fail(throwable);
@@ -47,10 +47,10 @@ public class GradeBasedCompetencyStatsProcessor implements MessageProcessor {
     return result;
   }
 
-  private void fetchUserCompetencyStats(GradeBasedCompetencyStatsCommand command) {
+  private void fetchGradeCompetencyCount(GradeCompetencyCommand command) {
     try {
-      CompetencyStatsResponse response =
-          competencyStatsService.fetchUserGradeCompetencyStats(command);
+      GradeCompetencyModel response =
+          competencyStatsService.fetchGradeCompetency(command);
       String resultString = new ObjectMapper().writeValueAsString(response);
       result.complete(MessageResponseFactory.createOkayResponse(new JsonObject(resultString)));
     } catch (DecodeException e) {

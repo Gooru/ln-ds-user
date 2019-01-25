@@ -1,0 +1,75 @@
+{
+	"name": "Provide Competency Stats for all Users for this Premium Class",
+	"request": {
+		"method": "GET",
+		"headers": [
+			{
+				"Authorization": "Token SessionToken"
+			}
+		],
+		"endpoint": "/api/ds/users/v2/nc/atc/pvc",
+		"queryParams": [
+			{
+				"name": "classId",
+				"type": "string",
+				"validValues": "UUID for Class",
+				"isOptional": "No",
+				"comment": "For Independent Learners ClassId should not be passed"
+			},
+			{
+				"name": "courseId",
+				"type": "string",
+				"validValues": "UUID for Course",
+				"isOptional": "No",
+				"comment": ""
+			},
+			{
+				"name": "subject",
+				"type": "string",
+				"validValues": "UUID for Unit",
+				"isOptional": "No",
+				"comment": ""
+			},
+			{
+				"name": "month",
+				"type": "int",
+				"validValues": "positive integer indicating month of the year, 1-12",
+				"isOptional": "Yes",
+				"comment": "value should be between 1-12"
+			},
+			{
+				"name": "year",
+				"type": "int",
+				"validValues": "postive integer indicating Year",
+				"isOptional": "Yes",
+				"comment": "Value should be YYYY Eg. 2018, 2019"
+			}
+		]
+	},
+	"response": {
+		"body": {
+			"competencyStats": [
+				{
+					"completedCompetencies": 11,
+					"inprogressCompetencies": 2,
+					"totalCompetencies": 121,
+					"percentScore": 69.33,
+					"percentCompletion": 9.09,
+					"userId": "95a744e1-631e-4642-875d-8b07a5e3b421",
+					"gradeId": "8"
+				},
+				{
+					"completedCompetencies": 33,
+					"inprogressCompetencies": 0,
+					"totalCompetencies": 94,
+					"percentScore": 0.0,
+					"percentCompletion": 35.11,
+					"userId": "8845d6dd-fd7c-4c21-85dd-dd0488825bc1",
+					"gradeId": "6"
+				}
+			]
+		}
+	},
+	"comment": "This API primarily serves the ATC View for Premium Classes",
+	"sampleURL": "curl 'http://localhost:8086/api/ds/users/v2/nc/atc/pvc?classId=dac9d849-486b-4bed-b14f-25ba119fc29a&subjectCode=K12.MA&month=1&year=2019' -H 'Authorization: Token MjoxNTQ4MzE5MTE1MDE2OjE2Y2M2YmFmLWU4M2YtNDIwZC04ZWU2LWY5ZGVkNWUwODk3Zjo6YmE5NTZhOTctYWUxNS0xMWU1LWEzMDItZjhhOTYzMDY1OTc2' -H 'Connection: keep-alive'"
+}

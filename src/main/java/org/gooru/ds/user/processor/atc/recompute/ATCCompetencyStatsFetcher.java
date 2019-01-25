@@ -17,20 +17,20 @@ import io.vertx.core.json.JsonObject;
 /**
  * @author mukul@gooru
  */
-public class GradeBasedCompetencyStatsFetcher {
+public class ATCCompetencyStatsFetcher {
 
   private final ClassMembersDao classMembersDao;
   private final CompetencyStatsDao competencyStatsDao;
   private static final Logger LOGGER =
-      LoggerFactory.getLogger(GradeBasedCompetencyStatsFetcher.class);
+      LoggerFactory.getLogger(ATCCompetencyStatsFetcher.class);
 
-  GradeBasedCompetencyStatsFetcher(DBI dbi, DBI coreDbi) {
+  ATCCompetencyStatsFetcher(DBI dbi, DBI coreDbi) {
     this.classMembersDao = coreDbi.onDemand(ClassMembersDao.class);
     this.competencyStatsDao = dbi.onDemand(CompetencyStatsDao.class);
   }
 
   public List<CompetencyStatsModel> fetchGradeBasedUserPerformanceCompletion(
-      GradeBasedCompetencyStatsCommand command) {
+      ATCCompetencyStatsCommand command) {
     List<CompetencyStatsModel> userCompetencyStatsList = new ArrayList<>();
 
     // Fetch Class Members
@@ -40,11 +40,11 @@ public class GradeBasedCompetencyStatsFetcher {
       if ((command.getMonth() == null || command.getYear() == null)) {
         userCompetencyStatsList = competencyStatsDao.fetchGradeCompetencyStats(
             PGArrayUtils.convertFromListStringToSqlArrayOfString(classMembers),
-            command.getClassId(), command.getSubjectCode());
+            command.getClassId(), command.getCourseId(), command.getSubjectCode());
       } else if ((command.getMonth() != null && command.getYear() != null)) {
         userCompetencyStatsList = competencyStatsDao.fetchGradeCompetencyStatsTimeBound(
             PGArrayUtils.convertFromListStringToSqlArrayOfString(classMembers),
-            command.getClassId(), command.getSubjectCode(), command.getMonth(), command.getYear());
+            command.getClassId(), command.getCourseId(), command.getSubjectCode(), command.getMonth(), command.getYear());
       }
     }
     return userCompetencyStatsList;
