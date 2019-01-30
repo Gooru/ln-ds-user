@@ -1,4 +1,4 @@
-package org.gooru.ds.user.processor.domain.report;
+package org.gooru.ds.user.processor.domain.report.dbhelpers;
 
 /**
  * @author szgooru Created On 29-Jan-2019

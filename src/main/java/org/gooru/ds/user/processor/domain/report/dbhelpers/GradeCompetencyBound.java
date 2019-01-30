@@ -34,4 +34,10 @@ public class GradeCompetencyBound {
     this.highlineCode = highlineCode;
   }
 
+  @Override
+  public String toString() {
+    return "GradeCompetencyBound [domainCode=" + domainCode + ", lowlineCode=" + lowlineCode
+        + ", highlineCode=" + highlineCode + "]";
+  }
+
 }

@@ -50,8 +50,9 @@ public class DomainReportCommand {
     DomainReportCommand command = new DomainReportCommand();
     command.classId = request.getString(CommandAttributes.CLASS_ID, null);
     command.agent = request.getString(CommandAttributes.AGENT, Constants.Params.AGENT_DEFAULT);
-    command.month = request.getInteger(CommandAttributes.MONTH, null);
-    command.year = request.getInteger(CommandAttributes.YEAR, null);
+    command.month = getAsInt(request, CommandAttributes.MONTH);
+    command.year =  getAsInt(request, CommandAttributes.YEAR);
+    LOGGER.debug(command.toString());
     return command;
   }
 
@@ -95,12 +96,19 @@ public class DomainReportCommand {
     bean.month = month;
     bean.year = year;
 
-    LocalDate localDate = LocalDate.of(bean.month, bean.year, 1);
+    LOGGER.debug("bean: {}", bean.toString());
+    LocalDate localDate = LocalDate.of(bean.year, bean.month, 1);
     LocalDate boundary = localDate.plusMonths(1);
     LocalDateTime ts = LocalDateTime.of(boundary, LocalTime.of(0, 0));
     bean.toDate = Timestamp.valueOf(ts);
     LOGGER.debug("setting toDate: {}", bean.toDate.toString());
     return bean;
+  }
+  
+  @Override
+  public String toString() {
+    return "DomainReportCommand [classId=" + classId + ", agent=" + agent + ", month=" + month
+        + ", year=" + year + "]";
   }
 
   public static class DomainReportCommandBean {
@@ -149,6 +157,12 @@ public class DomainReportCommand {
     public void setToDate(Timestamp toDate) {
       this.toDate = toDate;
     }
+
+    @Override
+    public String toString() {
+      return "DomainReportCommandBean [classId=" + classId + ", agent=" + agent + ", month=" + month
+          + ", year=" + year + ", toDate=" + toDate + "]";
+    }
   }
 
   static class CommandAttributes {
@@ -160,5 +174,23 @@ public class DomainReportCommand {
     private static final String AGENT = "agent";
     private static final String MONTH = "month";
     private static final String YEAR = "year";
+  }
+  
+  private static Integer getAsInt(JsonObject requestBody, String key) {
+    String value = requestBody.getString(key);
+    if (value == null || value.isEmpty()) {
+      return null;
+    }
+
+    Integer result = null;
+    if (key != null) {
+      try {
+        result = Integer.valueOf(value);
+      } catch (NumberFormatException e) {
+        LOGGER.info("Invalid number format for {}", key);
+        result = null;
+      }
+    }
+    return result;
   }
 }

@@ -52,5 +52,10 @@ public class CompetencyCompletionModel {
     this.avgCompletion = avgCompletion;
   }
 
+  @Override
+  public String toString() {
+    return "CompetencyCompletionModel [competencyCode=" + competencyCode + ", competencySeq="
+        + competencySeq + ", avgCompletion=" + avgCompletion + "]";
+  }
 
 }

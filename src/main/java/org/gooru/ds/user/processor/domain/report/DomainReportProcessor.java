@@ -42,6 +42,7 @@ public class DomainReportProcessor implements MessageProcessor {
       this.eventBusMessage = EventBusMessage.eventBusMessageBuilder(message);
       DomainReportCommand command =
           DomainReportCommand.build(this.eventBusMessage.getRequestBody());
+      LOGGER.debug("request data: '{}'", command.toString());
       fetchDomainReport(command);
     } catch (Throwable throwable) {
       LOGGER.warn("Encountered exception", throwable);
@@ -52,7 +53,7 @@ public class DomainReportProcessor implements MessageProcessor {
 
   private void fetchDomainReport(DomainReportCommand command) {
     try {
-      DomainCompetencyCompletionModelResponse response = this.service.fetchDomainReport(command);
+      DomainCompletionModelResponse response = this.service.fetchDomainReport(command);
       String resultString = new ObjectMapper().writeValueAsString(response);
       result.complete(MessageResponseFactory.createOkayResponse(new JsonObject(resultString)));
     } catch (JsonProcessingException e) {

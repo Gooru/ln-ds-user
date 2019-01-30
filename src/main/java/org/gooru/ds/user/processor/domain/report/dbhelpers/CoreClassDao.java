@@ -15,6 +15,6 @@ public interface CoreClassDao {
   @SqlQuery("SELECT grade_current, grade_lower_bound, grade_upper_bound, preference FROM class WHERE id = :classId::uuid")
   CoreClass fetchClassGrades(@Bind("classId") String classId);
 
-  @SqlQuery("SELECT user_id FROM class_member WHERE class_id = :classId AND class_member_status = 'joined'")
-  List<String> fetchClassMembers(@Bind("ClassId") String classId);
+  @SqlQuery("SELECT user_id FROM class_member WHERE class_id = :classId::uuid AND class_member_status = 'joined'")
+  List<String> fetchClassMembers(@Bind("classId") String classId);
 }

@@ -66,11 +66,12 @@ public final class Constants {
     // User course competency report - domain level summary
     public static final String MSG_OP_USER_COURSE_COMPETENCY_REPORT =
         "mb.op.user.course.competency.report";
-    
+
     // Domain reports
     public static final String MSG_OP_DOMAIN_REPORT = "mb.op.domain.report";
     public static final String MSG_OP_DOMAIN_COMPETENCY_REPORT = "mb.op.domain.competency.report";
-    public static final String MSG_OP_DOMAIN_COMPETENCY_PERF_REPORT = "mb.op.domain.competency.perf.report";
+    public static final String MSG_OP_DOMAIN_COMPETENCY_PERF_REPORT =
+        "mb.op.domain.competency.perf.report";
 
     // Initial Learner Profile
     // public static final String MSG_OP_INITIAL_LEARNER_PROFILE = "mb.op.initial.learner.profile";
@@ -194,18 +195,16 @@ public final class Constants {
     public static final String ID_CLASS = "classId";
     public static final String CODE_DOMAIN = "domainCode";
 
-    // http://{host}/api/ds/users/{version}/classes/{class-id}/reports/domains?agent={agent}
-    public static final String API_DOMAIN_REPORT =
-        API_BASE_ROUTE + "classes" + SEP + COLON + ID_CLASS + "/reports/domains";
+    // http://{host}/api/ds/users/{version}/classes/reports/domains?agent={agent}
+    public static final String API_DOMAIN_REPORT = API_BASE_ROUTE + "classes/reports/domains";
 
-    // http://{host}/api/ds/users/{version}/classes/{class-id}/reports/domains/{domainCode}/competencies?agent={agent}
-    public static final String API_DOMAIN_COMPETENCIES_REPORT = API_BASE_ROUTE + "classes" + SEP
-        + COLON + ID_CLASS + "/reports/domains" + SEP + COLON + CODE_DOMAIN + SEP + "competencies";
+    // http://{host}/api/ds/users/{version}/classes/reports/domains/competencies?agent={agent}
+    public static final String API_DOMAIN_COMPETENCIES_REPORT =
+        API_BASE_ROUTE + "classes/reports/domains/competencies";
 
-    // http://{host}/api/ds/users/{version}/classes/{class-id}/reports/domains/{domainCode}/competencies/performance?tx_code={txCode}&agent={agent}
+    // http://{host}/api/ds/users/{version}/classes/reports/domains/competencies/performance?tx_code={txCode}&agent={agent}
     public static final String API_DOMAIN_COMPETENCIES_PERFORMANCE_REPORT =
-        API_BASE_ROUTE + "classes" + SEP + COLON + ID_CLASS + "/reports/domains" + SEP + COLON
-            + CODE_DOMAIN + SEP + "competencies/performance";
+        API_BASE_ROUTE + "classes/reports/domains/competencies/performance";
 
     private Route() {
       throw new AssertionError();

@@ -17,13 +17,13 @@ public class DomainCompetencyCompletionModelMapper
   public DomainCompetencyCompletionModel map(int index, ResultSet r, StatementContext ctx)
       throws SQLException {
     DomainCompetencyCompletionModel dccm = new DomainCompetencyCompletionModel();
-    dccm.setAvgCompletion(0);
+    dccm.setAverage_completions(0);
     dccm.setCompetencies(new HashMap<>());
     
     DomainModel dm = new DomainModel();
-    dm.setDomainCode(r.getString("tx_domain_code"));
-    dm.setDomainName(r.getString("tx_domain_name"));
-    dm.setDomainSeq(r.getInt("tx_domain_seq"));
+    dm.setTx_domain_code(r.getString("tx_domain_code"));
+    dm.setTx_domain_name(r.getString("tx_domain_name"));
+    dm.setTx_domain_seq(r.getInt("tx_domain_seq"));
     
     dccm.setDomain(dm);
     return dccm;

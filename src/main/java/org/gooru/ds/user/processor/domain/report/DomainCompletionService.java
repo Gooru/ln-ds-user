@@ -9,16 +9,22 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import org.gooru.ds.user.constants.StatusConstants;
 import org.gooru.ds.user.processor.atc.pvc.course.competency.utils.CollectionUtils;
+import org.gooru.ds.user.processor.domain.report.dbhelpers.DomainCompetencyMatrixFetcherDao;
+import org.gooru.ds.user.processor.domain.report.dbhelpers.DomainCompetencyMatrixModel;
 import org.skife.jdbi.v2.DBI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author szgooru Created On 29-Jan-2019
  */
-public class DomainCompetencyCompletionService {
+public class DomainCompletionService {
 
   private final DomainCompetencyMatrixFetcherDao dao;
+  private final static Logger LOGGER =
+      LoggerFactory.getLogger(DomainCompletionService.class);
 
-  public DomainCompetencyCompletionService(DBI defaultDbi) {
+  public DomainCompletionService(DBI defaultDbi) {
     this.dao = defaultDbi.onDemand(DomainCompetencyMatrixFetcherDao.class);
   }
 
@@ -27,11 +33,11 @@ public class DomainCompetencyCompletionService {
       Map<String, DomainCompetencyCompletionModel> domainCompetencyCompletionModels) {
 
     classMembers.forEach(member -> {
+      LOGGER.debug("processing '{}' user skyline", member);
       List<DomainCompetencyMatrixModel> userCompetencyModels =
           this.dao.fetchUserDomainCompetencyMatrix(member, subject, toDate);
 
       if (!userCompetencyModels.isEmpty()) {
-
         Map<String, Map<String, DomainCompetencyMatrixModel>> completedCompMatrixMap =
             generateCompletedCompetencyMatrixMap(userCompetencyModels);
 
@@ -42,8 +48,9 @@ public class DomainCompetencyCompletionService {
         for (Map.Entry<String, DomainCompetencyCompletionModel> entry : domainCompetencyCompletionModels
             .entrySet()) {
           String domainCode = entry.getKey();
+          DomainCompetencyCompletionModel domainCompCompletionModel = entry.getValue();
           if (inferredCompletedCompMatrixMap.containsKey(domainCode)) {
-            DomainCompetencyCompletionModel domainCompCompletionModel = entry.getValue();
+            int domainAvgCompletion = 0;
             for (Map.Entry<String, CompetencyCompletionModel> completionModels : domainCompCompletionModel
                 .getCompetencies().entrySet()) {
               CompetencyCompletionModel compCompletionModel = completionModels.getValue();
@@ -54,10 +61,18 @@ public class DomainCompetencyCompletionService {
               if (matrixModel.getStatus() >= StatusConstants.INFERRED) {
                 compCompletionModel
                     .setAvgCompletion((avgCompletion == null ? 1 : avgCompletion + 1));
+                domainAvgCompletion = domainAvgCompletion + 1;
               }
             }
+            LOGGER.debug("setting avg completion:{} for domain '{}'", domainAvgCompletion,
+                domainCode);
+            int finalAvgCompletion = (domainCompCompletionModel.getAverage_completions() == null ? 0
+                : domainCompCompletionModel.getAverage_completions()) + domainAvgCompletion;
+            domainCompCompletionModel.setAverage_completions(finalAvgCompletion);
           } else {
-            entry.getValue().setAvgCompletion(0);
+            domainCompCompletionModel
+                .setAverage_completions((domainCompCompletionModel.getAverage_completions() == null ? 0
+                    : domainCompCompletionModel.getAverage_completions()));
           }
         }
       }
@@ -66,6 +81,7 @@ public class DomainCompetencyCompletionService {
 
   private Map<String, Map<String, DomainCompetencyMatrixModel>> generateCompletedCompetencyMatrixMap(
       List<DomainCompetencyMatrixModel> userCompetencyModels) {
+    LOGGER.debug("fetching completed competencies");
     Map<String, Map<String, DomainCompetencyMatrixModel>> completedCompMatrixMap = new HashMap<>();
 
     List<DomainCompetencyMatrixModel> completed = userCompetencyModels.stream()
@@ -93,6 +109,7 @@ public class DomainCompetencyCompletionService {
   private Map<String, Map<String, DomainCompetencyMatrixModel>> computeInferredCompletedCompetencyMatrixMap(
       List<DomainCompetencyMatrixModel> userCompetencyModels,
       Map<String, Map<String, DomainCompetencyMatrixModel>> completedCompMatrixMap) {
+    LOGGER.debug("computing inferred completion");
     Map<String, Map<String, DomainCompetencyMatrixModel>> inferredCompletedCompMatrixMap =
         new HashMap<>();
     userCompetencyModels.forEach(model -> {
@@ -131,6 +148,7 @@ public class DomainCompetencyCompletionService {
 
   public Map<String, Map<String, DomainCompetencyMatrixModel>> fetchAllDomainCompetencyMatrix(
       String subjectCode) {
+    LOGGER.debug("fetching all DCM for the subject '{}", subjectCode);
     List<DomainCompetencyMatrixModel> allDomainCompetencies =
         this.dao.fetchAllDomainCompetencies(subjectCode);
 
@@ -153,11 +171,12 @@ public class DomainCompetencyCompletionService {
 
   public Map<String, DomainCompetencyCompletionModel> fetchDomains(String subjectCode,
       Set<String> domainCodes) {
+    LOGGER.debug("fetching domain details");
     List<DomainCompetencyCompletionModel> allDomains =
         this.dao.fetchDomains(subjectCode, CollectionUtils.convertToSqlArrayOfString(domainCodes));
     Map<String, DomainCompetencyCompletionModel> domainCompCompletionModelMap = new HashMap<>();
     allDomains.forEach(domain -> {
-      domainCompCompletionModelMap.put(domain.getDomain().getDomainCode(), domain);
+      domainCompCompletionModelMap.put(domain.getDomain().getTx_domain_code(), domain);
     });
 
     return domainCompCompletionModelMap;

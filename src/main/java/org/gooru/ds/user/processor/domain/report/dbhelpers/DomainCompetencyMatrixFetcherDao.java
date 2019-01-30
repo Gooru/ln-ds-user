@@ -1,9 +1,11 @@
 
-package org.gooru.ds.user.processor.domain.report;
+package org.gooru.ds.user.processor.domain.report.dbhelpers;
 
 import java.sql.Timestamp;
 import java.util.List;
 import org.gooru.ds.user.app.jdbi.PGArray;
+import org.gooru.ds.user.processor.domain.report.DomainCompetencyCompletionModel;
+import org.gooru.ds.user.processor.domain.report.DomainCompetencyCompletionModelMapper;
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
@@ -31,6 +33,7 @@ public interface DomainCompetencyMatrixFetcherDao {
   List<DomainCompetencyMatrixModel> fetchAllDomainCompetencies(
       @Bind("subjectCode") String subjectCode);
 
+  @Mapper(DomainCompetencyCompletionModelMapper.class)
   @SqlQuery("SELECT tx_domain_code, tx_domain_name, tx_domain_seq FROM tx_domains WHERE tx_subject_code = :subjectCode"
       + " AND tx_domain_code = ANY(:domainCodes) order by tx_domain_seq")
   List<DomainCompetencyCompletionModel> fetchDomains(@Bind("subjectCode") String subjectCode,

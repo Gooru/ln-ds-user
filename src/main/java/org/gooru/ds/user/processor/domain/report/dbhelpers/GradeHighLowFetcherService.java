@@ -5,13 +5,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.skife.jdbi.v2.DBI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author szgooru Created On 18-Jan-2019
  */
 public class GradeHighLowFetcherService {
 
-  private GradeHighLowFetcherDao dao;
+  private final GradeHighLowFetcherDao dao;
+  private final static Logger LOGGER = LoggerFactory.getLogger(GradeHighLowFetcherService.class);
 
   public GradeHighLowFetcherService(DBI dbi) {
     this.dao = dbi.onDemand(GradeHighLowFetcherDao.class);
@@ -44,6 +47,7 @@ public class GradeHighLowFetcherService {
         bound.setLowlineCode(lb.getLowlineCode());
       }
 
+      LOGGER.debug("competency bound for domain '{}' : {}", domainCode, bound.toString());
       compBoundMap.put(domainCode, bound);
     }
 

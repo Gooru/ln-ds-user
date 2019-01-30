@@ -1,7 +1,8 @@
-package org.gooru.ds.user.processor.domain.report;
+package org.gooru.ds.user.processor.domain.report.dbhelpers;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import org.postgresql.util.PSQLException;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.ResultSetMapper;
 
@@ -21,7 +22,12 @@ public class DomainCompetencyMatrixModelMapper
     model.setCompetencyDesc(r.getString(MapperFields.COMPETENCY_DESC));
     model.setCompetencyStudentDesc(r.getString(MapperFields.COMPETENCY_STUDENT_DESC));
     model.setCompetencySeq(r.getInt(MapperFields.COMPETENCY_SEQ));
-    model.setStatus(r.getInt(MapperFields.STATUS));
+    try {
+      model.setStatus(r.getInt(MapperFields.STATUS));
+    } catch (PSQLException pe) {
+      // Intentionally want to eat the exception here. Because this mapper is also used to fetch the
+      // master DCM for specific subject in which the status column is not present in resultset.
+    }
     return model;
   }
 
