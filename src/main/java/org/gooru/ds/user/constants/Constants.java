@@ -1,5 +1,8 @@
 package org.gooru.ds.user.constants;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * @author ashish on 10/1/18. updated by mukul@gooru
  */
@@ -65,6 +68,12 @@ public final class Constants {
     public static final String MSG_OP_USER_COURSE_COMPETENCY_REPORT =
         "mb.op.user.course.competency.report";
 
+    // Domain reports
+    public static final String MSG_OP_DOMAIN_REPORT = "mb.op.domain.report";
+    public static final String MSG_OP_DOMAIN_COMPETENCY_REPORT = "mb.op.domain.competency.report";
+    public static final String MSG_OP_DOMAIN_COMPETENCY_PERF_REPORT =
+        "mb.op.domain.competency.perf.report";
+
     // Initial Learner Profile
     // public static final String MSG_OP_INITIAL_LEARNER_PROFILE = "mb.op.initial.learner.profile";
     // Baseline Learner Profile
@@ -105,12 +114,19 @@ public final class Constants {
 
   public static final class Params {
 
+    public static final String AGENT_MOBILE = "mobile";
+    public static final String AGENT_DESKTOP = "desktop";
+    public static final String AGENT_DEFAULT = AGENT_DESKTOP;
+    public static final List<String> SUPPORTED_AGENTS = Arrays.asList(AGENT_MOBILE, AGENT_DESKTOP);
+
     private Params() {
       throw new AssertionError();
     }
   }
 
   public static final class Route {
+    public static final String COLON = ":";
+    public static final String SEP = "/";
 
     public static final String API_AUTH_ROUTE = "/api/ds/users/*";
     public static final String API_INTERNAL_BANNER = "/api/internal/banner";
@@ -176,6 +192,21 @@ public final class Constants {
     // http://staging.gooru.org/api/ds/users/v2/user/baseline/learnerprofile
     public static final String API_USER_BASELINE_LEARNER_PROFILE =
         API_BASE_ROUTE + "user/baseline/learnerprofile";
+
+    // Domain Reports APIs
+    public static final String ID_CLASS = "classId";
+    public static final String CODE_DOMAIN = "domainCode";
+
+    // http://{host}/api/ds/users/{version}/classes/reports/domains?agent={agent}
+    public static final String API_DOMAIN_REPORT = API_BASE_ROUTE + "classes/reports/domains";
+
+    // http://{host}/api/ds/users/{version}/classes/reports/domains/competencies?agent={agent}
+    public static final String API_DOMAIN_COMPETENCIES_REPORT =
+        API_BASE_ROUTE + "classes/reports/domains/competencies";
+
+    // http://{host}/api/ds/users/{version}/classes/reports/domains/competencies/performance?tx_code={txCode}&agent={agent}
+    public static final String API_DOMAIN_COMPETENCIES_PERFORMANCE_REPORT =
+        API_BASE_ROUTE + "classes/reports/domains/competencies/performance";
 
     private Route() {
       throw new AssertionError();

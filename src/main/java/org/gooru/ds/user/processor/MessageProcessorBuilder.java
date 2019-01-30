@@ -11,6 +11,9 @@ import org.gooru.ds.user.processor.baselearnerprofile.LearnerProfileBaselineUpda
 import org.gooru.ds.user.processor.baselearnerprofile.read.ReadBaselineLearnerProfileProcessor;
 import org.gooru.ds.user.processor.competency.subjects.CompetencySubjectListProcessor;
 import org.gooru.ds.user.processor.competencymatrixcoordinates.CompetencyMatrixCoordinatesProcessor;
+import org.gooru.ds.user.processor.domain.competency.perf.report.DomainReportCompetencyPerfProcessor;
+import org.gooru.ds.user.processor.domain.competency.report.DomainReportCompetenyProcessor;
+import org.gooru.ds.user.processor.domain.report.DomainReportProcessor;
 import org.gooru.ds.user.processor.grade.boundary.GradeBoundaryListProcessor;
 import org.gooru.ds.user.processor.grade.competency.GradeCompetencyProcessor;
 import org.gooru.ds.user.processor.grade.master.GradeMasterProcessor;
@@ -137,6 +140,14 @@ public final class MessageProcessorBuilder {
 //        return new ATCCompetencyStatsProcessor(vertx, message);
       case Constants.Message.MSG_OP_READ_BASELINE_LEARNER_PROFILE:
         return new ReadBaselineLearnerProfileProcessor(vertx, message);
+        
+      case Constants.Message.MSG_OP_DOMAIN_REPORT:
+        return new DomainReportProcessor(vertx, message);
+      case Constants.Message.MSG_OP_DOMAIN_COMPETENCY_REPORT:
+        return new DomainReportCompetenyProcessor(vertx, message);
+      case Constants.Message.MSG_OP_DOMAIN_COMPETENCY_PERF_REPORT:
+        return new DomainReportCompetencyPerfProcessor(vertx, message);
+        
       default:
         return null;
     }
