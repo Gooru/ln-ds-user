@@ -1,5 +1,5 @@
 
-package org.gooru.ds.user.processor.domain.report;
+package org.gooru.ds.user.processor.domain.competency.report;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
@@ -14,16 +14,18 @@ import org.slf4j.LoggerFactory;
 import io.vertx.core.json.JsonObject;
 
 /**
- * @author szgooru Created On 14-Jan-2019
+ * @author szgooru Created On 31-Jan-2019
  */
-public class DomainReportCommand {
+public class DomainCompetencyReportCommand {
+
+  private static final Logger LOGGER =
+      LoggerFactory.getLogger(DomainCompetencyReportCommand.class);
 
   private String classId;
   private String agent;
+  private String domain;
   private Integer month;
   private Integer year;
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(DomainReportCommand.class);
 
   public String getClassId() {
     return classId;
@@ -31,6 +33,10 @@ public class DomainReportCommand {
 
   public String getAgent() {
     return agent;
+  }
+
+  public String getDomain() {
+    return domain;
   }
 
   public Integer getMonth() {
@@ -41,18 +47,9 @@ public class DomainReportCommand {
     return year;
   }
 
-  public static DomainReportCommand build(JsonObject request) {
-    DomainReportCommand command = buildFromJson(request);
+  public static DomainCompetencyReportCommand build(JsonObject request) {
+    DomainCompetencyReportCommand command = buildFromJson(request);
     command.validate();
-    return command;
-  }
-
-  private static DomainReportCommand buildFromJson(JsonObject request) {
-    DomainReportCommand command = new DomainReportCommand();
-    command.classId = request.getString(CommandAttributes.CLASS_ID, null);
-    command.agent = request.getString(CommandAttributes.AGENT, Constants.Params.AGENT_DEFAULT);
-    command.month = DomainReportUtils.getAsInt(request, CommandAttributes.MONTH);
-    command.year = DomainReportUtils.getAsInt(request, CommandAttributes.YEAR);
     return command;
   }
 
@@ -61,6 +58,12 @@ public class DomainReportCommand {
       LOGGER.warn("invalid class id provided");
       throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
           "Invalid classId");
+    }
+
+    if (domain == null || domain.isEmpty()) {
+      LOGGER.warn("invalid domain provided");
+      throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
+          "Invalid domain");
     }
 
     if (!Constants.Params.SUPPORTED_AGENTS.contains(agent)) {
@@ -87,12 +90,25 @@ public class DomainReportCommand {
       throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
           "year could not be future year");
     }
+
   }
 
-  public DomainReportCommandBean asBean() {
-    DomainReportCommandBean bean = new DomainReportCommandBean();
+  private static DomainCompetencyReportCommand buildFromJson(JsonObject request) {
+    DomainCompetencyReportCommand command = new DomainCompetencyReportCommand();
+    command.classId = request.getString(CommandAttributes.CLASS_ID, null);
+    command.agent = request.getString(CommandAttributes.AGENT, Constants.Params.AGENT_DEFAULT);
+    command.domain = request.getString(CommandAttributes.DOMAIN, null);
+    command.month = DomainReportUtils.getAsInt(request, CommandAttributes.MONTH);
+    command.year = DomainReportUtils.getAsInt(request, CommandAttributes.YEAR);
+    return command;
+  }
+
+  public DomainCompetencyReportCommandBean asBean() {
+    DomainCompetencyReportCommandBean bean =
+        new DomainCompetencyReportCommandBean();
     bean.classId = classId;
     bean.agent = agent;
+    bean.domain = domain;
     bean.month = month;
     bean.year = year;
 
@@ -100,13 +116,13 @@ public class DomainReportCommand {
     LocalDate boundary = localDate.plusMonths(1);
     LocalDateTime ts = LocalDateTime.of(boundary, LocalTime.of(0, 0));
     bean.toDate = Timestamp.valueOf(ts);
-    LOGGER.debug("setting toDate: {}", bean.toDate.toString());
     return bean;
   }
 
-  public static class DomainReportCommandBean {
+  public static class DomainCompetencyReportCommandBean {
     private String classId;
     private String agent;
+    private String domain;
     private Integer month;
     private Integer year;
     private Timestamp toDate;
@@ -125,6 +141,14 @@ public class DomainReportCommand {
 
     public void setAgent(String agent) {
       this.agent = agent;
+    }
+
+    public String getDomain() {
+      return domain;
+    }
+
+    public void setDomain(String domain) {
+      this.domain = domain;
     }
 
     public Integer getMonth() {
@@ -151,11 +175,6 @@ public class DomainReportCommand {
       this.toDate = toDate;
     }
 
-    @Override
-    public String toString() {
-      return "DomainReportCommandBean [classId=" + classId + ", agent=" + agent + ", month=" + month
-          + ", year=" + year + ", toDate=" + toDate + "]";
-    }
   }
 
   static class CommandAttributes {
@@ -165,6 +184,7 @@ public class DomainReportCommand {
 
     private static final String CLASS_ID = "classId";
     private static final String AGENT = "agent";
+    private static final String DOMAIN = "domain";
     private static final String MONTH = "month";
     private static final String YEAR = "year";
   }

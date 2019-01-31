@@ -21,8 +21,7 @@ import org.slf4j.LoggerFactory;
 public class DomainCompletionService {
 
   private final DomainCompetencyMatrixFetcherDao dao;
-  private final static Logger LOGGER =
-      LoggerFactory.getLogger(DomainCompletionService.class);
+  private final static Logger LOGGER = LoggerFactory.getLogger(DomainCompletionService.class);
 
   public DomainCompletionService(DBI defaultDbi) {
     this.dao = defaultDbi.onDemand(DomainCompetencyMatrixFetcherDao.class);
@@ -31,6 +30,7 @@ public class DomainCompletionService {
   public void computeDomainCompetencyCompletion(List<String> classMembers, String subject,
       Timestamp toDate,
       Map<String, DomainCompetencyCompletionModel> domainCompetencyCompletionModels) {
+    int memberCount = classMembers.size();
 
     classMembers.forEach(member -> {
       LOGGER.debug("processing '{}' user skyline", member);
@@ -66,17 +66,38 @@ public class DomainCompletionService {
             }
             LOGGER.debug("setting avg completion:{} for domain '{}'", domainAvgCompletion,
                 domainCode);
-            int finalAvgCompletion = (domainCompCompletionModel.getAverage_completions() == null ? 0
-                : domainCompCompletionModel.getAverage_completions()) + domainAvgCompletion;
+            long finalAvgCompletion =
+                (domainCompCompletionModel.getAverage_completions() == null ? 0
+                    : domainCompCompletionModel.getAverage_completions()) + domainAvgCompletion;
             domainCompCompletionModel.setAverage_completions(finalAvgCompletion);
           } else {
-            domainCompCompletionModel
-                .setAverage_completions((domainCompCompletionModel.getAverage_completions() == null ? 0
+            domainCompCompletionModel.setAverage_completions(
+                (domainCompCompletionModel.getAverage_completions() == null ? 0
                     : domainCompCompletionModel.getAverage_completions()));
           }
         }
       }
     });
+
+    for (Map.Entry<String, DomainCompetencyCompletionModel> entry : domainCompetencyCompletionModels
+        .entrySet()) {
+      DomainCompetencyCompletionModel domainCompCompletionModel = entry.getValue();
+      int numberOfCompetencies = domainCompCompletionModel.getCompetencies().size();
+      if (numberOfCompetencies > 0) {
+        int totalCompletionsByDomain = 0;
+        for (Map.Entry<String, CompetencyCompletionModel> completionModels : domainCompCompletionModel
+            .getCompetencies().entrySet()) {
+          totalCompletionsByDomain =
+              completionModels.getValue().getAvgCompletion() + totalCompletionsByDomain;
+        }
+
+        // converting the total completed competencies from int to double for not to round down the
+        // result to zero of integer division
+        double totalCompletions = totalCompletionsByDomain;
+        domainCompCompletionModel.setAverage_completions(
+            Math.round((totalCompletions / (numberOfCompetencies * memberCount)) * 100));
+      }
+    }
   }
 
   private Map<String, Map<String, DomainCompetencyMatrixModel>> generateCompletedCompetencyMatrixMap(

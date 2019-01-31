@@ -17,7 +17,7 @@ public class DomainCompetencyCompletionModelMapper
   public DomainCompetencyCompletionModel map(int index, ResultSet r, StatementContext ctx)
       throws SQLException {
     DomainCompetencyCompletionModel dccm = new DomainCompetencyCompletionModel();
-    dccm.setAverage_completions(0);
+    dccm.setAverage_completions(0l);
     dccm.setCompetencies(new HashMap<>());
     
     DomainModel dm = new DomainModel();

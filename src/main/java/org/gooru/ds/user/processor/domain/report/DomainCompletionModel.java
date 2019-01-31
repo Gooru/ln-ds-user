@@ -3,7 +3,7 @@ package org.gooru.ds.user.processor.domain.report;
 
 public class DomainCompletionModel {
   private DomainModel domain;
-  private Integer average_completions;
+  private Long average_completions;
 
   public DomainModel getDomain() {
     return domain;
@@ -13,11 +13,11 @@ public class DomainCompletionModel {
     this.domain = domain;
   }
 
-  public Integer getAverage_completions() {
+  public Long getAverage_completions() {
     return average_completions;
   }
 
-  public void setAverage_completions(Integer average_completions) {
+  public void setAverage_completions(Long average_completions) {
     this.average_completions = average_completions;
   }
 

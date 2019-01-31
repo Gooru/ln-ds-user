@@ -10,7 +10,7 @@ public class DomainCompetencyCompletionModel {
 
   private DomainModel domain;
   private Map<String, CompetencyCompletionModel> competencies;
-  private Integer average_completions;
+  private Long average_completions;
 
   public DomainModel getDomain() {
     return domain;
@@ -28,11 +28,11 @@ public class DomainCompetencyCompletionModel {
     this.competencies = competencies;
   }
 
-  public Integer getAverage_completions() {
+  public Long getAverage_completions() {
     return average_completions;
   }
 
-  public void setAverage_completions(Integer average_completions) {
+  public void setAverage_completions(Long average_completions) {
     this.average_completions = average_completions;
   }
 
