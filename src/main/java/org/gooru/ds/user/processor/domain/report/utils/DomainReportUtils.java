@@ -34,7 +34,6 @@ public final class DomainReportUtils {
           "no subject associated with class");
     }
 
-    // TODO: validate subject against db?
     return subject;
   }
 

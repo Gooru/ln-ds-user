@@ -21,21 +21,6 @@ public class DomainCompletionModelResponseBuilder {
     }
   }
 
-  /*
-   * private static DomainCompletionModelResponse buildResponseForDesktop( Map<String,
-   * DomainCompetencyCompletionModel> domainCompetencyCompletionMap, int memberCount) {
-   * DomainCompletionModelResponse response = new DomainCompletionModelResponse();
-   * List<DomainCompletionModel> domains = new ArrayList<>(); for (Map.Entry<String,
-   * DomainCompetencyCompletionModel> entry : domainCompetencyCompletionMap .entrySet()) {
-   * DomainCompetencyCompletionModel dccModel = entry.getValue();
-   * 
-   * DomainCompletionModel domainCompletionModel = new DomainCompletionModel();
-   * domainCompletionModel.setAverage_completions(dccModel.getAverage_completions());
-   * domainCompletionModel.setDomain(dccModel.getDomain()); domains.add(domainCompletionModel); }
-   * 
-   * response.setMember_count(memberCount); response.setDomains(domains); return response; }
-   */
-
   private static JsonObject buildResponseForDesktop(
       Map<String, DomainCompetencyCompletionModel> domainCompetencyCompletionMap, int memberCount) {
     JsonObject response = new JsonObject();
@@ -132,7 +117,7 @@ public class DomainCompletionModelResponseBuilder {
 
       domains.add(domainArrayObj);
     }
-    
+
     response.put(DomainReportResponseConstants.MobileResponseConstants.MEMBER_COUNT, memberCount);
     response.put(DomainReportResponseConstants.MobileResponseConstants.DOMAINS, domains);
     return response;

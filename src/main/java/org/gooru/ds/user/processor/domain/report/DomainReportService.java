@@ -48,31 +48,16 @@ public class DomainReportService {
 
     String subjectCode = DomainReportUtils.fetchSubjectFromClass(cls);
 
-    // Based on the availability of these three grade values we will calculate the low and high
-    // bounds.
-    // If low and high both grades are not assigned to class then use the current grade of the
-    // class
-    // From low, high and current find the lower and higher grades as use them as floor and ceiling
+    // Update: 01-Feb-2019 - We are relying on the current grade of the class to fetch the
+    // completions.
     Integer currentGrade = cls.getGradeCurrent();
-    Integer lowBound = cls.getGradeLowerBound();
-    Integer highBound = cls.getGradeUpperBound();
-
-    // Compute high and low grades
-    if (lowBound == null && highBound == null) {
-      // TODO: compute the low and high
-      // Confirm the logic with Subbu
-      LOGGER.debug("high and low bound is not set for class, falling back on current grade");
-    }
-
     if (currentGrade == null) {
       LOGGER.warn("no grade is setup for class, aborting ..");
       throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
           "no grade setup for class");
     }
 
-    // fetch high and low grade competencies by domain
-    // If there is no high and low bounds setup at class we are fetching the high-low competencies
-    // based on the current grade
+    // fetch grade competency bounds by the current grade of the class
     Map<String, GradeCompetencyBound> competencyBound =
         this.gradeCompetencyService.fetchHighLowLinesByGrade(currentGrade, subjectCode);
 
@@ -90,7 +75,6 @@ public class DomainReportService {
     for (Map.Entry<String, GradeCompetencyBound> entry : competencyBound.entrySet()) {
       String domainCode = entry.getKey();
       GradeCompetencyBound gcb = entry.getValue();
-      LOGGER.debug("processing domain '{}'", domainCode);
       Map<String, DomainCompetencyMatrixModel> competencyModels =
           allDomainCompetencyMatrixMap.get(domainCode);
       int lowSeq = competencyModels.get(gcb.getLowlineCode()).getCompetencySeq();
@@ -110,7 +94,6 @@ public class DomainReportService {
             ccm.setCompetencyName(dcmModel.getCompetencyName());
             ccm.setCompetencySeq(dcmModel.getCompetencySeq());
             ccm.setCompetencyDesc(dcmModel.getCompetencyStudentDesc());
-            LOGGER.debug("competency: '{}' || '{}'", dcmModel.getCompetencyCode(), ccm.toString());
             domainCompetencyCompletionMap.get(domainCode).getCompetencies()
                 .put(dcmModel.getCompetencyCode(), ccm);
           }
@@ -127,5 +110,5 @@ public class DomainReportService {
     return DomainCompletionModelResponseBuilder.buildReponse(bean.getAgent(),
         domainCompetencyCompletionMap, classMembers.size());
   }
-  
+
 }

@@ -100,8 +100,13 @@ public class DomainReportCommand {
     LocalDate boundary = localDate.plusMonths(1);
     LocalDateTime ts = LocalDateTime.of(boundary, LocalTime.of(0, 0));
     bean.toDate = Timestamp.valueOf(ts);
-    LOGGER.debug("setting toDate: {}", bean.toDate.toString());
     return bean;
+  }
+
+  @Override
+  public String toString() {
+    return "DomainReportCommand [classId=" + classId + ", agent=" + agent + ", month=" + month
+        + ", year=" + year + "]";
   }
 
   public static class DomainReportCommandBean {

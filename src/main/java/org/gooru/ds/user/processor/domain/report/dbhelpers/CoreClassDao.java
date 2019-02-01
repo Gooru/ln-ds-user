@@ -12,7 +12,7 @@ import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
 public interface CoreClassDao {
 
   @Mapper(CoreClassMapper.class)
-  @SqlQuery("SELECT grade_current, grade_lower_bound, grade_upper_bound, preference FROM class WHERE id = :classId::uuid")
+  @SqlQuery("SELECT grade_current, preference FROM class WHERE id = :classId::uuid")
   CoreClass fetchClassGrades(@Bind("classId") String classId);
 
   @SqlQuery("SELECT user_id FROM class_member WHERE class_id = :classId::uuid AND class_member_status = 'joined'")

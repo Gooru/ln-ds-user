@@ -36,10 +36,11 @@ public class DomainReportProcessor implements MessageProcessor {
   @Override
   public Future<MessageResponse> process() {
     try {
+      LOGGER.debug("request for domain report");
       this.eventBusMessage = EventBusMessage.eventBusMessageBuilder(message);
       DomainReportCommand command =
           DomainReportCommand.build(this.eventBusMessage.getRequestBody());
-      LOGGER.debug("request data: '{}'", command.toString());
+      LOGGER.debug("Request Data: {}", command.toString());
       fetchDomainReport(command);
     } catch (Throwable throwable) {
       LOGGER.warn("Encountered exception", throwable);
@@ -51,7 +52,6 @@ public class DomainReportProcessor implements MessageProcessor {
   private void fetchDomainReport(DomainReportCommand command) {
     try {
       JsonObject response = this.service.fetchDomainReport(command);
-      // String resultString = new ObjectMapper().writeValueAsString(response);
       result.complete(MessageResponseFactory.createOkayResponse(response));
     } catch (Throwable throwable) {
       LOGGER.warn("Encountered exception", throwable);

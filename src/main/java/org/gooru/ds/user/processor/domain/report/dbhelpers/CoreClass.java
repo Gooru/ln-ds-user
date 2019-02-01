@@ -9,8 +9,6 @@ import io.vertx.core.json.JsonObject;
 public class CoreClass {
 
   private Integer gradeCurrent;
-  private Integer gradeLowerBound;
-  private Integer gradeUpperBound;
   private JsonObject preference;
 
   public Integer getGradeCurrent() {
@@ -19,22 +17,6 @@ public class CoreClass {
 
   public void setGradeCurrent(Integer gradeCurrent) {
     this.gradeCurrent = gradeCurrent;
-  }
-
-  public Integer getGradeLowerBound() {
-    return gradeLowerBound;
-  }
-
-  public void setGradeLowerBound(Integer gradeLowerBound) {
-    this.gradeLowerBound = gradeLowerBound;
-  }
-
-  public Integer getGradeUpperBound() {
-    return gradeUpperBound;
-  }
-
-  public void setGradeUpperBound(Integer gradeUpperBound) {
-    this.gradeUpperBound = gradeUpperBound;
   }
 
   public JsonObject getPreference() {

@@ -33,7 +33,6 @@ public class DomainCompletionService {
     int memberCount = classMembers.size();
 
     classMembers.forEach(member -> {
-      LOGGER.debug("processing '{}' user skyline", member);
       List<DomainCompetencyMatrixModel> userCompetencyModels =
           this.dao.fetchUserDomainCompetencyMatrix(member, subject, toDate);
 
@@ -64,8 +63,7 @@ public class DomainCompletionService {
                 domainAvgCompletion = domainAvgCompletion + 1;
               }
             }
-            LOGGER.debug("setting avg completion:{} for domain '{}'", domainAvgCompletion,
-                domainCode);
+
             long finalAvgCompletion =
                 (domainCompCompletionModel.getAverage_completions() == null ? 0
                     : domainCompCompletionModel.getAverage_completions()) + domainAvgCompletion;
@@ -122,7 +120,6 @@ public class DomainCompletionService {
    */
   private Map<String, Map<String, DomainCompetencyMatrixModel>> generateCompletedCompetencyMatrixMap(
       List<DomainCompetencyMatrixModel> userCompetencyModels) {
-    LOGGER.debug("fetching completed competencies");
     Map<String, Map<String, DomainCompetencyMatrixModel>> completedCompMatrixMap = new HashMap<>();
 
     List<DomainCompetencyMatrixModel> completed = userCompetencyModels.stream()
@@ -154,7 +151,6 @@ public class DomainCompletionService {
   private Map<String, Map<String, DomainCompetencyMatrixModel>> computeInferredCompletedCompetencyMatrixMap(
       List<DomainCompetencyMatrixModel> userCompetencyModels,
       Map<String, Map<String, DomainCompetencyMatrixModel>> completedCompMatrixMap) {
-    LOGGER.debug("computing inferred completion");
     Map<String, Map<String, DomainCompetencyMatrixModel>> inferredCompletedCompMatrixMap =
         new HashMap<>();
     userCompetencyModels.forEach(model -> {

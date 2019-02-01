@@ -16,8 +16,6 @@ public class CoreClassMapper implements ResultSetMapper<CoreClass> {
   public CoreClass map(int index, ResultSet r, StatementContext ctx) throws SQLException {
     CoreClass cc = new CoreClass();
     cc.setGradeCurrent(r.getInt("grade_current"));
-    cc.setGradeLowerBound(r.getInt("grade_lower_bound"));
-    cc.setGradeUpperBound(r.getInt("grade_upper_bound"));
     cc.setPreference(new JsonObject(r.getString("preference")));
     return cc;
   }

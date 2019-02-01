@@ -36,8 +36,8 @@ public class GradeCompetencyBound {
 
   @Override
   public String toString() {
-    return "GradeCompetencyBound [domainCode=" + domainCode + ", lowlineCode=" + lowlineCode
-        + ", highlineCode=" + highlineCode + "]";
+    return "[domainCode=" + domainCode + ", lowlineCode=" + lowlineCode + ", highlineCode="
+        + highlineCode + "]";
   }
 
 }
