@@ -12,6 +12,7 @@ import org.gooru.ds.user.processor.domain.report.dbhelpers.CoreClassDao;
 import org.gooru.ds.user.processor.domain.report.dbhelpers.DomainCompetencyMatrixModel;
 import org.gooru.ds.user.processor.domain.report.dbhelpers.GradeCompetencyBound;
 import org.gooru.ds.user.processor.domain.report.dbhelpers.GradeHighLowFetcherService;
+import org.gooru.ds.user.processor.domain.report.utils.DomainReportUtils;
 import org.skife.jdbi.v2.DBI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,7 +35,7 @@ public class DomainReportService {
     this.domainCompCompletionService = new DomainCompletionService(defaultDbi);
   }
 
-  public DomainCompletionModelResponse fetchDomainReport(DomainReportCommand command) {
+  public JsonObject fetchDomainReport(DomainReportCommand command) {
 
     DomainReportCommandBean bean = command.asBean();
 
@@ -45,11 +46,11 @@ public class DomainReportService {
       throw new HttpResponseWrapperException(HttpStatus.NOT_FOUND, "class not found");
     }
 
-    String subjectCode = fetchSubjectFromClass(cls);
+    String subjectCode = DomainReportUtils.fetchSubjectFromClass(cls);
 
     // Based on the availability of these three grade values we will calculate the low and high
     // bounds.
-    // If low and high both grades are not assigned to course then use the current grade of the
+    // If low and high both grades are not assigned to class then use the current grade of the
     // class
     // From low, high and current find the lower and higher grades as use them as floor and ceiling
     Integer currentGrade = cls.getGradeCurrent();
@@ -58,6 +59,8 @@ public class DomainReportService {
 
     // Compute high and low grades
     if (lowBound == null && highBound == null) {
+      // TODO: compute the low and high
+      // Confirm the logic with Subbu
       LOGGER.debug("high and low bound is not set for class, falling back on current grade");
     }
 
@@ -121,38 +124,8 @@ public class DomainReportService {
     this.domainCompCompletionService.computeDomainCompetencyCompletion(classMembers, subjectCode,
         bean.getToDate(), domainCompetencyCompletionMap);
 
-    // For testing purpose logging. Can be removed later
-    for (Map.Entry<String, DomainCompetencyCompletionModel> entry : domainCompetencyCompletionMap
-        .entrySet()) {
-      DomainCompetencyCompletionModel dccm = entry.getValue();
-      LOGGER.debug("domain : {} || avgCompletion: {}", entry.getKey(), dccm.getAverage_completions());
-
-      for (Map.Entry<String, CompetencyCompletionModel> models : dccm.getCompetencies()
-          .entrySet()) {
-        LOGGER.debug(models.getValue().toString());
-      }
-    }
-
     return DomainCompletionModelResponseBuilder.buildReponse(bean.getAgent(),
         domainCompetencyCompletionMap, classMembers.size());
   }
-
-  private String fetchSubjectFromClass(CoreClass cls) {
-    JsonObject classPreference = cls.getPreference();
-    if (classPreference == null || classPreference.isEmpty()) {
-      LOGGER.warn("class preference is not set, aborting...");
-      throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
-          "class preferce is not setup");
-    }
-
-    String subject = classPreference.getString("subject");
-    if (subject == null || subject.isEmpty()) {
-      LOGGER.warn("subject is not set for class, aborting...");
-      throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
-          "no subject associated with class");
-    }
-
-    // TODO: validate subject against db?
-    return subject;
-  }
+  
 }

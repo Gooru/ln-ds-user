@@ -11,6 +11,7 @@ public class CompetencyCompletionModel {
   private String competencyDesc;
   private Integer competencySeq;
   private Integer avgCompletion;
+  private Long percentageCompletion;
 
   public String getCompetencyCode() {
     return competencyCode;
@@ -52,10 +53,20 @@ public class CompetencyCompletionModel {
     this.avgCompletion = avgCompletion;
   }
 
+  public Long getPercentageCompletion() {
+    return percentageCompletion;
+  }
+
+  public void setPercentageCompletion(Long percentageCompletion) {
+    this.percentageCompletion = percentageCompletion;
+  }
+
   @Override
   public String toString() {
-    return "CompetencyCompletionModel [competencyCode=" + competencyCode + ", competencySeq="
-        + competencySeq + ", avgCompletion=" + avgCompletion + "]";
+    return "CompetencyCompletionModel [competencyCode=" + competencyCode + ", competencyName="
+        + competencyName + ", competencyDesc=" + competencyDesc + ", competencySeq=" + competencySeq
+        + ", avgCompletion=" + avgCompletion + ", percentageCompletion=" + percentageCompletion
+        + "]";
   }
 
 }

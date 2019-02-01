@@ -27,8 +27,6 @@ public class RouteClassDomainReportsConfigurator implements RouteConfigurator {
     mbusTimeout = config.getLong(Constants.EventBus.MBUS_TIMEOUT, 30L) * 1000;
 
     router.get(Constants.Route.API_DOMAIN_REPORT).handler(this::domainReport);
-    router.get(Constants.Route.API_DOMAIN_COMPETENCIES_REPORT)
-        .handler(this::domainCompetenciesReport);
     router.get(Constants.Route.API_DOMAIN_COMPETENCIES_PERFORMANCE_REPORT)
         .handler(this::domainCompetenciesStudentsReport);
   }
@@ -36,12 +34,6 @@ public class RouteClassDomainReportsConfigurator implements RouteConfigurator {
   private void domainReport(RoutingContext routingContext) {
     RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_DOMAIN_REPORT,
         Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
-  }
-
-  private void domainCompetenciesReport(RoutingContext routingContext) {
-    RouteHandlerUtils.baseHandler(eb, routingContext,
-        Constants.Message.MSG_OP_DOMAIN_COMPETENCY_REPORT, Constants.EventBus.MBEP_DISPATCHER,
-        mbusTimeout, LOGGER);
   }
 
   private void domainCompetenciesStudentsReport(RoutingContext routingContext) {

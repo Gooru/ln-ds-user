@@ -87,19 +87,39 @@ public class DomainCompletionService {
         int totalCompletionsByDomain = 0;
         for (Map.Entry<String, CompetencyCompletionModel> completionModels : domainCompCompletionModel
             .getCompetencies().entrySet()) {
-          totalCompletionsByDomain =
-              completionModels.getValue().getAvgCompletion() + totalCompletionsByDomain;
+          CompetencyCompletionModel ccm = completionModels.getValue();
+
+          // Add up the competency completions of all competencies under the domain for domain level
+          // percentage completions
+          totalCompletionsByDomain = ccm.getAvgCompletion() + totalCompletionsByDomain;
+
+          // Compute the percentage complete for the competency
+          if (ccm.getAvgCompletion() > 0) {
+            double totalCompetencyCompletions = ccm.getAvgCompletion();
+            ccm.setPercentageCompletion(
+                Math.round((totalCompetencyCompletions / memberCount) * 100));
+          } else {
+            ccm.setPercentageCompletion(0l);
+          }
         }
 
         // converting the total completed competencies from int to double for not to round down the
         // result to zero of integer division
-        double totalCompletions = totalCompletionsByDomain;
-        domainCompCompletionModel.setAverage_completions(
-            Math.round((totalCompletions / (numberOfCompetencies * memberCount)) * 100));
+        if (totalCompletionsByDomain > 0) {
+          double totalCompletions = totalCompletionsByDomain;
+          domainCompCompletionModel.setAverage_completions(
+              Math.round((totalCompletions / (numberOfCompetencies * memberCount)) * 100));
+        } else {
+          domainCompCompletionModel.setAverage_completions(0l);
+        }
       }
     }
   }
 
+  /*
+   * From the domain competency matrix (skyline) of the user, generate the map of the completed
+   * competencies by domain
+   */
   private Map<String, Map<String, DomainCompetencyMatrixModel>> generateCompletedCompetencyMatrixMap(
       List<DomainCompetencyMatrixModel> userCompetencyModels) {
     LOGGER.debug("fetching completed competencies");
@@ -127,6 +147,10 @@ public class DomainCompletionService {
     return completedCompMatrixMap;
   }
 
+  /*
+   * Compute the inferred completion for each competency under the domain based on the completed
+   * competencies and sequence.
+   */
   private Map<String, Map<String, DomainCompetencyMatrixModel>> computeInferredCompletedCompetencyMatrixMap(
       List<DomainCompetencyMatrixModel> userCompetencyModels,
       Map<String, Map<String, DomainCompetencyMatrixModel>> completedCompMatrixMap) {
@@ -167,6 +191,9 @@ public class DomainCompletionService {
     return inferredCompletedCompMatrixMap;
   }
 
+  /*
+   * Fetch domain competency matrix 
+   */
   public Map<String, Map<String, DomainCompetencyMatrixModel>> fetchAllDomainCompetencyMatrix(
       String subjectCode) {
     LOGGER.debug("fetching all DCM for the subject '{}", subjectCode);

@@ -70,7 +70,6 @@ public final class Constants {
 
     // Domain reports
     public static final String MSG_OP_DOMAIN_REPORT = "mb.op.domain.report";
-    public static final String MSG_OP_DOMAIN_COMPETENCY_REPORT = "mb.op.domain.competency.report";
     public static final String MSG_OP_DOMAIN_COMPETENCY_PERF_REPORT =
         "mb.op.domain.competency.perf.report";
 
@@ -199,10 +198,6 @@ public final class Constants {
 
     // http://{host}/api/ds/users/{version}/classes/reports/domains?agent={agent}
     public static final String API_DOMAIN_REPORT = API_BASE_ROUTE + "classes/reports/domains";
-
-    // http://{host}/api/ds/users/{version}/classes/reports/domains/competencies?agent={agent}
-    public static final String API_DOMAIN_COMPETENCIES_REPORT =
-        API_BASE_ROUTE + "classes/reports/domains/competencies";
 
     // http://{host}/api/ds/users/{version}/classes/reports/domains/competencies/performance?tx_code={txCode}&agent={agent}
     public static final String API_DOMAIN_COMPETENCIES_PERFORMANCE_REPORT =
