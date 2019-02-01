@@ -26,6 +26,15 @@ public final class DomainReportResponseConstants {
     public static final String TX_COMP_DESC = "tx_comp_desc";
     public static final String COMPLETIONS = "completions";
 
+    public static final String USERS = "users";
+    public static final String USER = "user";
+    public static final String ID = "id";
+    public static final String FIRST_NAME = "first_name";
+    public static final String LAST_NAME = "last_name";
+    public static final String THUMBNAIL = "thumbnail";
+    public static final String STATUS = "status";
+    public static final String SCORE = "score";
+
     private DesktopResponseConstants() {
       throw new AssertionError();
     }
@@ -46,6 +55,15 @@ public final class DomainReportResponseConstants {
     public static final String TX_COMP_NAME = "nm";
     public static final String TX_COMP_DESC = "ds";
     public static final String COMPLETIONS = "pc";
+
+    public static final String USERS = "us";
+    public static final String USER = "u";
+    public static final String ID = "id";
+    public static final String FIRST_NAME = "fn";
+    public static final String LAST_NAME = "ln";
+    public static final String THUMBNAIL = "th";
+    public static final String STATUS = "st";
+    public static final String SCORE = "sc";
 
     private MobileResponseConstants() {
       throw new AssertionError();
