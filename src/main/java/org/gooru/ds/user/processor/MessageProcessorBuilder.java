@@ -1,8 +1,5 @@
 package org.gooru.ds.user.processor;
 
-import io.vertx.core.Vertx;
-import io.vertx.core.eventbus.Message;
-import io.vertx.core.json.JsonObject;
 import org.gooru.ds.user.constants.Constants;
 import org.gooru.ds.user.processor.activeuserlist.ActiveUserListProcessor;
 import org.gooru.ds.user.processor.atc.pvc.CompetencyPerfVsCompletionProcessor;
@@ -12,7 +9,6 @@ import org.gooru.ds.user.processor.baselearnerprofile.read.ReadBaselineLearnerPr
 import org.gooru.ds.user.processor.competency.subjects.CompetencySubjectListProcessor;
 import org.gooru.ds.user.processor.competencymatrixcoordinates.CompetencyMatrixCoordinatesProcessor;
 import org.gooru.ds.user.processor.domain.competency.perf.report.DomainCompetencyPerfReportProcessor;
-import org.gooru.ds.user.processor.domain.competency.report.DomainCompetenyReportProcessor;
 import org.gooru.ds.user.processor.domain.report.DomainReportProcessor;
 import org.gooru.ds.user.processor.grade.boundary.GradeBoundaryListProcessor;
 import org.gooru.ds.user.processor.grade.master.GradeMasterProcessor;
@@ -43,6 +39,9 @@ import org.gooru.ds.user.processor.userstats.journeys.UserStatsJourneysProcessor
 import org.gooru.ds.user.processor.userstats.provider.UserStatsProviderProcessor;
 import org.gooru.ds.user.processor.userstats.resources.UserStatsResourcesProcessor;
 import org.gooru.ds.user.processor.userstats.timespent.UserStatsTimespentProcessor;
+import io.vertx.core.Vertx;
+import io.vertx.core.eventbus.Message;
+import io.vertx.core.json.JsonObject;
 
 /**
  * @author ashish on 10/1/18. updated by mukul@gooru
