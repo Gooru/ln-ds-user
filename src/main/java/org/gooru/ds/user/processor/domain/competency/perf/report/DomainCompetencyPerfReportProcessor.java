@@ -1,5 +1,5 @@
 
-package org.gooru.ds.user.processor.domain.report;
+package org.gooru.ds.user.processor.domain.competency.perf.report;
 
 import org.gooru.ds.user.app.data.EventBusMessage;
 import org.gooru.ds.user.app.jdbi.DBICreator;
@@ -16,18 +16,20 @@ import io.vertx.core.json.JsonObject;
 /**
  * @author szgooru Created On 14-Jan-2019
  */
-public class DomainReportProcessor implements MessageProcessor {
+public class DomainCompetencyPerfReportProcessor implements MessageProcessor {
 
-  private final static Logger LOGGER = LoggerFactory.getLogger(DomainReportProcessor.class);
+  private final static Logger LOGGER =
+      LoggerFactory.getLogger(DomainCompetencyPerfReportProcessor.class);
   private final Vertx vertx;
   private final Message<JsonObject> message;
   private final Future<MessageResponse> result;
 
-  private EventBusMessage eventBusMessage;
-  private final DomainReportService service =
-      new DomainReportService(DBICreator.getDbiForDefaultDS(), DBICreator.getDbiForCoreDS());
+  private final DomainCompetencyPerfReportService service = new DomainCompetencyPerfReportService(
+      DBICreator.getDbiForDefaultDS(), DBICreator.getDbiForCoreDS());
 
-  public DomainReportProcessor(Vertx vertx, Message<JsonObject> message) {
+  private EventBusMessage eventBusMessage;
+
+  public DomainCompetencyPerfReportProcessor(Vertx vertx, Message<JsonObject> message) {
     this.vertx = vertx;
     this.message = message;
     this.result = Future.future();
@@ -37,10 +39,9 @@ public class DomainReportProcessor implements MessageProcessor {
   public Future<MessageResponse> process() {
     try {
       this.eventBusMessage = EventBusMessage.eventBusMessageBuilder(message);
-      DomainReportCommand command =
-          DomainReportCommand.build(this.eventBusMessage.getRequestBody());
-      LOGGER.debug("request data: '{}'", command.toString());
-      fetchDomainReport(command);
+      DomainCompetencyPerfReportCommand command =
+          DomainCompetencyPerfReportCommand.build(this.eventBusMessage.getRequestBody());
+      fetchDomainCompetencyPerfReport(command);
     } catch (Throwable throwable) {
       LOGGER.warn("Encountered exception", throwable);
       result.fail(throwable);
@@ -48,14 +49,14 @@ public class DomainReportProcessor implements MessageProcessor {
     return result;
   }
 
-  private void fetchDomainReport(DomainReportCommand command) {
+  private void fetchDomainCompetencyPerfReport(DomainCompetencyPerfReportCommand command) {
     try {
-      JsonObject response = this.service.fetchDomainReport(command);
-      // String resultString = new ObjectMapper().writeValueAsString(response);
+      JsonObject response = this.service.fetchDomainCompetencyPerfReport(command);
       result.complete(MessageResponseFactory.createOkayResponse(response));
-    } catch (Throwable throwable) {
-      LOGGER.warn("Encountered exception", throwable);
-      result.fail(throwable);
+    } catch (Throwable t) {
+      LOGGER.warn("Encountered exception", t);
+      result.fail(t);
     }
   }
+
 }

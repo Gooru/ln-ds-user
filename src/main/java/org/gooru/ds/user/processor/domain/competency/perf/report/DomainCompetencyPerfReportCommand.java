@@ -1,5 +1,5 @@
 
-package org.gooru.ds.user.processor.domain.competency.report;
+package org.gooru.ds.user.processor.domain.competency.perf.report;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
@@ -14,16 +14,16 @@ import org.slf4j.LoggerFactory;
 import io.vertx.core.json.JsonObject;
 
 /**
- * @author szgooru Created On 31-Jan-2019
+ * @author szgooru Created On 01-Feb-2019
  */
-public class DomainCompetencyReportCommand {
-
-  private static final Logger LOGGER =
-      LoggerFactory.getLogger(DomainCompetencyReportCommand.class);
-
+public class DomainCompetencyPerfReportCommand {
+  
+  private static final Logger LOGGER = LoggerFactory.getLogger(DomainCompetencyPerfReportCommand.class);
+  
   private String classId;
-  private String agent;
   private String domain;
+  private String txCode;
+  private String agent;
   private Integer month;
   private Integer year;
 
@@ -31,12 +31,16 @@ public class DomainCompetencyReportCommand {
     return classId;
   }
 
-  public String getAgent() {
-    return agent;
-  }
-
   public String getDomain() {
     return domain;
+  }
+
+  public String getTxCode() {
+    return txCode;
+  }
+
+  public String getAgent() {
+    return agent;
   }
 
   public Integer getMonth() {
@@ -47,13 +51,24 @@ public class DomainCompetencyReportCommand {
     return year;
   }
 
-  public static DomainCompetencyReportCommand build(JsonObject request) {
-    DomainCompetencyReportCommand command = buildFromJson(request);
+  public static DomainCompetencyPerfReportCommand build(JsonObject request) {
+    DomainCompetencyPerfReportCommand command = buildFromJson(request);
     command.validate();
     return command;
   }
 
-  private void validate() {
+  public static DomainCompetencyPerfReportCommand buildFromJson(JsonObject request) {
+    DomainCompetencyPerfReportCommand command = new DomainCompetencyPerfReportCommand();
+    command.classId = request.getString(CommandAttributes.CLASS_ID, null);
+    command.agent = request.getString(CommandAttributes.AGENT, Constants.Params.AGENT_DEFAULT);
+    command.domain = request.getString(CommandAttributes.DOMAIN, null);
+    command.txCode = request.getString(CommandAttributes.TX_CODE, null);
+    command.month = DomainReportUtils.getAsInt(request, CommandAttributes.MONTH);
+    command.year = DomainReportUtils.getAsInt(request, CommandAttributes.YEAR);
+    return command;
+  }
+
+  public void validate() {
     if (classId == null || classId.isEmpty()) {
       LOGGER.warn("invalid class id provided");
       throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
@@ -64,6 +79,12 @@ public class DomainCompetencyReportCommand {
       LOGGER.warn("invalid domain provided");
       throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
           "Invalid domain");
+    }
+    
+    if (txCode == null || txCode.isEmpty()) {
+      LOGGER.warn("invalid taxonomy code provided");
+      throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
+          "Invalid taxonomy code");
     }
 
     if (!Constants.Params.SUPPORTED_AGENTS.contains(agent)) {
@@ -93,22 +114,12 @@ public class DomainCompetencyReportCommand {
 
   }
 
-  private static DomainCompetencyReportCommand buildFromJson(JsonObject request) {
-    DomainCompetencyReportCommand command = new DomainCompetencyReportCommand();
-    command.classId = request.getString(CommandAttributes.CLASS_ID, null);
-    command.agent = request.getString(CommandAttributes.AGENT, Constants.Params.AGENT_DEFAULT);
-    command.domain = request.getString(CommandAttributes.DOMAIN, null);
-    command.month = DomainReportUtils.getAsInt(request, CommandAttributes.MONTH);
-    command.year = DomainReportUtils.getAsInt(request, CommandAttributes.YEAR);
-    return command;
-  }
-
-  public DomainCompetencyReportCommandBean asBean() {
-    DomainCompetencyReportCommandBean bean =
-        new DomainCompetencyReportCommandBean();
+  public DomainCompetencyPerfReportCommandBean asBean() {
+    DomainCompetencyPerfReportCommandBean bean = new DomainCompetencyPerfReportCommandBean();
     bean.classId = classId;
     bean.agent = agent;
     bean.domain = domain;
+    bean.txCode = txCode;
     bean.month = month;
     bean.year = year;
 
@@ -119,10 +130,11 @@ public class DomainCompetencyReportCommand {
     return bean;
   }
 
-  public static class DomainCompetencyReportCommandBean {
+  public static class DomainCompetencyPerfReportCommandBean {
     private String classId;
-    private String agent;
     private String domain;
+    private String txCode;
+    private String agent;
     private Integer month;
     private Integer year;
     private Timestamp toDate;
@@ -135,20 +147,28 @@ public class DomainCompetencyReportCommand {
       this.classId = classId;
     }
 
-    public String getAgent() {
-      return agent;
-    }
-
-    public void setAgent(String agent) {
-      this.agent = agent;
-    }
-
     public String getDomain() {
       return domain;
     }
 
     public void setDomain(String domain) {
       this.domain = domain;
+    }
+
+    public String getTxCode() {
+      return txCode;
+    }
+
+    public void setTxCode(String txCode) {
+      this.txCode = txCode;
+    }
+
+    public String getAgent() {
+      return agent;
+    }
+
+    public void setAgent(String agent) {
+      this.agent = agent;
     }
 
     public Integer getMonth() {
@@ -174,17 +194,18 @@ public class DomainCompetencyReportCommand {
     public void setToDate(Timestamp toDate) {
       this.toDate = toDate;
     }
-
+    
   }
-
+  
   static class CommandAttributes {
     private CommandAttributes() {
       throw new AssertionError();
     }
 
     private static final String CLASS_ID = "classId";
-    private static final String AGENT = "agent";
     private static final String DOMAIN = "domain";
+    private static final String AGENT = "agent";
+    private static final String TX_CODE = "tx_code";
     private static final String MONTH = "month";
     private static final String YEAR = "year";
   }
