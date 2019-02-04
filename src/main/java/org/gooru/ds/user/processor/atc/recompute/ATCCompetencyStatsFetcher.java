@@ -44,7 +44,7 @@ public class ATCCompetencyStatsFetcher {
       } else if ((command.getMonth() != null && command.getYear() != null)) {
         userCompetencyStatsList = competencyStatsDao.fetchGradeCompetencyStatsTimeBound(
             PGArrayUtils.convertFromListStringToSqlArrayOfString(classMembers),
-            command.getClassId(), command.getCourseId(), command.getSubjectCode(), command.getMonth(), command.getYear());
+            command.getClassId(), command.getCourseId(), command.getSubjectCode(), command.getStatsDate());
       }
     }
     return userCompetencyStatsList;

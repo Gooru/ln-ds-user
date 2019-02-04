@@ -1,5 +1,10 @@
 package org.gooru.ds.user.processor.atc.recompute;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import org.gooru.ds.user.constants.HttpConstants;
 import org.gooru.ds.user.exceptions.HttpResponseWrapperException;
 import org.slf4j.Logger;
@@ -20,6 +25,7 @@ public class ATCCompetencyStatsCommand {
   private String courseId;
   private Integer month;
   private Integer year;
+  private Date statsDate;
 
   public String getSubjectCode() {
     return subjectCode;
@@ -60,7 +66,14 @@ public class ATCCompetencyStatsCommand {
   public void setYear(Integer year) {
     this.year = year;
   }
+  
+  public Date getStatsDate() {
+    return statsDate;
+  }
 
+  public void setStatsDate(Date statsDate) {
+    this.statsDate = statsDate;
+  }
 
   static ATCCompetencyStatsCommand builder(JsonObject requestBody) {
     ATCCompetencyStatsCommand command = buildFromJsonObject(requestBody);
@@ -73,8 +86,13 @@ public class ATCCompetencyStatsCommand {
     command.month = requestBody.getString(CommandAttributes.MONTH) != null
         ? Integer.valueOf(requestBody.getString(CommandAttributes.MONTH))
         : null;
-
     command.validate();
+    
+    if (command.month != null && command.year != null) {
+    LocalDate localDate = LocalDate.of(command.year, command.month, 1);
+    command.statsDate = Date.valueOf(localDate); 
+    }
+
     return command;
   }
 
