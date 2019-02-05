@@ -11,19 +11,19 @@ import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
 interface UserPerfCompetencyCollectionsDao {
 
   @Mapper(UserPerfCompetencyCollectionsModelMapper.class)
-  @SqlQuery("select collection_id, latest_session_id, collection_score, collection_type "
+  @SqlQuery("select collection_id, latest_session_id, collection_score, collection_type, content_source "
       + " from content_competency_evidence where competency_code = :competencyCode and user_id = :user")
   List<UserPerfCompetencyCollectionsModel> fetchUserPerfCompetencyCollections(
       @BindBean UserPerfCompetencyCollectionsCommand.UserPerfCompetencyCollectionsCommandBean userPerfCompetencyCollectionsCommandBean);
 
   @Mapper(UserPerfCompetencyCollectionsModelMapper.class)
-  @SqlQuery("select collection_id, latest_session_id, collection_score, collection_type, class_id, course_id, unit_id, lesson_id "
+  @SqlQuery("select collection_id, latest_session_id, collection_score, collection_type, class_id, course_id, unit_id, lesson_id, content_source "
       + " from learner_profile_competency_evidence where gut_code = :gutCode and user_id = :user")
   List<UserPerfCompetencyCollectionsModel> fetchUserPerfCompetencyCollectionsByGut(
       @BindBean UserPerfCompetencyCollectionsCommand.UserPerfCompetencyCollectionsCommandBean userPerfCompetencyCollectionsCommandBean);
 
   @Mapper(UserPerfCompetencyCollectionsModelMapper.class)
-  @SqlQuery("select collection_id, latest_session_id, collection_score, collection_type, class_id, course_id, unit_id, lesson_id "
+  @SqlQuery("select collection_id, latest_session_id, collection_score, collection_type, class_id, course_id, unit_id, lesson_id, content_source "
       + " from learner_profile_competency_evidence_ts where status = :status and gut_code = :gutCode and user_id = :user")
   List<UserPerfCompetencyCollectionsModel> fetchUserPerfCompetencyCollectionsByGutAndStatus(
       @BindBean UserPerfCompetencyCollectionsCommand.UserPerfCompetencyCollectionsCommandBean userPerfCompetencyCollectionsCommandBean);
