@@ -1,6 +1,10 @@
 package org.gooru.ds.user.processor.atc.recompute;
 
-import java.util.UUID;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import org.gooru.ds.user.constants.HttpConstants;
 import org.gooru.ds.user.exceptions.HttpResponseWrapperException;
 import org.slf4j.Logger;
@@ -11,15 +15,17 @@ import io.vertx.core.json.JsonObject;
 /**
  * @author mukul@gooru
  */
-public class GradeBasedCompetencyStatsCommand {
+public class ATCCompetencyStatsCommand {
 
   private static final Logger LOGGER =
-      LoggerFactory.getLogger(GradeBasedCompetencyStatsCommand.class);
+      LoggerFactory.getLogger(ATCCompetencyStatsCommand.class);
 
   private String subjectCode;
   private String classId;
+  private String courseId;
   private Integer month;
   private Integer year;
+  private Date statsDate;
 
   public String getSubjectCode() {
     return subjectCode;
@@ -37,6 +43,14 @@ public class GradeBasedCompetencyStatsCommand {
     this.classId = classId;
   }
 
+  public String getCourseId() {
+    return courseId;
+  }
+
+  public void setCourseId(String courseId) {
+    this.courseId = courseId;
+  }
+  
   public Integer getMonth() {
     return month;
   }
@@ -52,11 +66,19 @@ public class GradeBasedCompetencyStatsCommand {
   public void setYear(Integer year) {
     this.year = year;
   }
+  
+  public Date getStatsDate() {
+    return statsDate;
+  }
 
+  public void setStatsDate(Date statsDate) {
+    this.statsDate = statsDate;
+  }
 
-  static GradeBasedCompetencyStatsCommand builder(JsonObject requestBody) {
-    GradeBasedCompetencyStatsCommand command = buildFromJsonObject(requestBody);
+  static ATCCompetencyStatsCommand builder(JsonObject requestBody) {
+    ATCCompetencyStatsCommand command = buildFromJsonObject(requestBody);
     command.classId = requestBody.getString(CommandAttributes.CLASS_ID);
+    command.courseId = requestBody.getString(CommandAttributes.COURSE_ID);
     command.subjectCode = requestBody.getString(CommandAttributes.SUBJECT_CODE);
     command.year = requestBody.getString(CommandAttributes.YEAR) != null
         ? Integer.valueOf(requestBody.getString(CommandAttributes.YEAR))
@@ -64,8 +86,13 @@ public class GradeBasedCompetencyStatsCommand {
     command.month = requestBody.getString(CommandAttributes.MONTH) != null
         ? Integer.valueOf(requestBody.getString(CommandAttributes.MONTH))
         : null;
-
     command.validate();
+    
+    if (command.month != null && command.year != null) {
+    LocalDate localDate = LocalDate.of(command.year, command.month, 1);
+    command.statsDate = Date.valueOf(localDate); 
+    }
+
     return command;
   }
 
@@ -78,17 +105,22 @@ public class GradeBasedCompetencyStatsCommand {
       LOGGER.debug("Invalid subjectCode");
       throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
           "Invalid subjectCode");
+    } else if (courseId == null) {
+      LOGGER.debug("Invalid CourseId");
+      throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
+          "Invalid courseId");
     }
   }
 
-  private static GradeBasedCompetencyStatsCommand buildFromJsonObject(JsonObject requestBody) {
-    GradeBasedCompetencyStatsCommand command = new GradeBasedCompetencyStatsCommand();
+  private static ATCCompetencyStatsCommand buildFromJsonObject(JsonObject requestBody) {
+    ATCCompetencyStatsCommand command = new ATCCompetencyStatsCommand();
     return command;
   }
 
   static class CommandAttributes {
     private static final String SUBJECT_CODE = "subjectCode";
     private static final String CLASS_ID = "classId";
+    private static final String COURSE_ID = "courseId";
     private static final String YEAR = "year";
     private static final String MONTH = "month";
 

@@ -1,17 +1,17 @@
 package org.gooru.ds.user.processor;
 
-import io.vertx.core.Vertx;
-import io.vertx.core.eventbus.Message;
-import io.vertx.core.json.JsonObject;
 import org.gooru.ds.user.constants.Constants;
 import org.gooru.ds.user.processor.activeuserlist.ActiveUserListProcessor;
 import org.gooru.ds.user.processor.atc.pvc.CompetencyPerfVsCompletionProcessor;
-import org.gooru.ds.user.processor.atc.recompute.GradeBasedCompetencyStatsProcessor;
+import org.gooru.ds.user.processor.atc.recompute.ATCCompetencyStatsProcessor;
 import org.gooru.ds.user.processor.baselearnerprofile.LearnerProfileBaselineUpdateProcessor;
 import org.gooru.ds.user.processor.baselearnerprofile.read.ReadBaselineLearnerProfileProcessor;
 import org.gooru.ds.user.processor.competency.subjects.CompetencySubjectListProcessor;
 import org.gooru.ds.user.processor.competencymatrixcoordinates.CompetencyMatrixCoordinatesProcessor;
+import org.gooru.ds.user.processor.domain.competency.perf.report.DomainCompetencyPerfReportProcessor;
+import org.gooru.ds.user.processor.domain.report.DomainReportProcessor;
 import org.gooru.ds.user.processor.grade.boundary.GradeBoundaryListProcessor;
+import org.gooru.ds.user.processor.grade.competency.GradeCompetencyProcessor;
 import org.gooru.ds.user.processor.grade.master.GradeMasterProcessor;
 import org.gooru.ds.user.processor.user.competencylist.UserCompetencyListProcessor;
 import org.gooru.ds.user.processor.user.course.competency.report.UserCourseCompetencyReportProcessor;
@@ -40,6 +40,9 @@ import org.gooru.ds.user.processor.userstats.journeys.UserStatsJourneysProcessor
 import org.gooru.ds.user.processor.userstats.provider.UserStatsProviderProcessor;
 import org.gooru.ds.user.processor.userstats.resources.UserStatsResourcesProcessor;
 import org.gooru.ds.user.processor.userstats.timespent.UserStatsTimespentProcessor;
+import io.vertx.core.Vertx;
+import io.vertx.core.eventbus.Message;
+import io.vertx.core.json.JsonObject;
 
 /**
  * @author ashish on 10/1/18. updated by mukul@gooru
@@ -117,18 +120,31 @@ public final class MessageProcessorBuilder {
         return new CompetencyMatrixCoordinatesProcessor(vertx, message);
       case Constants.Message.MSG_OP_COMPETENCY_SUBJECTS:
         return new CompetencySubjectListProcessor(vertx, message);
+        
       case Constants.Message.MSG_OP_GRADES:
         return new GradeMasterProcessor(vertx, message);
       case Constants.Message.MSG_OP_GRADE_BOUNDARY:
         return new GradeBoundaryListProcessor(vertx, message);
+      case Constants.Message.MSG_OP_GRADE_COMPETENCIES:
+        return new GradeCompetencyProcessor(vertx, message);
+
+        
+        
       case Constants.Message.MSG_OP_BASE_LEARNER_PROFILE:
         return new LearnerProfileBaselineUpdateProcessor(vertx, message);
       case Constants.Message.MSG_OP_USERS_PERF_VS_COMPLETION:
-        return new CompetencyPerfVsCompletionProcessor(vertx, message);
-      case Constants.Message.MSG_OP_ATC:
-        return new GradeBasedCompetencyStatsProcessor(vertx, message);
+        //return new CompetencyPerfVsCompletionProcessor(vertx, message);
+        return new ATCCompetencyStatsProcessor(vertx, message);
+//      case Constants.Message.MSG_OP_ATC:
+//        return new ATCCompetencyStatsProcessor(vertx, message);
       case Constants.Message.MSG_OP_READ_BASELINE_LEARNER_PROFILE:
         return new ReadBaselineLearnerProfileProcessor(vertx, message);
+        
+      case Constants.Message.MSG_OP_DOMAIN_REPORT:
+        return new DomainReportProcessor(vertx, message);
+      case Constants.Message.MSG_OP_DOMAIN_COMPETENCY_PERF_REPORT:
+        return new DomainCompetencyPerfReportProcessor(vertx, message);
+        
       default:
         return null;
     }

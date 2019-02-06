@@ -1,4 +1,4 @@
-package org.gooru.ds.user.processor.atc.pvc.course.competency.utils;
+package org.gooru.ds.user.processor.grade.competency.compute.utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -60,10 +60,6 @@ public class CollectionUtils {
   }
 
   public static PGArray<String> convertToSqlArrayOfString(List<String> input) {
-    return PGArray.arrayOf(String.class, input);
-  }
-  
-  public static PGArray<String> convertToSqlArrayOfString(Set<String> input) {
     return PGArray.arrayOf(String.class, input);
   }
 

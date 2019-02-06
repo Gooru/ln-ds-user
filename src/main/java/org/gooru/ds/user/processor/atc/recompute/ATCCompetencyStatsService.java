@@ -7,12 +7,12 @@ import org.gooru.ds.user.app.jdbi.DBICreator;
 /**
  * @author mukul@gooru
  */
-public class GradeBasedCompetencyStatsService {
+public class ATCCompetencyStatsService {
 
   public CompetencyStatsResponse fetchUserGradeCompetencyStats(
-      GradeBasedCompetencyStatsCommand command) {
-    GradeBasedCompetencyStatsFetcher gradeBasedPerfVsCompletionCalculator =
-        new GradeBasedCompetencyStatsFetcher(DBICreator.getDbiForDefaultDS(),
+      ATCCompetencyStatsCommand command) {
+    ATCCompetencyStatsFetcher gradeBasedPerfVsCompletionCalculator =
+        new ATCCompetencyStatsFetcher(DBICreator.getDbiForDefaultDS(),
             DBICreator.getDbiForCoreDS());
     List<CompetencyStatsModel> competencyStatsModel =
         gradeBasedPerfVsCompletionCalculator.fetchGradeBasedUserPerformanceCompletion(command);
