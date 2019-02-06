@@ -10,6 +10,7 @@ public class UserPerfCompetencyCollectionsModel {
   private String courseId;
   private String unitId;
   private String lessonId;
+  private String contentSource;
 
   private Long timeSpent;
   private Integer reaction;
@@ -69,6 +70,14 @@ public class UserPerfCompetencyCollectionsModel {
 
   public void setLessonId(String lessonId) {
     this.lessonId = lessonId;
+  }
+  
+  public String getContentSource() {
+    return contentSource;
+  }
+
+  public void setContentSource(String contentSource) {
+    this.contentSource = contentSource;
   }
 
   public Long getTimeSpent() {

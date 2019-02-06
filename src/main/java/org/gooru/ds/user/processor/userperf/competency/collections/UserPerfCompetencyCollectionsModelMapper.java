@@ -16,13 +16,12 @@ public class UserPerfCompetencyCollectionsModelMapper
     model.setId(r.getString(MapperFields.COLLECTION_ID));
     model.setSessionId(r.getString(MapperFields.COLLECTION_SESSION_ID));
     model.setCollectionType(r.getString(MapperFields.COLLECTION_TYPE));
-    // model.setTimeSpent(r.getLong(MapperFields.COLLECTION_TIMESPENT));
     model.setScore(r.getDouble(MapperFields.COLLECTION_SCORE));
-    // model.setReaction(r.getInt(MapperFields.COLLECTION_REACTION));
     model.setClassId(r.getString(MapperFields.CLASS_ID));
     model.setCourseId(r.getString(MapperFields.COURSE_ID));
     model.setUnitId(r.getString(MapperFields.UNIT_ID));
     model.setLessonId(r.getString(MapperFields.LESSON_ID));
+    model.setContentSource(r.getString(MapperFields.CONTENT_SOURCE));
     return model;
   }
 
@@ -37,12 +36,11 @@ public class UserPerfCompetencyCollectionsModelMapper
     private static final String COLLECTION_TYPE = "collection_type";
     // private static final String COLLECTION_TIMESPENT = "collection_time_spent";
     private static final String COLLECTION_SCORE = "collection_score";
-    // private static final String COLLECTION_REACTION =
-    // "collection_average_reaction";
     private static final String CLASS_ID = "class_id";
     private static final String COURSE_ID = "course_id";
     private static final String UNIT_ID = "unit_id";
     private static final String LESSON_ID = "lesson_id";
+    private static final String CONTENT_SOURCE = "content_source";
 
   }
 
