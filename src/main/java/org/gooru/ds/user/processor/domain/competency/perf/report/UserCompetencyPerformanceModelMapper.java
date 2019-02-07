@@ -16,7 +16,7 @@ public class UserCompetencyPerformanceModelMapper
   public UserCompetencyPerformanceModel map(int index, ResultSet r, StatementContext ctx)
       throws SQLException {
     UserCompetencyPerformanceModel model = new UserCompetencyPerformanceModel();
-    model.setScore(r.getDouble("score"));
+    model.setScore(r.getDouble("collection_score"));
     model.setUserId(r.getString("user_id"));
     model.setStatus(r.getInt("status"));
     return model;
