@@ -13,18 +13,19 @@ import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
 interface CompetencyStatsDao {
 
   @Mapper(CompetencyStatsMapper.class)
-  @SqlQuery("SELECT DISTINCT ON (user_id, class_id) user_id, grade_id, total, completed, in_progress, score, percent_completed "
-      + "from user_class_competency_stats where class_id = :classId AND course_id = :courseId AND user_id = ANY(:user) AND subject_code = :subjectCode "
-      + "ORDER BY user_id, class_id, updated_at desc")
+  @SqlQuery("SELECT DISTINCT ON (uccs.user_id, uccs.class_id) uccs.user_id, uccs.grade_id, uccs.total, uccs.completed, uccs.in_progress, "
+      + "uccs.score, uccs.percent_completed, gm.grade FROM user_class_competency_stats as uccs LEFT JOIN grade_master gm ON "
+      + "uccs.grade_id = gm.id where uccs.class_id = :classId AND uccs.course_id = :courseId AND uccs.user_id = ANY(:user) AND "
+      + "uccs.subject_code = :subjectCode ORDER BY uccs.user_id, uccs.class_id desc")
   List<CompetencyStatsModel> fetchGradeCompetencyStats(@Bind("user") PGArray<String> user,
       @Bind("classId") String classId, @Bind("courseId") String courseId, @Bind("subjectCode") String subjectCode);
 
   //DB has a UNIQUE CONSTRAINT ON (user_id, class_id, course_id, month, year)
   @Mapper(CompetencyStatsMapper.class)
-  @SqlQuery("SELECT DISTINCT ON (user_id, class_id) user_id, grade_id, total, completed, "
-      + "in_progress, score, percent_completed FROM user_class_competency_stats where class_id = :classId AND "
-      + "course_id = :courseId AND user_id = ANY(:user) AND subject_code = :subjectCode AND stats_date <= :statsDate "
-      + "ORDER BY user_id, class_id, stats_date desc")
+  @SqlQuery("SELECT DISTINCT ON (uccs.user_id, uccs.class_id) uccs.user_id, uccs.grade_id, uccs.total, uccs.completed, uccs.in_progress, "
+      + "uccs.score, uccs.percent_completed, gm.grade FROM user_class_competency_stats as uccs LEFT JOIN grade_master gm ON "
+      + "uccs.grade_id = gm.id where uccs.class_id = :classId AND uccs.course_id = :courseId AND uccs.user_id = ANY(:user) AND "
+      + "uccs.subject_code = :subjectCode AND uccs.stats_date <= :statsDate ORDER BY uccs.user_id, uccs.class_id, uccs.stats_date desc")
   List<CompetencyStatsModel> fetchGradeCompetencyStatsTimeBound(@Bind("user") PGArray<String> user,
       @Bind("classId") String classId, @Bind("courseId") String courseId, @Bind("subjectCode") String subjectCode,
       @Bind("statsDate") Date statsDate);

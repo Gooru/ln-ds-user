@@ -12,7 +12,8 @@ public class CompetencyStatsModel {
   private Double percentScore;
   private Double percentCompletion;
   private String userId;
-  private String gradeId;
+  private Integer gradeId;
+  private String grade;
 
   public Integer getCompletedCompetencies() {
     return completedCompetencies;
@@ -62,12 +63,19 @@ public class CompetencyStatsModel {
     this.userId = userId;
   }
 
-  public String getGradeId() {
-    return gradeId;
+  public String getGrade() {
+    return grade;
   }
 
-  public void setGradeId(String gradeId) {
+  public void setGrade(String grade) {
+    this.grade = grade;
+  }
+
+  public void setGradeId(Integer gradeId) {
     this.gradeId = gradeId;
   }
-
+  
+  public Integer getGradeId() {
+    return gradeId;
+  }
 }
