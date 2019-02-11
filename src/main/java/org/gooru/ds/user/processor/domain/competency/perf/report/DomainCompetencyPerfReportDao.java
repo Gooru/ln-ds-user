@@ -14,8 +14,8 @@ import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
 public interface DomainCompetencyPerfReportDao {
 
   @Mapper(UserCompetencyPerformanceModelMapper.class)
-  @SqlQuery("SELECT DISTINCT ON (user_id, gut_code) FIRST_VALUE(collection_score) OVER (PARTITION BY status ORDER BY status desc) as score, user_id, status"
-      + " FROM learner_profile_competency_evidence_ts where user_id = ANY(:userIds) AND class_id = :classId AND gut_code = :txCode AND updated_at < :toDate")
+  @SqlQuery("SELECT DISTINCT ON (user_id, gut_code) collection_score, user_id, status FROM learner_profile_competency_evidence_ts where user_id ="
+      + " ANY(:userIds) AND class_id = :classId AND gut_code = :txCode AND updated_at < :toDate order by user_id, gut_code, status desc")
   List<UserCompetencyPerformanceModel> fetchCompetencyPerfByClassAndGut(
       @BindBean DomainCompetencyPerfReportCommand.DomainCompetencyPerfReportCommandBean bean,
       @Bind("userIds") PGArray<String> userIds);
