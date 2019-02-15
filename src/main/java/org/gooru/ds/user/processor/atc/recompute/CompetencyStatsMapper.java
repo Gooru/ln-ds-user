@@ -17,12 +17,13 @@ public class CompetencyStatsMapper implements ResultSetMapper<CompetencyStatsMod
     CompetencyStatsModel model = new CompetencyStatsModel();
 
     model.setUserId(r.getString(MapperFields.USER_ID));
-    model.setGradeId(r.getString(MapperFields.GRADE_ID));
+    model.setGradeId(r.getInt(MapperFields.GRADE_ID));
     model.setCompletedCompetencies(r.getInt(MapperFields.COMPLETED_COMPETENCIES));
     model.setInprogressCompetencies(r.getInt(MapperFields.IN_PROGRESS_COMPETENCIES));
     model.setTotalCompetencies(r.getInt(MapperFields.TOTAL_COMPETENCIES));
     model.setPercentCompletion(r.getDouble(MapperFields.PERCENT_COMPLETED));
     model.setPercentScore(r.getDouble(MapperFields.SCORE));
+    model.setGrade(r.getString(MapperFields.GRADE));
 
     return model;
   }
@@ -39,6 +40,7 @@ public class CompetencyStatsMapper implements ResultSetMapper<CompetencyStatsMod
     private static final String IN_PROGRESS_COMPETENCIES = "in_progress";
     private static final String COMPLETED_COMPETENCIES = "completed";
     private static final String PERCENT_COMPLETED = "percent_completed";
+    private static final String GRADE = "grade";
   }
 
 
