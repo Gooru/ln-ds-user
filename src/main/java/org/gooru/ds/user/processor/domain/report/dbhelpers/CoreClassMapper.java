@@ -16,7 +16,10 @@ public class CoreClassMapper implements ResultSetMapper<CoreClass> {
   public CoreClass map(int index, ResultSet r, StatementContext ctx) throws SQLException {
     CoreClass cc = new CoreClass();
     cc.setGradeCurrent(r.getInt("grade_current"));
-    cc.setPreference(new JsonObject(r.getString("preference")));
+    String preference = r.getString("preference");
+    JsonObject prefJson = (preference != null && !preference.isEmpty()) ? new JsonObject(preference)
+        : new JsonObject();
+    cc.setPreference(prefJson);
     return cc;
   }
 
