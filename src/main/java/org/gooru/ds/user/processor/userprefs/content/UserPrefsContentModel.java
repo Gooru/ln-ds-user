@@ -4,12 +4,13 @@ package org.gooru.ds.user.processor.userprefs.content;
  * @author ashish on 12/1/18.
  */
 class UserPrefsContentModel {
-  private Float webpage;
-  private Float interactive;
-  private Float text;
-  private Float audio;
-  private Float video;
-  private Float image;
+
+  private Float webpage = 0F;
+  private Float interactive = 0F;
+  private Float text = 0F;
+  private Float audio = 0F;
+  private Float video = 0F;
+  private Float image = 0F;
 
   public Float getWebpage() {
     return webpage;
@@ -59,4 +60,15 @@ class UserPrefsContentModel {
     this.image = image;
   }
 
+  @Override
+  public String toString() {
+    return "UserPrefsContentModel{" +
+        "webpage=" + webpage +
+        ", interactive=" + interactive +
+        ", text=" + text +
+        ", audio=" + audio +
+        ", video=" + video +
+        ", image=" + image +
+        '}';
+  }
 }
