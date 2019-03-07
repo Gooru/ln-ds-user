@@ -16,9 +16,9 @@ import io.vertx.core.json.JsonObject;
 /**
  * @author szgooru Created On 01-Feb-2019
  */
-public class DomainCompetencyPerfReportCommand {
+public class DomainCompetencyCompletionReportCommand {
   
-  private static final Logger LOGGER = LoggerFactory.getLogger(DomainCompetencyPerfReportCommand.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(DomainCompetencyCompletionReportCommand.class);
   
   private String classId;
   private String domain;
@@ -51,14 +51,14 @@ public class DomainCompetencyPerfReportCommand {
     return year;
   }
 
-  public static DomainCompetencyPerfReportCommand build(JsonObject request) {
-    DomainCompetencyPerfReportCommand command = buildFromJson(request);
+  public static DomainCompetencyCompletionReportCommand build(JsonObject request) {
+    DomainCompetencyCompletionReportCommand command = buildFromJson(request);
     command.validate();
     return command;
   }
 
-  public static DomainCompetencyPerfReportCommand buildFromJson(JsonObject request) {
-    DomainCompetencyPerfReportCommand command = new DomainCompetencyPerfReportCommand();
+  public static DomainCompetencyCompletionReportCommand buildFromJson(JsonObject request) {
+    DomainCompetencyCompletionReportCommand command = new DomainCompetencyCompletionReportCommand();
     command.classId = request.getString(CommandAttributes.CLASS_ID, null);
     command.agent = request.getString(CommandAttributes.AGENT, Constants.Params.AGENT_DEFAULT);
     command.domain = request.getString(CommandAttributes.DOMAIN, null);
@@ -114,8 +114,8 @@ public class DomainCompetencyPerfReportCommand {
 
   }
 
-  public DomainCompetencyPerfReportCommandBean asBean() {
-    DomainCompetencyPerfReportCommandBean bean = new DomainCompetencyPerfReportCommandBean();
+  public DomainCompetencyCompletionReportCommandBean asBean() {
+    DomainCompetencyCompletionReportCommandBean bean = new DomainCompetencyCompletionReportCommandBean();
     bean.classId = classId;
     bean.agent = agent;
     bean.domain = domain;
@@ -130,7 +130,7 @@ public class DomainCompetencyPerfReportCommand {
     return bean;
   }
 
-  public static class DomainCompetencyPerfReportCommandBean {
+  public static class DomainCompetencyCompletionReportCommandBean {
     private String classId;
     private String domain;
     private String txCode;

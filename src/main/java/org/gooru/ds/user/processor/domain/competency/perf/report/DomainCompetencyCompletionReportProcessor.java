@@ -16,20 +16,20 @@ import io.vertx.core.json.JsonObject;
 /**
  * @author szgooru Created On 14-Jan-2019
  */
-public class DomainCompetencyPerfReportProcessor implements MessageProcessor {
+public class DomainCompetencyCompletionReportProcessor implements MessageProcessor {
 
   private final static Logger LOGGER =
-      LoggerFactory.getLogger(DomainCompetencyPerfReportProcessor.class);
+      LoggerFactory.getLogger(DomainCompetencyCompletionReportProcessor.class);
   private final Vertx vertx;
   private final Message<JsonObject> message;
   private final Future<MessageResponse> result;
 
-  private final DomainCompetencyPerfReportService service = new DomainCompetencyPerfReportService(
+  private final DomainCompetencyCompletionReportService service = new DomainCompetencyCompletionReportService(
       DBICreator.getDbiForDefaultDS(), DBICreator.getDbiForCoreDS());
 
   private EventBusMessage eventBusMessage;
 
-  public DomainCompetencyPerfReportProcessor(Vertx vertx, Message<JsonObject> message) {
+  public DomainCompetencyCompletionReportProcessor(Vertx vertx, Message<JsonObject> message) {
     this.vertx = vertx;
     this.message = message;
     this.result = Future.future();
@@ -39,8 +39,8 @@ public class DomainCompetencyPerfReportProcessor implements MessageProcessor {
   public Future<MessageResponse> process() {
     try {
       this.eventBusMessage = EventBusMessage.eventBusMessageBuilder(message);
-      DomainCompetencyPerfReportCommand command =
-          DomainCompetencyPerfReportCommand.build(this.eventBusMessage.getRequestBody());
+      DomainCompetencyCompletionReportCommand command =
+          DomainCompetencyCompletionReportCommand.build(this.eventBusMessage.getRequestBody());
       fetchDomainCompetencyPerfReport(command);
     } catch (Throwable throwable) {
       LOGGER.warn("Encountered exception", throwable);
@@ -49,7 +49,7 @@ public class DomainCompetencyPerfReportProcessor implements MessageProcessor {
     return result;
   }
 
-  private void fetchDomainCompetencyPerfReport(DomainCompetencyPerfReportCommand command) {
+  private void fetchDomainCompetencyPerfReport(DomainCompetencyCompletionReportCommand command) {
     try {
       JsonObject response = this.service.fetchDomainCompetencyPerfReport(command);
       result.complete(MessageResponseFactory.createOkayResponse(response));
