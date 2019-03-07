@@ -10,17 +10,28 @@ import org.skife.jdbi.v2.tweak.ResultSetMapper;
  */
 public class UserPrefsContentModelMapper implements ResultSetMapper<UserPrefsContentModel> {
 
+  private static final Float MILLION = 1_000_000F;
+  public static final float ROUNDING_PLACES = 10000f;
+
   @Override
   public UserPrefsContentModel map(int index, ResultSet r, StatementContext ctx)
       throws SQLException {
     UserPrefsContentModel model = new UserPrefsContentModel();
-    model.setAudio(r.getFloat(MapperFields.AUDIO));
-    model.setInteractive(r.getFloat(MapperFields.INTERACTIVE));
-    model.setText(r.getFloat(MapperFields.TEXT));
-    model.setVideo(r.getFloat(MapperFields.VIDEO));
-    model.setWebpage(r.getFloat(MapperFields.WEBPAGE));
-    model.setImage(r.getFloat(MapperFields.IMAGE));
+    model.setAudio(normalizeFromMillion(r.getLong(MapperFields.AUDIO)));
+    model.setInteractive(normalizeFromMillion(r.getLong(MapperFields.INTERACTIVE)));
+    model.setText(normalizeFromMillion(r.getLong(MapperFields.TEXT)));
+    model.setVideo(normalizeFromMillion(r.getLong(MapperFields.VIDEO)));
+    model.setWebpage(normalizeFromMillion(r.getLong(MapperFields.WEBPAGE)));
+    model.setImage(normalizeFromMillion(r.getLong(MapperFields.IMAGE)));
     return model;
+  }
+
+  private Float normalizeFromMillion(long value) {
+    if (value == 0) {
+      return 0f;
+    }
+    float result = value / MILLION;
+    return (float) Math.round(result * ROUNDING_PLACES) / ROUNDING_PLACES;
   }
 
   private static final class MapperFields {
@@ -29,12 +40,12 @@ public class UserPrefsContentModelMapper implements ResultSetMapper<UserPrefsCon
       throw new AssertionError();
     }
 
-    private static final String INTERACTIVE = "interactive";
-    private static final String AUDIO = "audio";
-    private static final String WEBPAGE = "webpage";
-    private static final String VIDEO = "video";
-    private static final String TEXT = "textual";
-    private static final String IMAGE = "image";
+    private static final String INTERACTIVE = "interactive_pref";
+    private static final String AUDIO = "audio_pref";
+    private static final String WEBPAGE = "webpage_pref";
+    private static final String VIDEO = "video_pref";
+    private static final String TEXT = "text_pref";
+    private static final String IMAGE = "image_pref";
   }
 
 }
