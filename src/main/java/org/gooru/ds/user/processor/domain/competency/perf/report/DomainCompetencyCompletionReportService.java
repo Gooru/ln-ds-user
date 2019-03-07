@@ -73,32 +73,11 @@ public class DomainCompetencyCompletionReportService {
         CollectionUtils.convertToSqlArrayOfString(classMembers),
         CollectionUtils.convertToSqlArrayOfString(domainCompetencies), bean.getToDate());
 
-
-
-    // Check if the given competency is completed for the user if not, check if its inferred
-    // completed
-    /*
-     * userCompetencyCompletion.forEach(competencyCompletion -> { if
-     * (competencyCompletion.getStatus() >= StatusConstants.COMPLETED) {
-     * userCompetencyCompletionModelMap.put(competencyCompletion.getUserId(), competencyCompletion);
-     * } else { if (competencyCompletion.getStatus() == StatusConstants.IN_PROGRESS) {
-     * if(userInferredCompletion.contains(competencyCompletion.getUserId())) {
-     * UserCompetencyCompletionModel completionModel = new UserCompetencyCompletionModel();
-     * completionModel.setUserId(competencyCompletion.getUserId());
-     * completionModel.setStatus(StatusConstants.INFERRED);
-     * userCompetencyCompletionModelMap.put(competencyCompletion.getUserId(), completionModel); }
-     * else { userCompetencyCompletionModelMap.put(competencyCompletion.getUserId(),
-     * competencyCompletion); } } } });
-     */
-
     // Fetch user details of the class members
     List<UserModel> users =
         this.coreUserDao.fetchUserDetails(CollectionUtils.convertToSqlArrayOfUUID(classMembers));
 
     Map<String, UserCompetencyCompletionModel> userCompetencyCompletionModelMap = new HashMap<>();
-    // Finally cross check that status has been populated for all class members or not. If it is not
-    // populated at this stage then user have not started the competency itself. It is safe to mark
-    // it as not started for the user.
     users.forEach(user -> {
       String userId = user.getId();
       if (userCompetencyCompletionMap.containsKey(userId)) {
