@@ -9,14 +9,13 @@ import org.skife.jdbi.v2.tweak.ResultSetMapper;
 /**
  * @author szgooru Created On 01-Feb-2019
  */
-public class UserCompetencyPerformanceModelMapper
-    implements ResultSetMapper<UserCompetencyPerformanceModel> {
+public class UserCompetencyCompletionModelMapper
+    implements ResultSetMapper<UserCompetencyCompletionModel> {
 
   @Override
-  public UserCompetencyPerformanceModel map(int index, ResultSet r, StatementContext ctx)
+  public UserCompetencyCompletionModel map(int index, ResultSet r, StatementContext ctx)
       throws SQLException {
-    UserCompetencyPerformanceModel model = new UserCompetencyPerformanceModel();
-    model.setScore(r.getDouble("collection_score"));
+    UserCompetencyCompletionModel model = new UserCompetencyCompletionModel();
     model.setUserId(r.getString("user_id"));
     model.setStatus(r.getInt("status"));
     return model;
