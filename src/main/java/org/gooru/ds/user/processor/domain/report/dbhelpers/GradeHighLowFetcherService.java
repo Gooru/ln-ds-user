@@ -28,99 +28,34 @@ public class GradeHighLowFetcherService {
       String subjectCode) {
     Map<String, GradeCompetencyBound> compBoundMap = new HashMap<>();
 
-    Map<String, GradeCompetencyBound> lowBounds = fetchLowLineForGrade(currentGradeId, subjectCode);
-    Map<String, GradeCompetencyBound> highBounds = fetchHighLineForGrade(currentGradeId);
-
-    for (String domainCode : highBounds.keySet()) {
-
-      GradeCompetencyBound bound = new GradeCompetencyBound();
-      bound.setDomainCode(domainCode);
-
-      GradeCompetencyBound hb = highBounds.get(domainCode);
-      bound.setHighlineCode(hb.getHighlineCode());
-
-      GradeCompetencyBound lb = lowBounds.get(domainCode);
-      if (lb == null) {
-        String lowline = fetchFirstCompetencyInDomain(domainCode, subjectCode);
-        bound.setLowlineCode(lowline);
-      } else {
-        bound.setLowlineCode(lb.getLowlineCode());
+    //Map<String, GradeCompetencyBound> lowBounds = fetchLowLineForGrade(currentGradeId, subjectCode);
+    //Map<String, GradeCompetencyBound> highBounds = fetchHighLineForGrade(currentGradeId);
+    
+    List<GradeCompetencyBound> bounds = this.dao.fetchHighLowLinesByGrade(currentGradeId);
+    for (GradeCompetencyBound bound : bounds) {
+      String domainCode = bound.getDomainCode();
+      String lowline = bound.getLowlineCode();
+      String highline = bound.getHighlineCode();
+      
+      GradeCompetencyBound gcb = new GradeCompetencyBound();
+      // We do not want to report the domain completion for which the high and low competencies
+      // are same.
+      if (lowline != null && lowline.equalsIgnoreCase(highline)) {
+        continue;
       }
-
-      LOGGER.debug("competency bound for domain '{}' : {}", domainCode, bound.toString());
-      compBoundMap.put(domainCode, bound);
-    }
-
-    return compBoundMap;
-  }
-
-  /*
-   * We need consolidated list of domains and its high line and low lines. Calculation of high lines
-   * is based on the high grade and low lines is based on the low grades.
-   */
-  public Map<String, GradeCompetencyBound> fetchHighLowLinesByGrade(Integer highGradeId,
-      Integer lowGradeId, String subjectCode) {
-    Map<String, GradeCompetencyBound> compBoundMap = new HashMap<>();
-
-    Map<String, GradeCompetencyBound> lowBounds = fetchLowLineForGrade(lowGradeId, subjectCode);
-    Map<String, GradeCompetencyBound> highBounds = fetchHighLineForGrade(highGradeId);
-
-    for (String domainCode : highBounds.keySet()) {
-
-      GradeCompetencyBound bound = new GradeCompetencyBound();
-      bound.setDomainCode(domainCode);
-
-      GradeCompetencyBound hb = highBounds.get(domainCode);
-      bound.setHighlineCode(hb.getHighlineCode());
-
-      GradeCompetencyBound lb = lowBounds.get(domainCode);
-      if (lb == null) {
-        String lowline = fetchFirstCompetencyInDomain(domainCode, subjectCode);
-        bound.setLowlineCode(lowline);
-      } else {
-        bound.setLowlineCode(lb.getLowlineCode());
-      }
-
-      compBoundMap.put(domainCode, bound);
-    }
-
-    return compBoundMap;
-  }
-
-  /*
-   * Fetch low lines by grade. If the low line for the grade is null then fetch the first competency
-   * in the sequence of that domain and treat it as low line
-   */
-  private Map<String, GradeCompetencyBound> fetchLowLineForGrade(Integer gradeId,
-      String subjectCode) {
-    List<GradeCompetencyBound> lowlines = this.dao.fetchHighLowLinesByGrade(gradeId);
-
-    Map<String, GradeCompetencyBound> compBoundMap = new HashMap<>();
-    lowlines.forEach(line -> {
-      String domainCode = line.getDomainCode();
-      String lowline = line.getLowlineCode();
-
+      
+      // If lowline of the grade is null then fetch the first competency of the domain in sequence.
       if (lowline == null || lowline.isEmpty()) {
         lowline = fetchFirstCompetencyInDomain(domainCode, subjectCode);
-        line.setLowlineCode(lowline);
-      }
-
-      compBoundMap.put(domainCode, line);
-    });
-
-    return compBoundMap;
-  }
-
-  /*
-   * Its assumed that we will always have highline for each grade, so just return the highlines from
-   * grade competency bound
-   */
-  private Map<String, GradeCompetencyBound> fetchHighLineForGrade(Integer gradeId) {
-    List<GradeCompetencyBound> highlines = this.dao.fetchHighLowLinesByGrade(gradeId);
-    Map<String, GradeCompetencyBound> compBoundMap = new HashMap<>();
-    highlines.forEach(line -> {
-      compBoundMap.put(line.getDomainCode(), line);
-    });
+      } 
+      
+      gcb.setDomainCode(domainCode);
+      gcb.setHighlineCode(highline);
+      gcb.setLowlineCode(lowline);
+      LOGGER.debug("competency bound for domain '{}' : {}", domainCode, gcb.toString());
+      compBoundMap.put(domainCode, gcb);
+    };
+    
     return compBoundMap;
   }
 
