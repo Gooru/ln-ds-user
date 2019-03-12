@@ -8,7 +8,7 @@ import org.gooru.ds.user.processor.baselearnerprofile.LearnerProfileBaselineUpda
 import org.gooru.ds.user.processor.baselearnerprofile.read.ReadBaselineLearnerProfileProcessor;
 import org.gooru.ds.user.processor.competency.subjects.CompetencySubjectListProcessor;
 import org.gooru.ds.user.processor.competencymatrixcoordinates.CompetencyMatrixCoordinatesProcessor;
-import org.gooru.ds.user.processor.domain.competency.perf.report.DomainCompetencyPerfReportProcessor;
+import org.gooru.ds.user.processor.domain.competency.perf.report.DomainCompetencyCompletionReportProcessor;
 import org.gooru.ds.user.processor.domain.report.DomainReportProcessor;
 import org.gooru.ds.user.processor.grade.boundary.GradeBoundaryListProcessor;
 import org.gooru.ds.user.processor.grade.competency.GradeCompetencyProcessor;
@@ -143,7 +143,7 @@ public final class MessageProcessorBuilder {
       case Constants.Message.MSG_OP_DOMAIN_REPORT:
         return new DomainReportProcessor(vertx, message);
       case Constants.Message.MSG_OP_DOMAIN_COMPETENCY_PERF_REPORT:
-        return new DomainCompetencyPerfReportProcessor(vertx, message);
+        return new DomainCompetencyCompletionReportProcessor(vertx, message);
         
       default:
         return null;

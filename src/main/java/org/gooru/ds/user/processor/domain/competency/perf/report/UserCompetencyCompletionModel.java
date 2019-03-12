@@ -4,10 +4,9 @@ package org.gooru.ds.user.processor.domain.competency.perf.report;
 /**
  * @author szgooru Created On 01-Feb-2019
  */
-public class UserCompetencyPerformanceModel {
+public class UserCompetencyCompletionModel {
 
   private String userId;
-  private double score;
   private int status;
 
   public String getUserId() {
@@ -16,14 +15,6 @@ public class UserCompetencyPerformanceModel {
 
   public void setUserId(String userId) {
     this.userId = userId;
-  }
-
-  public double getScore() {
-    return score;
-  }
-
-  public void setScore(double score) {
-    this.score = score;
   }
 
   public int getStatus() {
@@ -36,8 +27,7 @@ public class UserCompetencyPerformanceModel {
 
   @Override
   public String toString() {
-    return "UserCompetencyPerformanceModel [userId=" + userId + ", score=" + score + ", status="
-        + status + "]";
+    return "UserCompetencyPerformanceModel [userId=" + userId + ", status=" + status + "]";
   }
-  
+
 }
