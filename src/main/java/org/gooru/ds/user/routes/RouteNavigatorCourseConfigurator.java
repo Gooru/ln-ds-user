@@ -25,7 +25,7 @@ public class RouteNavigatorCourseConfigurator implements RouteConfigurator {
     eb = vertx.eventBus();
     mbusTimeout = config.getLong(Constants.EventBus.MBUS_TIMEOUT, 30L) * 1000;
     router.get(Constants.Route.API_NC_PERF_VS_COMPLETION).handler(this::userPvC);
-    router.get(Constants.Route.API_ATC).handler(this::userATC);
+    router.post(Constants.Route.API_STATS_COMPETENCY_COMPLETION).handler(this::competencyStats);
   }
 
   private void userPvC(RoutingContext routingContext) {
@@ -34,8 +34,8 @@ public class RouteNavigatorCourseConfigurator implements RouteConfigurator {
         mbusTimeout, LOGGER);
   }
 
-  private void userATC(RoutingContext routingContext) {
-    RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_ATC,
+  private void competencyStats(RoutingContext routingContext) {
+    RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_STATS_COMPETENCY_COMPLETION,
         Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
   }
 }

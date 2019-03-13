@@ -80,8 +80,7 @@ public final class Constants {
     // Navigator Course Reports
     public static final String MSG_OP_USERS_PERF_VS_COMPLETION =
         "mb.op.users.performance.vs.completion";
-    // Mukul - Update
-    public static final String MSG_OP_ATC = "mb.op.atc";
+    public static final String MSG_OP_STATS_COMPETENCY_COMPLETION = "mb.op.competency.completion.stats";
     // Read baseline learner profile
     public static final String MSG_OP_READ_BASELINE_LEARNER_PROFILE =
         "mb.op.base.learner.profile.read";
@@ -181,8 +180,8 @@ public final class Constants {
     public static final String API_INTERNAL_BASE_LEARNER_PROFILE = "/api/internal/lp/baseline";
     // Navigator Course Reports
     public static final String API_NC_PERF_VS_COMPLETION = API_BASE_ROUTE + "nc/atc/pvc";
-    // Mukul - Update
-    public static final String API_ATC = API_BASE_ROUTE + "nc/atc/recompute";
+    //public static final String API_ATC = API_BASE_ROUTE + "nc/atc/recompute";
+    public static final String API_STATS_COMPETENCY_COMPLETION = API_BASE_ROUTE + "stats/competency";
     // User course competency report - domain level summary
     // http://staging.gooru.org/api/ds/users/v2/user/competency/report/course
     public static final String API_USER_COURSE_COMPETENCY_REPORT =

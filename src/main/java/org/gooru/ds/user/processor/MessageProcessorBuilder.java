@@ -7,6 +7,7 @@ import org.gooru.ds.user.processor.atc.recompute.ATCCompetencyStatsProcessor;
 import org.gooru.ds.user.processor.baselearnerprofile.LearnerProfileBaselineUpdateProcessor;
 import org.gooru.ds.user.processor.baselearnerprofile.read.ReadBaselineLearnerProfileProcessor;
 import org.gooru.ds.user.processor.competency.subjects.CompetencySubjectListProcessor;
+import org.gooru.ds.user.processor.competencycompletion.classes.AllClassesCompetencyCompletionStatsProcessor;
 import org.gooru.ds.user.processor.competencymatrixcoordinates.CompetencyMatrixCoordinatesProcessor;
 import org.gooru.ds.user.processor.domain.competency.perf.report.DomainCompetencyPerfReportProcessor;
 import org.gooru.ds.user.processor.domain.report.DomainReportProcessor;
@@ -135,8 +136,8 @@ public final class MessageProcessorBuilder {
       case Constants.Message.MSG_OP_USERS_PERF_VS_COMPLETION:
         //return new CompetencyPerfVsCompletionProcessor(vertx, message);
         return new ATCCompetencyStatsProcessor(vertx, message);
-//      case Constants.Message.MSG_OP_ATC:
-//        return new ATCCompetencyStatsProcessor(vertx, message);
+      case Constants.Message.MSG_OP_STATS_COMPETENCY_COMPLETION:
+        return new AllClassesCompetencyCompletionStatsProcessor(vertx, message);
       case Constants.Message.MSG_OP_READ_BASELINE_LEARNER_PROFILE:
         return new ReadBaselineLearnerProfileProcessor(vertx, message);
         
