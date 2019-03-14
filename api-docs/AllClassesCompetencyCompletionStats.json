@@ -1,0 +1,35 @@
+{
+	"name": "Provide Competency Completion Stats for Premium Classes",
+	"request": {
+		"method": "POST",
+		"headers": [
+			{
+				"Authorization": "Token SessionToken"
+			}
+		],
+		"endpoint": "/api/ds/users/v2/stats/competency",
+		"queryParams": [
+			{
+				"name": "classIds",
+				"type": "Array of Strings",
+				"validValues": "UUID for Class",
+				"isOptional": "No",
+				"comment": "Provide the (premium)ClassIds for which the competency Stats are needed"
+			}]
+	},
+	"response": {
+		"body": {
+	"competencyStats": [{
+		"completedCompetencies": 44,
+		"totalCompetencies": 551,
+		"classId": "dac9d849-486b-4bed-b14f-25ba119fc29a"
+	}, {
+		"completedCompetencies": 45,
+		"totalCompetencies": 300,
+		"classId": "eac9d849-486b-4bed-b14f-25ba119fc29a"
+	}]
+    }
+	},
+	"comment": "",
+	"sampleCURL": "curl 'http://localhost:8086/api/ds/users/v2/stats/competency' -H 'Content-Type: application/json; charset=utf-8' -H 'Connection: keep-alive' --data '{"classIds": ["dac9d849-486b-4bed-b14f-25ba119fc29a", "eac9d849-486b-4bed-b14f-25ba119fc29a"]}'"
+}
