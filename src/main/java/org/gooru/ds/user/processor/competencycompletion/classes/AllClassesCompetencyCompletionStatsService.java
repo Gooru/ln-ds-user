@@ -32,8 +32,14 @@ public class AllClassesCompetencyCompletionStatsService {
     for(String classId : classIds) {
       CompetencyCompletionStatsModel classCompetencyStatsModel = null; 
       // Fetch Class Members
-      List<String> classMembers =
-          classMembersDao.fetchClassMembers(UUID.fromString(classId));      
+      List<String> classMembers = new ArrayList<>();
+      if (command.getUser() != null) {
+        classMembers.add(command.getUser());
+      } else {
+        classMembers =
+            classMembersDao.fetchClassMembers(UUID.fromString(classId));
+      }
+      
       if (classMembers != null && !classMembers.isEmpty()) { 
         classCompetencyStatsModel = competencyCompletionStatsDao.fetchClassCompetencyCompletionStats(
               PGArrayUtils.convertFromListStringToSqlArrayOfString(classMembers),

@@ -18,11 +18,16 @@ import io.vertx.core.json.JsonObject;
 public class AllClassesCompetencyCompletionStatsCommand {
   private List<String> classIds;
   private Date statsDate;
+  private String user;
 
   private static final Logger LOGGER = LoggerFactory.getLogger(AllClassesCompetencyCompletionStatsCommand.class);
 
   public List<String> getClassIds() {
     return classIds;
+  }
+  
+  public String getUser() {
+    return user;
   }
   
   public Date getStatsDate() {
@@ -39,6 +44,7 @@ public class AllClassesCompetencyCompletionStatsCommand {
     CompetencyCompletionStatsCommandBean bean = new CompetencyCompletionStatsCommandBean();
     bean.classIds = classIds;
     bean.statsDate = statsDate;
+    bean.user = user;
     return bean;
   }
 
@@ -61,7 +67,8 @@ public class AllClassesCompetencyCompletionStatsCommand {
     LocalDate today = LocalDate.now();    
     LocalDate localDate = LocalDate.of(today.getYear(), today.getMonthValue(), 1);
     Date statsDate = Date.valueOf(localDate);    
-    result.statsDate = statsDate;
+    result.statsDate = statsDate;    
+    result.user = requestBody.getString(CommandAttributes.USER);
     
     return result;
   }
@@ -73,6 +80,15 @@ public class AllClassesCompetencyCompletionStatsCommand {
   public static class CompetencyCompletionStatsCommandBean {
     private List<String> classIds;
     private Date statsDate;
+    private String user;
+
+    public String getUser() {
+      return user;
+    }
+
+    public void setUser(String user) {
+      this.user = user;
+    }
 
     public List<String> getClassIds() {
       return classIds;
@@ -95,6 +111,7 @@ public class AllClassesCompetencyCompletionStatsCommand {
   static class CommandAttributes {
     private static final String CLASS_IDS = "classIds";
     private static final String STATS_DATE = "statsDate";
+    private static final String USER = "user";
 
     private CommandAttributes() {
       throw new AssertionError();
