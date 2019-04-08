@@ -10,9 +10,9 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 
-public class RouteUserPortfolioConfigurator implements RouteConfigurator {
+public class RouteUserPortfolioCompetencyConfigurator implements RouteConfigurator {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(RouteUserPortfolioConfigurator.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(RouteUserPortfolioCompetencyConfigurator.class);
   private EventBus eb = null;
   private long mbusTimeout;
 

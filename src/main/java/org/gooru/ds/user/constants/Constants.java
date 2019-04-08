@@ -84,7 +84,12 @@ public final class Constants {
     // Read baseline learner profile
     public static final String MSG_OP_READ_BASELINE_LEARNER_PROFILE =
         "mb.op.base.learner.profile.read";
-
+    
+    //Content-Portfolio
+    public static final String MSG_OP_USER_PORTFOLIO_CONTENT_ITEMS_PERF = "mb.op.user.portfolio.content.items.perf";
+    public static final String MSG_OP_USER_PORTFOLIO_CONTENT_ITEM_PERF = "mb.op.user.portfolio.content.item.perf";
+    public static final String MSG_OP_USER_PORTFOLIO_CONTENT_ITEM_SUMMARY = "mb.op.user.portfolio.content.item.summary";
+    
     public static final String MSG_API_VERSION = "api.version";
     public static final String MSG_SESSION_TOKEN = "session.token";
     public static final String MSG_KEY_SESSION = "session";
@@ -201,6 +206,13 @@ public final class Constants {
     // http://{host}/api/ds/users/{version}/classes/reports/domains/competencies/performance?tx_code={txCode}&agent={agent}
     public static final String API_DOMAIN_COMPETENCIES_PERFORMANCE_REPORT =
         API_BASE_ROUTE + "classes/reports/domains/competencies/performance";
+    //Portfolio
+    // http://staging.gooru.org/api/ds/users/v2/user/portfolio/content/items/performance
+    public static final String API_USER_PORTFOLIO_CONTENT_ITEMS_PERF = API_BASE_ROUTE + "user/portfolio/content/items/performance";
+    // http://staging.gooru.org/api/ds/users/v2/user/portfolio/content/user/{userId}/{itemType}/{itemId}/performance
+    public static final String API_USER_PORTFOLIO_CONTENT_ITEM_PERF = API_BASE_ROUTE + "user/portfolio/content/user/:userId/:itemType/:itemId/performance";
+    // http://staging.gooru.org/api/ds/users/v2/user/portfolio/content/user/{userId}/{itemType}/{itemId}/summary
+    public static final String API_USER_PORTFOLIO_CONTENT_ITEM_SUMMARY = API_BASE_ROUTE + "user/portfolio/content/user/:userId/:itemType/:itemId/summary";
 
     private Route() {
       throw new AssertionError();

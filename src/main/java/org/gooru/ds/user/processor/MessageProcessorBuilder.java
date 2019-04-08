@@ -2,7 +2,6 @@ package org.gooru.ds.user.processor;
 
 import org.gooru.ds.user.constants.Constants;
 import org.gooru.ds.user.processor.activeuserlist.ActiveUserListProcessor;
-import org.gooru.ds.user.processor.atc.pvc.CompetencyPerfVsCompletionProcessor;
 import org.gooru.ds.user.processor.atc.recompute.ATCCompetencyStatsProcessor;
 import org.gooru.ds.user.processor.baselearnerprofile.LearnerProfileBaselineUpdateProcessor;
 import org.gooru.ds.user.processor.baselearnerprofile.read.ReadBaselineLearnerProfileProcessor;
@@ -18,6 +17,9 @@ import org.gooru.ds.user.processor.user.competencylist.UserCompetencyListProcess
 import org.gooru.ds.user.processor.user.course.competency.report.UserCourseCompetencyReportProcessor;
 import org.gooru.ds.user.processor.user.distribution.UserDistributionProcessor;
 import org.gooru.ds.user.processor.user.journey.UserJourneyProcessor;
+import org.gooru.ds.user.processor.user.portfolio.content.perf.asmt.summary.UserPortfolioItemSummaryProcessor;
+import org.gooru.ds.user.processor.user.portfolio.content.perf.item.UserPortfolioItemPerfProcessor;
+import org.gooru.ds.user.processor.user.portfolio.content.perf.items.UserPortfolioUniqueItemPerfProcessor;
 import org.gooru.ds.user.processor.user.skylinecompetency.next.UserSkylineCompetencyNextProcessor;
 import org.gooru.ds.user.processor.usercompetencymatrix.UserCompetencyMatrixProcessor;
 import org.gooru.ds.user.processor.usercoursecompetencymatrix.UserCourseCompetencyMatrixProcessor;
@@ -146,6 +148,13 @@ public final class MessageProcessorBuilder {
       case Constants.Message.MSG_OP_DOMAIN_COMPETENCY_PERF_REPORT:
         return new DomainCompetencyCompletionReportProcessor(vertx, message);
         
+      case Constants.Message.MSG_OP_USER_PORTFOLIO_CONTENT_ITEMS_PERF:
+        return new UserPortfolioUniqueItemPerfProcessor(vertx, message);
+      case Constants.Message.MSG_OP_USER_PORTFOLIO_CONTENT_ITEM_PERF:
+        return new UserPortfolioItemPerfProcessor(vertx, message);
+      case Constants.Message.MSG_OP_USER_PORTFOLIO_CONTENT_ITEM_SUMMARY:
+        return new UserPortfolioItemSummaryProcessor(vertx, message);
+  
       default:
         return null;
     }
