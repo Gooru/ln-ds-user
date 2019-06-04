@@ -73,17 +73,18 @@ public final class Constants {
     public static final String MSG_OP_DOMAIN_COMPETENCY_PERF_REPORT =
         "mb.op.domain.competency.perf.report";
 
-    // Initial Learner Profile
-    // public static final String MSG_OP_INITIAL_LEARNER_PROFILE = "mb.op.initial.learner.profile";
     // Baseline Learner Profile
     public static final String MSG_OP_BASE_LEARNER_PROFILE = "mb.op.base.learner.profile";
-    // Navigator Course Reports
+    // Navigator Course ATC
     public static final String MSG_OP_USERS_PERF_VS_COMPLETION =
         "mb.op.users.performance.vs.completion";
     public static final String MSG_OP_STATS_COMPETENCY_COMPLETION = "mb.op.competency.completion.stats";
     // Read baseline learner profile
     public static final String MSG_OP_READ_BASELINE_LEARNER_PROFILE =
         "mb.op.base.learner.profile.read";
+    //User Competency Summary
+    public static final String MSG_OP_USER_COMPETENCY_SUMMARY =
+        "mb.op.user.competency.summary";
 
     public static final String MSG_API_VERSION = "api.version";
     public static final String MSG_SESSION_TOKEN = "session.token";
@@ -178,7 +179,7 @@ public final class Constants {
     // Initial Learner Profile Setup
     // public static final String API_INTERNAL_INITIAL_LEARNER_PROFILE = "/api/internal/lp/initial";
     public static final String API_INTERNAL_BASE_LEARNER_PROFILE = "/api/internal/lp/baseline";
-    // Navigator Course Reports
+    // Navigator Course ATC
     public static final String API_NC_PERF_VS_COMPLETION = API_BASE_ROUTE + "nc/atc/pvc";
     //public static final String API_ATC = API_BASE_ROUTE + "nc/atc/recompute";
     public static final String API_STATS_COMPETENCY_COMPLETION = API_BASE_ROUTE + "stats/competency";
@@ -190,6 +191,8 @@ public final class Constants {
     // http://staging.gooru.org/api/ds/users/v2/user/baseline/learnerprofile
     public static final String API_USER_BASELINE_LEARNER_PROFILE =
         API_BASE_ROUTE + "user/baseline/learnerprofile";
+    //Competency Summary for a Student (inProgress, completed, notStarted)
+    public static final String API_USER_COMPETENCY_SUMMARY = API_BASE_ROUTE + "user/competency/summary";
 
     // Domain Reports APIs
     public static final String ID_CLASS = "classId";
