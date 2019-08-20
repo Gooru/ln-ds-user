@@ -1,5 +1,6 @@
 package org.gooru.ds.user.processor.content.portfolio.asmt.summary;
 
+import java.util.regex.Pattern;
 import org.gooru.ds.user.constants.HttpConstants;
 import org.gooru.ds.user.exceptions.HttpResponseWrapperException;
 import org.slf4j.Logger;
@@ -16,6 +17,7 @@ public class UserPortfolioItemSummaryCommand {
   private String itemType;
   private String sessionId;
   private String contentSource;
+  private Pattern CONTENT_SOURCES = Pattern.compile("dailyclassactivity|coursemap|ILactivity");
 
   private static final Logger LOGGER = LoggerFactory.getLogger(UserPortfolioItemSummaryCommand.class);
 
@@ -102,7 +104,7 @@ public class UserPortfolioItemSummaryCommand {
       throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
           "itemId not provided");
     }
-    if (contentSource == null || (contentSource != null && !contentSource.matches("dailyclassactivity|coursemap|ILactivity"))) {
+    if (contentSource == null || (contentSource != null && !CONTENT_SOURCES.matcher(contentSource).matches())) {
       LOGGER.info("contentSource not provided");
       throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
           "contentSource not provided");

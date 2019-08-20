@@ -76,12 +76,12 @@ class UserPortfolioAsmtSummaryService {
       }
       if (model.getQuestionType().equalsIgnoreCase("OE")) {
         Boolean isGradedObj = null;
-        if (contentSource != null && contentSource.equalsIgnoreCase("dailyclassactivity")) {
-          isGradedObj =
-              userPortfolioItemSummaryDao.fetchItemIsGraded(command.asBean(), model.getId());
-        } else {
+        if (contentSource.equalsIgnoreCase("dailyclassactivity")) {
           isGradedObj =
               userPortfolioItemSummaryDao.fetchCAItemIsGraded(command.asBean(), model.getId());
+        } else {
+          isGradedObj =
+              userPortfolioItemSummaryDao.fetchItemIsGraded(command.asBean(), model.getId());
         }
         if (isGradedObj != null && (isGradedObj)) {
           model.setIsGraded(true);
@@ -94,6 +94,9 @@ class UserPortfolioAsmtSummaryService {
       if (contentSource.equalsIgnoreCase("dailyclassactivity")) {
         reaction = userPortfolioItemSummaryDao
             .fetchUserCAAsmtQuestionReactionSummary(command.asBean(), model.getId());
+      } else {
+        reaction = userPortfolioItemSummaryDao
+            .fetchUserAsmtQuestionReactionSummary(command.asBean(), model.getId());
       }
       model.setReaction(reaction != null ? reaction : 0);
       

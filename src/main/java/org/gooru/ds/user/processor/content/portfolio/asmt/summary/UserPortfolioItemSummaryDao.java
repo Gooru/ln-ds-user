@@ -80,20 +80,12 @@ interface UserPortfolioItemSummaryDao {
       @Bind("resourceId") String resourceId);
   
   @SqlQuery("SELECT FIRST_VALUE(reaction) OVER " + 
-      "  (PARTITION BY resource_id ORDER BY updated_at desc) AS reaction FROM base_reports actor_id = :userId and resource_id = :resourceId and session_id = :sessionId " + 
+      "  (PARTITION BY resource_id ORDER BY updated_at desc) AS reaction FROM base_reports WHERE actor_id = :userId and resource_id = :resourceId and session_id = :sessionId " + 
       " AND collection_id= :itemId AND reaction > 0 AND event_name = 'reaction.create'")
   Integer fetchUserAsmtQuestionReactionSummary(
       @BindBean UserPortfolioItemSummaryCommand.UserPortfolioItemSummaryCommandBean userPortfolioItemSummaryCommandBean,
       @Bind("resourceId") String resourceId);
-  
-  @SqlQuery("SELECT FIRST_VALUE(reaction) OVER " + 
-      "  (PARTITION BY resource_id ORDER BY updated_at desc) AS reaction FROM base_reports class_id IS NULL AND actor_id = :userId "
-      + "and resource_id = :resourceId and session_id = :sessionId " + 
-      " AND collection_id= :itemId AND reaction > 0 AND event_name = 'reaction.create'")
-  Integer fetchUserILAsmtQuestionReactionSummary(
-      @BindBean UserPortfolioItemSummaryCommand.UserPortfolioItemSummaryCommandBean userPortfolioItemSummaryCommandBean,
-      @Bind("resourceId") String resourceId);
-  
+
   @SqlQuery("SELECT is_graded FROM base_reports WHERE collection_id = :itemId AND session_id = :sessionId AND actor_id = :userId "
       + "AND resource_id = :resourceId AND event_name = 'collection.resource.play' AND event_type = 'stop'")
   Boolean fetchItemIsGraded(
