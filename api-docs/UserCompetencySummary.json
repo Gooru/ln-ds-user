@@ -1,0 +1,71 @@
+{
+	"name": "Provide Competency Summary for this User for this Premium Class",
+	"request": {
+		"method": "GET",
+		"headers": [
+			{
+				"Authorization": "Token SessionToken"
+			}
+		],
+		"endpoint": "/api/ds/users/v2/user/competency/summary",
+		"queryParams": [
+		 {
+				"name": "userId",
+				"type": "string",
+				"validValues": "UUID for this user",
+				"isOptional": "No",
+				"comment": ""
+			},
+			{
+				"name": "classId",
+				"type": "string",
+				"validValues": "UUID for Class",
+				"isOptional": "No",
+				"comment": ""
+			},
+			{
+				"name": "courseId",
+				"type": "string",
+				"validValues": "UUID for Course",
+				"isOptional": "No",
+				"comment": ""
+			},
+			{
+				"name": "subject",
+				"type": "string",
+				"validValues": "UUID for Unit",
+				"isOptional": "No",
+				"comment": ""
+			},
+			{
+				"name": "month",
+				"type": "int",
+				"validValues": "positive integer indicating month of the year, 1-12",
+				"isOptional": "Yes",
+				"comment": "value should be between 1-12"
+			},
+			{
+				"name": "year",
+				"type": "int",
+				"validValues": "postive integer indicating Year",
+				"isOptional": "Yes",
+				"comment": "Value should be YYYY Eg. 2018, 2019"
+			}
+		]
+	},
+	"response": {
+		"body": {
+			"competencyStats": {
+					"completedCompetencies": 11,
+					"inprogressCompetencies": 2,
+					"totalCompetencies": 121,
+					"percentScore": 69.33,
+					"percentCompletion": 9.09,
+					"userId": "95a744e1-631e-4642-875d-8b07a5e3b421",
+					"gradeId": "8"
+				}
+		}
+	},
+	"comment": "This API primarily serves the Milestone View for Premium Classes",
+	"sampleURL": "curl 'http://localhost:8086/api/ds/users/v2/user/competency/summary?userId=1ac9d849-486b-4bed-b14f-25ba119fc29a&classId=dac9d849-486b-4bed-b14f-25ba119fc29a&courseId=8aa6a63a-ce54-4ece-a02d-520390192727&subjectCode=K12.MA&month=06&year=2019' -H 'Authorization: Token MjoxNTU5NTQ3NzE2Mzc3OjE2Y2M2YmFmLWU4M2YtNDIwZC04ZWU2LWY5ZGVkNWUwODk3Zjo6YmE5NTZhOTctYWUxNS0xMWU1LWEzMDItZjhhOTYzMDY1OTc2' -H 'Connection: keep-alive'"
+}
