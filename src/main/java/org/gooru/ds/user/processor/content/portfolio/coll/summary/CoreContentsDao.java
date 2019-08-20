@@ -1,0 +1,16 @@
+package org.gooru.ds.user.processor.content.portfolio.coll.summary;
+
+import java.util.List;
+import org.skife.jdbi.v2.sqlobject.Bind;
+import org.skife.jdbi.v2.sqlobject.SqlQuery;
+import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
+
+/**
+ * @author renuka
+ */
+public interface CoreContentsDao {
+
+  @Mapper(CoreContentsModelMapper.class)
+  @SqlQuery("SELECT id, title, content_subformat FROM content WHERE id = ANY(:contentIds::uuid[])")
+  List<CoreContentsModel> fetchContentTitles(@Bind("contentIds") String contentIds);
+}
