@@ -90,6 +90,7 @@ public final class Constants {
     public static final String MSG_OP_USER_PORTFOLIO_CONTENT_COLL_SUMMARY = "mb.op.user.portfolio.content.coll.summary";
     public static final String MSG_OP_USER_PORTFOLIO_CONTENT_OA_SUMMARY = "mb.op.user.portfolio.content.oa.summary";
 
+    
     //User Competency Summary
     public static final String MSG_OP_USER_COMPETENCY_SUMMARY =
         "mb.op.user.competency.summary";
