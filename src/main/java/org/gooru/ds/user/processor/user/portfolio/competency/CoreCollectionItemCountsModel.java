@@ -22,6 +22,9 @@ public class CoreCollectionItemCountsModel {
   }
 
   public void setResourceCount(Integer resourceCount) {
+    if (resourceCount == null) {
+      resourceCount = 0;
+    }
     this.resourceCount = resourceCount;
   }
 
@@ -30,6 +33,9 @@ public class CoreCollectionItemCountsModel {
   }
 
   public void setQuestionCount(Integer questionCount) {
+    if (questionCount == null) {
+      questionCount = 0;
+    }
     this.questionCount = questionCount;
   }
 

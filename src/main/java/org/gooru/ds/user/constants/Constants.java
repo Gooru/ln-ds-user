@@ -89,8 +89,10 @@ public final class Constants {
     public static final String MSG_OP_USER_PORTFOLIO_CONTENT_ASMT_SUMMARY = "mb.op.user.portfolio.content.asmt.summary";
     public static final String MSG_OP_USER_PORTFOLIO_CONTENT_COLL_SUMMARY = "mb.op.user.portfolio.content.coll.summary";
     public static final String MSG_OP_USER_PORTFOLIO_CONTENT_OA_SUMMARY = "mb.op.user.portfolio.content.oa.summary";
+    public static final String MSG_OP_USER_PORTFOLIO_COMPETENCY = "mb.op.user.portfolio.competency.items.perf";
+    public static final String MSG_OP_USER_PORTFOLIO_DOMAIN = "mb.op.user.portfolio.domain.items.perf";
+    public static final String MSG_OP_USER_PORTFOLIO_SUBJECT = "mb.op.user.portfolio.subject.items.perf";
 
-    
     //User Competency Summary
     public static final String MSG_OP_USER_COMPETENCY_SUMMARY =
         "mb.op.user.competency.summary";
@@ -214,16 +216,22 @@ public final class Constants {
     public static final String API_DOMAIN_COMPETENCIES_PERFORMANCE_REPORT =
         API_BASE_ROUTE + "classes/reports/domains/competencies/performance";
     //Portfolio
-    // http://staging.gooru.org/api/ds/users/v2/content/portfolio/items
+    // http://{host}/api/ds/users/v2/content/portfolio/items
     public static final String API_USER_PORTFOLIO_CONTENT_ITEMS_PERF = API_BASE_ROUTE + "content/portfolio/items";
-    // http://staging.gooru.org/api/ds/users/v2/content/portfolio/item
+    // http://{host}/api/ds/users/v2/content/portfolio/item
     public static final String API_USER_PORTFOLIO_CONTENT_ITEM_PERF = API_BASE_ROUTE + "content/portfolio/item";
-    // http://staging.gooru.org/api/ds/users/v2/user/content/portfolio/assessment/summary
+    // http://{host}/api/ds/users/v2/content/portfolio/assessment/summary
     public static final String API_USER_PORTFOLIO_CONTENT_ASMT_SUMMARY = API_BASE_ROUTE + "content/portfolio/assessment/summary";
-    // http://staging.gooru.org/api/ds/users/v2/user/content/portfolio/collection/summary
+    // http://{host}/api/ds/users/v2/content/portfolio/collection/summary
     public static final String API_USER_PORTFOLIO_CONTENT_COLL_SUMMARY = API_BASE_ROUTE + "content/portfolio/collection/summary";
-    // http://staging.gooru.org/api/ds/users/v2/user/content/portfolio/oa/summary
+    // http://{host}/api/ds/users/v2/content/portfolio/oa/summary
     public static final String API_USER_PORTFOLIO_CONTENT_OA_SUMMARY = API_BASE_ROUTE + "content/portfolio/oa/summary";
+    // http://{host}/api/ds/users/v2/competency/portfolio/items
+    public static final String API_USER_PORTFOLIO_COMPETENCY = API_BASE_ROUTE + "competency/portfolio/items";
+    // http://{host}/api/ds/users/v2/domain/portfolio/items
+    public static final String API_USER_PORTFOLIO_DOMAIN = API_BASE_ROUTE + "domain/portfolio/items";
+    // http://{host}/api/ds/users/v2/subject/portfolio/items
+    public static final String API_USER_PORTFOLIO_SUBJECT = API_BASE_ROUTE + "subject/portfolio/items";
 
     private Route() {
       throw new AssertionError();

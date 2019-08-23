@@ -1,6 +1,6 @@
 package org.gooru.ds.user.processor.user.portfolio.domain;
 
-import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -8,14 +8,14 @@ import java.util.List;
  */
 public class UserDomainPortfolioModelResponse {
 
-  private List<UserDomainPortfolioModel> collections;
+  private Map<String, Object> items;
 
-  public List<UserDomainPortfolioModel> getCollections() {
-    return collections;
+  public Map<String, Object> getItems() {
+    return items;
   }
 
-  public void setCollections(List<UserDomainPortfolioModel> collections) {
-    this.collections = collections;
+  public void setItems(Map<String, Object> userItems) {
+    this.items = userItems;
   }
 
 }

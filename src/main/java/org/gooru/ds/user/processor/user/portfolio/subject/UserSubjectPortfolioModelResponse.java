@@ -1,6 +1,6 @@
 package org.gooru.ds.user.processor.user.portfolio.subject;
 
-import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -8,14 +8,14 @@ import java.util.List;
  */
 public class UserSubjectPortfolioModelResponse {
 
-  private List<UserSubjectPortfolioModel> collections;
+  private Map<String, Object> items;
 
-  public List<UserSubjectPortfolioModel> getCollections() {
-    return collections;
+  public Map<String, Object> getItems() {
+    return items;
   }
 
-  public void setCollections(List<UserSubjectPortfolioModel> collections) {
-    this.collections = collections;
+  public void setItems(Map<String, Object> userItems) {
+    this.items = userItems;
   }
 
 }

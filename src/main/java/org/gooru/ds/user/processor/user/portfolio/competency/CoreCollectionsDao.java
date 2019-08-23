@@ -8,7 +8,6 @@ import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
 /**
  * @author renuka
  */
-@LogSqlFactory
 interface CoreCollectionsDao {
 
   @Mapper(CoreCollectionsModelMapper.class)
@@ -20,7 +19,7 @@ interface CoreCollectionsDao {
   List<CoreCollectionItemCountsModel> fetchCollectionItemCounts(@Bind("collectionIds") String collectionIds);
   
   @Mapper(CoreOATaskCountModelMapper.class)
-  @SqlQuery("select count(oat.id) as task_count, c.id from collection c inner join oa_tasks oat on c.id = oat.oa_id WHERE c.id = ANY(:collectionIds::uuid[]) group by c.id")
+  @SqlQuery("select count(id) as task_count, oa_id as id from oa_tasks WHERE oa_id = ANY(:collectionIds::uuid[]) group by oa_id")
   List<CoreOATaskCountModel> fetchOATaskCounts(@Bind("collectionIds") String collectionIds);
   
 }

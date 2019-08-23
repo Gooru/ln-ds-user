@@ -1,21 +1,24 @@
 package org.gooru.ds.user.processor.user.portfolio.competency;
 
-import java.util.List;
+import java.io.Serializable;
+import java.util.Map;
 
 
 /**
  * @author mukul@gooru
  */
-public class UserCompetencyPortfolioModelResponse {
+public class UserCompetencyPortfolioModelResponse implements Serializable {
 
-  private List<UserCompetencyPortfolioModel> collections;
+  private final static long serialVersionUID = 3637780095721677754L;
 
-  public List<UserCompetencyPortfolioModel> getCollections() {
-    return collections;
+  private Map<String, Object> items;
+
+  public Map<String, Object> getItems() {
+    return items;
   }
 
-  public void setCollections(List<UserCompetencyPortfolioModel> collections) {
-    this.collections = collections;
+  public void setItems(Map<String, Object> userItems) {
+    this.items = userItems;
   }
 
 }
