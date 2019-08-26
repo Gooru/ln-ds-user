@@ -1,9 +1,9 @@
 package org.gooru.ds.user.processor.user.portfolio.content.summary.collection;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import org.gooru.ds.user.app.jdbi.PGArrayUtils;
 import org.skife.jdbi.v2.DBI;
 
 /**
@@ -20,28 +20,11 @@ public class CoreContentsService {
   public Map<String, CoreContentsModel> fetchContentTitles(List<String> contentIds) {
     Map<String, CoreContentsModel> contents = new HashMap<>();
     List<CoreContentsModel> contentModels =
-        this.dao.fetchContentTitles(toPostgresArrayString(contentIds));
+        this.dao.fetchContentTitles(PGArrayUtils.convertFromListStringToSqlArrayOfString(contentIds));
     contentModels.forEach(model -> {
       contents.put(model.getId(), model);
     });
     return contents;
   }
 
-  public static String toPostgresArrayString(List<String> input) {
-    Iterator<String> it = input.iterator();
-    if (!it.hasNext()) {
-      return "{}";
-    }
-
-    StringBuilder sb = new StringBuilder();
-    sb.append('{');
-    for (;;) {
-      String s = it.next();
-      sb.append('"').append(s).append('"');
-      if (!it.hasNext()) {
-        return sb.append('}').toString();
-      }
-      sb.append(',');
-    }
-  }
 }

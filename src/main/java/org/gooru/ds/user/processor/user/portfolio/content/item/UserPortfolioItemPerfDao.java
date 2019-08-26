@@ -1,6 +1,9 @@
 package org.gooru.ds.user.processor.user.portfolio.content.item;
 
 import java.util.List;
+import java.util.Map;
+import org.gooru.ds.user.app.jdbi.PGArray;
+import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.BindBean;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
@@ -27,4 +30,7 @@ interface UserPortfolioItemPerfDao {
   List<UserPortfolioItemPerfModel> fetchItemAllAttemptsPerformanceInDateRange(
       @BindBean UserPortfolioItemPerfCommand.UserPortfolioUniqueItemPerfCommandBean userPerfAsmtSummaryCommandBean);
 
+  @Mapper(UserPortfolioItemSessionModelMapper.class)
+  @SqlQuery("SELECT session_id, dca_content_id FROM daily_class_activity WHERE session_id = ANY(:sessionIds) ORDER BY updated_at")
+  List<Map<String, Object>> fetchDcaContentIdOfSpecifiedSession(@Bind("sessionIds") PGArray<String> pgArray);
 }

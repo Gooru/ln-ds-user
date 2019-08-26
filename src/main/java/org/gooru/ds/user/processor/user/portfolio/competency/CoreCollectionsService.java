@@ -1,9 +1,9 @@
 package org.gooru.ds.user.processor.user.portfolio.competency;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import org.gooru.ds.user.app.jdbi.PGArrayUtils;
 import org.skife.jdbi.v2.DBI;
 
 /**
@@ -20,7 +20,7 @@ public class CoreCollectionsService {
   public Map<String, CoreCollectionsModel> fetchCollectionMeta(List<String> contentIds) {
     Map<String, CoreCollectionsModel> contents = new HashMap<>();
     List<CoreCollectionsModel> contentModels =
-        this.dao.fetchCollectionMeta(toPostgresArrayString(contentIds));
+        this.dao.fetchCollectionMeta(PGArrayUtils.convertFromListStringToSqlArrayOfString(contentIds));
     if (contentModels != null) {
       contentModels.forEach(model -> {
         contents.put(model.getId(), model);
@@ -32,7 +32,7 @@ public class CoreCollectionsService {
   public Map<String, CoreCollectionItemCountsModel> fetchCollectionItemCount(List<String> collectionIds) {
     Map<String, CoreCollectionItemCountsModel> contents = new HashMap<>();
     List<CoreCollectionItemCountsModel> contentModels =
-        this.dao.fetchCollectionItemCounts(toPostgresArrayString(collectionIds));
+        this.dao.fetchCollectionItemCounts(PGArrayUtils.convertFromListStringToSqlArrayOfString(collectionIds));
     if (contentModels != null) {
       contentModels.forEach(model -> {
         contents.put(model.getId(), model);
@@ -44,7 +44,7 @@ public class CoreCollectionsService {
   public Map<String, Integer> fetchOATaskCount(List<String> collectionIds) {
     Map<String, Integer> contents = new HashMap<>();
     List<CoreOATaskCountModel> contentModels =
-        this.dao.fetchOATaskCounts(toPostgresArrayString(collectionIds));
+        this.dao.fetchOATaskCounts(PGArrayUtils.convertFromListStringToSqlArrayOfString(collectionIds));
     if (contentModels != null) {
       contentModels.forEach(model -> {
         contents.put(model.getId(), model.getTaskCount());
@@ -53,21 +53,4 @@ public class CoreCollectionsService {
     return contents;
   }
 
-  public static String toPostgresArrayString(List<String> input) {
-    Iterator<String> it = input.iterator();
-    if (!it.hasNext()) {
-      return "{}";
-    }
-
-    StringBuilder sb = new StringBuilder();
-    sb.append('{');
-    for (;;) {
-      String s = it.next();
-      sb.append('"').append(s).append('"');
-      if (!it.hasNext()) {
-        return sb.append('}').toString();
-      }
-      sb.append(',');
-    }
-  }
 }

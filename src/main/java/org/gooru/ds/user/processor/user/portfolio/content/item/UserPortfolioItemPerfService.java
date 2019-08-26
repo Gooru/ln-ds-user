@@ -15,9 +15,12 @@ class UserPortfolioItemPerfService {
 
   private final UserPortfolioItemPerfDao userPortfolioUniqueItemPerfDao;
   private UserPortfolioItemPerfCommand command;
+  private UserPortfolioItemService userPortfolioItemService;
 
   private static final Logger LOGGER = LoggerFactory.getLogger(UserPortfolioItemPerfService.class);
   private static final String COLLECTION = "collection";
+  private static final String OFFLINE_ACTIVITY = "offline-activity";
+  private static final String CONTENT_SOURCE_DCA = "dailyclassactivity";
   private static final String COMPLETE = "complete";
   private static final String USER_ID = "userId";
   private static final String ACTIVITY_ID = "activityId";
@@ -25,6 +28,7 @@ class UserPortfolioItemPerfService {
 
   UserPortfolioItemPerfService(DBI dbi, DBI coreDbi) {
     this.userPortfolioUniqueItemPerfDao = dbi.onDemand(UserPortfolioItemPerfDao.class);
+    this.userPortfolioItemService = new UserPortfolioItemService(dbi);
   }
 
   public UserPortfolioItemPerfModelResponse fetchUserPortfolioItemAllSessionPerf(
@@ -37,7 +41,7 @@ class UserPortfolioItemPerfService {
     if (this.command.getStartDate() != null && this.command.getEndDate() != null) {
       models = fetchItemsAllAttemptsPerformanceInDateRange(this.command);
     } else {
-      models = fetchUniqueItemsPerformance(this.command);
+      models = fetchItemsAllAttemptsPerformance(this.command);
     }
 
     Map<String, Object> userItems = generateResponse(models);
@@ -49,7 +53,7 @@ class UserPortfolioItemPerfService {
 
   }
 
-  private List<UserPortfolioItemPerfModel> fetchUniqueItemsPerformance(UserPortfolioItemPerfCommand command) {
+  private List<UserPortfolioItemPerfModel> fetchItemsAllAttemptsPerformance(UserPortfolioItemPerfCommand command) {
     return userPortfolioUniqueItemPerfDao.fetchItemAllAttemptsPerformance(command.asBean());
   }
   
@@ -57,9 +61,15 @@ class UserPortfolioItemPerfService {
     return userPortfolioUniqueItemPerfDao.fetchItemAllAttemptsPerformanceInDateRange(command.asBean());
   }
   
+  private Map<String, Long> fetchDcaContentIdOfSpecifiedSession(List<String> sessionIds) {
+    return userPortfolioItemService
+        .fetchDcaContentIdOfSpecifiedSession(sessionIds);
+  }
+  
   private Map<String, Object> generateResponse(
       List<UserPortfolioItemPerfModel> models) {
     Map<String, Object> userItemMap = new HashMap<>();
+    List<String> caSessionIds = new ArrayList<>();
     models.forEach(model -> {
       if (model.getType().equalsIgnoreCase(COLLECTION)) {
         Double score = model.getScore() != null ? Double.valueOf(model.getScore()) : null;
@@ -70,7 +80,23 @@ class UserPortfolioItemPerfService {
             ? Double.valueOf(Math.round(model.getScore()))
             : null);
       }
+      if (model.getContentSource().equalsIgnoreCase(CONTENT_SOURCE_DCA)
+          && model.getType().equalsIgnoreCase(OFFLINE_ACTIVITY)) {
+        caSessionIds.add(model.getSessionId());
+      }
     });
+    
+    if (!caSessionIds.isEmpty()) {
+      Map<String, Long> dcaContentIds = fetchDcaContentIdOfSpecifiedSession(caSessionIds);
+      models.forEach(model -> {
+        if (model.getContentSource().equalsIgnoreCase(CONTENT_SOURCE_DCA)
+            && model.getType().equalsIgnoreCase(OFFLINE_ACTIVITY)
+            && (dcaContentIds != null && !dcaContentIds.isEmpty())) {
+          model.setDcaContentId(dcaContentIds.get(model.getSessionId()));
+        }
+      });
+    }
+    
     userItemMap.put(USER_ID, command.getUserId());
     userItemMap.put(ACTIVITY_ID, command.getItemId());
     userItemMap.put(USAGE_DATA, models);

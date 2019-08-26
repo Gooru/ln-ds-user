@@ -24,6 +24,7 @@ public class UserPortfolioItemPerfModel {
   private String sessionId;
   private String status;
   private String gradingStatus;
+  private Long dcaContentId;
 
   public String getId() {
     return id;
@@ -175,6 +176,14 @@ public class UserPortfolioItemPerfModel {
 
   public void setPathId(Long pathId) {
     this.pathId = pathId;
+  }
+
+  public Long getDcaContentId() {
+    return dcaContentId;
+  }
+
+  public void setDcaContentId(Long dcaContentId) {
+    this.dcaContentId = dcaContentId;
   }
 
 }
