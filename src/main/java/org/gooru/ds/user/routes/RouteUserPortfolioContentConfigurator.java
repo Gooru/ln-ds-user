@@ -25,8 +25,12 @@ public class RouteUserPortfolioContentConfigurator implements RouteConfigurator 
         .handler(this::userPortfolioItemsPerf);
     router.get(Constants.Route.API_USER_PORTFOLIO_CONTENT_ITEM_PERF)
         .handler(this::userPortfolioItemPerf);
-    router.get(Constants.Route.API_USER_PORTFOLIO_CONTENT_ITEM_SUMMARY)
-        .handler(this::userPortfolioItemSummary);
+    router.get(Constants.Route.API_USER_PORTFOLIO_CONTENT_ASMT_SUMMARY)
+        .handler(this::userPortfolioAsmtSummary);
+    router.get(Constants.Route.API_USER_PORTFOLIO_CONTENT_COLL_SUMMARY)
+        .handler(this::userPortfolioCollSummary);
+    router.get(Constants.Route.API_USER_PORTFOLIO_CONTENT_OA_SUMMARY)
+        .handler(this::userPortfolioOASummary);
   }
 
   private void userPortfolioItemsPerf(RoutingContext routingContext) {
@@ -41,9 +45,21 @@ public class RouteUserPortfolioContentConfigurator implements RouteConfigurator 
         Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
   }
 
-  private void userPortfolioItemSummary(RoutingContext routingContext) {
+  private void userPortfolioAsmtSummary(RoutingContext routingContext) {
     RouteHandlerUtils.baseHandler(eb, routingContext,
-        Constants.Message.MSG_OP_USER_PORTFOLIO_CONTENT_ITEM_SUMMARY,
+        Constants.Message.MSG_OP_USER_PORTFOLIO_CONTENT_ASMT_SUMMARY,
+        Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
+  }
+  
+  private void userPortfolioCollSummary(RoutingContext routingContext) {
+    RouteHandlerUtils.baseHandler(eb, routingContext,
+        Constants.Message.MSG_OP_USER_PORTFOLIO_CONTENT_COLL_SUMMARY,
+        Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
+  }
+  
+  private void userPortfolioOASummary(RoutingContext routingContext) {
+    RouteHandlerUtils.baseHandler(eb, routingContext,
+        Constants.Message.MSG_OP_USER_PORTFOLIO_CONTENT_OA_SUMMARY,
         Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
   }
 
