@@ -1,5 +1,6 @@
 package org.gooru.ds.user.processor.user.portfolio.content.items;
 
+import java.util.List;
 import io.vertx.core.json.JsonObject;
 
 /**
@@ -14,6 +15,7 @@ public class CoreCollectionsModel {
   private String learningObjective;
   private String thumbnail;
   private JsonObject taxonomy;
+  private List<?> gutCodes;
 
   public String getId() {
     return id;
@@ -69,6 +71,14 @@ public class CoreCollectionsModel {
 
   public void setTaxonomy(JsonObject taxonomy) {
     this.taxonomy = taxonomy;
+  }
+
+  public List<?> getGutCodes() {
+    return gutCodes;
+  }
+
+  public void setGutCodes(List<?> gutCodes) {
+    this.gutCodes = gutCodes;
   }
 
 }

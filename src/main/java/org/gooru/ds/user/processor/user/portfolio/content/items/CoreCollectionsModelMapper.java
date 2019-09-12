@@ -2,6 +2,7 @@ package org.gooru.ds.user.processor.user.portfolio.content.items;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.ResultSetMapper;
 import org.slf4j.Logger;
@@ -21,6 +22,7 @@ public class CoreCollectionsModelMapper implements ResultSetMapper<CoreCollectio
   private static final String TAXONOMY = "taxonomy";
   private static final String LEARNING_OBJECTIVE = "learning_objective";
   private static final String THUMBNAIL = "thumbnail";
+  private static final String GUT_CODES = "gut_codes";
 
   @Override
   public CoreCollectionsModel map(int index, ResultSet r, StatementContext ctx) throws SQLException {
@@ -32,6 +34,7 @@ public class CoreCollectionsModelMapper implements ResultSetMapper<CoreCollectio
     model.setLearningObjective(r.getString(LEARNING_OBJECTIVE));
     model.setThumbnail(r.getString(THUMBNAIL));
     model.setTaxonomy(r.getString(TAXONOMY) != null ? new JsonObject(r.getString(TAXONOMY)) : null);
+    model.setGutCodes(r.getString(GUT_CODES) != null ? Arrays.asList((Object[]) r.getArray(GUT_CODES).getArray()) : null);
     return model; 
   }
 

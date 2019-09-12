@@ -2,6 +2,7 @@ package org.gooru.ds.user.processor.user.portfolio.competency;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Map;
 
 
@@ -19,6 +20,7 @@ public class UserCompetencyPortfolioModel implements Serializable {
   private String learningObjective;
   private String thumbnail;
   private Map<String, Object> taxonomy;
+  private List<?> gutCodes;
   private Integer questionCount;
   private Integer resourceCount;
   private Integer taskCount;
@@ -163,4 +165,11 @@ public class UserCompetencyPortfolioModel implements Serializable {
     this.masterySummary = masterySummary;
   }
 
+  public List<?> getGutCodes() {
+    return gutCodes;
+  }
+
+  public void setGutCodes(List<?> gutCodes) {
+    this.gutCodes = gutCodes;
+  }
 }
