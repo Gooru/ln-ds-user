@@ -42,14 +42,13 @@ public class CoreCollectionsService {
   }
   
   public Map<String, Integer> fetchOATaskCount(List<String> collectionIds) {
-    Map<String, Integer> contents = null;
-    List<Map<String, Object>> contentModels =
+    Map<String, Integer> contents = new HashMap<>();
+    List<CountInfoModel> contentModels =
         this.dao.fetchOATaskCounts(PGArrayUtils.convertFromListStringToSqlArrayOfString(collectionIds));
     if (contentModels != null) {
-      contents = new HashMap<>();
-      for (Map<String, Object> contentModel : contentModels) {
-        contents.put((String) contentModel.get("id"), (Integer) contentModel.get("task_count"));
-      }
+      contentModels.forEach(model -> {
+        contents.put(model.getId(), model.getCount());
+      });
     }
     return contents;
   }

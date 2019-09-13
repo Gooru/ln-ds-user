@@ -15,7 +15,7 @@ public class CoreCollectionsModel {
   private String learningObjective;
   private String thumbnail;
   private JsonObject taxonomy;
-  private List<?> gutCodes;
+  private List<Object> gutCodes;
 
   public String getId() {
     return id;
@@ -73,11 +73,11 @@ public class CoreCollectionsModel {
     this.taxonomy = taxonomy;
   }
 
-  public List<?> getGutCodes() {
+  public List<Object> getGutCodes() {
     return gutCodes;
   }
 
-  public void setGutCodes(List<?> gutCodes) {
+  public void setGutCodes(List<Object> gutCodes) {
     this.gutCodes = gutCodes;
   }
 

@@ -20,7 +20,7 @@ public class UserCompetencyPortfolioModel implements Serializable {
   private String learningObjective;
   private String thumbnail;
   private Map<String, Object> taxonomy;
-  private List<?> gutCodes;
+  private List<Object> gutCodes;
   private Integer questionCount;
   private Integer resourceCount;
   private Integer taskCount;
@@ -165,11 +165,11 @@ public class UserCompetencyPortfolioModel implements Serializable {
     this.masterySummary = masterySummary;
   }
 
-  public List<?> getGutCodes() {
+  public List<Object> getGutCodes() {
     return gutCodes;
   }
 
-  public void setGutCodes(List<?> gutCodes) {
+  public void setGutCodes(List<Object> gutCodes) {
     this.gutCodes = gutCodes;
   }
 }

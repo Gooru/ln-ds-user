@@ -34,7 +34,7 @@ public class CoreCollectionsModelMapper implements ResultSetMapper<CoreCollectio
     model.setLearningObjective(r.getString(LEARNING_OBJECTIVE));
     model.setThumbnail(r.getString(THUMBNAIL));
     model.setTaxonomy(r.getString(TAXONOMY) != null ? new JsonObject(r.getString(TAXONOMY)) : null);
-    model.setGutCodes(r.getString(GUT_CODES) != null ? Arrays.asList((Object[]) r.getArray(GUT_CODES).getArray()) : null);
+    model.setGutCodes(r.getArray(GUT_CODES) != null ? Arrays.asList((Object[]) r.getArray(GUT_CODES).getArray()) : null);
     return model; 
   }
 

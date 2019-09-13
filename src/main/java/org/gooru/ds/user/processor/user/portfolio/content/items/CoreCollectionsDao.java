@@ -1,7 +1,6 @@
 package org.gooru.ds.user.processor.user.portfolio.content.items;
 
 import java.util.List;
-import java.util.Map;
 import org.gooru.ds.user.app.jdbi.PGArray;
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
@@ -20,9 +19,9 @@ interface CoreCollectionsDao {
   @SqlQuery("select sum(question) as question_count, sum(resource) as resource_count, collection_id from (select case when content_format = 'question' then 1 else 0 end as question, case when content_format = 'resource' then 1 else 0 end as resource, collection_id from content where collection_id = ANY(:collectionIds::uuid[])) a group by collection_id")
   List<CoreCollectionItemCountsModel> fetchCollectionItemCounts(@Bind("collectionIds") PGArray<String> pgArray);
   
-  @Mapper(CoreOATaskCountModelMapper.class)
-  @SqlQuery("select count(id) as task_count, oa_id as id from oa_tasks WHERE oa_id = ANY(:collectionIds::uuid[]) group by oa_id")
-  List<Map<String, Object>> fetchOATaskCounts(@Bind("collectionIds") PGArray<String> pgArray);
+  @Mapper(CountInfoModelMapper.class)
+  @SqlQuery("select count(id) as count, oa_id as id from oa_tasks WHERE oa_id = ANY(:collectionIds::uuid[]) group by oa_id")
+  List<CountInfoModel> fetchOATaskCounts(@Bind("collectionIds") PGArray<String> pgArray);
   
 }
   
