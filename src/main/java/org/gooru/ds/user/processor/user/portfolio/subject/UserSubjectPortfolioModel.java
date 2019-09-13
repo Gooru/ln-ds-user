@@ -17,7 +17,7 @@ public class UserSubjectPortfolioModel {
   private String learningObjective;
   private String thumbnail;
   private Map<String, Object> taxonomy;
-  private List<Object> gutCodes;
+  private List<String> gutCodes;
   private Integer questionCount;
   private Integer resourceCount;
   private Integer taskCount;
@@ -188,11 +188,11 @@ public class UserSubjectPortfolioModel {
     this.masterySummary = masterySummary;
   }
 
-  public List<Object> getGutCodes() {
+  public List<String> getGutCodes() {
     return gutCodes;
   }
 
-  public void setGutCodes(List<Object> gutCodes) {
+  public void setGutCodes(List<String> gutCodes) {
     this.gutCodes = gutCodes;
   }
 }
