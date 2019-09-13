@@ -3,10 +3,10 @@ package org.gooru.ds.user.processor.user.portfolio.content.items;
 /**
  * @author renuka
  */
-public class CoreOATaskCountModel {
+public class CountInfoModel {
 
   private String id;
-  private Integer taskCount;
+  private Integer count;
 
   public String getId() {
     return id;
@@ -16,11 +16,11 @@ public class CoreOATaskCountModel {
     this.id = id;
   }
 
-  public Integer getTaskCount() {
-    return taskCount;
+  public Integer getCount() {
+    return count;
   }
 
-  public void setTaskCount(Integer taskCount) {
-    this.taskCount = taskCount;
+  public void setCount(Integer count) {
+    this.count = count;
   }
 }

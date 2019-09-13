@@ -164,6 +164,7 @@ public class UserCompetencyPortfolioService {
       model.setLearningObjective(coreModel.getLearningObjective());
       model.setThumbnail(coreModel.getThumbnail());
       model.setTaxonomy(coreModel.getTaxonomy() != null ? coreModel.getTaxonomy().getMap() : null);
+      model.setGutCodes(coreModel.getGutCodes() != null ? coreModel.getGutCodes() : null);
 
       CoreCollectionItemCountsModel cModel = new CoreCollectionItemCountsModel();
       if (collectionItemCounts != null && collectionItemCounts.containsKey(model.getId())) {

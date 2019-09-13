@@ -1,6 +1,7 @@
 package org.gooru.ds.user.processor.user.portfolio.subject;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Map;
 
 
@@ -16,6 +17,7 @@ public class UserSubjectPortfolioModel {
   private String learningObjective;
   private String thumbnail;
   private Map<String, Object> taxonomy;
+  private List<String> gutCodes;
   private Integer questionCount;
   private Integer resourceCount;
   private Integer taskCount;
@@ -186,5 +188,11 @@ public class UserSubjectPortfolioModel {
     this.masterySummary = masterySummary;
   }
 
-  
+  public List<String> getGutCodes() {
+    return gutCodes;
+  }
+
+  public void setGutCodes(List<String> gutCodes) {
+    this.gutCodes = gutCodes;
+  }
 }

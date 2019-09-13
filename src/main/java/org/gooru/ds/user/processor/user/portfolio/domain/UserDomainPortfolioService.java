@@ -18,7 +18,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.vertx.core.json.JsonObject;
 
 
 /**
@@ -146,6 +145,7 @@ public class UserDomainPortfolioService {
       model.setLearningObjective(coreModel.getLearningObjective());
       model.setThumbnail(coreModel.getThumbnail());
       model.setTaxonomy(coreModel.getTaxonomy() != null ? coreModel.getTaxonomy().getMap() : null);
+      model.setGutCodes(coreModel.getGutCodes() != null ? coreModel.getGutCodes() : null);
 
       CoreCollectionItemCountsModel cModel = new CoreCollectionItemCountsModel();
       if (collectionItemCounts != null && collectionItemCounts.containsKey(model.getId())) {
@@ -205,7 +205,7 @@ public class UserDomainPortfolioService {
         // TODO Auto-generated catch block
         e.printStackTrace();
     }    
-    LOGGER.info("The domain Json is" + new JsonObject(jsonOutput).encodePrettily());
+//    LOGGER.info("The domain Json is" + new JsonObject(jsonOutput).encodePrettily());
     //**************************************************************************************************************************************
     
     userItem.put(USAGE_DATA, models);
