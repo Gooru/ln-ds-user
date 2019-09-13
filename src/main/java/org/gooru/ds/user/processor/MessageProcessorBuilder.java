@@ -2,7 +2,6 @@ package org.gooru.ds.user.processor;
 
 import org.gooru.ds.user.constants.Constants;
 import org.gooru.ds.user.processor.activeuserlist.ActiveUserListProcessor;
-import org.gooru.ds.user.processor.atc.pvc.CompetencyPerfVsCompletionProcessor;
 import org.gooru.ds.user.processor.atc.recompute.ATCCompetencyStatsProcessor;
 import org.gooru.ds.user.processor.baselearnerprofile.LearnerProfileBaselineUpdateProcessor;
 import org.gooru.ds.user.processor.baselearnerprofile.read.ReadBaselineLearnerProfileProcessor;
@@ -19,6 +18,13 @@ import org.gooru.ds.user.processor.user.competencylist.UserCompetencyListProcess
 import org.gooru.ds.user.processor.user.course.competency.report.UserCourseCompetencyReportProcessor;
 import org.gooru.ds.user.processor.user.distribution.UserDistributionProcessor;
 import org.gooru.ds.user.processor.user.journey.UserJourneyProcessor;
+import org.gooru.ds.user.processor.user.portfolio.competency.UserCompetencyPortfolioProcessor;
+import org.gooru.ds.user.processor.user.portfolio.content.item.UserPortfolioItemPerfProcessor;
+import org.gooru.ds.user.processor.user.portfolio.content.items.UserPortfolioUniqueItemPerfProcessor;
+import org.gooru.ds.user.processor.user.portfolio.content.summary.assessment.UserPortfolioAsmtSummaryProcessor;
+import org.gooru.ds.user.processor.user.portfolio.content.summary.collection.UserPortfolioCollSummaryProcessor;
+import org.gooru.ds.user.processor.user.portfolio.domain.UserDomainPortfolioProcessor;
+import org.gooru.ds.user.processor.user.portfolio.subject.UserSubjectPortfolioProcessor;
 import org.gooru.ds.user.processor.user.skylinecompetency.next.UserSkylineCompetencyNextProcessor;
 import org.gooru.ds.user.processor.usercompetencymatrix.UserCompetencyMatrixProcessor;
 import org.gooru.ds.user.processor.usercoursecompetencymatrix.UserCourseCompetencyMatrixProcessor;
@@ -150,6 +156,21 @@ public final class MessageProcessorBuilder {
       case Constants.Message.MSG_OP_DOMAIN_COMPETENCY_PERF_REPORT:
         return new DomainCompetencyCompletionReportProcessor(vertx, message);
         
+      case Constants.Message.MSG_OP_USER_PORTFOLIO_CONTENT_ITEMS_PERF:
+        return new UserPortfolioUniqueItemPerfProcessor(vertx, message);
+      case Constants.Message.MSG_OP_USER_PORTFOLIO_CONTENT_ITEM_PERF:
+        return new UserPortfolioItemPerfProcessor(vertx, message);
+      case Constants.Message.MSG_OP_USER_PORTFOLIO_CONTENT_ASMT_SUMMARY:
+        return new UserPortfolioAsmtSummaryProcessor(vertx, message);
+      case Constants.Message.MSG_OP_USER_PORTFOLIO_CONTENT_COLL_SUMMARY:
+        return new UserPortfolioCollSummaryProcessor(vertx, message);
+        
+      case Constants.Message.MSG_OP_USER_PORTFOLIO_COMPETENCY:
+        return new UserCompetencyPortfolioProcessor(vertx, message);
+      case Constants.Message.MSG_OP_USER_PORTFOLIO_DOMAIN:
+        return new UserDomainPortfolioProcessor(vertx, message);
+      case Constants.Message.MSG_OP_USER_PORTFOLIO_SUBJECT:
+        return new UserSubjectPortfolioProcessor(vertx, message);
       default:
         return null;
     }
