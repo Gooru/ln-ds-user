@@ -22,6 +22,11 @@ public class UserPortfolioUniqueItemPerfModel {
   private Integer questionCount;
   private Integer resourceCount;
   private Integer taskCount;
+  private String ownerId;
+  private String originalCreatorId;
+  private Float efficacy;
+  private Float engagement;
+  private Float relevance;
   
   private Long timespent;
   private Double score;
@@ -29,6 +34,7 @@ public class UserPortfolioUniqueItemPerfModel {
   private String sessionId;
   private String contentSource;
   private Timestamp activityTimestamp;
+  private Timestamp updatedAt;
   private String gradingStatus;
   private String status;
   private Map<String, Object> masterySummary;
@@ -205,4 +211,51 @@ public class UserPortfolioUniqueItemPerfModel {
     this.gutCodes = gutCodes;
   }
 
+  public String getOwnerId() {
+    return ownerId;
+  }
+
+  public void setOwnerId(String ownerId) {
+    this.ownerId = ownerId;
+  }
+  
+  public String getOriginalCreatorId() {
+    return originalCreatorId;
+  }
+
+  public void setOriginalCreatorId(String originalCreatorId) {
+    this.originalCreatorId = originalCreatorId;
+  }
+
+  public Float getEfficacy() {
+    return efficacy;
+  }
+
+  public void setEfficacy(Float efficacy) {
+    this.efficacy = efficacy;
+  }
+
+  public Float getEngagement() {
+    return engagement;
+  }
+
+  public void setEngagement(Float engagement) {
+    this.engagement = engagement;
+  }
+
+  public Float getRelevance() {
+    return relevance;
+  }
+
+  public void setRelevance(Float relevance) {
+    this.relevance = relevance;
+  }
+
+  public Timestamp getUpdatedAt() {
+    return updatedAt;
+  }
+
+  public void setUpdatedAt(Timestamp updatedAt) {
+    this.updatedAt = updatedAt;
+  }
 }

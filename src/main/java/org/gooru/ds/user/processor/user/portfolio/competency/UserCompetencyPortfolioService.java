@@ -152,6 +152,7 @@ public class UserCompetencyPortfolioService {
     if (activityType.equalsIgnoreCase(OFFLINE_ACTIVITY)) {
       oaTaskCounts = this.coreCollectionsService.fetchOATaskCount(collectionIds);
     }
+    Map<String, REEfInfoModel> reefInfo = this.coreCollectionsService.fetchREEfInfo(collectionIds);
     for (UserCompetencyPortfolioModel model : models) {
 
       CoreCollectionsModel coreModel = new CoreCollectionsModel();
@@ -165,6 +166,8 @@ public class UserCompetencyPortfolioService {
       model.setThumbnail(coreModel.getThumbnail());
       model.setTaxonomy(coreModel.getTaxonomy() != null ? coreModel.getTaxonomy().getMap() : null);
       model.setGutCodes(coreModel.getGutCodes() != null ? coreModel.getGutCodes() : null);
+      model.setOwnerId(coreModel.getOwnerId());
+      model.setOriginalCreatorId(coreModel.getOriginalCreatorId());
 
       CoreCollectionItemCountsModel cModel = new CoreCollectionItemCountsModel();
       if (collectionItemCounts != null && collectionItemCounts.containsKey(model.getId())) {
@@ -180,6 +183,14 @@ public class UserCompetencyPortfolioService {
         model.setTaskCount(taskCount);
       }
       
+      REEfInfoModel reefModel = new REEfInfoModel();
+      if (reefInfo != null && reefInfo.containsKey(model.getId())) {
+        reefModel = reefInfo.get(model.getId());
+      }
+      model.setEfficacy(reefModel.getEfficacy());
+      model.setEngagement(reefModel.getEngagement());
+      model.setRelevance(reefModel.getRelevance());
+
       if (collectionMasteryData != null && collectionMasteryData.containsKey(model.getId())) {
         model.setMasterySummary(collectionMasteryData.get(model.getId()));
       }

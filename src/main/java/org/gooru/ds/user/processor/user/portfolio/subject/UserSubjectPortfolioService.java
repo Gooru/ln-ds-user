@@ -8,6 +8,7 @@ import org.gooru.ds.user.app.jdbi.PGArrayUtils;
 import org.gooru.ds.user.processor.user.portfolio.competency.CoreCollectionItemCountsModel;
 import org.gooru.ds.user.processor.user.portfolio.competency.CoreCollectionsModel;
 import org.gooru.ds.user.processor.user.portfolio.competency.CoreCollectionsService;
+import org.gooru.ds.user.processor.user.portfolio.competency.REEfInfoModel;
 import org.gooru.ds.user.processor.user.portfolio.content.items.UserPortfolioCompetencyMasteryService;
 import org.gooru.ds.user.processor.user.portfolio.subject.response.model.Collection;
 import org.gooru.ds.user.processor.user.portfolio.subject.response.model.Competency;
@@ -147,6 +148,7 @@ public class UserSubjectPortfolioService {
     if (activityType.equalsIgnoreCase(OFFLINE_ACTIVITY)) {
       oaTaskCounts = this.coreCollectionsService.fetchOATaskCount(collectionIds);
     }
+    Map<String, REEfInfoModel> reefInfo = this.coreCollectionsService.fetchREEfInfo(collectionIds);
     for (UserSubjectPortfolioModel model : models) {
 
       CoreCollectionsModel coreModel = new CoreCollectionsModel();
@@ -160,6 +162,8 @@ public class UserSubjectPortfolioService {
       model.setThumbnail(coreModel.getThumbnail());
       model.setTaxonomy(coreModel.getTaxonomy() != null ? coreModel.getTaxonomy().getMap() : null);
       model.setGutCodes(coreModel.getGutCodes() != null ? coreModel.getGutCodes() : null);
+      model.setOwnerId(coreModel.getOwnerId());
+      model.setOriginalCreatorId(coreModel.getOriginalCreatorId());
 
       CoreCollectionItemCountsModel cModel = new CoreCollectionItemCountsModel();
       if (collectionItemCounts != null && collectionItemCounts.containsKey(model.getId())) {
@@ -178,6 +182,14 @@ public class UserSubjectPortfolioService {
       if (collectionMasteryData != null && collectionMasteryData.containsKey(model.getId())) {
         model.setMasterySummary(collectionMasteryData.get(model.getId()));
       }
+      
+      REEfInfoModel reefModel = new REEfInfoModel();
+      if (reefInfo != null && reefInfo.containsKey(model.getId())) {
+        reefModel = reefInfo.get(model.getId());
+      }
+      model.setEfficacy(reefModel.getEfficacy());
+      model.setEngagement(reefModel.getEngagement());
+      model.setRelevance(reefModel.getRelevance());
     }
     
     //**************************************************************************************************************************************

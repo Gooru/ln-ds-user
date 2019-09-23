@@ -22,6 +22,7 @@ public class UserPortfolioUniqueItemPerfModelMapper implements ResultSetMapper<U
     model.setSessionId(r.getString(MapperFields.SESSION_ID));
     model.setContentSource(r.getString(MapperFields.CONTENT_SOURCE));
     model.setActivityTimestamp(r.getTimestamp(MapperFields.CREATED_AT));
+    model.setUpdatedAt(r.getTimestamp(MapperFields.UPDATED_AT));
     model.setStatus(!r.getBoolean(MapperFields.STATUS) ? "in-progress" : "complete");
     String gradingStatus = null;
     if (r.getObject(MapperFields.IS_GRADED) != null) {
@@ -50,6 +51,7 @@ public class UserPortfolioUniqueItemPerfModelMapper implements ResultSetMapper<U
     private static final String IS_GRADED = "is_graded";
     private static final String CONTENT_SOURCE = "content_source";
     private static final String SESSION_ID = "session_id";
+    private static final String UPDATED_AT = "updated_at";
 
   }
 
