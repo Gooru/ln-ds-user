@@ -148,7 +148,6 @@ public class UserSubjectPortfolioService {
     if (activityType.equalsIgnoreCase(OFFLINE_ACTIVITY)) {
       oaTaskCounts = this.coreCollectionsService.fetchOATaskCount(collectionIds);
     }
-    Map<String, REEfInfoModel> reefInfo = this.coreCollectionsService.fetchREEfInfo(collectionIds);
     for (UserSubjectPortfolioModel model : models) {
 
       CoreCollectionsModel coreModel = new CoreCollectionsModel();
@@ -182,14 +181,7 @@ public class UserSubjectPortfolioService {
       if (collectionMasteryData != null && collectionMasteryData.containsKey(model.getId())) {
         model.setMasterySummary(collectionMasteryData.get(model.getId()));
       }
-      
-      REEfInfoModel reefModel = new REEfInfoModel();
-      if (reefInfo != null && reefInfo.containsKey(model.getId())) {
-        reefModel = reefInfo.get(model.getId());
-      }
-      model.setEfficacy(reefModel.getEfficacy());
-      model.setEngagement(reefModel.getEngagement());
-      model.setRelevance(reefModel.getRelevance());
+
     }
     
     //**************************************************************************************************************************************

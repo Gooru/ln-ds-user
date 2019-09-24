@@ -54,16 +54,4 @@ public class CoreCollectionsService {
     return contents;
   }
 
-  public Map<String, REEfInfoModel> fetchREEfInfo(List<String> collectionIds) {
-    Map<String, REEfInfoModel> contents = new HashMap<>();
-    List<REEfInfoModel> contentModels = this.dao
-        .fetchREEfInfo(PGArrayUtils.convertFromListStringToSqlArrayOfString(collectionIds));
-    if (contentModels != null) {
-      contentModels.forEach(model -> {
-        contents.put(model.getId(), model);
-      });
-    }
-    return contents;
-  }
-
 }
