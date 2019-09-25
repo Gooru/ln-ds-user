@@ -18,7 +18,7 @@ interface UserDomainPortfolioDao {
       @Bind("domainCode") String domainCode);
 
   @Mapper(UserDomainPortfolioModelMapper.class)
-  @SqlQuery("select gut_code, collection_id, latest_session_id, collection_score, collection_type, class_id, course_id, unit_id, lesson_id, content_source, updated_at "
+  @SqlQuery("select gut_code, collection_id, latest_session_id, collection_score, collection_type, class_id, course_id, unit_id, lesson_id, content_source, created_at, updated_at "
       + " from learner_profile_competency_evidence where collection_type IN ('assessment', 'assessment-external') AND gut_code = ANY(:gutCode) and user_id = :userId AND updated_at <= :dateUntil "
       + " order by updated_at desc OFFSET :offset LIMIT :limit")
   List<UserDomainPortfolioModel> fetchCompetencyAssessments(
@@ -26,7 +26,7 @@ interface UserDomainPortfolioDao {
       @Bind("gutCode") PGArray<String> gutCode);
 
   @Mapper(UserDomainPortfolioModelMapper.class)
-  @SqlQuery("select gut_code, collection_id, latest_session_id, collection_score, collection_type, class_id, course_id, unit_id, lesson_id, content_source, updated_at "
+  @SqlQuery("select gut_code, collection_id, latest_session_id, collection_score, collection_type, class_id, course_id, unit_id, lesson_id, content_source, created_at, updated_at "
       + " from learner_profile_competency_evidence where collection_type IN ('assessment', 'assessment-external') AND gut_code = ANY(:gutCode) and user_id = :userId "
       + " AND updated_at BETWEEN :startDate AND :endDate order by updated_at desc OFFSET :offset LIMIT :limit")
   List<UserDomainPortfolioModel> fetchCompetencyAssessmentsInDateRange(
@@ -34,7 +34,7 @@ interface UserDomainPortfolioDao {
       @Bind("gutCode") PGArray<String> gutCode);
 
   @Mapper(UserDomainPortfolioModelMapper.class)
-  @SqlQuery("select gut_code, collection_id, latest_session_id, collection_score, collection_type, class_id, course_id, unit_id, lesson_id, content_source, updated_at "
+  @SqlQuery("select gut_code, collection_id, latest_session_id, collection_score, collection_type, class_id, course_id, unit_id, lesson_id, content_source, created_at, updated_at "
       + " from learner_profile_competency_evidence where collection_type IN ('collection', 'collection-external') AND gut_code = ANY(:gutCode) and user_id = :userId AND updated_at <= :dateUntil "
       + " order by updated_at desc OFFSET :offset LIMIT :limit")
   List<UserDomainPortfolioModel> fetchCompetencyCollections(
@@ -42,7 +42,7 @@ interface UserDomainPortfolioDao {
       @Bind("gutCode") PGArray<String> gutCode);
 
   @Mapper(UserDomainPortfolioModelMapper.class)
-  @SqlQuery("select gut_code, collection_id, latest_session_id, collection_score, collection_type, class_id, course_id, unit_id, lesson_id, content_source, updated_at "
+  @SqlQuery("select gut_code, collection_id, latest_session_id, collection_score, collection_type, class_id, course_id, unit_id, lesson_id, content_source, created_at, updated_at "
       + " from learner_profile_competency_evidence where collection_type IN ('collection', 'collection-external') AND gut_code = ANY(:gutCode) and user_id = :userId "
       + " AND updated_at BETWEEN :startDate AND :endDate order by updated_at desc OFFSET :offset LIMIT :limit")
   List<UserDomainPortfolioModel> fetchCompetencyCollectionsInDateRange(
@@ -50,7 +50,7 @@ interface UserDomainPortfolioDao {
       @Bind("gutCode") PGArray<String> gutCode);
 
   @Mapper(UserDomainPortfolioModelMapper.class)
-  @SqlQuery("select gut_code, collection_id, latest_session_id, collection_score, collection_type, class_id, course_id, unit_id, lesson_id, content_source, updated_at "
+  @SqlQuery("select gut_code, collection_id, latest_session_id, collection_score, collection_type, class_id, course_id, unit_id, lesson_id, content_source, created_at, updated_at "
       + " from learner_profile_competency_evidence where collection_type = 'offline-activity' AND gut_code = ANY(:gutCode) and user_id = :userId AND updated_at <= :dateUntil "
       + " order by updated_at desc OFFSET :offset LIMIT :limit")
   List<UserDomainPortfolioModel> fetchCompetencyOfflineActivities(
@@ -58,7 +58,7 @@ interface UserDomainPortfolioDao {
       @Bind("gutCode") PGArray<String> gutCode);
 
   @Mapper(UserDomainPortfolioModelMapper.class)
-  @SqlQuery("select gut_code, collection_id, latest_session_id, collection_score, collection_type, class_id, course_id, unit_id, lesson_id, content_source, updated_at "
+  @SqlQuery("select gut_code, collection_id, latest_session_id, collection_score, collection_type, class_id, course_id, unit_id, lesson_id, content_source, created_at, updated_at "
       + " from learner_profile_competency_evidence where collection_type = 'offline-activity' AND gut_code = ANY(:gutCode) and user_id = :userId "
       + " AND updated_at BETWEEN :startDate AND :endDate order by updated_at desc OFFSET :offset LIMIT :limit")
   List<UserDomainPortfolioModel> fetchCompetencyOfflineActivitiesInDateRange(

@@ -165,6 +165,8 @@ public class UserCompetencyPortfolioService {
       model.setThumbnail(coreModel.getThumbnail());
       model.setTaxonomy(coreModel.getTaxonomy() != null ? coreModel.getTaxonomy().getMap() : null);
       model.setGutCodes(coreModel.getGutCodes() != null ? coreModel.getGutCodes() : null);
+      model.setOwnerId(coreModel.getOwnerId());
+      model.setOriginalCreatorId(coreModel.getOriginalCreatorId());
 
       CoreCollectionItemCountsModel cModel = new CoreCollectionItemCountsModel();
       if (collectionItemCounts != null && collectionItemCounts.containsKey(model.getId())) {
@@ -179,7 +181,7 @@ public class UserCompetencyPortfolioService {
         }
         model.setTaskCount(taskCount);
       }
-      
+
       if (collectionMasteryData != null && collectionMasteryData.containsKey(model.getId())) {
         model.setMasterySummary(collectionMasteryData.get(model.getId()));
       }

@@ -23,6 +23,8 @@ public class CoreCollectionsModelMapper implements ResultSetMapper<CoreCollectio
   private static final String LEARNING_OBJECTIVE = "learning_objective";
   private static final String THUMBNAIL = "thumbnail";
   private static final String GUT_CODES = "gut_codes";
+  private static final String OWNER_ID = "owner_id";
+  private static final String ORIGINAL_CREATOR_ID = "original_creator_id";
 
   @Override
   public CoreCollectionsModel map(int index, ResultSet r, StatementContext ctx) throws SQLException {
@@ -35,6 +37,8 @@ public class CoreCollectionsModelMapper implements ResultSetMapper<CoreCollectio
     model.setThumbnail(r.getString(THUMBNAIL));
     model.setTaxonomy(r.getString(TAXONOMY) != null ? new JsonObject(r.getString(TAXONOMY)) : null);
     model.setGutCodes(r.getArray(GUT_CODES) != null ? Arrays.asList((String[]) r.getArray(GUT_CODES).getArray()) : null);
+    model.setOwnerId(r.getString(OWNER_ID));
+    model.setOriginalCreatorId(r.getString(ORIGINAL_CREATOR_ID));
     return model; 
   }
 

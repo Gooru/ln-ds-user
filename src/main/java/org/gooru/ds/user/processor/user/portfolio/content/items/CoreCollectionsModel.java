@@ -16,6 +16,8 @@ public class CoreCollectionsModel {
   private String thumbnail;
   private JsonObject taxonomy;
   private List<String> gutCodes;
+  private String ownerId;
+  private String originalCreatorId;
 
   public String getId() {
     return id;
@@ -79,6 +81,22 @@ public class CoreCollectionsModel {
 
   public void setGutCodes(List<String> gutCodes) {
     this.gutCodes = gutCodes;
+  }
+
+  public String getOwnerId() {
+    return ownerId;
+  }
+
+  public void setOwnerId(String ownerId) {
+    this.ownerId = ownerId;
+  }
+
+  public String getOriginalCreatorId() {
+    return originalCreatorId;
+  }
+
+  public void setOriginalCreatorId(String originalCreatorId) {
+    this.originalCreatorId = originalCreatorId;
   }
 
 }

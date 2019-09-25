@@ -20,7 +20,8 @@ implements ResultSetMapper<UserCompetencyPortfolioModel> {
     model.setScore(r.getDouble(MapperFields.COLLECTION_SCORE));
     model.setContentSource(r.getString(MapperFields.CONTENT_SOURCE));
     model.setSessionId(r.getString(MapperFields.COLLECTION_SESSION_ID));
-    model.setActivityTimestamp(r.getTimestamp(MapperFields.UPDATED_AT));
+    model.setActivityTimestamp(r.getTimestamp(MapperFields.CREATED_AT));
+    model.setUpdatedAt(r.getTimestamp(MapperFields.UPDATED_AT));
     return model;
   }
 
@@ -37,6 +38,7 @@ implements ResultSetMapper<UserCompetencyPortfolioModel> {
     private static final String CONTENT_SOURCE = "content_source";
     private static final String COLLECTION_SESSION_ID = "latest_session_id";
     private static final String UPDATED_AT = "updated_at";
+    private static final String CREATED_AT = "created_at";
 
   }
 

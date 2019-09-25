@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 import org.skife.jdbi.v2.DBI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,7 @@ class UserPortfolioUniqueItemPerfService {
   private final UserPortfolioUniqueItemPerfDao userPortfolioUniqueItemPerfDao;
   private final CoreCollectionsService coreCollectionsService;
   private final UserPortfolioCompetencyMasteryService competencyMasteryService;
+  private final UniqueItemPerformanceService uniqueItemPerformanceService;
   private UserPortfolioUniqueItemPerfCommand command;
   private String activityType;
 
@@ -27,11 +29,13 @@ class UserPortfolioUniqueItemPerfService {
   private static final String COMPLETE = "complete";
   private static final String USER_ID = "userId";
   private static final String USAGE_DATA = "usageData";
+  private static final Pattern COLLECTION_TYPES = Pattern.compile("collection|collection-external");
 
   UserPortfolioUniqueItemPerfService(DBI dbi, DBI coreDbi, DBI dsDbi) {
     this.userPortfolioUniqueItemPerfDao = dbi.onDemand(UserPortfolioUniqueItemPerfDao.class);
     this.coreCollectionsService = new CoreCollectionsService(coreDbi);
     this.competencyMasteryService = new UserPortfolioCompetencyMasteryService(dsDbi);
+    this.uniqueItemPerformanceService = new UniqueItemPerformanceService(dbi);
   }
 
   public UserPortfolioUniqueItemPerfModelResponse fetchUserPortfolioUniqueItemPerf(
@@ -97,6 +101,8 @@ class UserPortfolioUniqueItemPerfService {
     if (activityType.equalsIgnoreCase(OFFLINE_ACTIVITY)) {
       oaTaskCounts = this.coreCollectionsService.fetchOATaskCount(collectionIds);
     }
+    Map<String, Long> collectionTimespent = this.uniqueItemPerformanceService
+        .fetchCumulativeTimespentForCollection(command.getUserId(), collectionIds);
     for (UserPortfolioUniqueItemPerfModel model : models) {
       CoreCollectionsModel coreModel = new CoreCollectionsModel();
       if (collectionMeta != null && collectionMeta.containsKey(model.getId())) {
@@ -109,6 +115,8 @@ class UserPortfolioUniqueItemPerfService {
       model.setThumbnail(coreModel.getThumbnail());
       model.setTaxonomy(coreModel.getTaxonomy() != null ? coreModel.getTaxonomy().getMap() : null);
       model.setGutCodes(coreModel.getGutCodes() != null ? coreModel.getGutCodes() : null);
+      model.setOwnerId(coreModel.getOwnerId());
+      model.setOriginalCreatorId(coreModel.getOriginalCreatorId());
 
       CoreCollectionItemCountsModel cModel = new CoreCollectionItemCountsModel();
       if (collectionItemCounts != null && collectionItemCounts.containsKey(model.getId())) {
@@ -116,10 +124,13 @@ class UserPortfolioUniqueItemPerfService {
       }
       model.setQuestionCount(cModel.getQuestionCount());
       model.setResourceCount(cModel.getResourceCount());
-      if (model.getType().equalsIgnoreCase(COLLECTION)) {
+      if (COLLECTION_TYPES.matcher(model.getType()).matches()) {
         Double score = model.getScore() != null ? Double.valueOf(model.getScore()) : null;
         Double maxScore = model.getMaxScore() != null ? Double.valueOf(model.getMaxScore()) : null;
         model.setScore(((maxScore != null && maxScore > 0) && score != null) ? score : null);
+        if (collectionTimespent != null && collectionTimespent.containsKey(model.getId())) {
+          model.setTimespent(collectionTimespent.get(model.getId()));
+        }
       } else {
         model.setScore((model.getStatus().equalsIgnoreCase(COMPLETE) && model.getScore() != null)
             ? Double.valueOf(Math.round(model.getScore()))
@@ -135,6 +146,7 @@ class UserPortfolioUniqueItemPerfService {
       if (collectionMasteryData != null && collectionMasteryData.containsKey(model.getId())) {
         model.setMasterySummary(collectionMasteryData.get(model.getId()));
       }
+
     }
     userItem.put(USAGE_DATA, models);
 
