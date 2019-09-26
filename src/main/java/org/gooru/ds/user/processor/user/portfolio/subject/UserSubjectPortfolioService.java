@@ -2,13 +2,15 @@ package org.gooru.ds.user.processor.user.portfolio.subject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import org.gooru.ds.user.app.jdbi.PGArrayUtils;
 import org.gooru.ds.user.processor.user.portfolio.competency.CoreCollectionItemCountsModel;
 import org.gooru.ds.user.processor.user.portfolio.competency.CoreCollectionsModel;
 import org.gooru.ds.user.processor.user.portfolio.competency.CoreCollectionsService;
-import org.gooru.ds.user.processor.user.portfolio.competency.REEfInfoModel;
+import org.gooru.ds.user.processor.user.portfolio.competency.UserModel;
 import org.gooru.ds.user.processor.user.portfolio.content.items.UserPortfolioCompetencyMasteryService;
 import org.gooru.ds.user.processor.user.portfolio.subject.response.model.Collection;
 import org.gooru.ds.user.processor.user.portfolio.subject.response.model.Competency;
@@ -148,6 +150,8 @@ public class UserSubjectPortfolioService {
     if (activityType.equalsIgnoreCase(OFFLINE_ACTIVITY)) {
       oaTaskCounts = this.coreCollectionsService.fetchOATaskCount(collectionIds);
     }
+    Set<String> userIds = new HashSet<>(models.size());
+    Map<String, String> ownerIdMap = new HashMap<>(models.size());
     for (UserSubjectPortfolioModel model : models) {
 
       CoreCollectionsModel coreModel = new CoreCollectionsModel();
@@ -161,9 +165,11 @@ public class UserSubjectPortfolioService {
       model.setThumbnail(coreModel.getThumbnail());
       model.setTaxonomy(coreModel.getTaxonomy() != null ? coreModel.getTaxonomy().getMap() : null);
       model.setGutCodes(coreModel.getGutCodes() != null ? coreModel.getGutCodes() : null);
-      model.setOwnerId(coreModel.getOwnerId());
-      model.setOriginalCreatorId(coreModel.getOriginalCreatorId());
-
+      if (coreModel.getOwnerId() != null) {
+        userIds.add(coreModel.getOwnerId());
+        ownerIdMap.put(model.getId(), coreModel.getOwnerId());
+      }
+      
       CoreCollectionItemCountsModel cModel = new CoreCollectionItemCountsModel();
       if (collectionItemCounts != null && collectionItemCounts.containsKey(model.getId())) {
         cModel = collectionItemCounts.get(model.getId());
@@ -183,6 +189,8 @@ public class UserSubjectPortfolioService {
       }
 
     }
+    enrichResponseWithOwnerInfo(models, userIds, ownerIdMap);
+
     
     //**************************************************************************************************************************************
 
@@ -259,4 +267,16 @@ public class UserSubjectPortfolioService {
     return userItem;
   }
 
+  private void enrichResponseWithOwnerInfo(List<UserSubjectPortfolioModel> models,
+      Set<String> userIds, Map<String, String> ownerIdMap) {
+    if (userIds.size() > 0) {
+      Map<String, UserModel> usersMeta = this.coreCollectionsService.fetchUserMeta(userIds);
+      for (UserSubjectPortfolioModel model : models) {
+        if (ownerIdMap.containsKey(model.getId())
+            && usersMeta.containsKey(ownerIdMap.get(model.getId()))) {
+          model.setOwner(usersMeta.get(ownerIdMap.get(model.getId())));
+        }
+      }
+    }
+  }
 }

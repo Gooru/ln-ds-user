@@ -3,6 +3,7 @@ package org.gooru.ds.user.processor.user.portfolio.competency;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import org.gooru.ds.user.app.jdbi.PGArrayUtils;
 import org.skife.jdbi.v2.DBI;
 
@@ -11,10 +12,10 @@ import org.skife.jdbi.v2.DBI;
  */
 public class CoreCollectionsService {
 
-  private final CoreCollectionsDao dao;
+  private final CoreDao dao;
 
   public CoreCollectionsService(DBI dbi) {
-    this.dao = dbi.onDemand(CoreCollectionsDao.class);
+    this.dao = dbi.onDemand(CoreDao.class);
   }
 
   public Map<String, CoreCollectionsModel> fetchCollectionMeta(List<String> contentIds) {
@@ -52,6 +53,18 @@ public class CoreCollectionsService {
       });
     }
     return contents;
+  }
+  
+  public Map<String, UserModel> fetchUserMeta(Set<String> userIds) {
+    Map<String, UserModel> users = new HashMap<>();
+    List<UserModel> userModels = this.dao
+        .fetchUsers(PGArrayUtils.convertFromSetStringToSqlArrayOfString(userIds));
+    if (userModels != null) {
+      userModels.forEach(model -> {
+        users.put(model.getId(), model);
+      });
+    }
+    return users;
   }
 
 }

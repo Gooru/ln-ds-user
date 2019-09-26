@@ -24,8 +24,7 @@ public class UserCompetencyPortfolioModel implements Serializable {
   private Integer questionCount;
   private Integer resourceCount;
   private Integer taskCount;
-  private String ownerId;
-  private String originalCreatorId;
+  private UserModel owner;
   private Float efficacy;
   private Float engagement;
   private Float relevance;
@@ -187,20 +186,12 @@ public class UserCompetencyPortfolioModel implements Serializable {
     this.gutCodes = gutCodes;
   }
 
-  public String getOwnerId() {
-    return ownerId;
+  public UserModel getOwner() {
+    return owner;
   }
 
-  public void setOwnerId(String ownerId) {
-    this.ownerId = ownerId;
-  } 
-
-  public String getOriginalCreatorId() {
-    return originalCreatorId;
-  }
-
-  public void setOriginalCreatorId(String originalCreatorId) {
-    this.originalCreatorId = originalCreatorId;
+  public void setOwner(UserModel owner) {
+    this.owner = owner;
   }
 
   public Float getEfficacy() {
