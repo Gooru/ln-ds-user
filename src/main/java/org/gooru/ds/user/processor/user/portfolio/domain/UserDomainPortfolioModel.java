@@ -3,7 +3,7 @@ package org.gooru.ds.user.processor.user.portfolio.domain;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
-import org.gooru.ds.user.processor.user.portfolio.competency.UserModel;
+import org.gooru.ds.user.processor.user.portfolio.content.items.UserModel;
 
 
 /**

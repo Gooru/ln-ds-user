@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
+import org.gooru.ds.user.processor.user.portfolio.content.items.UserModel;
 
 
 /**

@@ -6,6 +6,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import org.gooru.ds.user.processor.user.portfolio.content.items.CoreCollectionItemCountsModel;
+import org.gooru.ds.user.processor.user.portfolio.content.items.CoreCollectionsModel;
+import org.gooru.ds.user.processor.user.portfolio.content.items.CoreService;
+import org.gooru.ds.user.processor.user.portfolio.content.items.UserModel;
 import org.gooru.ds.user.processor.user.portfolio.content.items.UserPortfolioCompetencyMasteryService;
 import org.skife.jdbi.v2.DBI;
 import org.slf4j.Logger;
@@ -18,7 +22,7 @@ import org.slf4j.LoggerFactory;
 public class UserCompetencyPortfolioService {
   
   private final UserCompetencyPortfolioDao userCompetencyPortfolioDao;
-  private final CoreCollectionsService coreCollectionsService;
+  private final CoreService coreService;
   private final UserPortfolioCompetencyMasteryService competencyMasteryService;
   private UserCompetencyPortfolioCommand command;
   private String activityType;
@@ -33,7 +37,7 @@ public class UserCompetencyPortfolioService {
 
   UserCompetencyPortfolioService(DBI dbi, DBI coreDbi) {
     this.userCompetencyPortfolioDao = dbi.onDemand(UserCompetencyPortfolioDao.class);
-    this.coreCollectionsService = new CoreCollectionsService(coreDbi);
+    this.coreService = new CoreService(coreDbi);
     this.competencyMasteryService = new UserPortfolioCompetencyMasteryService(dbi);
   }
 
@@ -145,14 +149,14 @@ public class UserCompetencyPortfolioService {
     });
 
     Map<String, CoreCollectionsModel> collectionMeta =
-        this.coreCollectionsService.fetchCollectionMeta(collectionIds);
+        this.coreService.fetchCollectionMeta(collectionIds);
     Map<String, CoreCollectionItemCountsModel> collectionItemCounts =
-        this.coreCollectionsService.fetchCollectionItemCount(collectionIds);
+        this.coreService.fetchCollectionItemCount(collectionIds);
     Map<String, Map<String, Object>> collectionMasteryData =
         this.competencyMasteryService.fetchCollectionMastery(command.getUserId(), collectionIds);
     Map<String, Integer> oaTaskCounts = null;
     if (activityType.equalsIgnoreCase(OFFLINE_ACTIVITY)) {
-      oaTaskCounts = this.coreCollectionsService.fetchOATaskCount(collectionIds);
+      oaTaskCounts = this.coreService.fetchOATaskCount(collectionIds);
     }
     Set<String> userIds = new HashSet<>(models.size());
     Map<String, String> ownerIdMap = new HashMap<>(models.size());
@@ -216,7 +220,7 @@ public class UserCompetencyPortfolioService {
   private void enrichResponseWithOwnerInfo(List<UserCompetencyPortfolioModel> models,
       Set<String> userIds, Map<String, String> ownerIdMap) {
     if (userIds.size() > 0) {
-      Map<String, UserModel> usersMeta = this.coreCollectionsService.fetchUserMeta(userIds);
+      Map<String, UserModel> usersMeta = this.coreService.fetchUserMeta(userIds);
       for (UserCompetencyPortfolioModel model : models) {
         if (ownerIdMap.containsKey(model.getId())
             && usersMeta.containsKey(ownerIdMap.get(model.getId()))) {
