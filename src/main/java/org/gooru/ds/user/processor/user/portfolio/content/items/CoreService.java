@@ -3,18 +3,22 @@ package org.gooru.ds.user.processor.user.portfolio.content.items;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import org.gooru.ds.user.app.jdbi.PGArrayUtils;
 import org.skife.jdbi.v2.DBI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author renuka
  */
-public class CoreCollectionsService {
+public class CoreService {
+  private static final Logger LOGGER =
+      LoggerFactory.getLogger(CoreService.class);
+  private final CoreDao dao;
 
-  private final CoreCollectionsDao dao;
-
-  public CoreCollectionsService(DBI dbi) {
-    this.dao = dbi.onDemand(CoreCollectionsDao.class);
+  public CoreService(DBI dbi) {
+    this.dao = dbi.onDemand(CoreDao.class);
   }
 
   public Map<String, CoreCollectionsModel> fetchCollectionMeta(List<String> contentIds) {
@@ -51,6 +55,20 @@ public class CoreCollectionsService {
       });
     }
     return contents;
+  }
+  
+  public Map<String, UserModel> fetchUserMeta(Set<String> userIds) {
+    Map<String, UserModel> users = new HashMap<>();
+    LOGGER.info("userIds : {}", PGArrayUtils.convertFromSetStringToSqlArrayOfString(userIds));
+    List<UserModel> userModels =
+        this.dao.fetchUsers(PGArrayUtils.convertFromSetStringToSqlArrayOfString(userIds));
+    if (userModels != null) {
+      userModels.forEach(model -> {
+        users.put(model.getId(), model);
+      });
+    }
+    LOGGER.info("users : {}", users.toString());
+    return users;
   }
 
 }

@@ -9,7 +9,7 @@ import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
 /**
  * @author renuka
  */
-interface CoreCollectionsDao {
+interface CoreDao {
 
   @Mapper(CoreCollectionsModelMapper.class)
   @SqlQuery("SELECT id, title, format, subformat, thumbnail, learning_objective, taxonomy, gut_codes, owner_id, original_creator_id FROM collection WHERE id = ANY(:contentIds::uuid[])")
@@ -22,6 +22,10 @@ interface CoreCollectionsDao {
   @Mapper(CountInfoModelMapper.class)
   @SqlQuery("select count(id) as count, oa_id as id from oa_tasks WHERE oa_id = ANY(:collectionIds::uuid[]) group by oa_id")
   List<CountInfoModel> fetchOATaskCounts(@Bind("collectionIds") PGArray<String> pgArray);
-
+  
+  @Mapper(UserModelMapper.class)
+  @SqlQuery("select id, username, email, first_name, last_name, display_name, thumbnail from users where id = ANY(:userIds::uuid[])")
+  List<UserModel> fetchUsers(@Bind("userIds") PGArray<String> pgArray);
+  
 }
   

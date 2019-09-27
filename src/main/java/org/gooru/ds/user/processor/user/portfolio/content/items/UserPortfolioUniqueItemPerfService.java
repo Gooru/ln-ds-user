@@ -2,8 +2,10 @@ package org.gooru.ds.user.processor.user.portfolio.content.items;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Pattern;
 import org.skife.jdbi.v2.DBI;
 import org.slf4j.Logger;
@@ -15,7 +17,7 @@ import org.slf4j.LoggerFactory;
 class UserPortfolioUniqueItemPerfService {
 
   private final UserPortfolioUniqueItemPerfDao userPortfolioUniqueItemPerfDao;
-  private final CoreCollectionsService coreCollectionsService;
+  private final CoreService coreCollectionsService;
   private final UserPortfolioCompetencyMasteryService competencyMasteryService;
   private final UniqueItemPerformanceService uniqueItemPerformanceService;
   private UserPortfolioUniqueItemPerfCommand command;
@@ -33,7 +35,7 @@ class UserPortfolioUniqueItemPerfService {
 
   UserPortfolioUniqueItemPerfService(DBI dbi, DBI coreDbi, DBI dsDbi) {
     this.userPortfolioUniqueItemPerfDao = dbi.onDemand(UserPortfolioUniqueItemPerfDao.class);
-    this.coreCollectionsService = new CoreCollectionsService(coreDbi);
+    this.coreCollectionsService = new CoreService(coreDbi);
     this.competencyMasteryService = new UserPortfolioCompetencyMasteryService(dsDbi);
     this.uniqueItemPerformanceService = new UniqueItemPerformanceService(dbi);
   }
@@ -103,6 +105,8 @@ class UserPortfolioUniqueItemPerfService {
     }
     Map<String, Long> collectionTimespent = this.uniqueItemPerformanceService
         .fetchCumulativeTimespentForCollection(command.getUserId(), collectionIds);
+    Set<String> userIds = new HashSet<>(models.size());
+    Map<String, String> ownerIdMap = new HashMap<>(models.size());
     for (UserPortfolioUniqueItemPerfModel model : models) {
       CoreCollectionsModel coreModel = new CoreCollectionsModel();
       if (collectionMeta != null && collectionMeta.containsKey(model.getId())) {
@@ -115,9 +119,11 @@ class UserPortfolioUniqueItemPerfService {
       model.setThumbnail(coreModel.getThumbnail());
       model.setTaxonomy(coreModel.getTaxonomy() != null ? coreModel.getTaxonomy().getMap() : null);
       model.setGutCodes(coreModel.getGutCodes() != null ? coreModel.getGutCodes() : null);
-      model.setOwnerId(coreModel.getOwnerId());
-      model.setOriginalCreatorId(coreModel.getOriginalCreatorId());
-
+      if (coreModel.getOwnerId() != null) {
+        userIds.add(coreModel.getOwnerId());
+        ownerIdMap.put(model.getId(), coreModel.getOwnerId());
+      }
+      
       CoreCollectionItemCountsModel cModel = new CoreCollectionItemCountsModel();
       if (collectionItemCounts != null && collectionItemCounts.containsKey(model.getId())) {
         cModel = collectionItemCounts.get(model.getId());
@@ -148,6 +154,7 @@ class UserPortfolioUniqueItemPerfService {
       }
 
     }
+    enrichResponseWithOwnerInfo(models, userIds, ownerIdMap);
     userItem.put(USAGE_DATA, models);
 
     if (activityType.equalsIgnoreCase(OFFLINE_ACTIVITY)) {
@@ -166,5 +173,18 @@ class UserPortfolioUniqueItemPerfService {
         userItem.put(USAGE_DATA, aggregatedResponse);
     }
     return userItem;
+  }
+
+  private void enrichResponseWithOwnerInfo(List<UserPortfolioUniqueItemPerfModel> models,
+      Set<String> userIds, Map<String, String> ownerIdMap) {
+    if (userIds.size() > 0) {
+      Map<String, UserModel> usersMeta = this.coreCollectionsService.fetchUserMeta(userIds);
+      for (UserPortfolioUniqueItemPerfModel model : models) {
+        if (ownerIdMap.containsKey(model.getId())
+            && usersMeta.containsKey(ownerIdMap.get(model.getId()))) {
+          model.setOwner(usersMeta.get(ownerIdMap.get(model.getId())));
+        }
+      }
+    }
   }
 }
