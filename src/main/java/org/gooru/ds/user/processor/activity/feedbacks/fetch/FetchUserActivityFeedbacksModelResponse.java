@@ -11,7 +11,7 @@ class FetchUserActivityFeedbacksModelResponse {
     return userActivityFeedbacks;
   }
 
-  public void setUsers(List<FetchUserActivityFeedbacksModel> userActivityFeedbacks) {
+  public void setUserActivityFeedbacks(List<FetchUserActivityFeedbacksModel> userActivityFeedbacks) {
     this.userActivityFeedbacks = userActivityFeedbacks;
   }
 }

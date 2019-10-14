@@ -15,7 +15,7 @@ class FetchUserActivityFeedbacksService {
   public FetchUserActivityFeedbacksModelResponse fetchUserActivityFeedback(FetchUserActivityFeedbacksCommand command) {
     List<FetchUserActivityFeedbacksModel> models = this.fetchUserActivityFeedbackDao.fetchUserActivityFeedbacks(command.asBean());
     FetchUserActivityFeedbacksModelResponse  response= new FetchUserActivityFeedbacksModelResponse();
-    response.setUsers(models);
+    response.setUserActivityFeedbacks(models);
     return response;
   }
 
