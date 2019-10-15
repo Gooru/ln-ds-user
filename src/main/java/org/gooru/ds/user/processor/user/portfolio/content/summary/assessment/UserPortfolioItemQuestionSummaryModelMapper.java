@@ -17,7 +17,7 @@ public class UserPortfolioItemQuestionSummaryModelMapper implements ResultSetMap
     UserPortfolioItemQuestionSummaryModel model = new UserPortfolioItemQuestionSummaryModel();
     model.setId(r.getString(MapperFields.RESOURCE_ID));
     model.setResourceType(r.getString(MapperFields.RESOURCE_TYPE));
-    model.setTimeSpent(r.getLong(MapperFields.RESOURCE_TIMESPENT));
+    model.setTimespent(r.getLong(MapperFields.RESOURCE_TIMESPENT));
     model.setScore(r.getDouble(MapperFields.RESOURCE_SCORE));
     model.setReaction(r.getInt(MapperFields.RESOURCE_REACTION));
     model.setQuestionType(r.getString(MapperFields.QUESTION_TYPE));
