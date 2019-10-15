@@ -43,8 +43,8 @@ class UserPortfolioCACollSummaryService {
     List<UserPortfolioItemResSummaryModelResponse> questionSummary = generateQuestionSummary(questionModels);
     Map<String, Object> response = new HashMap<>();
     UserPortfolioItemSummaryModelResponse result = new UserPortfolioItemSummaryModelResponse();
-    response.put("activity", itemSummary);
-    response.put("containingItems", questionSummary);
+    response.put("collection", itemSummary);
+    response.put("resources", questionSummary);
     result.setContent(response);
     return result;
 
