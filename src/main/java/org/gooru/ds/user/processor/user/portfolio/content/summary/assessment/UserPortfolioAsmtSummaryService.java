@@ -48,7 +48,11 @@ class UserPortfolioAsmtSummaryService {
     List<UserPortfolioItemQuestionSummaryModel> questionSummary = generateQuestionSummary(questionModels);
     Map<String, Object> response = new HashMap<>();
     UserPortfolioItemSummaryModelResponse result = new UserPortfolioItemSummaryModelResponse();
-    response.put("assessment", itemSummary);
+    UserPortfolioItemSummaryModel assessmentSummary = new UserPortfolioItemSummaryModel();
+    if(itemSummary != null && !itemSummary.isEmpty()) {
+      assessmentSummary = itemSummary.get(0);
+    }
+    response.put("assessment", assessmentSummary);
     response.put("questions", questionSummary);
     result.setContent(response);
     return result;
