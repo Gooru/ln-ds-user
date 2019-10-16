@@ -151,7 +151,7 @@ public class UserSubjectPortfolioCommand {
         }
       } else {
         LocalDate today = LocalDate.now();
-        LocalDate localDate = LocalDate.of(today.getYear(), today.getMonthValue(), 1);
+        LocalDate localDate = LocalDate.of(today.getYear(), today.getMonthValue(), today.getDayOfMonth());
         result.dateUntil = java.sql.Date.valueOf(localDate);
       }
     }
