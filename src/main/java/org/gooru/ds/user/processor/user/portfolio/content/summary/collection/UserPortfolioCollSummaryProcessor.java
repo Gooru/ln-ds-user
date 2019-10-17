@@ -27,6 +27,11 @@ public class UserPortfolioCollSummaryProcessor implements MessageProcessor {
   private final Future<MessageResponse> result;
   private static final Logger LOGGER = LoggerFactory.getLogger(UserPortfolioCollSummaryProcessor.class);
   private EventBusMessage eventBusMessage;
+  private static final String COURSEMAP = "coursemap";
+  private static final String CLASSACTIVITY = "dailyclassactivity";
+  private static final String ILACTIVITY = "ilactivity";
+  private static final String COMPETENCYMASTERY = "competencymastery";
+
   private final UserPortfolioCACollSummaryService userPortfolioCAItemSummaryService =
       new UserPortfolioCACollSummaryService(DBICreator.getDbiForAnalyticsDS(),
           DBICreator.getDbiForCoreDS());
@@ -58,12 +63,13 @@ public class UserPortfolioCollSummaryProcessor implements MessageProcessor {
       Map<String, Object> response = new HashMap<>();
       UserPortfolioItemSummaryModelResponse outcome = new UserPortfolioItemSummaryModelResponse();
       outcome.setContent(response);
-      switch (command.getContentSource()) {
-        case "dailyclassactivity":
+      switch (command.getContentSource().toLowerCase()) {
+        case CLASSACTIVITY:
           outcome = userPortfolioCAItemSummaryService.fetchUserPortfolioCollSummary(command);
           break;
-        case "coursemap":
-        case "ILactivity":
+        case COURSEMAP:
+        case ILACTIVITY:
+        case COMPETENCYMASTERY:
           outcome = userPortfolioItemSummaryService.fetchUserPortfolioCollSummary(command);
           break;
       }

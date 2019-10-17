@@ -119,15 +119,18 @@ class UserPortfolioCACollSummaryService {
     UserPortfolioItemCollTimespentModel timeSpent = userPortfolioItemSummaryDao.fetchCACollTimespent(command.asBean());
     Integer reaction = userPortfolioItemSummaryDao.fetchCACollReaction(command.asBean());
     Double score = userPortfolioItemSummaryDao.fetchCACollScore(command.asBean());
-    UserPortfolioItemSummaryModel coll = new UserPortfolioItemSummaryModel();
-    coll.setId(command.getItemId());
-    coll.setEventTime(lastAssessed);
-    coll.setReaction(reaction);
-    coll.setTimespent(timeSpent != null ? timeSpent.getTimespent() : 0L);
-    coll.setScore(score);
-    coll.setViews(timeSpent!=null ? timeSpent.getAttempts() : 0L);
-    coll.setMaxScore(maxScore);
-    coll.setType(timeSpent!=null ? timeSpent.getCollectionType() : "NA");
+    UserPortfolioItemSummaryModel coll = null;
+    if (lastAssessed != null) {
+      coll = new UserPortfolioItemSummaryModel();
+      coll.setId(command.getItemId());
+      coll.setEventTime(lastAssessed);
+      coll.setReaction(reaction);
+      coll.setTimespent(timeSpent != null ? timeSpent.getTimespent() : 0L);
+      coll.setScore(score);
+      coll.setViews(timeSpent != null ? timeSpent.getAttempts() : 0L);
+      coll.setMaxScore(maxScore);
+      coll.setType(timeSpent != null ? timeSpent.getCollectionType() : "NA");
+    }
     return coll;
   }
 

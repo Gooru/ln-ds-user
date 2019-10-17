@@ -19,7 +19,11 @@ class UserPortfolioAsmtSummaryService {
   private String contentSource;
 
   private static final Logger LOGGER = LoggerFactory.getLogger(UserPortfolioAsmtSummaryService.class);
-
+  private static final String COURSEMAP = "coursemap";
+  private static final String CLASSACTIVITY = "dailyclassactivity";
+  private static final String ILACTIVITY = "ilactivity";
+  private static final String COMPETENCYMASTERY = "competencymastery";
+  
   UserPortfolioAsmtSummaryService(DBI dbi, DBI coreDbi) {
     this.userPortfolioItemSummaryDao = dbi.onDemand(UserPortfolioItemSummaryDao.class);
     this.coreContentsService = new CoreContentsService(coreDbi);
@@ -34,13 +38,14 @@ class UserPortfolioAsmtSummaryService {
     List<UserPortfolioItemSummaryModel> itemSummary = new ArrayList<>();
     List<UserPortfolioItemQuestionSummaryModel> questionModels = new ArrayList<>();
 
-    if (contentSource.equalsIgnoreCase("dailyclassactivity")) {
+    if (contentSource.equalsIgnoreCase(CLASSACTIVITY)) {
       itemSummary = fetchCAItemsPerformance(this.command);
       questionModels = fetchCAItemsQuestionPerformance(this.command);
-    } else if (contentSource.equalsIgnoreCase("coursemap")) {
+    } else if (contentSource.equalsIgnoreCase(COURSEMAP)
+        || contentSource.equalsIgnoreCase(COMPETENCYMASTERY)) {
       itemSummary = fetchItemsPerformance(this.command);
       questionModels = fetchItemsQuestionPerformance(this.command);
-    } else if (contentSource.equalsIgnoreCase("ILactivity")) {
+    } else if (contentSource.equalsIgnoreCase(ILACTIVITY)) {
       itemSummary = fetchILItemsPerformance(this.command);
       questionModels = fetchILItemsQuestionPerformance(this.command);
     }
@@ -48,8 +53,9 @@ class UserPortfolioAsmtSummaryService {
     List<UserPortfolioItemQuestionSummaryModel> questionSummary = generateQuestionSummary(questionModels);
     Map<String, Object> response = new HashMap<>();
     UserPortfolioItemSummaryModelResponse result = new UserPortfolioItemSummaryModelResponse();
-    UserPortfolioItemSummaryModel assessmentSummary = new UserPortfolioItemSummaryModel();
-    if(itemSummary != null && !itemSummary.isEmpty()) {
+    UserPortfolioItemSummaryModel assessmentSummary = null;
+    if (itemSummary != null && !itemSummary.isEmpty()) {
+      assessmentSummary = new UserPortfolioItemSummaryModel();
       assessmentSummary = itemSummary.get(0);
     }
     response.put("assessment", assessmentSummary);
