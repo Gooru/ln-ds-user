@@ -17,7 +17,7 @@ public class UserPortfolioItemSummaryCommand {
   private String itemType;
   private String sessionId;
   private String contentSource;
-  private static final Pattern CONTENT_SOURCES = Pattern.compile("dailyclassactivity|coursemap|ILactivity");
+  private static final Pattern CONTENT_SOURCES = Pattern.compile("dailyclassactivity|coursemap|ilactivity|competencymastery");
 
   private static final Logger LOGGER = LoggerFactory.getLogger(UserPortfolioItemSummaryCommand.class);
 
@@ -104,10 +104,10 @@ public class UserPortfolioItemSummaryCommand {
       throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
           "itemId not provided");
     }
-    if (contentSource == null || (contentSource != null && !CONTENT_SOURCES.matcher(contentSource).matches())) {
-      LOGGER.info("contentSource not provided");
+    if (contentSource == null || (contentSource != null && !CONTENT_SOURCES.matcher(contentSource.toLowerCase()).matches())) {
+      LOGGER.info("contentSource is missing or invalid");
       throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
-          "contentSource not provided");
+          "contentSource is missing or invalid");
     }
 
   }

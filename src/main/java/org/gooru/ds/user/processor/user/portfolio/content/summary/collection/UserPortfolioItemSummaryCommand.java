@@ -1,5 +1,6 @@
 package org.gooru.ds.user.processor.user.portfolio.content.summary.collection;
 
+import java.util.regex.Pattern;
 import org.gooru.ds.user.constants.HttpConstants;
 import org.gooru.ds.user.exceptions.HttpResponseWrapperException;
 import org.slf4j.Logger;
@@ -18,6 +19,7 @@ public class UserPortfolioItemSummaryCommand {
   private String contentSource;
 
   private static final Logger LOGGER = LoggerFactory.getLogger(UserPortfolioItemSummaryCommand.class);
+  private static final Pattern CONTENT_SOURCES = Pattern.compile("dailyclassactivity|coursemap|ilactivity|competencymastery");
 
   public String getUserId() {
     return userId;
@@ -103,10 +105,10 @@ public class UserPortfolioItemSummaryCommand {
       throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
           "itemId not provided");
     }
-    if (contentSource == null || (contentSource != null && !contentSource.matches("dailyclassactivity|coursemap|ILactivity"))) {
-      LOGGER.info("contentSource not provided");
+    if (contentSource == null || (contentSource != null && !CONTENT_SOURCES.matcher(contentSource.toLowerCase()).matches())) {
+      LOGGER.info("contentSource is missing or invalid");
       throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
-          "contentSource not provided");
+          "contentSource is missing or invalid");
     }
 
   }
