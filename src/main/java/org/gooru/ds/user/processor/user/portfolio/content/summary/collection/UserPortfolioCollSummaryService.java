@@ -115,14 +115,14 @@ class UserPortfolioCollSummaryService {
 
   private UserPortfolioItemSummaryModel fetchItemsPerformance(
       UserPortfolioItemSummaryCommand command) {
-    Double maxScore = userPortfolioItemSummaryDao.fetchCollMaxScore(command.asBean());
     Timestamp lastAssessed = userPortfolioItemSummaryDao.fetchCollLastAccessed(command.asBean());
-    UserPortfolioItemCollTimespentModel timeSpent =
-        userPortfolioItemSummaryDao.fetchCollTimespent(command.asBean());
-    Integer reaction = userPortfolioItemSummaryDao.fetchCollReaction(command.asBean());
-    Double score = userPortfolioItemSummaryDao.fetchCollScore(command.asBean());
     UserPortfolioItemSummaryModel coll = null;
     if (lastAssessed != null) {
+      Double maxScore = userPortfolioItemSummaryDao.fetchCollMaxScore(command.asBean());
+      UserPortfolioItemCollTimespentModel timeSpent =
+          userPortfolioItemSummaryDao.fetchCollTimespent(command.asBean());
+      Integer reaction = userPortfolioItemSummaryDao.fetchCollReaction(command.asBean());
+      Double score = userPortfolioItemSummaryDao.fetchCollScore(command.asBean());
       coll = new UserPortfolioItemSummaryModel();
       coll.setId(command.getItemId());
       coll.setEventTime(lastAssessed);
