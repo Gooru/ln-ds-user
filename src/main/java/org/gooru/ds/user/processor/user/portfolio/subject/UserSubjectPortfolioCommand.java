@@ -6,8 +6,10 @@ import java.util.Date;
 import org.gooru.ds.user.constants.HttpConstants;
 import org.gooru.ds.user.constants.HttpConstants.HttpStatus;
 import org.gooru.ds.user.exceptions.HttpResponseWrapperException;
+import org.gooru.ds.user.processor.utils.ValidatorUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.hazelcast.util.StringUtil;
 import io.vertx.core.json.JsonObject;
 
 
@@ -173,19 +175,19 @@ public class UserSubjectPortfolioCommand {
 
   private void validate() {
 
-    if (userId == null) {
+    if (ValidatorUtils.isValidUUID(userId)) {
       LOGGER.info("User not provided");
       throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
           "User not provided in the request");
     }
     
-    if (subjectCode == null) {
+    if (StringUtil.isNullOrEmpty(subjectCode)) {
       LOGGER.info("Subject Code not provided");
       throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
           "Subject Code not provided in the request");
     }
     
-    if (activityType == null) {
+    if (StringUtil.isNullOrEmpty(activityType)) {
       LOGGER.info("activityType to fetch is not provided");
       throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
           "activityType to fetch is not provided in request");

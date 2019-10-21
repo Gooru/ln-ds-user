@@ -19,11 +19,10 @@ class UserPortfolioAsmtSummaryService {
   private String contentSource;
 
   private static final Logger LOGGER = LoggerFactory.getLogger(UserPortfolioAsmtSummaryService.class);
-  private static final String COURSEMAP = "coursemap";
   private static final String CLASSACTIVITY = "dailyclassactivity";
   private static final String ILACTIVITY = "ilactivity";
-  private static final String COMPETENCYMASTERY = "competencymastery";
-  
+  private static final String OE = "OE";
+
   UserPortfolioAsmtSummaryService(DBI dbi, DBI coreDbi) {
     this.userPortfolioItemSummaryDao = dbi.onDemand(UserPortfolioItemSummaryDao.class);
     this.coreContentsService = new CoreContentsService(coreDbi);
@@ -41,13 +40,12 @@ class UserPortfolioAsmtSummaryService {
     if (contentSource.equalsIgnoreCase(CLASSACTIVITY)) {
       itemSummary = fetchCAItemsPerformance(this.command);
       questionModels = fetchCAItemsQuestionPerformance(this.command);
-    } else if (contentSource.equalsIgnoreCase(COURSEMAP)
-        || contentSource.equalsIgnoreCase(COMPETENCYMASTERY)) {
-      itemSummary = fetchItemsPerformance(this.command);
-      questionModels = fetchItemsQuestionPerformance(this.command);
     } else if (contentSource.equalsIgnoreCase(ILACTIVITY)) {
       itemSummary = fetchILItemsPerformance(this.command);
       questionModels = fetchILItemsQuestionPerformance(this.command);
+    } else {
+      itemSummary = fetchItemsPerformance(this.command);
+      questionModels = fetchItemsQuestionPerformance(this.command);
     }
 
     List<UserPortfolioItemQuestionSummaryModel> questionSummary = generateQuestionSummary(questionModels);
@@ -83,9 +81,9 @@ class UserPortfolioAsmtSummaryService {
           model.setTitle(coreModel.getTitle());
         }
       }
-      if (model.getQuestionType().equalsIgnoreCase("OE")) {
+      if (model.getQuestionType().equalsIgnoreCase(OE)) {
         Boolean isGradedObj = null;
-        if (contentSource.equalsIgnoreCase("dailyclassactivity")) {
+        if (contentSource.equalsIgnoreCase(CLASSACTIVITY)) {
           isGradedObj =
               userPortfolioItemSummaryDao.fetchCAItemIsGraded(command.asBean(), model.getId());
         } else {
@@ -100,7 +98,7 @@ class UserPortfolioAsmtSummaryService {
       }
       
       Integer reaction = null;
-      if (contentSource.equalsIgnoreCase("dailyclassactivity")) {
+      if (contentSource.equalsIgnoreCase(CLASSACTIVITY)) {
         reaction = userPortfolioItemSummaryDao
             .fetchUserCAAsmtQuestionReactionSummary(command.asBean(), model.getId());
       } else {

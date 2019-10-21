@@ -27,10 +27,8 @@ public class UserPortfolioCollSummaryProcessor implements MessageProcessor {
   private final Future<MessageResponse> result;
   private static final Logger LOGGER = LoggerFactory.getLogger(UserPortfolioCollSummaryProcessor.class);
   private EventBusMessage eventBusMessage;
-  private static final String COURSEMAP = "coursemap";
   private static final String CLASSACTIVITY = "dailyclassactivity";
   private static final String ILACTIVITY = "ilactivity";
-  private static final String COMPETENCYMASTERY = "competencymastery";
 
   private final UserPortfolioCACollSummaryService userPortfolioCAItemSummaryService =
       new UserPortfolioCACollSummaryService(DBICreator.getDbiForAnalyticsDS(),
@@ -63,15 +61,10 @@ public class UserPortfolioCollSummaryProcessor implements MessageProcessor {
       Map<String, Object> response = new HashMap<>();
       UserPortfolioItemSummaryModelResponse outcome = new UserPortfolioItemSummaryModelResponse();
       outcome.setContent(response);
-      switch (command.getContentSource().toLowerCase()) {
-        case CLASSACTIVITY:
-          outcome = userPortfolioCAItemSummaryService.fetchUserPortfolioCollSummary(command);
-          break;
-        case COURSEMAP:
-        case ILACTIVITY:
-        case COMPETENCYMASTERY:
-          outcome = userPortfolioItemSummaryService.fetchUserPortfolioCollSummary(command);
-          break;
+      if (command.getContentSource().equalsIgnoreCase(CLASSACTIVITY)) {
+        outcome = userPortfolioCAItemSummaryService.fetchUserPortfolioCollSummary(command);
+      } else {
+        outcome = userPortfolioItemSummaryService.fetchUserPortfolioCollSummary(command);
       }
       String resultString = new ObjectMapper().writeValueAsString(outcome);
       result.complete(MessageResponseFactory.createOkayResponse(new JsonObject(resultString)));

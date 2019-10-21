@@ -114,13 +114,13 @@ class UserPortfolioCACollSummaryService {
   }
 
   private UserPortfolioItemSummaryModel fetchCAItemsPerformance(UserPortfolioItemSummaryCommand command) {
-    Double maxScore = userPortfolioItemSummaryDao.fetchCACollMaxScore(command.asBean());
     Timestamp lastAssessed = userPortfolioItemSummaryDao.fetchCACollLastAccessed(command.asBean());
-    UserPortfolioItemCollTimespentModel timeSpent = userPortfolioItemSummaryDao.fetchCACollTimespent(command.asBean());
-    Integer reaction = userPortfolioItemSummaryDao.fetchCACollReaction(command.asBean());
-    Double score = userPortfolioItemSummaryDao.fetchCACollScore(command.asBean());
     UserPortfolioItemSummaryModel coll = null;
     if (lastAssessed != null) {
+      Double maxScore = userPortfolioItemSummaryDao.fetchCACollMaxScore(command.asBean());
+      UserPortfolioItemCollTimespentModel timeSpent = userPortfolioItemSummaryDao.fetchCACollTimespent(command.asBean());
+      Integer reaction = userPortfolioItemSummaryDao.fetchCACollReaction(command.asBean());
+      Double score = userPortfolioItemSummaryDao.fetchCACollScore(command.asBean());
       coll = new UserPortfolioItemSummaryModel();
       coll.setId(command.getItemId());
       coll.setEventTime(lastAssessed);

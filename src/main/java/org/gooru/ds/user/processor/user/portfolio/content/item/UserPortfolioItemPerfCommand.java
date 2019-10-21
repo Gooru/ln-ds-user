@@ -6,6 +6,7 @@ import java.util.Date;
 import org.gooru.ds.user.constants.HttpConstants;
 import org.gooru.ds.user.constants.HttpConstants.HttpStatus;
 import org.gooru.ds.user.exceptions.HttpResponseWrapperException;
+import org.gooru.ds.user.processor.utils.ValidatorUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import io.vertx.core.json.JsonObject;
@@ -203,13 +204,13 @@ public class UserPortfolioItemPerfCommand {
 
   private void validate() {
     
-    if (userId == null) {
+    if (ValidatorUtils.isValidUUID(userId)) {
       LOGGER.info("User not provided");
       throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
           "User not provided in request");
     }
     
-    if (itemId == null) {
+    if (ValidatorUtils.isValidUUID(itemId)) {
       LOGGER.info("Item Id is not provided");
       throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
           "Item Id not provided in request");
