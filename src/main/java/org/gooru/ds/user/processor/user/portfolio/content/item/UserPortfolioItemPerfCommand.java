@@ -204,13 +204,13 @@ public class UserPortfolioItemPerfCommand {
 
   private void validate() {
     
-    if (ValidatorUtils.isValidUUID(userId)) {
+    if (!ValidatorUtils.isValidUUID(userId)) {
       LOGGER.info("User not provided");
       throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
           "User not provided in request");
     }
     
-    if (ValidatorUtils.isValidUUID(itemId)) {
+    if (!ValidatorUtils.isValidUUID(itemId)) {
       LOGGER.info("Item Id is not provided");
       throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
           "Item Id not provided in request");

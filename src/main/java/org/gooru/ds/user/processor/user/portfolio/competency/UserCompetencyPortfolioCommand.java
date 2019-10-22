@@ -196,7 +196,7 @@ public class UserCompetencyPortfolioCommand {
 
   private void validate() {
 
-    if (ValidatorUtils.isValidUUID(user)) {
+    if (!ValidatorUtils.isValidUUID(user)) {
       LOGGER.info("User not provided");
       throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
           "User not provided for request");

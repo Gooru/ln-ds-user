@@ -167,7 +167,7 @@ public class UserPortfolioUniqueItemPerfCommand {
 
   private void validate() {
 
-    if (ValidatorUtils.isValidUUID(userId)) {
+    if (!ValidatorUtils.isValidUUID(userId)) {
       LOGGER.info("User not provided");
       throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
           "User not provided in request");
