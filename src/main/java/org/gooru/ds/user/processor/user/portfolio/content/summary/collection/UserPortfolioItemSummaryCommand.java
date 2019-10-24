@@ -89,18 +89,18 @@ public class UserPortfolioItemSummaryCommand {
 
   private void validate() {
 
-    if (ValidatorUtils.isValidUUID(userId) ) {
+    if (!ValidatorUtils.isValidUUID(userId) ) {
       LOGGER.info("User not provided");
       throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
           "User not provided in request");
     }
     
-    if (ValidatorUtils.isValidUUID(sessionId)) {
+    if (!ValidatorUtils.isValidUUID(sessionId)) {
       LOGGER.info("sessionId not provided");
       throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
           "sessionId not provided");
     }
-    if (ValidatorUtils.isValidUUID(itemId)) {
+    if (!ValidatorUtils.isValidUUID(itemId)) {
       LOGGER.info("itemId not provided");
       throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
           "itemId not provided");
