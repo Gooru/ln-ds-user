@@ -93,6 +93,9 @@ public final class Constants {
     public static final String MSG_OP_USER_PORTFOLIO_DOMAIN = "mb.op.user.portfolio.domain.items.perf";
     public static final String MSG_OP_USER_PORTFOLIO_SUBJECT = "mb.op.user.portfolio.subject.items.perf";
 
+    // Struggling competencies
+    public static final String MSG_OP_STRUGGLING_COMPETENCIES = "mb.op.struggling.competencies";
+    
     //User Competency Summary
     public static final String MSG_OP_USER_COMPETENCY_SUMMARY =
         "mb.op.user.competency.summary";
@@ -233,6 +236,9 @@ public final class Constants {
     // http://{host}/api/ds/users/v2/subject/portfolio/items
     public static final String API_USER_PORTFOLIO_SUBJECT = API_BASE_ROUTE + "subject/portfolio/items";
 
+    public static final String API_STRUGGLING_COMPETENCIES =
+        API_BASE_ROUTE + "competencies/struggling";
+    
     private Route() {
       throw new AssertionError();
     }

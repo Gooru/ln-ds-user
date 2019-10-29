@@ -1,0 +1,209 @@
+
+package org.gooru.ds.user.processor.struggling.competencies;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import org.gooru.ds.user.app.jdbi.DBICreator;
+import org.gooru.ds.user.app.jdbi.PGArray;
+import org.gooru.ds.user.processor.grade.competency.compute.utils.CollectionUtils;
+import org.skife.jdbi.v2.DBI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import io.vertx.core.json.JsonArray;
+import io.vertx.core.json.JsonObject;
+
+/**
+ * @author szgooru Created On 17-Oct-2019
+ */
+public class StrugglingCompetenciesService {
+
+  private final static Logger LOGGER = LoggerFactory.getLogger(StrugglingCompetenciesService.class);
+
+  private final StrugglingCompetenciesDao dao;
+  private final static CoreUserService CORE_SERVICE =
+      new CoreUserService(DBICreator.getDbiForCoreDS());
+
+  public StrugglingCompetenciesService(DBI dbi) {
+    this.dao = dbi.onDemand(StrugglingCompetenciesDao.class);
+  }
+
+  public JsonObject fetchStrugglingCompetencies(
+      StrugglingCompetenciesCommand.StrugglingCompetenciesCommandBean bean) {
+
+    // Validate the grades passed in the request
+    PGArray<Long> pgLongArrayOfGrades = CollectionUtils.convertToSqlArrayOfLong(bean.getGrades());
+    List<GradeModel> gradeModels = this.dao.fetchGrades(pgLongArrayOfGrades);
+    if (bean.getGrades().size() != gradeModels.size()) {
+      LOGGER.debug("not all grades present in the datastore for which the report is requested");
+      return new JsonObject();
+    }
+
+    Map<Long, GradeModel> gradeModelMap = new HashMap<>();
+    gradeModels.forEach(model -> {
+      gradeModelMap.put(model.getId(), model);
+    });
+    
+    JsonObject response = new JsonObject();
+    JsonArray strugglingArray = new JsonArray();
+    
+    bean.getGrades().forEach(grade -> {
+      // Fetch all competencies fall under the grade
+      List<GradeCompetencyMapModel> gradeCompetencyMap = this.dao.fetchCompetencyMapByGrade(grade);
+
+      Map<String, List<GradeCompetencyMapModel>> competenciesByDomain = new HashMap<>();
+      Map<String, DomainModel> domainModelMap = new HashMap<>();
+      Map<String, String> compDomainMapping = new HashMap<>();
+      
+      Set<String> compCodes = new HashSet<>();
+      gradeCompetencyMap.forEach(model -> {
+        compCodes.add(model.getCompCode());
+        compDomainMapping.put(model.getCompCode(), model.getDomainCode());
+        
+        String domainCode = model.getDomainCode();
+        if (competenciesByDomain.containsKey(domainCode)) {
+          competenciesByDomain.get(domainCode).add(model);
+        } else {
+          List<GradeCompetencyMapModel> compMap = new ArrayList<>();
+          compMap.add(model);
+          competenciesByDomain.put(domainCode, compMap);
+        }
+        
+        if (!domainModelMap.containsKey(domainCode)) {
+          domainModelMap.put(domainCode, populateDomainModel(model));
+        }
+      });
+
+      // Fetch struggling competencies from the competencies fall under grade and students
+      List<StrugglingCompetencyModel> strugglingCompetencies =
+          this.dao.fetchStrugglingCompetencies(CollectionUtils.convertToSqlArrayOfString(compCodes),
+              CollectionUtils.convertToSqlArrayOfString(bean.getStudents()));
+
+      // Iterate on the struggling competencies and prepare map of competencies and number of
+      // strudents struggling in it
+      Map<String, Set<String>> strugglingCompetenciesMap = new HashMap<>();
+      strugglingCompetencies.forEach(model -> {
+        if (strugglingCompetenciesMap.containsKey(model.getCompCode())) {
+          strugglingCompetenciesMap.get(model.getCompCode()).add(model.getUserId());
+        } else {
+          Set<String> users = new HashSet<>();
+          users.add(model.getUserId());
+          strugglingCompetenciesMap.put(model.getCompCode(), users);
+        }
+      });
+
+      // Sort the struggling competencies based on the number of students struggling in them
+      Map<String, Set<String>> sortedStrugglingCompetenciesMap = sortMap(strugglingCompetenciesMap);
+      
+      JsonObject gradeJson = new JsonObject();
+      GradeModel gradeModel = gradeModelMap.get(grade);
+      gradeJson.put("grade_id", gradeModel.getId());
+      gradeJson.put("grade", gradeModel.getGrade());
+      gradeJson.put("grade_Seq", gradeModel.getGradeSeq());
+      gradeJson.put("description", gradeModel.getDescription());
+      gradeJson.put("fw_code", gradeModel.getFwCode());
+      
+      // Now arrange the results by grade, domain as most students struggling in competency appear
+      // first
+      Map<String, Map<String, Integer>> strugglingCompByDomain = new HashMap<>();
+      for (Map.Entry<String, Set<String>> entry : sortedStrugglingCompetenciesMap.entrySet()) {
+        String compCode = entry.getKey();
+        String domainCode = compDomainMapping.get(compCode);
+        
+        if (strugglingCompByDomain.containsKey(domainCode)) {
+          strugglingCompByDomain.get(domainCode).put(compCode, entry.getValue().size());
+        } else {
+          Map<String, Integer> compCountMap = new HashMap<>();
+          compCountMap.put(compCode, entry.getValue().size());
+          strugglingCompByDomain.put(domainCode, compCountMap);
+        }
+      }
+      
+      JsonArray domainsArray = new JsonArray(); 
+      for (Map.Entry<String, Map<String, Integer>> entry : strugglingCompByDomain.entrySet()) {
+        String domainCode = entry.getKey();
+        JsonObject domainJson = prepareDomainJson(domainModelMap.get(domainCode));
+        
+        Map<String, Integer> compCount = entry.getValue();
+        JsonArray compArray = new JsonArray();
+        compCount.keySet().forEach(key -> {
+          JsonObject compJson = new JsonObject();
+          compJson.put(key, compCount.get(key));
+          compArray.add(compJson);
+        });
+        domainJson.put("competencies", compArray);
+        domainsArray.add(domainJson);
+      }
+      gradeJson.put("domains", domainsArray);
+      strugglingArray.add(gradeJson);
+    });
+
+    response.put("struggling_competencies", strugglingArray);
+    
+    // Populate the users details
+    response.put("users", prepareUsersArray(bean));
+    return response;
+  }
+
+  private static DomainModel populateDomainModel(GradeCompetencyMapModel model) {
+    DomainModel domainModel = new DomainModel();
+    domainModel.setDomainId(model.getDomainId());
+    domainModel.setDomainCode(model.getDomainCode());
+    domainModel.setDomainName(model.getDomainName());
+    domainModel.setDomainSeq(model.getDomainSeq());
+    return domainModel;
+  }
+
+  public static HashMap<String, Set<String>> sortMap(Map<String, Set<String>> hm) {
+    // Create a list from elements of HashMap
+    List<Map.Entry<String, Set<String>>> list =
+        new LinkedList<Map.Entry<String, Set<String>>>(hm.entrySet());
+
+    // Sort the list
+    Collections.sort(list, new Comparator<Map.Entry<String, Set<String>>>() {
+      public int compare(Map.Entry<String, Set<String>> o1, Map.Entry<String, Set<String>> o2) {
+        Integer o1Size = o1.getValue().size();
+        Integer o2Size = o2.getValue().size();
+        return o2Size.compareTo(o1Size);
+      }
+    });
+
+    // put data from sorted list to hashmap
+    HashMap<String, Set<String>> temp = new LinkedHashMap<String, Set<String>>();
+    for (Map.Entry<String, Set<String>> aa : list) {
+      temp.put(aa.getKey(), aa.getValue());
+    }
+
+    return temp;
+  }
+
+  private JsonArray prepareUsersArray(
+      StrugglingCompetenciesCommand.StrugglingCompetenciesCommandBean bean) {
+    List<UserModel> users = CORE_SERVICE.fetchUserDetails(bean.getStudents());
+    JsonArray usersArray = new JsonArray();
+    users.forEach(user -> {
+      JsonObject userJson = new JsonObject();
+      userJson.put("id", user.getId());
+      userJson.put("first_name", user.getFirstName());
+      userJson.put("last_name", user.getLastName());
+      userJson.put("display_name", user.getDisplayName());
+      userJson.put("thumbnail", user.getThumbnail());
+      userJson.put("username", user.getUsername());
+      usersArray.add(userJson);
+    });
+    return usersArray;
+  }
+  
+  private JsonObject prepareDomainJson(DomainModel model) {
+    return new JsonObject().put("domain_id", model.getDomainId())
+        .put("domain_name", model.getDomainName()).put("domain_code", model.getDomainCode())
+        .put("domain_seq", model.getDomainSeq());
+  }
+}
