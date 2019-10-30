@@ -11,11 +11,11 @@ import org.skife.jdbi.v2.DBI;
 /**
  * @author ashish on 13/2/18.
  */
-class UserDomainCompetencyMatrixService {
+public class UserDomainCompetencyMatrixService {
 
   private final UserDomainCompetencyMatrixDao userCompetencyMatrixDao;
 
-  UserDomainCompetencyMatrixService(DBI dbi) {
+  public UserDomainCompetencyMatrixService(DBI dbi) {
     this.userCompetencyMatrixDao = dbi.onDemand(UserDomainCompetencyMatrixDao.class);
   }
 
