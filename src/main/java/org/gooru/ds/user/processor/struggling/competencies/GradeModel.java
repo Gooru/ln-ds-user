@@ -10,6 +10,7 @@ public class GradeModel {
   private String grade;
   private Integer gradeSeq;
   private String description;
+  private String subjectCode;
   private String fwCode;
 
   public Long getId() {
@@ -42,6 +43,14 @@ public class GradeModel {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+  
+  public String getSubjectCode() {
+    return subjectCode;
+  }
+
+  public void setSubjectCode(String subjectCode) {
+    this.subjectCode = subjectCode;
   }
 
   public String getFwCode() {

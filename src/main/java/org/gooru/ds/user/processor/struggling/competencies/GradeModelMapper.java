@@ -18,6 +18,7 @@ public class GradeModelMapper implements ResultSetMapper<GradeModel> {
     model.setGrade(r.getString("grade"));
     model.setGradeSeq(r.getInt("grade_seq"));
     model.setDescription(r.getString("description"));
+    model.setSubjectCode(r.getString("tx_subject_code"));
     model.setFwCode(r.getString("fw_code"));
     return model;
   }

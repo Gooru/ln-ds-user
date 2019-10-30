@@ -30,7 +30,7 @@ public class StrugglingCompetenciesService {
   private final StrugglingCompetenciesDao dao;
   private final static CoreUserService CORE_SERVICE =
       new CoreUserService(DBICreator.getDbiForCoreDS());
-
+  
   public StrugglingCompetenciesService(DBI dbi) {
     this.dao = dbi.onDemand(StrugglingCompetenciesDao.class);
   }
@@ -39,8 +39,7 @@ public class StrugglingCompetenciesService {
       StrugglingCompetenciesCommand.StrugglingCompetenciesCommandBean bean) {
 
     // Validate the grades passed in the request
-    PGArray<Long> pgLongArrayOfGrades = CollectionUtils.convertToSqlArrayOfLong(bean.getGrades());
-    List<GradeModel> gradeModels = this.dao.fetchGrades(pgLongArrayOfGrades);
+    List<GradeModel> gradeModels = this.dao.fetchGrades(CollectionUtils.toPostgresArrayLong(bean.getGrades()));
     if (bean.getGrades().size() != gradeModels.size()) {
       LOGGER.debug("not all grades present in the datastore for which the report is requested");
       return new JsonObject();
@@ -84,7 +83,7 @@ public class StrugglingCompetenciesService {
       // Fetch struggling competencies from the competencies fall under grade and students
       List<StrugglingCompetencyModel> strugglingCompetencies =
           this.dao.fetchStrugglingCompetencies(CollectionUtils.convertToSqlArrayOfString(compCodes),
-              CollectionUtils.convertToSqlArrayOfString(bean.getStudents()));
+              CollectionUtils.convertToSqlArrayOfString(bean.getStudents()), bean.getToDate());
 
       // Iterate on the struggling competencies and prepare map of competencies and number of
       // strudents struggling in it
@@ -98,9 +97,6 @@ public class StrugglingCompetenciesService {
           strugglingCompetenciesMap.put(model.getCompCode(), users);
         }
       });
-
-      // Sort the struggling competencies based on the number of students struggling in them
-      Map<String, Set<String>> sortedStrugglingCompetenciesMap = sortMap(strugglingCompetenciesMap);
       
       JsonObject gradeJson = new JsonObject();
       GradeModel gradeModel = gradeModelMap.get(grade);
@@ -109,6 +105,24 @@ public class StrugglingCompetenciesService {
       gradeJson.put("grade_Seq", gradeModel.getGradeSeq());
       gradeJson.put("description", gradeModel.getDescription());
       gradeJson.put("fw_code", gradeModel.getFwCode());
+
+      // For all struggling competencies and user list, check if its been completed. if so, remove it from the struggling competencies 
+      List<CompletedCompetencyModel> completedCompetencies =
+          this.dao.fetchCompetencyCompletionStatus(gradeModel.getSubjectCode(),
+              CollectionUtils.convertToSqlArrayOfString(strugglingCompetenciesMap.keySet()),
+              CollectionUtils.convertToSqlArrayOfString(bean.getStudents()), bean.getToDate());
+      
+      // Iterate on all completed competecies found for the given struggling competency and
+      // students, remove them from the struggling competencies
+      completedCompetencies.forEach(completedModel -> {
+        String gutCode = completedModel.getGutCode();
+        if (strugglingCompetenciesMap.containsKey(gutCode)) {
+          strugglingCompetenciesMap.get(gutCode).remove(completedModel.getUserId());
+        }
+      });
+
+      // Sort the struggling competencies based on the number of students struggling in them
+      Map<String, Set<String>> sortedStrugglingCompetenciesMap = sortMap(strugglingCompetenciesMap);
       
       // Now arrange the results by grade, domain as most students struggling in competency appear
       // first
