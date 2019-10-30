@@ -17,7 +17,7 @@ public class UserPortfolioItemQuestionSummaryModelMapper implements ResultSetMap
     UserPortfolioItemQuestionSummaryModel model = new UserPortfolioItemQuestionSummaryModel();
     model.setId(r.getString(MapperFields.RESOURCE_ID));
     model.setResourceType(r.getString(MapperFields.RESOURCE_TYPE));
-    model.setTimeSpent(r.getLong(MapperFields.RESOURCE_TIMESPENT));
+    model.setTimespent(r.getLong(MapperFields.RESOURCE_TIMESPENT));
     model.setScore(r.getDouble(MapperFields.RESOURCE_SCORE));
     model.setReaction(r.getInt(MapperFields.RESOURCE_REACTION));
     model.setQuestionType(r.getString(MapperFields.QUESTION_TYPE));
@@ -26,6 +26,7 @@ public class UserPortfolioItemQuestionSummaryModelMapper implements ResultSetMap
     model.setAnswerObject(answerObject != null ? answerObject.getList() : null);
     model.setEventTime(r.getTimestamp(MapperFields.UPDATED_AT));
     model.setMaxScore(r.getDouble(MapperFields.MAX_SCORE));
+    model.setAnswerStatus(r.getString(MapperFields.ATTEMPT_STATUS));
     return model;
   }
 
@@ -43,6 +44,7 @@ public class UserPortfolioItemQuestionSummaryModelMapper implements ResultSetMap
     private static final String ANSWER_OBJECT = "answer_object";
     private static final String UPDATED_AT = "updated_at";
     private static final String MAX_SCORE = "max_score";
+    private static final String ATTEMPT_STATUS = "attempt_status";
 
   }
 

@@ -14,7 +14,7 @@ interface UserPortfolioItemSummaryDao {
   @Mapper(UserPortfolioItemSummaryModelMapper.class)
   @SqlQuery("select score, collection_id, collection_type, reaction, timespent, updated_at "
       + "from collection_performance WHERE collection_id = :itemId AND session_id = :sessionId AND actor_id = :userId "
-      + "AND status = true AND content_source = 'coursemap'")
+      + "AND status = true")
   List<UserPortfolioItemSummaryModel> fetchUserAsmtSummary(
       @BindBean UserPortfolioItemSummaryCommand.UserPortfolioItemSummaryCommandBean userPortfolioItemSummaryCommandBean);
   
@@ -42,8 +42,9 @@ interface UserPortfolioItemSummaryDao {
       " collection_type,FIRST_VALUE(views) OVER (PARTITION BY resource_id ORDER BY updated_at asc) " + 
       " AS resourceViews, resource_type, question_type,FIRST_VALUE(answer_object) OVER (PARTITION " + 
       " BY resource_id ORDER BY updated_at desc) as answer_object "
+      + " ,FIRST_VALUE(resource_attempt_status) OVER (PARTITION BY resource_id ORDER BY updated_at desc) AS attempt_status "
       + "from base_reports where actor_id = :userId and collection_id = :itemId and session_id = :sessionId "
-      + "and event_name = 'collection.resource.play' and event_type = 'stop' AND content_source = 'coursemap'")
+      + "and event_name = 'collection.resource.play' and event_type = 'stop'")
   List<UserPortfolioItemQuestionSummaryModel> fetchUserAsmtQuestionSummary(
       @BindBean UserPortfolioItemSummaryCommand.UserPortfolioItemSummaryCommandBean userPortfolioItemSummaryCommandBean);
 
@@ -53,9 +54,10 @@ interface UserPortfolioItemSummaryDao {
       "  desc) AS score, resource_id, FIRST_VALUE(time_spent) OVER (PARTITION BY resource_id " + 
       "  ORDER BY updated_at desc) as time_spent,FIRST_VALUE(reaction) OVER (PARTITION BY resource_id ORDER BY " + 
       "  updated_at desc) AS reaction, updated_at, max_score, resource_type, question_type, FIRST_VALUE(answer_object) OVER " + 
-      "  (PARTITION BY resource_id ORDER BY updated_at desc) as answer_object from " + 
-      "  daily_class_activity where actor_id = :userId and collection_id = :itemId and session_id = :sessionId "
-      + "and event_name = 'collection.resource.play' and event_type = 'stop' AND content_source = 'dailyclassactivity'")
+      "  (PARTITION BY resource_id ORDER BY updated_at desc) as answer_object "
+      + " ,FIRST_VALUE(resource_attempt_status) OVER (PARTITION BY resource_id ORDER BY updated_at desc) AS attempt_status "
+      + " from daily_class_activity where actor_id = :userId and collection_id = :itemId and session_id = :sessionId "
+      + " and event_name = 'collection.resource.play' and event_type = 'stop' AND content_source = 'dailyclassactivity'")
   List<UserPortfolioItemQuestionSummaryModel> fetchUserCAAsmtQuestionSummary(
       @BindBean UserPortfolioItemSummaryCommand.UserPortfolioItemSummaryCommandBean userPortfolioItemSummaryCommandBean);
 
@@ -65,12 +67,12 @@ interface UserPortfolioItemSummaryDao {
       "  desc) AS score, resource_id, FIRST_VALUE(time_spent) OVER (PARTITION BY resource_id " + 
       "  ORDER BY updated_at desc) as time_spent,FIRST_VALUE(reaction) OVER (PARTITION BY resource_id ORDER BY " + 
       "  updated_at desc) AS reaction, updated_at, max_score, resource_type, question_type, FIRST_VALUE(answer_object) OVER " + 
-      "  (PARTITION BY resource_id ORDER BY updated_at desc) as answer_object from " + 
-      "  base_reports where class_id IS NULL and actor_id = :userId and collection_id = :itemId and session_id = :sessionId "
-      + "and event_name = 'collection.resource.play' and event_type = 'stop' AND content_source = 'ILActivity'")
+      "  (PARTITION BY resource_id ORDER BY updated_at desc) as answer_object "
+      + " ,FIRST_VALUE(resource_attempt_status) OVER (PARTITION BY resource_id ORDER BY updated_at desc) AS attempt_status "
+      + " from  base_reports where class_id IS NULL and actor_id = :userId and collection_id = :itemId and session_id = :sessionId "
+      + " and event_name = 'collection.resource.play' and event_type = 'stop' AND content_source = 'ILActivity'")
   List<UserPortfolioItemQuestionSummaryModel> fetchUserILAsmtQuestionSummary(
       @BindBean UserPortfolioItemSummaryCommand.UserPortfolioItemSummaryCommandBean userPortfolioItemSummaryCommandBean);
-
   
   @SqlQuery("SELECT FIRST_VALUE(reaction) OVER (PARTITION BY resource_id ORDER BY updated_at desc) AS " + 
       " reaction FROM daily_class_activity WHERE actor_id = :userId and resource_id = :resourceId and session_id = :sessionId " + 

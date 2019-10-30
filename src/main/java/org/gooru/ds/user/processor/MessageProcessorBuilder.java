@@ -2,6 +2,8 @@ package org.gooru.ds.user.processor;
 
 import org.gooru.ds.user.constants.Constants;
 import org.gooru.ds.user.processor.activeuserlist.ActiveUserListProcessor;
+import org.gooru.ds.user.processor.activity.feebacks.create.CreateUserActivityFeedbackProcessor;
+import org.gooru.ds.user.processor.activity.feedbacks.fetch.FetchUserActivityFeedbacksProcessor;
 import org.gooru.ds.user.processor.atc.recompute.ATCCompetencyStatsProcessor;
 import org.gooru.ds.user.processor.baselearnerprofile.LearnerProfileBaselineUpdateProcessor;
 import org.gooru.ds.user.processor.baselearnerprofile.read.ReadBaselineLearnerProfileProcessor;
@@ -129,7 +131,7 @@ public final class MessageProcessorBuilder {
         return new CompetencyMatrixCoordinatesProcessor(vertx, message);
       case Constants.Message.MSG_OP_COMPETENCY_SUBJECTS:
         return new CompetencySubjectListProcessor(vertx, message);
-        
+
       case Constants.Message.MSG_OP_GRADES:
         return new GradeMasterProcessor(vertx, message);
       case Constants.Message.MSG_OP_GRADE_BOUNDARY:
@@ -137,26 +139,26 @@ public final class MessageProcessorBuilder {
       case Constants.Message.MSG_OP_GRADE_COMPETENCIES:
         return new GradeCompetencyProcessor(vertx, message);
 
-        
-        
+
+
       case Constants.Message.MSG_OP_BASE_LEARNER_PROFILE:
         return new LearnerProfileBaselineUpdateProcessor(vertx, message);
       case Constants.Message.MSG_OP_USERS_PERF_VS_COMPLETION:
-        //return new CompetencyPerfVsCompletionProcessor(vertx, message);
+        // return new CompetencyPerfVsCompletionProcessor(vertx, message);
         return new ATCCompetencyStatsProcessor(vertx, message);
       case Constants.Message.MSG_OP_STATS_COMPETENCY_COMPLETION:
         return new AllClassesCompetencyCompletionStatsProcessor(vertx, message);
       case Constants.Message.MSG_OP_READ_BASELINE_LEARNER_PROFILE:
         return new ReadBaselineLearnerProfileProcessor(vertx, message);
-        
+
       case Constants.Message.MSG_OP_USER_COMPETENCY_SUMMARY:
         return new UserCompetencySummaryProcessor(vertx, message);
-        
+
       case Constants.Message.MSG_OP_DOMAIN_REPORT:
         return new DomainReportProcessor(vertx, message);
       case Constants.Message.MSG_OP_DOMAIN_COMPETENCY_PERF_REPORT:
         return new DomainCompetencyCompletionReportProcessor(vertx, message);
-        
+
       case Constants.Message.MSG_OP_USER_PORTFOLIO_CONTENT_ITEMS_PERF:
         return new UserPortfolioUniqueItemPerfProcessor(vertx, message);
       case Constants.Message.MSG_OP_USER_PORTFOLIO_CONTENT_ITEM_PERF:
@@ -165,7 +167,7 @@ public final class MessageProcessorBuilder {
         return new UserPortfolioAsmtSummaryProcessor(vertx, message);
       case Constants.Message.MSG_OP_USER_PORTFOLIO_CONTENT_COLL_SUMMARY:
         return new UserPortfolioCollSummaryProcessor(vertx, message);
-        
+
       case Constants.Message.MSG_OP_USER_PORTFOLIO_COMPETENCY:
         return new UserCompetencyPortfolioProcessor(vertx, message);
       case Constants.Message.MSG_OP_USER_PORTFOLIO_DOMAIN:
@@ -176,6 +178,11 @@ public final class MessageProcessorBuilder {
       case Constants.Message.MSG_OP_STRUGGLING_COMPETENCIES:
         return new StrugglingCompetenciesProcessor(vertx, message);
       
+      case Constants.Message.MSG_OP_USER_ACTIVITY_FEEDBACK_CREATE:
+        return new CreateUserActivityFeedbackProcessor(vertx, message);
+      case Constants.Message.MSG_OP_USER_ACTIVITY_FEEDBACK_FETCH:
+        return new FetchUserActivityFeedbacksProcessor(vertx, message);
+
       default:
         return null;
     }

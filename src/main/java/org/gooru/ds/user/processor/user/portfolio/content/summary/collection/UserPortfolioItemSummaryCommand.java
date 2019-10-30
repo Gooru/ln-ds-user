@@ -2,8 +2,10 @@ package org.gooru.ds.user.processor.user.portfolio.content.summary.collection;
 
 import org.gooru.ds.user.constants.HttpConstants;
 import org.gooru.ds.user.exceptions.HttpResponseWrapperException;
+import org.gooru.ds.user.processor.utils.ValidatorUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.hazelcast.util.StringUtil;
 import io.vertx.core.json.JsonObject;
 
 /**
@@ -87,26 +89,26 @@ public class UserPortfolioItemSummaryCommand {
 
   private void validate() {
 
-    if (userId == null) {
+    if (!ValidatorUtils.isValidUUID(userId) ) {
       LOGGER.info("User not provided");
       throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
           "User not provided in request");
     }
     
-    if (sessionId == null) {
+    if (!ValidatorUtils.isValidUUID(sessionId)) {
       LOGGER.info("sessionId not provided");
       throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
           "sessionId not provided");
     }
-    if (itemId == null) {
+    if (!ValidatorUtils.isValidUUID(itemId)) {
       LOGGER.info("itemId not provided");
       throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
           "itemId not provided");
     }
-    if (contentSource == null || (contentSource != null && !contentSource.matches("dailyclassactivity|coursemap|ILactivity"))) {
-      LOGGER.info("contentSource not provided");
+    if (StringUtil.isNullOrEmpty(contentSource)) {
+      LOGGER.info("contentSource is missing");
       throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
-          "contentSource not provided");
+          "contentSource is missing");
     }
 
   }

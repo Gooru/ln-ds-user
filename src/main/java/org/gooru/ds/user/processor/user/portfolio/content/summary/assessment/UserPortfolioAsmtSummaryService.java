@@ -19,6 +19,9 @@ class UserPortfolioAsmtSummaryService {
   private String contentSource;
 
   private static final Logger LOGGER = LoggerFactory.getLogger(UserPortfolioAsmtSummaryService.class);
+  private static final String CLASSACTIVITY = "dailyclassactivity";
+  private static final String ILACTIVITY = "ilactivity";
+  private static final String OE = "OE";
 
   UserPortfolioAsmtSummaryService(DBI dbi, DBI coreDbi) {
     this.userPortfolioItemSummaryDao = dbi.onDemand(UserPortfolioItemSummaryDao.class);
@@ -34,21 +37,26 @@ class UserPortfolioAsmtSummaryService {
     List<UserPortfolioItemSummaryModel> itemSummary = new ArrayList<>();
     List<UserPortfolioItemQuestionSummaryModel> questionModels = new ArrayList<>();
 
-    if (contentSource.equalsIgnoreCase("dailyclassactivity")) {
+    if (contentSource.equalsIgnoreCase(CLASSACTIVITY)) {
       itemSummary = fetchCAItemsPerformance(this.command);
       questionModels = fetchCAItemsQuestionPerformance(this.command);
-    } else if (contentSource.equalsIgnoreCase("coursemap")) {
-      itemSummary = fetchItemsPerformance(this.command);
-      questionModels = fetchItemsQuestionPerformance(this.command);
-    } else if (contentSource.equalsIgnoreCase("ILactivity")) {
+    } else if (contentSource.equalsIgnoreCase(ILACTIVITY)) {
       itemSummary = fetchILItemsPerformance(this.command);
       questionModels = fetchILItemsQuestionPerformance(this.command);
+    } else {
+      itemSummary = fetchItemsPerformance(this.command);
+      questionModels = fetchItemsQuestionPerformance(this.command);
     }
 
     List<UserPortfolioItemQuestionSummaryModel> questionSummary = generateQuestionSummary(questionModels);
     Map<String, Object> response = new HashMap<>();
     UserPortfolioItemSummaryModelResponse result = new UserPortfolioItemSummaryModelResponse();
-    response.put("assessment", itemSummary);
+    UserPortfolioItemSummaryModel assessmentSummary = null;
+    if (itemSummary != null && !itemSummary.isEmpty()) {
+      assessmentSummary = new UserPortfolioItemSummaryModel();
+      assessmentSummary = itemSummary.get(0);
+    }
+    response.put("assessment", assessmentSummary);
     response.put("questions", questionSummary);
     result.setContent(response);
     return result;
@@ -73,9 +81,9 @@ class UserPortfolioAsmtSummaryService {
           model.setTitle(coreModel.getTitle());
         }
       }
-      if (model.getQuestionType().equalsIgnoreCase("OE")) {
+      if (model.getQuestionType().equalsIgnoreCase(OE)) {
         Boolean isGradedObj = null;
-        if (contentSource.equalsIgnoreCase("dailyclassactivity")) {
+        if (contentSource.equalsIgnoreCase(CLASSACTIVITY)) {
           isGradedObj =
               userPortfolioItemSummaryDao.fetchCAItemIsGraded(command.asBean(), model.getId());
         } else {
@@ -90,7 +98,7 @@ class UserPortfolioAsmtSummaryService {
       }
       
       Integer reaction = null;
-      if (contentSource.equalsIgnoreCase("dailyclassactivity")) {
+      if (contentSource.equalsIgnoreCase(CLASSACTIVITY)) {
         reaction = userPortfolioItemSummaryDao
             .fetchUserCAAsmtQuestionReactionSummary(command.asBean(), model.getId());
       } else {

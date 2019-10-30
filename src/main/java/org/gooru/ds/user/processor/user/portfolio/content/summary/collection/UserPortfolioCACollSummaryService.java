@@ -43,8 +43,8 @@ class UserPortfolioCACollSummaryService {
     List<UserPortfolioItemResSummaryModelResponse> questionSummary = generateQuestionSummary(questionModels);
     Map<String, Object> response = new HashMap<>();
     UserPortfolioItemSummaryModelResponse result = new UserPortfolioItemSummaryModelResponse();
-    response.put("activity", itemSummary);
-    response.put("containingItems", questionSummary);
+    response.put("collection", itemSummary);
+    response.put("resources", questionSummary);
     result.setContent(response);
     return result;
 
@@ -114,20 +114,23 @@ class UserPortfolioCACollSummaryService {
   }
 
   private UserPortfolioItemSummaryModel fetchCAItemsPerformance(UserPortfolioItemSummaryCommand command) {
-    Double maxScore = userPortfolioItemSummaryDao.fetchCACollMaxScore(command.asBean());
     Timestamp lastAssessed = userPortfolioItemSummaryDao.fetchCACollLastAccessed(command.asBean());
-    UserPortfolioItemCollTimespentModel timeSpent = userPortfolioItemSummaryDao.fetchCACollTimespent(command.asBean());
-    Integer reaction = userPortfolioItemSummaryDao.fetchCACollReaction(command.asBean());
-    Double score = userPortfolioItemSummaryDao.fetchCACollScore(command.asBean());
-    UserPortfolioItemSummaryModel coll = new UserPortfolioItemSummaryModel();
-    coll.setId(command.getItemId());
-    coll.setEventTime(lastAssessed);
-    coll.setReaction(reaction);
-    coll.setTimespent(timeSpent != null ? timeSpent.getTimespent() : 0L);
-    coll.setScore(score);
-    coll.setViews(timeSpent!=null ? timeSpent.getAttempts() : 0L);
-    coll.setMaxScore(maxScore);
-    coll.setType(timeSpent!=null ? timeSpent.getCollectionType() : "NA");
+    UserPortfolioItemSummaryModel coll = null;
+    if (lastAssessed != null) {
+      Double maxScore = userPortfolioItemSummaryDao.fetchCACollMaxScore(command.asBean());
+      UserPortfolioItemCollTimespentModel timeSpent = userPortfolioItemSummaryDao.fetchCACollTimespent(command.asBean());
+      Integer reaction = userPortfolioItemSummaryDao.fetchCACollReaction(command.asBean());
+      Double score = userPortfolioItemSummaryDao.fetchCACollScore(command.asBean());
+      coll = new UserPortfolioItemSummaryModel();
+      coll.setId(command.getItemId());
+      coll.setEventTime(lastAssessed);
+      coll.setReaction(reaction);
+      coll.setTimespent(timeSpent != null ? timeSpent.getTimespent() : 0L);
+      coll.setScore(score);
+      coll.setViews(timeSpent != null ? timeSpent.getAttempts() : 0L);
+      coll.setMaxScore(maxScore);
+      coll.setType(timeSpent != null ? timeSpent.getCollectionType() : "NA");
+    }
     return coll;
   }
 

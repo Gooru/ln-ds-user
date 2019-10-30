@@ -1,0 +1,84 @@
+{
+	"info": {
+		"_postman_id": "681213a8-9987-433f-9436-9199296f5cf6",
+		"name": "UserActivityFeedback",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "FetchUserActivityFeedbacks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token MjoxNTY3MDU2NzgxNDQ1OjViOWU3OWY4LTYzZTQtNGM0Zi05NzY4LWI3ZGYzMzM0YjczNzo6YmE5NTZhOTctYWUxNS0xMWU1LWEzMDItZjhhOTYzMDY1OTc2",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/ds/users/v2/activity/feedbacks?user_id=221f168e-4eef-4b9e-92b4-c9f8e78d5b7f&content_id=221f168e-4eef-4b9e-92b4-c9f8e78d5b79",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"ds",
+						"users",
+						"v2",
+						"activity",
+						"feedbacks"
+					],
+					"query": [
+						{
+							"key": "user_id",
+							"value": "221f168e-4eef-4b9e-92b4-c9f8e78d5b7f"
+						},
+						{
+							"key": "content_id",
+							"value": "221f168e-4eef-4b9e-92b4-c9f8e78d5b79"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateUserActivityFeedback",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token MjoxNTY3MDU2NzgxNDQ1OjViOWU3OWY4LTYzZTQtNGM0Zi05NzY4LWI3ZGYzMzM0YjczNzo6YmE5NTZhOTctYWUxNS0xMWU1LWEzMDItZjhhOTYzMDY1OTc2",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"content_id\": \"221f168e-4eef-4b9e-92b4-c9f8e78d5b79\",\n\"content_type\": \"collection\",\n\"user_id\":\"221f168e-4eef-4b9e-92b4-c9f8e78d5b7f\",\n\"user_category_id\": 1,\n\"user_feedbacks\": [{\n\"feeback_category_id\": 2,\n\"user_feedback_quantitative\": 5\n},{\n\"feeback_category_id\": 3,\n\"user_feedback_qualitative\": \"yes\"\n},\n{\n\"feeback_category_id\": 5,\n\"user_feedback_qualitative\": \"Good quality content\"\n}]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/ds/users/v2/activity/feedbacks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"ds",
+						"users",
+						"v2",
+						"activity",
+						"feedbacks"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

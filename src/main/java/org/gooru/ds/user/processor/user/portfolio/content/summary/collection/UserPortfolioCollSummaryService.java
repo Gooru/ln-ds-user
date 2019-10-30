@@ -28,7 +28,6 @@ class UserPortfolioCollSummaryService {
 
   public UserPortfolioItemSummaryModelResponse fetchUserPortfolioCollSummary(
       UserPortfolioItemSummaryCommand command) {
-
     this.command = command;
 
     UserPortfolioItemSummaryModel itemSummary = new UserPortfolioItemSummaryModel();
@@ -116,22 +115,25 @@ class UserPortfolioCollSummaryService {
 
   private UserPortfolioItemSummaryModel fetchItemsPerformance(
       UserPortfolioItemSummaryCommand command) {
-    Double maxScore = userPortfolioItemSummaryDao.fetchCollMaxScore(command.asBean());
     Timestamp lastAssessed = userPortfolioItemSummaryDao.fetchCollLastAccessed(command.asBean());
-    UserPortfolioItemCollTimespentModel timeSpent =
-        userPortfolioItemSummaryDao.fetchCollTimespent(command.asBean());
-    Integer reaction = userPortfolioItemSummaryDao.fetchCollReaction(command.asBean());
-    Double score = userPortfolioItemSummaryDao.fetchCollScore(command.asBean());
-    UserPortfolioItemSummaryModel coll = new UserPortfolioItemSummaryModel();
-    coll.setId(command.getItemId());
-    coll.setEventTime(lastAssessed);
-    coll.setReaction(reaction);
-    coll.setScore(score);
-    coll.setMaxScore(maxScore);
-    if (timeSpent != null) {
-      coll.setTimespent(timeSpent.getTimespent());
-      coll.setViews(timeSpent.getAttempts());
-      coll.setType(timeSpent.getCollectionType());
+    UserPortfolioItemSummaryModel coll = null;
+    if (lastAssessed != null) {
+      Double maxScore = userPortfolioItemSummaryDao.fetchCollMaxScore(command.asBean());
+      UserPortfolioItemCollTimespentModel timeSpent =
+          userPortfolioItemSummaryDao.fetchCollTimespent(command.asBean());
+      Integer reaction = userPortfolioItemSummaryDao.fetchCollReaction(command.asBean());
+      Double score = userPortfolioItemSummaryDao.fetchCollScore(command.asBean());
+      coll = new UserPortfolioItemSummaryModel();
+      coll.setId(command.getItemId());
+      coll.setEventTime(lastAssessed);
+      coll.setReaction(reaction);
+      coll.setScore(score);
+      coll.setMaxScore(maxScore);
+      if (timeSpent != null) {
+        coll.setTimespent(timeSpent.getTimespent());
+        coll.setViews(timeSpent.getAttempts());
+        coll.setType(timeSpent.getCollectionType());
+      }
     }
     return coll;
   }

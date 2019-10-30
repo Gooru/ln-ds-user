@@ -1,7 +1,5 @@
-package org.gooru.ds.user.processor.user.portfolio.content.summary.collection;
+package org.gooru.ds.user.processor.activity.feedbacks.fetch;
 
-import java.util.HashMap;
-import java.util.Map;
 import org.gooru.ds.user.app.data.EventBusMessage;
 import org.gooru.ds.user.app.jdbi.DBICreator;
 import org.gooru.ds.user.processor.MessageProcessor;
@@ -17,38 +15,29 @@ import io.vertx.core.eventbus.Message;
 import io.vertx.core.json.DecodeException;
 import io.vertx.core.json.JsonObject;
 
-/**
- * @author renuka
- */
-public class UserPortfolioCollSummaryProcessor implements MessageProcessor {
-
+public class FetchUserActivityFeedbacksProcessor implements MessageProcessor {
   private final Vertx vertx;
   private final Message<JsonObject> message;
   private final Future<MessageResponse> result;
-  private static final Logger LOGGER = LoggerFactory.getLogger(UserPortfolioCollSummaryProcessor.class);
+  private static final Logger LOGGER =
+      LoggerFactory.getLogger(FetchUserActivityFeedbacksProcessor.class);
   private EventBusMessage eventBusMessage;
-  private static final String CLASSACTIVITY = "dailyclassactivity";
-  private static final String ILACTIVITY = "ilactivity";
+  private final FetchUserActivityFeedbacksService fetchUserActivityFeedbacksService =
+      new FetchUserActivityFeedbacksService(DBICreator.getDbiForDefaultDS());
 
-  private final UserPortfolioCACollSummaryService userPortfolioCAItemSummaryService =
-      new UserPortfolioCACollSummaryService(DBICreator.getDbiForAnalyticsDS(),
-          DBICreator.getDbiForCoreDS());
-  private final UserPortfolioCollSummaryService userPortfolioItemSummaryService =
-      new UserPortfolioCollSummaryService(DBICreator.getDbiForAnalyticsDS(),
-          DBICreator.getDbiForCoreDS());
-  public UserPortfolioCollSummaryProcessor(Vertx vertx, Message<JsonObject> message) {
+  public FetchUserActivityFeedbacksProcessor(Vertx vertx, Message<JsonObject> message) {
     this.vertx = vertx;
     this.message = message;
     this.result = Future.future();
   }
- 
+
   @Override
   public Future<MessageResponse> process() {
     try {
       this.eventBusMessage = EventBusMessage.eventBusMessageBuilder(message);
-      UserPortfolioItemSummaryCommand command =
-          UserPortfolioItemSummaryCommand.builder(eventBusMessage.getRequestBody());
-      fetchUserPortfolioUniqueItemPerf(command);
+      FetchUserActivityFeedbacksCommand command =
+          FetchUserActivityFeedbacksCommand.builder(eventBusMessage.getRequestBody());
+      fetchUserActivityFeedback(command);
     } catch (Throwable throwable) {
       LOGGER.warn("Encountered exception", throwable);
       result.fail(throwable);
@@ -56,16 +45,10 @@ public class UserPortfolioCollSummaryProcessor implements MessageProcessor {
     return result;
   }
 
-  private void fetchUserPortfolioUniqueItemPerf(UserPortfolioItemSummaryCommand command) {
+  private void fetchUserActivityFeedback(FetchUserActivityFeedbacksCommand command) {
     try {
-      Map<String, Object> response = new HashMap<>();
-      UserPortfolioItemSummaryModelResponse outcome = new UserPortfolioItemSummaryModelResponse();
-      outcome.setContent(response);
-      if (command.getContentSource().equalsIgnoreCase(CLASSACTIVITY)) {
-        outcome = userPortfolioCAItemSummaryService.fetchUserPortfolioCollSummary(command);
-      } else {
-        outcome = userPortfolioItemSummaryService.fetchUserPortfolioCollSummary(command);
-      }
+      FetchUserActivityFeedbacksModelResponse outcome =
+          fetchUserActivityFeedbacksService.fetchUserActivityFeedback(command);
       String resultString = new ObjectMapper().writeValueAsString(outcome);
       result.complete(MessageResponseFactory.createOkayResponse(new JsonObject(resultString)));
     } catch (JsonProcessingException e) {
@@ -80,5 +63,4 @@ public class UserPortfolioCollSummaryProcessor implements MessageProcessor {
     }
 
   }
-
 }

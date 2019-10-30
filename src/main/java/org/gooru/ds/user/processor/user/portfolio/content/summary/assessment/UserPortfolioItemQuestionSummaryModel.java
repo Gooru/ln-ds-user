@@ -11,7 +11,7 @@ public class UserPortfolioItemQuestionSummaryModel {
   private String id;
   private String title;
   private String resourceType;
-  private Long timeSpent;
+  private Long timespent;
   private Integer reaction;
   private Double score;
   private String questionType;
@@ -19,6 +19,7 @@ public class UserPortfolioItemQuestionSummaryModel {
   private Timestamp eventTime ;
   private Double maxScore;
   private Boolean isGraded;
+  private String answerStatus;
 
   public String getId() {
     return id;
@@ -44,12 +45,12 @@ public class UserPortfolioItemQuestionSummaryModel {
     this.resourceType = resourceType;
   }
 
-  public Long getTimeSpent() {
-    return timeSpent;
+  public Long getTimespent() {
+    return timespent;
   }
 
-  public void setTimeSpent(Long timeSpent) {
-    this.timeSpent = timeSpent;
+  public void setTimespent(Long timespent) {
+    this.timespent = timespent;
   }
 
   public Integer getReaction() {
@@ -109,6 +110,14 @@ public class UserPortfolioItemQuestionSummaryModel {
 
   public void setIsGraded(Boolean isGraded) {
     this.isGraded = isGraded;
+  }
+
+  public String getAnswerStatus() {
+    return answerStatus;
+  }
+
+  public void setAnswerStatus(String attemptStatus) {
+    this.answerStatus = attemptStatus;
   }
 
 }

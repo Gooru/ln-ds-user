@@ -99,6 +99,10 @@ public final class Constants {
     //User Competency Summary
     public static final String MSG_OP_USER_COMPETENCY_SUMMARY =
         "mb.op.user.competency.summary";
+    
+    //User Activity Feedback
+    public static final String MSG_OP_USER_ACTIVITY_FEEDBACK_CREATE = "mb.op.user.activity.feedback.create";
+    public static final String MSG_OP_USER_ACTIVITY_FEEDBACK_FETCH = "mb.op.user.activity.feedback.fetch";
 
     public static final String MSG_API_VERSION = "api.version";
     public static final String MSG_SESSION_TOKEN = "session.token";
@@ -238,6 +242,12 @@ public final class Constants {
 
     public static final String API_STRUGGLING_COMPETENCIES =
         API_BASE_ROUTE + "competencies/struggling";
+
+    //User Activity Feedbacks
+    // http://{host}/api/ds/users/v2/activity/feedbacks
+    public static final String API_USER_ACTIVITY_FEEDBACKS_CREATE = API_BASE_ROUTE + "activity/feedbacks";
+    // http://{host}/api/ds/users/v2/activity/feedbacks?content_id=&user_id=
+    public static final String API_USER_ACTIVITY_FEEDBACKS_FETCH = API_BASE_ROUTE + "activity/feedbacks";
     
     private Route() {
       throw new AssertionError();

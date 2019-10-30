@@ -5,6 +5,8 @@ package org.gooru.ds.user.processor.user.portfolio.content.item;
  */
 public class UserPortfolioItemPerfModel {
 
+  private final String NA = "NA";
+  
   private String id;
   private String type;
   private String title;
@@ -87,6 +89,9 @@ public class UserPortfolioItemPerfModel {
   }
 
   public void setContentSource(String contentSource) {
+    if (contentSource == null) {
+      contentSource = NA;
+    }
     this.contentSource = contentSource;
   }
 
