@@ -8,8 +8,11 @@ import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import org.gooru.ds.user.app.components.utilities.CommonUtils;
+import org.gooru.ds.user.constants.HttpConstants;
+import org.gooru.ds.user.exceptions.HttpResponseWrapperException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import io.vertx.core.json.JsonObject;
@@ -23,7 +26,7 @@ public class StrugglingCompetenciesCommand {
       LoggerFactory.getLogger(StrugglingCompetenciesCommand.class);
 
   private Set<Long> grades;
-  private Set<String> students;
+  private String classId;
   private Integer month;
   private Integer year;
 
@@ -31,8 +34,8 @@ public class StrugglingCompetenciesCommand {
     return grades;
   }
 
-  public Set<String> getStudents() {
-    return students;
+  public String getClassId() {
+    return classId;
   }
 
   public Integer getMonth() {
@@ -59,20 +62,25 @@ public class StrugglingCompetenciesCommand {
           setOfString.stream().map(s -> Long.parseLong(s)).collect(Collectors.toSet());
     }
     
-    String strStudents = requestBody.getString(CommandAttributes.STUDENTS);
-    if (strStudents != null && !strStudents.isEmpty()) {
-      String[] studentArray = strStudents.split(",");
-      command.students = new HashSet<>(Arrays.asList(studentArray));
-    }
-    
+    command.classId = requestBody.getString(CommandAttributes.CLASS);
     command.month = getAsInt(requestBody, CommandAttributes.MONTH);
     command.year = getAsInt(requestBody, CommandAttributes.YEAR);
     return command;
   }
 
   private void validate() {
-    
+    validateClassId();
     validateMonthYearParams();
+    
+  }
+  
+  private void validateClassId() {
+    try {
+      UUID.fromString(classId);
+    } catch (IllegalArgumentException iae) {
+      LOGGER.warn("Invalid class id ");
+      throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST, "Invalid classId");
+    }
   }
   
   private void validateMonthYearParams() {
@@ -86,7 +94,7 @@ public class StrugglingCompetenciesCommand {
   public StrugglingCompetenciesCommandBean asBean() {
     StrugglingCompetenciesCommandBean bean = new StrugglingCompetenciesCommandBean();
     bean.grades = grades;
-    bean.students = students;
+    bean.classId = classId;
     bean.month = month;
     bean.year = year;
     
@@ -118,13 +126,13 @@ public class StrugglingCompetenciesCommand {
   
   @Override
   public String toString() {
-    return "StrugglingCompetenciesCommand [grades=" + grades + ", students=" + students + ", month="
+    return "StrugglingCompetenciesCommand [grades=" + grades + ", classId=" + classId + ", month="
         + month + ", year=" + year + "]";
   }
 
   public static class StrugglingCompetenciesCommandBean {
     private Set<Long> grades;
-    private Set<String> students;
+    private String classId;
     private Integer month;
     private Integer year;
     private Timestamp toDate;
@@ -137,12 +145,12 @@ public class StrugglingCompetenciesCommand {
       this.grades = grades;
     }
 
-    public Set<String> getStudents() {
-      return students;
+    public String getClassId() {
+      return classId;
     }
 
-    public void setStudents(Set<String> students) {
-      this.students = students;
+    public void setClassId(String classId) {
+      this.classId = classId;
     }
 
     public Integer getMonth() {
@@ -172,7 +180,7 @@ public class StrugglingCompetenciesCommand {
 
   static class CommandAttributes {
     private static final String GRADES = "grades";
-    private static final String STUDENTS = "students";
+    private static final String CLASS = "class";
     private static final String MONTH = "month";
     private static final String YEAR = "year";
 
