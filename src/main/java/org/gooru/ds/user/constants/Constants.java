@@ -95,6 +95,7 @@ public final class Constants {
 
     // Struggling competencies
     public static final String MSG_OP_STRUGGLING_COMPETENCIES = "mb.op.struggling.competencies";
+    public static final String MSG_OP_STRUGGLING_COMPETENCY_PERF = "mb.op.struggling.competency.performance";
     
     //User Competency Summary
     public static final String MSG_OP_USER_COMPETENCY_SUMMARY =
@@ -242,6 +243,9 @@ public final class Constants {
 
     public static final String API_STRUGGLING_COMPETENCIES =
         API_BASE_ROUTE + "competencies/struggling";
+    
+    public static final String API_STRUGGLING_COMPETENCY_PERF =
+        API_BASE_ROUTE + "competencies/struggling/performance";
 
     //User Activity Feedbacks
     // http://{host}/api/ds/users/v2/activity/feedbacks

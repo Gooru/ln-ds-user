@@ -16,6 +16,6 @@ public interface CoreDao {
   @SqlQuery("SELECT id, username, first_name, last_name, display_name, thumbnail FROM users WHERE id = ANY(:userIds::uuid[]) AND is_deleted = false ")
   public List<UserModel> fetchUserDetails(@Bind("userIds") PGArray<String> userIds);
   
-  @SqlQuery("SELECT user_id FROM class_member WHERE class_id = :classId::uuid AND is_active = false")
+  @SqlQuery("SELECT user_id FROM class_member WHERE class_id = :classId::uuid AND is_active = true")
   public List<String> fetchClassMembers(@Bind("classId") String classId);
 }

@@ -28,6 +28,9 @@ public class RouteStrugglingCompetenciesConfigurator implements RouteConfigurato
 
     router.get(Constants.Route.API_STRUGGLING_COMPETENCIES)
         .handler(this::strugglingCompetencies);
+    
+    router.get(Constants.Route.API_STRUGGLING_COMPETENCY_PERF)
+    .handler(this::strugglingCompetencyPerformance);
   }
 
   private void strugglingCompetencies(RoutingContext routingContext) {
@@ -36,4 +39,10 @@ public class RouteStrugglingCompetenciesConfigurator implements RouteConfigurato
         mbusTimeout, LOGGER);
   }
 
+  private void strugglingCompetencyPerformance(RoutingContext routingContext) {
+    RouteHandlerUtils.baseHandler(eb, routingContext,
+        Constants.Message.MSG_OP_STRUGGLING_COMPETENCY_PERF, Constants.EventBus.MBEP_DISPATCHER,
+        mbusTimeout, LOGGER);
+  }
+  
 }

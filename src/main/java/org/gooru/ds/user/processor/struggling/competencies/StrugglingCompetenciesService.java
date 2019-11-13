@@ -54,11 +54,13 @@ public class StrugglingCompetenciesService {
 
     // Fetch class members
     List<String> classStudents = CORE_SERVICE.fetchClassMembers(bean.getClassId());
+    LOGGER.debug("number of students in the class :{}", classStudents.size());
 
     bean.getGrades().forEach(grade -> {
       // Fetch all competencies fall under the grade
       List<GradeCompetencyMapModel> gradeCompetencyMap = this.dao.fetchCompetencyMapByGrade(grade);
-
+      LOGGER.debug("grade competency map returned: {}", gradeCompetencyMap.size());
+      
       Map<String, List<GradeCompetencyMapModel>> competenciesByDomain = new HashMap<>();
       Map<String, DomainModel> domainModelMap = new HashMap<>();
       Map<String, String> compDomainMapping = new HashMap<>();
@@ -86,7 +88,8 @@ public class StrugglingCompetenciesService {
       List<StrugglingCompetencyModel> strugglingCompetencies =
           this.dao.fetchStrugglingCompetencies(CollectionUtils.convertToSqlArrayOfString(compCodes),
               CollectionUtils.convertToSqlArrayOfString(classStudents), bean.getToDate());
-
+      LOGGER.debug("number of struggling competencies returned: {}", strugglingCompetencies.size());
+      
       // Iterate on the struggling competencies and prepare map of competencies and number of
       // strudents struggling in it
       Map<String, Set<String>> strugglingCompetenciesMap = new HashMap<>();
@@ -114,6 +117,7 @@ public class StrugglingCompetenciesService {
           this.dao.fetchCompetencyCompletionStatus(gradeModel.getSubjectCode(),
               CollectionUtils.convertToSqlArrayOfString(strugglingCompetenciesMap.keySet()),
               CollectionUtils.convertToSqlArrayOfString(classStudents), bean.getToDate());
+      LOGGER.debug("completed competencies found: {}", completedCompetencies.size());
 
       // Iterate on all completed competecies found for the given struggling competency and
       // students, remove them from the struggling competencies
@@ -165,7 +169,7 @@ public class StrugglingCompetenciesService {
     response.put("struggling_competencies", strugglingArray);
 
     // Populate the users details
-    response.put("users", prepareUsersArray(classStudents));
+    //response.put("users", prepareUsersArray(classStudents));
     return response;
   }
 
