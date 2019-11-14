@@ -36,4 +36,10 @@ public interface StrugglingCompetenciesDao {
       @Bind("subject") String subject, @Bind("compCodes") PGArray<String> compCodes,
       @Bind("userIds") PGArray<String> userIds, @Bind("toDate") Timestamp toDate);
 
+  @Mapper(CompetencyModelMapper.class)
+  @SqlQuery("SELECT tx_comp_display_code, tx_comp_code FROM domain_competency_matrix WHERE tx_comp_code = ANY(:compCodes::text[])"
+      + " AND tx_subject_code = :subject")
+  public List<CompetencyModel> fetchCompetencyDisplayCode(@Bind("subject") String subject,
+      @Bind("compCodes") PGArray<String> compCodes);
+
 }
