@@ -2,7 +2,9 @@ package org.gooru.ds.user.processor.grade.competency.compute.utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -62,6 +64,14 @@ public class CollectionUtils {
   public static PGArray<String> convertToSqlArrayOfString(List<String> input) {
     return PGArray.arrayOf(String.class, input);
   }
+  
+  public static PGArray<String> convertToSqlArrayOfString(Set<String> input) {
+    return PGArray.arrayOf(String.class, input);
+  }
+  
+  public static PGArray<Long> convertToSqlArrayOfLong(Set<Long> input) {
+    return PGArray.arrayOf(Long.class, input);
+  }
 
   public static PGArray<UUID> convertToSqlArrayOfUUID(List<String> input) {
     List<UUID> uuids = convertList(input, UUID::fromString);
@@ -70,6 +80,24 @@ public class CollectionUtils {
 
   public static PGArray<UUID> convertFromListUUIDToSqlArrayOfUUID(List<UUID> input) {
     return PGArray.arrayOf(UUID.class, input);
+  }
+  
+  public static String toPostgresArrayLong(Collection<Long> input) {
+    Iterator<Long> it = input.iterator();
+    if (!it.hasNext()) {
+      return "{}";
+    }
+
+    StringBuilder sb = new StringBuilder();
+    sb.append('{');
+    for (;;) {
+      Long i = it.next();
+      sb.append(i);
+      if (!it.hasNext()) {
+        return sb.append('}').toString();
+      }
+      sb.append(',');
+    }
   }
 
 }

@@ -82,9 +82,28 @@ public final class Constants {
     // Read baseline learner profile
     public static final String MSG_OP_READ_BASELINE_LEARNER_PROFILE =
         "mb.op.base.learner.profile.read";
+    
+    //Content-Portfolio
+    public static final String MSG_OP_USER_PORTFOLIO_CONTENT_ITEMS_PERF = "mb.op.user.portfolio.content.items.perf";
+    public static final String MSG_OP_USER_PORTFOLIO_CONTENT_ITEM_PERF = "mb.op.user.portfolio.content.item.perf";
+    public static final String MSG_OP_USER_PORTFOLIO_CONTENT_ASMT_SUMMARY = "mb.op.user.portfolio.content.asmt.summary";
+    public static final String MSG_OP_USER_PORTFOLIO_CONTENT_COLL_SUMMARY = "mb.op.user.portfolio.content.coll.summary";
+    public static final String MSG_OP_USER_PORTFOLIO_CONTENT_OA_SUMMARY = "mb.op.user.portfolio.content.oa.summary";
+    public static final String MSG_OP_USER_PORTFOLIO_COMPETENCY = "mb.op.user.portfolio.competency.items.perf";
+    public static final String MSG_OP_USER_PORTFOLIO_DOMAIN = "mb.op.user.portfolio.domain.items.perf";
+    public static final String MSG_OP_USER_PORTFOLIO_SUBJECT = "mb.op.user.portfolio.subject.items.perf";
+
+    // Struggling competencies
+    public static final String MSG_OP_STRUGGLING_COMPETENCIES = "mb.op.struggling.competencies";
+    public static final String MSG_OP_STRUGGLING_COMPETENCY_PERF = "mb.op.struggling.competency.performance";
+    
     //User Competency Summary
     public static final String MSG_OP_USER_COMPETENCY_SUMMARY =
         "mb.op.user.competency.summary";
+    
+    //User Activity Feedback
+    public static final String MSG_OP_USER_ACTIVITY_FEEDBACK_CREATE = "mb.op.user.activity.feedback.create";
+    public static final String MSG_OP_USER_ACTIVITY_FEEDBACK_FETCH = "mb.op.user.activity.feedback.fetch";
 
     public static final String MSG_API_VERSION = "api.version";
     public static final String MSG_SESSION_TOKEN = "session.token";
@@ -204,7 +223,36 @@ public final class Constants {
     // http://{host}/api/ds/users/{version}/classes/reports/domains/competencies/performance?tx_code={txCode}&agent={agent}
     public static final String API_DOMAIN_COMPETENCIES_PERFORMANCE_REPORT =
         API_BASE_ROUTE + "classes/reports/domains/competencies/performance";
+    //Portfolio
+    // http://{host}/api/ds/users/v2/content/portfolio/items
+    public static final String API_USER_PORTFOLIO_CONTENT_ITEMS_PERF = API_BASE_ROUTE + "content/portfolio/items";
+    // http://{host}/api/ds/users/v2/content/portfolio/item
+    public static final String API_USER_PORTFOLIO_CONTENT_ITEM_PERF = API_BASE_ROUTE + "content/portfolio/item";
+    // http://{host}/api/ds/users/v2/content/portfolio/assessment/summary
+    public static final String API_USER_PORTFOLIO_CONTENT_ASMT_SUMMARY = API_BASE_ROUTE + "content/portfolio/assessment/summary";
+    // http://{host}/api/ds/users/v2/content/portfolio/collection/summary
+    public static final String API_USER_PORTFOLIO_CONTENT_COLL_SUMMARY = API_BASE_ROUTE + "content/portfolio/collection/summary";
+    // http://{host}/api/ds/users/v2/content/portfolio/oa/summary
+    public static final String API_USER_PORTFOLIO_CONTENT_OA_SUMMARY = API_BASE_ROUTE + "content/portfolio/oa/summary";
+    // http://{host}/api/ds/users/v2/competency/portfolio/items
+    public static final String API_USER_PORTFOLIO_COMPETENCY = API_BASE_ROUTE + "competency/portfolio/items";
+    // http://{host}/api/ds/users/v2/domain/portfolio/items
+    public static final String API_USER_PORTFOLIO_DOMAIN = API_BASE_ROUTE + "domain/portfolio/items";
+    // http://{host}/api/ds/users/v2/subject/portfolio/items
+    public static final String API_USER_PORTFOLIO_SUBJECT = API_BASE_ROUTE + "subject/portfolio/items";
 
+    public static final String API_STRUGGLING_COMPETENCIES =
+        API_BASE_ROUTE + "competencies/struggling";
+    
+    public static final String API_STRUGGLING_COMPETENCY_PERF =
+        API_BASE_ROUTE + "competencies/struggling/performance";
+
+    //User Activity Feedbacks
+    // http://{host}/api/ds/users/v2/activity/feedbacks
+    public static final String API_USER_ACTIVITY_FEEDBACKS_CREATE = API_BASE_ROUTE + "activity/feedbacks";
+    // http://{host}/api/ds/users/v2/activity/feedbacks?content_id=&user_id=
+    public static final String API_USER_ACTIVITY_FEEDBACKS_FETCH = API_BASE_ROUTE + "activity/feedbacks";
+    
     private Route() {
       throw new AssertionError();
     }
