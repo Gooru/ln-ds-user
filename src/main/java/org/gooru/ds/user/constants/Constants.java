@@ -105,6 +105,9 @@ public final class Constants {
     public static final String MSG_OP_USER_ACTIVITY_FEEDBACK_CREATE = "mb.op.user.activity.feedback.create";
     public static final String MSG_OP_USER_ACTIVITY_FEEDBACK_FETCH = "mb.op.user.activity.feedback.fetch";
 
+    // User Subject Competency Matrix
+    public static final String MSG_OP_USER_SUBJECT_COMPETENCY_MATRIX = "mb.op.user.subject.competency.matrix";
+    
     public static final String MSG_API_VERSION = "api.version";
     public static final String MSG_SESSION_TOKEN = "session.token";
     public static final String MSG_KEY_SESSION = "session";
@@ -194,6 +197,7 @@ public final class Constants {
     public static final String API_GRADES = API_BASE_ROUTE + "tx/grades";
     public static final String API_GRADE_BOUNDARY = API_BASE_ROUTE + "tx/grade/boundary/:gradeId";
     public static final String API_GRADE_COMPETENCIES = API_BASE_ROUTE + "tx/grade/competency";
+    public static final String API_INTERNAL_USER_SUBJECT_COMPETENCY_MATRIX = API_BASE_ROUTE + "internal/tx/subjects/competency/matrix";
 
     // Initial Learner Profile Setup
     // public static final String API_INTERNAL_INITIAL_LEARNER_PROFILE = "/api/internal/lp/initial";
