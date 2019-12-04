@@ -55,11 +55,18 @@ public class StrugglingCompetenciesCommand {
   private static StrugglingCompetenciesCommand buildFromJson(JsonObject requestBody) {
     StrugglingCompetenciesCommand command = new StrugglingCompetenciesCommand();
     String strGrades = requestBody.getString(CommandAttributes.GRADES);
-    if (strGrades != null && !strGrades.isEmpty()) {
-      String[] gradeArray = strGrades.split(",");
-      Set<String> setOfString = new HashSet<>(Arrays.asList(gradeArray));
-      command.grades =
-          setOfString.stream().map(s -> Long.parseLong(s)).collect(Collectors.toSet());
+    
+    try {
+      if (strGrades != null && !strGrades.isEmpty()) {
+        String[] gradeArray = strGrades.split(",");
+        Set<String> setOfString = new HashSet<>(Arrays.asList(gradeArray));
+        command.grades =
+            setOfString.stream().map(s -> Long.parseLong(s)).collect(Collectors.toSet());
+      }
+    } catch (NumberFormatException nfe) {
+      LOGGER.warn("Invalid input format of the grades ");
+      throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
+          "Invalid format of the grades");
     }
     
     command.classId = requestBody.getString(CommandAttributes.CLASS);
@@ -71,7 +78,6 @@ public class StrugglingCompetenciesCommand {
   private void validate() {
     validateClassId();
     validateMonthYearParams();
-    
   }
   
   private void validateClassId() {
