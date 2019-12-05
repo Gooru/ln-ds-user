@@ -27,11 +27,18 @@ public class RouteUserLearnerProfileConfigurator implements RouteConfigurator {
 
     router.get(Constants.Route.API_USER_BASELINE_LEARNER_PROFILE)
         .handler(this::baselineLearnerProfile);
+    router.get(Constants.Route.API_LEARNER_VECTORS)
+        .handler(this::learnerVectors);
   }
 
   private void baselineLearnerProfile(RoutingContext routingContext) {
     RouteHandlerUtils.baseHandler(eb, routingContext,
         Constants.Message.MSG_OP_READ_BASELINE_LEARNER_PROFILE, Constants.EventBus.MBEP_DISPATCHER,
         mbusTimeout, LOGGER);
+  }
+
+  private void learnerVectors(RoutingContext routingContext) {
+    RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_LEARNER_VECTORS,
+        Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
   }
 }
