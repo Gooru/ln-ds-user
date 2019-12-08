@@ -19,7 +19,10 @@ class LearnerPrefsService {
   public LearnerPrefsModel fetchLearnerPrefs(LearnerPrefsCommand command) {
     LearnerPrefsCommand.LearnerPrefsCommandBean learnerPrefsCommandBean = command.asBean();
     LearnerPrefsModel result = null;
-    if (learnerPrefsCommandBean.getSubject() != null) {
+    if (learnerPrefsCommandBean.getSubject() != null
+        && learnerPrefsCommandBean.getDomain() != null) {
+      result = learnerPrefsDao.fetchLearnerPrefsBySubjectDomain(learnerPrefsCommandBean);
+    } else if (learnerPrefsCommandBean.getSubject() != null) {
       result = learnerPrefsDao.fetchLearnerPrefsBySubject(learnerPrefsCommandBean);
     } else {
       result = learnerPrefsDao.fetchLearnerPrefs(learnerPrefsCommandBean);

@@ -16,6 +16,7 @@ class LearnerPrefsCommand {
   private static final Logger LOGGER = LoggerFactory.getLogger(LearnerPrefsCommand.class);
   private String user;
   private String subject;
+  private String domain;
   private Integer month;
   private Integer year;
 
@@ -27,6 +28,7 @@ class LearnerPrefsCommand {
     LearnerPrefsCommandBean bean = new LearnerPrefsCommandBean();
     bean.user = user;
     bean.subject = subject;
+    bean.domain = domain;
     bean.month = month;
     bean.year = year;
 
@@ -49,6 +51,7 @@ class LearnerPrefsCommand {
     LearnerPrefsCommand command = new LearnerPrefsCommand();
     command.user = requestBody.getString(CommandAttributes.USER);
     command.subject = requestBody.getString(CommandAttributes.SUBJECT);
+    command.domain = requestBody.getString(CommandAttributes.DOMAIN);
     String strMonth = requestBody.getString(CommandAttributes.MONTH, null);
     command.month = strMonth != null ? Integer.parseInt(strMonth) : null;
     String strYear = requestBody.getString(CommandAttributes.YEAR, null);
@@ -76,6 +79,7 @@ class LearnerPrefsCommand {
   public static class LearnerPrefsCommandBean {
     private String user;
     private String subject;
+    private String domain;
     private Integer month;
     private Integer year;
     private Timestamp toDate;
@@ -119,6 +123,14 @@ class LearnerPrefsCommand {
     public void setSubject(String subject) {
       this.subject = subject;
     }
+
+    public String getDomain() {
+      return domain;
+    }
+
+    public void setDomain(String domain) {
+      this.domain = domain;
+    }
   }
 
   static class CommandAttributes {
@@ -126,6 +138,7 @@ class LearnerPrefsCommand {
     private static final String MONTH = "month";
     private static final String YEAR = "year";
     private static final String SUBJECT = "subject";
+    private static final String DOMAIN = "domain";
 
 
     private CommandAttributes() {

@@ -19,7 +19,10 @@ class LearnerVectorsService {
   public LearnerVectorsModel fetchLearnerVectors(LearnerVectorsCommand command) {
     LearnerVectorsCommand.LearnerVectorsCommandBean learnerVectorsCommandBean = command.asBean();
     LearnerVectorsModel result = null;
-    if (learnerVectorsCommandBean.getSubject() != null) {
+    if (learnerVectorsCommandBean.getSubject() != null
+        && learnerVectorsCommandBean.getDomain() != null) {
+      result = learnerVectorsDao.fetchLearnerVectorsBySubjectDomain(learnerVectorsCommandBean);
+    } else if (learnerVectorsCommandBean.getSubject() != null) {
       result = learnerVectorsDao.fetchLearnerVectorsBySubject(learnerVectorsCommandBean);
     } else {
       result = learnerVectorsDao.fetchLearnerVectors(learnerVectorsCommandBean);
