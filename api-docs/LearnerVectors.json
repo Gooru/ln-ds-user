@@ -1,0 +1,106 @@
+{
+	"variables": [],
+	"info": {
+		"name": "LearnerVectors",
+		"_postman_id": "c9867d69-db86-4a86-1f8d-f4cad434b36d",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "LearnerVectorsBySubject",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/api/ds/users/v2/learner/vectors?user=38a71be1-580f-4a2b-8180-4fab23df1a3b&subject=K12.MA",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"ds",
+						"users",
+						"v2",
+						"learner",
+						"vectors"
+					],
+					"query": [
+						{
+							"key": "user",
+							"value": "38a71be1-580f-4a2b-8180-4fab23df1a3b",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "subject",
+							"value": "K12.MA",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token MjoxNTY3MDU2NzgyNTc4OjViOWU3OWY4LTYzZTQtNGM0Zi05NzY4LWI3ZGYzMzM0YjczNzo6YmE5NTZhOTctYWUxNS0xMWU1LWEzMDItZjhhOTYzMDY1OTc2",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "LearnerVectorsAcrossSubject",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/api/ds/users/v2/learner/vectors?user=38a71be1-580f-4a2b-8180-4fab23df1a3b",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"ds",
+						"users",
+						"v2",
+						"learner",
+						"vectors"
+					],
+					"query": [
+						{
+							"key": "user",
+							"value": "38a71be1-580f-4a2b-8180-4fab23df1a3b",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "subject",
+							"value": "K12.MA",
+							"equals": true,
+							"description": "",
+							"disabled": true
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token MjoxNTY3MDU2NzgyNTc4OjViOWU3OWY4LTYzZTQtNGM0Zi05NzY4LWI3ZGYzMzM0YjczNzo6YmE5NTZhOTctYWUxNS0xMWU1LWEzMDItZjhhOTYzMDY1OTc2",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

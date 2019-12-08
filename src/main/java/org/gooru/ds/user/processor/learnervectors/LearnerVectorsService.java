@@ -9,20 +9,20 @@ class LearnerVectorsService {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(LearnerVectorsService.class);
 
-  private final LearnerVectorsDao learnerVectorsContentDao;
+  private final LearnerVectorsDao learnerVectorsDao;
 
 
   LearnerVectorsService(DBI dbi) {
-    this.learnerVectorsContentDao = dbi.onDemand(LearnerVectorsDao.class);
+    this.learnerVectorsDao = dbi.onDemand(LearnerVectorsDao.class);
   }
 
   public LearnerVectorsModel fetchLearnerVectors(LearnerVectorsCommand command) {
     LearnerVectorsCommand.LearnerVectorsCommandBean learnerVectorsCommandBean = command.asBean();
     LearnerVectorsModel result = null;
     if (learnerVectorsCommandBean.getSubject() != null) {
-      result = learnerVectorsContentDao.fetchUserVectorsBySubject(learnerVectorsCommandBean);
+      result = learnerVectorsDao.fetchLearnerVectorsBySubject(learnerVectorsCommandBean);
     } else {
-      result = learnerVectorsContentDao.fetchUserVectors(learnerVectorsCommandBean);
+      result = learnerVectorsDao.fetchLearnerVectors(learnerVectorsCommandBean);
     }
     if (result != null) {
       LOGGER.debug("LearnerVectorsModel: {}", result.toString());

@@ -109,6 +109,8 @@ public final class Constants {
     public static final String MSG_OP_USER_SUBJECT_COMPETENCY_MATRIX = "mb.op.user.subject.competency.matrix";
     // Learner Vectors
     public static final String MSG_OP_LEARNER_VECTORS = "mb.op.user.vectors";
+    // Learner Preferences
+    public static final String MSG_OP_LEARNER_PREFS = "mb.op.user.prefs";
     
     public static final String MSG_API_VERSION = "api.version";
     public static final String MSG_SESSION_TOKEN = "session.token";
@@ -201,6 +203,7 @@ public final class Constants {
     public static final String API_GRADE_COMPETENCIES = API_BASE_ROUTE + "tx/grade/competency";
     public static final String API_USER_SUBJECT_COMPETENCY_MATRIX = API_BASE_ROUTE + "tx/subjects/competency/matrix";
     public static final String API_LEARNER_VECTORS = API_BASE_ROUTE + "learner/vectors";
+    public static final String API_LEARNER_PREFS = API_BASE_ROUTE + "learner/prefs";
 
     // Initial Learner Profile Setup
     // public static final String API_INTERNAL_INITIAL_LEARNER_PROFILE = "/api/internal/lp/initial";

@@ -16,6 +16,7 @@ import org.gooru.ds.user.processor.domain.report.DomainReportProcessor;
 import org.gooru.ds.user.processor.grade.boundary.GradeBoundaryListProcessor;
 import org.gooru.ds.user.processor.grade.competency.GradeCompetencyProcessor;
 import org.gooru.ds.user.processor.grade.master.GradeMasterProcessor;
+import org.gooru.ds.user.processor.learnerprefs.LearnerPrefsProcessor;
 import org.gooru.ds.user.processor.learnervectors.LearnerVectorsProcessor;
 import org.gooru.ds.user.processor.struggling.competencies.StrugglingCompetenciesProcessor;
 import org.gooru.ds.user.processor.struggling.competencies.perf.StrugglingCompetencyPerformanceProcessor;
@@ -192,6 +193,8 @@ public final class MessageProcessorBuilder {
       return new UserSubjectCompetencyMatrixProcessor(vertx, message);
       case Constants.Message.MSG_OP_LEARNER_VECTORS:
         return new LearnerVectorsProcessor(vertx, message);
+      case Constants.Message.MSG_OP_LEARNER_PREFS:
+        return new LearnerPrefsProcessor(vertx, message);
 
       default:
         return null;
