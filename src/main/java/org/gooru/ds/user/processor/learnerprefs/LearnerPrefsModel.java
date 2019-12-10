@@ -9,6 +9,7 @@ class LearnerPrefsModel {
   private Float audio = 0F;
   private Float video = 0F;
   private Float image = 0F;
+  private Float project = 0F;
 
   public Float getWebpage() {
     return webpage;
@@ -58,9 +59,18 @@ class LearnerPrefsModel {
     this.image = image;
   }
 
+  public Float getProject() {
+    return project;
+  }
+
+  public void setProject(Float project) {
+    this.project = project;
+  }
+
   @Override
   public String toString() {
-    return "LearnerPrefsModel{" + "webpage=" + webpage + ", interactive=" + interactive
-        + ", text=" + text + ", audio=" + audio + ", video=" + video + ", image=" + image + '}';
+    return "LearnerPrefsModel{" + "webpage=" + webpage + ", interactive=" + interactive + ", text="
+        + text + ", audio=" + audio + ", video=" + video + ", image=" + image + ", project="
+        + project + '}';
   }
 }

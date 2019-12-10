@@ -1,5 +1,7 @@
 package org.gooru.ds.user.processor.learnerprefs;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.skife.jdbi.v2.StatementContext;
@@ -8,30 +10,25 @@ import org.skife.jdbi.v2.tweak.ResultSetMapper;
 
 public class LearnerPrefsModelMapper implements ResultSetMapper<LearnerPrefsModel> {
 
-  private static final Float MILLION = 1_000_000F;
-  public static final float ROUNDING_PLACES = 10000f;
 
   @Override
   public LearnerPrefsModel map(int index, ResultSet r, StatementContext ctx) throws SQLException {
     LearnerPrefsModel model = new LearnerPrefsModel();
-    model.setAudio(normalizeFromMillion(r.getLong(MapperFields.AUDIO)));
-    model.setInteractive(normalizeFromMillion(r.getLong(MapperFields.INTERACTIVE)));
-    model.setText(normalizeFromMillion(r.getLong(MapperFields.TEXT)));
-    model.setVideo(normalizeFromMillion(r.getLong(MapperFields.VIDEO)));
-    model.setWebpage(normalizeFromMillion(r.getLong(MapperFields.WEBPAGE)));
-    model.setImage(normalizeFromMillion(r.getLong(MapperFields.IMAGE)));
+    model.setAudio(numberPrecision(r.getDouble(MapperFields.AUDIO)));
+    model.setInteractive(numberPrecision(r.getDouble(MapperFields.INTERACTIVE)));
+    model.setText(numberPrecision(r.getDouble(MapperFields.TEXT)));
+    model.setVideo(numberPrecision(r.getDouble(MapperFields.VIDEO)));
+    model.setWebpage(numberPrecision(r.getDouble(MapperFields.WEBPAGE)));
+    model.setImage(numberPrecision(r.getDouble(MapperFields.IMAGE)));
+    model.setProject(numberPrecision(r.getDouble(MapperFields.PROJECT)));
     return model;
   }
 
-
-
-  private Float normalizeFromMillion(long value) {
-    if (value == 0) {
-      return 0f;
-    }
-    float result = value / MILLION;
-    return (float) Math.round(result * ROUNDING_PLACES) / ROUNDING_PLACES;
+  private Float numberPrecision(Double value) {
+    BigDecimal bd = new BigDecimal(value).setScale(2, RoundingMode.HALF_UP);
+    return bd.floatValue();
   }
+
 
   private static final class MapperFields {
 
@@ -45,6 +42,7 @@ public class LearnerPrefsModelMapper implements ResultSetMapper<LearnerPrefsMode
     private static final String VIDEO = "video_pref";
     private static final String TEXT = "text_pref";
     private static final String IMAGE = "image_pref";
+    private static final String PROJECT = "project_pref";
   }
 
 }

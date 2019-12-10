@@ -1,5 +1,7 @@
 package org.gooru.ds.user.processor.learnervectors;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.skife.jdbi.v2.StatementContext;
@@ -12,16 +14,20 @@ public class LearnerVectorsModelMapper implements ResultSetMapper<LearnerVectors
   @Override
   public LearnerVectorsModel map(int index, ResultSet r, StatementContext ctx) throws SQLException {
     LearnerVectorsModel model = new LearnerVectorsModel();
-    model.setAuthority(r.getFloat(MapperFields.AUTHORITY));
-    model.setCitizenship(r.getFloat(MapperFields.CITIZENSHIP));
-    model.setGrit(r.getFloat(MapperFields.GRIT));
-    model.setMotivation(r.getFloat(MapperFields.MOTIVATION));
-    model.setPerseverance(r.getFloat(MapperFields.PERSEVERANCE));
-    model.setSelfConfidence(r.getFloat(MapperFields.SELF_CONFIDENCE));
-    model.setReputation(r.getFloat(MapperFields.REPUTATION));
+    model.setAuthority(numberPrecision(r.getDouble(MapperFields.AUTHORITY)));
+    model.setCitizenship(numberPrecision(r.getDouble(MapperFields.CITIZENSHIP)));
+    model.setGrit(numberPrecision(r.getDouble(MapperFields.GRIT)));
+    model.setMotivation(numberPrecision(r.getDouble(MapperFields.MOTIVATION)));
+    model.setPerseverance(numberPrecision(r.getDouble(MapperFields.PERSEVERANCE)));
+    model.setSelfConfidence(numberPrecision(r.getDouble(MapperFields.SELF_CONFIDENCE)));
+    model.setReputation(numberPrecision(r.getDouble(MapperFields.REPUTATION)));
     return model;
   }
 
+  private Float numberPrecision(Double value) {
+    BigDecimal bd = new BigDecimal(value).setScale(2, RoundingMode.HALF_UP);
+    return bd.floatValue();
+  }
 
 
   private static final class MapperFields {

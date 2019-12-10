@@ -1,16 +1,16 @@
 package org.gooru.ds.user.processor.subjectcompetencymatrix;
 
+import java.util.List;
 
-class SubjectCompetencyMatrixModel {
+class SubjectCompetencyMatrixResponseModel {
 
   private String subjectCode;
   private String classificationCode;
   private String classificationName;
-  private Integer competencyStatus;
-  private Integer competencyCount;
   private String subjectName;
   private Integer classificationSeq;
   private Integer subjectSeq;
+  private List<CompetencyResponseModel> competencyStats;
 
   public String getSubjectCode() {
     return subjectCode;
@@ -20,21 +20,6 @@ class SubjectCompetencyMatrixModel {
     this.subjectCode = subjectCode;
   }
 
-  public Integer getCompetencyStatus() {
-    return competencyStatus;
-  }
-
-  public void setCompetencyStatus(Integer competencyStatus) {
-    this.competencyStatus = competencyStatus;
-  }
-
-  public Integer getCompetencyCount() {
-    return competencyCount;
-  }
-
-  public void setCompetencyCount(Integer competencyCount) {
-    this.competencyCount = competencyCount;
-  }
 
   public String getClassificationCode() {
     return classificationCode;
@@ -60,14 +45,12 @@ class SubjectCompetencyMatrixModel {
     this.classificationName = classificationName;
   }
 
-
-
-  public Integer getSubjectSeq() {
-    return subjectSeq;
+  public List<CompetencyResponseModel> getCompetencyStats() {
+    return competencyStats;
   }
 
-  public void setSubjectSeq(Integer subjectSeq) {
-    this.subjectSeq = subjectSeq;
+  public void setCompetencyStats(List<CompetencyResponseModel> competencyStats) {
+    this.competencyStats = competencyStats;
   }
 
   public Integer getClassificationSeq() {
@@ -76,6 +59,14 @@ class SubjectCompetencyMatrixModel {
 
   public void setClassificationSeq(Integer classificationSeq) {
     this.classificationSeq = classificationSeq;
+  }
+
+  public Integer getSubjectSeq() {
+    return subjectSeq;
+  }
+
+  public void setSubjectSeq(Integer subjectSeq) {
+    this.subjectSeq = subjectSeq;
   }
 
 }

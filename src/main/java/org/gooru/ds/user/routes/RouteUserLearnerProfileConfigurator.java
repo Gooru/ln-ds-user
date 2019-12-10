@@ -29,6 +29,9 @@ public class RouteUserLearnerProfileConfigurator implements RouteConfigurator {
         .handler(this::baselineLearnerProfile);
     router.get(Constants.Route.API_LEARNER_VECTORS).handler(this::learnerVectors);
     router.get(Constants.Route.API_LEARNER_PREFS).handler(this::learnerPrefs);
+    router.get(Constants.Route.API_LEARNER_PORTFOLIO_STATS).handler(this::learnerPortfolioStats);
+    router.get(Constants.Route.API_LEARNER_PORTFOLIO_STATS_SUBJECT).handler(this::learnerPortfolioStatsBySubject);
+    router.get(Constants.Route.API_LEARNER_PORTFOLIO_STATS_SUBJECT_DOMAIN).handler(this::learnerPortfolioStatsBySubjectDomain);
   }
 
   private void baselineLearnerProfile(RoutingContext routingContext) {
@@ -44,6 +47,21 @@ public class RouteUserLearnerProfileConfigurator implements RouteConfigurator {
 
   private void learnerPrefs(RoutingContext routingContext) {
     RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_LEARNER_PREFS,
+        Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
+  }
+
+  private void learnerPortfolioStats(RoutingContext routingContext) {
+    RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_LEARNER_PORTFOLIO_STATS,
+        Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
+  }
+
+  private void learnerPortfolioStatsBySubject(RoutingContext routingContext) {
+    RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_LEARNER_PORTFOLIO_SUBJECT_STATS,
+        Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
+  }
+
+  private void learnerPortfolioStatsBySubjectDomain(RoutingContext routingContext) {
+    RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_LEARNER_PORTFOLIO_SUBJECT_DOMAIN_STATS,
         Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
   }
 }

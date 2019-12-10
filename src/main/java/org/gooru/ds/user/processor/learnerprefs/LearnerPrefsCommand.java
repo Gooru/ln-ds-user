@@ -17,6 +17,7 @@ class LearnerPrefsCommand {
   private String user;
   private String subject;
   private String domain;
+  private String compCode;
   private Integer month;
   private Integer year;
 
@@ -28,6 +29,7 @@ class LearnerPrefsCommand {
     LearnerPrefsCommandBean bean = new LearnerPrefsCommandBean();
     bean.user = user;
     bean.subject = subject;
+    bean.compCode = compCode;
     bean.domain = domain;
     bean.month = month;
     bean.year = year;
@@ -50,8 +52,9 @@ class LearnerPrefsCommand {
   private static LearnerPrefsCommand buildFromJsonObject(JsonObject requestBody) {
     LearnerPrefsCommand command = new LearnerPrefsCommand();
     command.user = requestBody.getString(CommandAttributes.USER);
-    command.subject = requestBody.getString(CommandAttributes.SUBJECT);
-    command.domain = requestBody.getString(CommandAttributes.DOMAIN);
+    command.subject = requestBody.getString(CommandAttributes.TX_SUBJECT_CODE);
+    command.domain = requestBody.getString(CommandAttributes.TX_DOMAIN_CODE);
+    command.compCode = requestBody.getString(CommandAttributes.TX_COMP_CODE);
     String strMonth = requestBody.getString(CommandAttributes.MONTH, null);
     command.month = strMonth != null ? Integer.parseInt(strMonth) : null;
     String strYear = requestBody.getString(CommandAttributes.YEAR, null);
@@ -80,6 +83,7 @@ class LearnerPrefsCommand {
     private String user;
     private String subject;
     private String domain;
+    private String compCode;
     private Integer month;
     private Integer year;
     private Timestamp toDate;
@@ -131,14 +135,23 @@ class LearnerPrefsCommand {
     public void setDomain(String domain) {
       this.domain = domain;
     }
+
+    public String getCompCode() {
+      return compCode;
+    }
+
+    public void setCompCode(String compCode) {
+      this.compCode = compCode;
+    }
   }
 
   static class CommandAttributes {
     private static final String USER = "user";
     private static final String MONTH = "month";
     private static final String YEAR = "year";
-    private static final String SUBJECT = "subject";
-    private static final String DOMAIN = "domain";
+    private static final String TX_SUBJECT_CODE = "tx_subject_code";
+    private static final String TX_DOMAIN_CODE = "tx_domain_code";
+    private static final String TX_COMP_CODE = "tx_comp_code";
 
 
     private CommandAttributes() {

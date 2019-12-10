@@ -1,4 +1,4 @@
-package org.gooru.ds.user.processor.learnervectors;
+package org.gooru.ds.user.processor.stats.learnerportfolio.subjectdomain;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
@@ -12,27 +12,27 @@ import org.slf4j.LoggerFactory;
 import io.vertx.core.json.JsonObject;
 
 
-class LearnerVectorsCommand {
-  private static final Logger LOGGER = LoggerFactory.getLogger(LearnerVectorsCommand.class);
+class LearnerPortfolioStatsSubjectDomainCommand {
+  private static final Logger LOGGER =
+      LoggerFactory.getLogger(LearnerPortfolioStatsSubjectDomainCommand.class);
   private String user;
   private String subject;
   private String domain;
   private Integer month;
   private Integer year;
-  private String compCode;
 
   public String getUser() {
     return user;
   }
 
-  public LearnerVectorsCommandBean asBean() {
-    LearnerVectorsCommandBean bean = new LearnerVectorsCommandBean();
+  public LearnerPortfolioStatsSubjectDomainCommandBean asBean() {
+    LearnerPortfolioStatsSubjectDomainCommandBean bean =
+        new LearnerPortfolioStatsSubjectDomainCommandBean();
     bean.user = user;
     bean.subject = subject;
     bean.domain = domain;
     bean.month = month;
     bean.year = year;
-    bean.compCode = compCode;
 
     LocalDate localDate = LocalDate.of(year, month, 1);
     LocalDate boundary = localDate.plusMonths(1);
@@ -43,18 +43,20 @@ class LearnerVectorsCommand {
     return bean;
   }
 
-  static LearnerVectorsCommand builder(JsonObject requestBody) {
-    LearnerVectorsCommand result = LearnerVectorsCommand.buildFromJsonObject(requestBody);
+  static LearnerPortfolioStatsSubjectDomainCommand builder(JsonObject requestBody) {
+    LearnerPortfolioStatsSubjectDomainCommand result =
+        LearnerPortfolioStatsSubjectDomainCommand.buildFromJsonObject(requestBody);
     result.validate();
     return result;
   }
 
-  private static LearnerVectorsCommand buildFromJsonObject(JsonObject requestBody) {
-    LearnerVectorsCommand command = new LearnerVectorsCommand();
+  private static LearnerPortfolioStatsSubjectDomainCommand buildFromJsonObject(
+      JsonObject requestBody) {
+    LearnerPortfolioStatsSubjectDomainCommand command =
+        new LearnerPortfolioStatsSubjectDomainCommand();
     command.user = requestBody.getString(CommandAttributes.USER);
     command.subject = requestBody.getString(CommandAttributes.TX_SUBJECT_CODE);
     command.domain = requestBody.getString(CommandAttributes.TX_DOMAIN_CODE);
-    command.compCode = requestBody.getString(CommandAttributes.TX_COMP_CODE);
     String strMonth = requestBody.getString(CommandAttributes.MONTH, null);
     command.month = strMonth != null ? Integer.parseInt(strMonth) : null;
     String strYear = requestBody.getString(CommandAttributes.YEAR, null);
@@ -68,6 +70,17 @@ class LearnerVectorsCommand {
       throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
           "User not provided for request");
     }
+    if (subject == null) {
+      LOGGER.info("Subject not provided for request");
+      throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
+          "Subject not provided for request");
+    }
+    if (domain == null) {
+      LOGGER.info("Domain not provided for request");
+      throw new HttpResponseWrapperException(HttpConstants.HttpStatus.BAD_REQUEST,
+          "Domain not provided for request");
+    }
+
     if (month == null || (month < 1 || month > 12)) {
       month = CommonUtils.currentMonth();
     }
@@ -79,11 +92,10 @@ class LearnerVectorsCommand {
     }
   }
 
-  public static class LearnerVectorsCommandBean {
+  public static class LearnerPortfolioStatsSubjectDomainCommandBean {
     private String user;
     private String subject;
     private String domain;
-    private String compCode;
     private Integer month;
     private Integer year;
     private Timestamp toDate;
@@ -136,13 +148,6 @@ class LearnerVectorsCommand {
       this.domain = domain;
     }
 
-    public String getCompCode() {
-      return compCode;
-    }
-
-    public void setCompCode(String compCode) {
-      this.compCode = compCode;
-    }
   }
 
   static class CommandAttributes {
@@ -151,7 +156,6 @@ class LearnerVectorsCommand {
     private static final String YEAR = "year";
     private static final String TX_SUBJECT_CODE = "tx_subject_code";
     private static final String TX_DOMAIN_CODE = "tx_domain_code";
-    private static final String TX_COMP_CODE = "tx_comp_code";
 
 
     private CommandAttributes() {

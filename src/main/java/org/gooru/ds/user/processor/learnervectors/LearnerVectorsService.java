@@ -20,6 +20,11 @@ class LearnerVectorsService {
     LearnerVectorsCommand.LearnerVectorsCommandBean learnerVectorsCommandBean = command.asBean();
     LearnerVectorsModel result = null;
     if (learnerVectorsCommandBean.getSubject() != null
+        && learnerVectorsCommandBean.getDomain() != null
+        && learnerVectorsCommandBean.getCompCode() != null) {
+      result =
+          learnerVectorsDao.fetchLearnerVectorsBySubjectDomainCompCode(learnerVectorsCommandBean);
+    } else if (learnerVectorsCommandBean.getSubject() != null
         && learnerVectorsCommandBean.getDomain() != null) {
       result = learnerVectorsDao.fetchLearnerVectorsBySubjectDomain(learnerVectorsCommandBean);
     } else if (learnerVectorsCommandBean.getSubject() != null) {
@@ -30,6 +35,8 @@ class LearnerVectorsService {
     if (result != null) {
       LOGGER.debug("LearnerVectorsModel: {}", result.toString());
     }
+    LOGGER.debug("Subject: {}, Domain: {}, Competency: {}", learnerVectorsCommandBean.getSubject(),
+        learnerVectorsCommandBean.getDomain(), learnerVectorsCommandBean.getCompCode());
     return result != null ? result : new LearnerVectorsModel();
   }
 
