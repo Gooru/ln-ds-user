@@ -11,7 +11,7 @@
 			"name": "LearnerPrefsBySubject",
 			"request": {
 				"url": {
-					"raw": "http://localhost:8080/api/ds/users/v2/learner/prefs?user=95a744e1-631e-4642-875d-8b07a5e3b421&subject=K12.MA",
+					"raw": "http://localhost:8080/api/ds/users/v2/learner/prefs?user=95a744e1-631e-4642-875d-8b07a5e3b421&tx_subject_code=K12.MA",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -33,7 +33,7 @@
 							"description": ""
 						},
 						{
-							"key": "subject",
+							"key": "tx_subject_code",
 							"value": "K12.MA",
 							"equals": true,
 							"description": ""
@@ -99,7 +99,7 @@
 			"name": "LearnerPrefsBySubjectDomain",
 			"request": {
 				"url": {
-					"raw": "http://localhost:8080/api/ds/users/v2/learner/prefs?user=95a744e1-631e-4642-875d-8b07a5e3b421&subject=K12.MA&domain=PN",
+					"raw": "http://localhost:8080/api/ds/users/v2/learner/prefs?user=95a744e1-631e-4642-875d-8b07a5e3b421&tx_subject_code=K12.MA&tx_domain_code=G",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -121,14 +121,73 @@
 							"description": ""
 						},
 						{
-							"key": "subject",
+							"key": "tx_subject_code",
 							"value": "K12.MA",
 							"equals": true,
 							"description": ""
 						},
 						{
-							"key": "domain",
-							"value": "PN",
+							"key": "tx_domain_code",
+							"value": "G",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token MjoxNTY3MDU2NzgyNTc4OjViOWU3OWY4LTYzZTQtNGM0Zi05NzY4LWI3ZGYzMzM0YjczNzo6YmE5NTZhOTctYWUxNS0xMWU1LWEzMDItZjhhOTYzMDY1OTc2",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "LearnerPrefsBySubjectDomainCompetency",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/api/ds/users/v2/learner/prefs?user=95a744e1-631e-4642-875d-8b07a5e3b421&tx_subject_code=K12.MA&tx_domain_code=G&tx_comp_code=K12.MA-A1-A-REI.D.01",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"ds",
+						"users",
+						"v2",
+						"learner",
+						"prefs"
+					],
+					"query": [
+						{
+							"key": "user",
+							"value": "95a744e1-631e-4642-875d-8b07a5e3b421",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "tx_subject_code",
+							"value": "K12.MA",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "tx_domain_code",
+							"value": "G",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "tx_comp_code",
+							"value": "K12.MA-A1-A-REI.D.01",
 							"equals": true,
 							"description": ""
 						}

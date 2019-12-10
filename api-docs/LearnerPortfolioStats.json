@@ -1,17 +1,17 @@
 {
 	"variables": [],
 	"info": {
-		"name": "LearnerVectors",
-		"_postman_id": "c9867d69-db86-4a86-1f8d-f4cad434b36d",
+		"name": "LearnerPortfolioStats",
+		"_postman_id": "cd46118d-25ef-d3ac-54d2-4fe6a3c75bbc",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "LearnerVectorsBySubject",
+			"name": "LearnerPortfolioStats",
 			"request": {
 				"url": {
-					"raw": "http://localhost:8080/api/ds/users/v2/learner/vectors?user=95a744e1-631e-4642-875d-8b07a5e3b421&tx_subject_code=K12.MA",
+					"raw": "http://localhost:8080/api/ds/users/v2/learner/portfolio/stats?user=95a744e1-631e-4642-875d-8b07a5e3b421",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -23,7 +23,51 @@
 						"users",
 						"v2",
 						"learner",
-						"vectors"
+						"portfolio",
+						"stats"
+					],
+					"query": [
+						{
+							"key": "user",
+							"value": "95a744e1-631e-4642-875d-8b07a5e3b421",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token MjoxNTY3MDU2NzgyNTc4OjViOWU3OWY4LTYzZTQtNGM0Zi05NzY4LWI3ZGYzMzM0YjczNzo6YmE5NTZhOTctYWUxNS0xMWU1LWEzMDItZjhhOTYzMDY1OTc2",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "LearnerPortfolioStatsSubject",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/api/ds/users/v2/learner/portfolio/stats/subject?user=95a744e1-631e-4642-875d-8b07a5e3b421&tx_subject_code=K12.MA",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"ds",
+						"users",
+						"v2",
+						"learner",
+						"portfolio",
+						"stats",
+						"subject"
 					],
 					"query": [
 						{
@@ -37,13 +81,6 @@
 							"value": "K12.MA",
 							"equals": true,
 							"description": ""
-						},
-						{
-							"key": "",
-							"value": "",
-							"equals": false,
-							"description": "",
-							"disabled": true
 						}
 					],
 					"variable": []
@@ -62,10 +99,10 @@
 			"response": []
 		},
 		{
-			"name": "LearnerVectorsAcrossSubject",
+			"name": "LearnerPortfolioStatsSubjectDomain",
 			"request": {
 				"url": {
-					"raw": "http://localhost:8080/api/ds/users/v2/learner/vectors?user=95a744e1-631e-4642-875d-8b07a5e3b421",
+					"raw": "http://localhost:8080/api/ds/users/v2/learner/portfolio/stats/subject/domain?user=95a744e1-631e-4642-875d-8b07a5e3b421&tx_subject_code=K12.MA&tx_domain_code=G",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -77,48 +114,10 @@
 						"users",
 						"v2",
 						"learner",
-						"vectors"
-					],
-					"query": [
-						{
-							"key": "user",
-							"value": "95a744e1-631e-4642-875d-8b07a5e3b421",
-							"equals": true,
-							"description": ""
-						}
-					],
-					"variable": []
-				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Token MjoxNTY3MDU2NzgyNTc4OjViOWU3OWY4LTYzZTQtNGM0Zi05NzY4LWI3ZGYzMzM0YjczNzo6YmE5NTZhOTctYWUxNS0xMWU1LWEzMDItZjhhOTYzMDY1OTc2",
-						"description": ""
-					}
-				],
-				"body": {},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "LearnerVectorsBySubjectDomain",
-			"request": {
-				"url": {
-					"raw": "http://localhost:8080/api/ds/users/v2/learner/vectors?user=95a744e1-631e-4642-875d-8b07a5e3b421&tx_subject_code=K12.MA&tx_domain_code=G",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"ds",
-						"users",
-						"v2",
-						"learner",
-						"vectors"
+						"portfolio",
+						"stats",
+						"subject",
+						"domain"
 					],
 					"query": [
 						{
@@ -136,65 +135,6 @@
 						{
 							"key": "tx_domain_code",
 							"value": "G",
-							"equals": true,
-							"description": ""
-						}
-					],
-					"variable": []
-				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Token MjoxNTY3MDU2NzgyNTc4OjViOWU3OWY4LTYzZTQtNGM0Zi05NzY4LWI3ZGYzMzM0YjczNzo6YmE5NTZhOTctYWUxNS0xMWU1LWEzMDItZjhhOTYzMDY1OTc2",
-						"description": ""
-					}
-				],
-				"body": {},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "LearnerVectorsBySubjectDomainComp",
-			"request": {
-				"url": {
-					"raw": "http://localhost:8080/api/ds/users/v2/learner/vectors?user=95a744e1-631e-4642-875d-8b07a5e3b421&tx_subject_code=K12.MA&tx_domain_code=A&tx_comp_code=K12.MA-A1-A-REI.D.01",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"ds",
-						"users",
-						"v2",
-						"learner",
-						"vectors"
-					],
-					"query": [
-						{
-							"key": "user",
-							"value": "95a744e1-631e-4642-875d-8b07a5e3b421",
-							"equals": true,
-							"description": ""
-						},
-						{
-							"key": "tx_subject_code",
-							"value": "K12.MA",
-							"equals": true,
-							"description": ""
-						},
-						{
-							"key": "tx_domain_code",
-							"value": "A",
-							"equals": true,
-							"description": ""
-						},
-						{
-							"key": "tx_comp_code",
-							"value": "K12.MA-A1-A-REI.D.01",
 							"equals": true,
 							"description": ""
 						}
