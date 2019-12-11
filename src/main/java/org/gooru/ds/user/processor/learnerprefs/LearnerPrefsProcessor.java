@@ -1,7 +1,5 @@
-package org.gooru.ds.user.processor.subjectcompetencymatrix;
+package org.gooru.ds.user.processor.learnerprefs;
 
-import java.util.List;
-import java.util.Map;
 import org.gooru.ds.user.app.data.EventBusMessage;
 import org.gooru.ds.user.app.jdbi.DBICreator;
 import org.gooru.ds.user.processor.MessageProcessor;
@@ -18,18 +16,17 @@ import io.vertx.core.json.DecodeException;
 import io.vertx.core.json.JsonObject;
 
 
-public class UserSubjectCompetencyMatrixProcessor implements MessageProcessor {
+public class LearnerPrefsProcessor implements MessageProcessor {
 
-  private static final Logger LOGGER =
-      LoggerFactory.getLogger(UserSubjectCompetencyMatrixProcessor.class);
   private final Vertx vertx;
   private final Message<JsonObject> message;
   private final Future<MessageResponse> result;
+  private static final Logger LOGGER = LoggerFactory.getLogger(LearnerPrefsProcessor.class);
   private EventBusMessage eventBusMessage;
-  private UserSubjectCompetencyMatrixService userSubjectCompetencyMatrixService =
-      new UserSubjectCompetencyMatrixService(DBICreator.getDbiForDefaultDS());
+  private final LearnerPrefsService learnerPrefsService =
+      new LearnerPrefsService(DBICreator.getDbiForDefaultDS());
 
-  public UserSubjectCompetencyMatrixProcessor(Vertx vertx, Message<JsonObject> message) {
+  public LearnerPrefsProcessor(Vertx vertx, Message<JsonObject> message) {
     this.vertx = vertx;
     this.message = message;
     this.result = Future.future();
@@ -39,9 +36,8 @@ public class UserSubjectCompetencyMatrixProcessor implements MessageProcessor {
   public Future<MessageResponse> process() {
     try {
       this.eventBusMessage = EventBusMessage.eventBusMessageBuilder(message);
-      UserSubjectCompetencyMatrixCommand command =
-          UserSubjectCompetencyMatrixCommand.builder(eventBusMessage.getRequestBody());
-      fetchUserSubjectCompetencyMatrix(command);
+      LearnerPrefsCommand command = LearnerPrefsCommand.builder(eventBusMessage.getRequestBody());
+      fetchLearnerPrefs(command);
     } catch (Throwable throwable) {
       LOGGER.warn("Encountered exception", throwable);
       result.fail(throwable);
@@ -49,11 +45,10 @@ public class UserSubjectCompetencyMatrixProcessor implements MessageProcessor {
     return result;
   }
 
-  private void fetchUserSubjectCompetencyMatrix(UserSubjectCompetencyMatrixCommand command) {
+  private void fetchLearnerPrefs(LearnerPrefsCommand command) {
     try {
-      Map<String, List<SubjectCompetencyMatrixResponseModel>> userSubjectCompetencyMatrix =
-          userSubjectCompetencyMatrixService.fetchUserSubjectCompetencyMatrix(command);
-      String resultString = new ObjectMapper().writeValueAsString(userSubjectCompetencyMatrix);
+      LearnerPrefsModel learnerPrefs = learnerPrefsService.fetchLearnerPrefs(command);
+      String resultString = new ObjectMapper().writeValueAsString(learnerPrefs);
       result.complete(MessageResponseFactory.createOkayResponse(new JsonObject(resultString)));
     } catch (JsonProcessingException e) {
       LOGGER.error("Not able to convert data to JSON", e);
@@ -65,6 +60,5 @@ public class UserSubjectCompetencyMatrixProcessor implements MessageProcessor {
       LOGGER.warn("Encountered exception", throwable);
       result.fail(throwable);
     }
-
   }
 }

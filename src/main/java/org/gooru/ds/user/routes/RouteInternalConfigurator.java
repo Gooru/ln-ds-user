@@ -29,7 +29,6 @@ class RouteInternalConfigurator implements RouteConfigurator {
     eb = vertx.eventBus();
     mbusTimeout = config.getLong(Constants.EventBus.MBUS_TIMEOUT, 30L) * 1000;
     router.get(Constants.Route.API_INTERNAL_BASE_LEARNER_PROFILE).handler(this::baseLearnerProfile);
-    router.get(Constants.Route.API_INTERNAL_USER_SUBJECT_COMPETENCY_MATRIX).handler(this::userSubjectCompetencyMatrix);
 
     LOGGER.debug("Configuring routes for internal route");
     router.route(Constants.Route.API_INTERNAL_BANNER).handler(routingContext -> {
@@ -54,10 +53,5 @@ class RouteInternalConfigurator implements RouteConfigurator {
     eb.<JsonObject>send(Constants.EventBus.MBEP_DISPATCHER,
         RouteRequestUtility.getBodyForMessage(routingContext, true), options);
     routingContext.response().setStatusCode(200).end();
-  }
-  
-  private void userSubjectCompetencyMatrix(RoutingContext routingContext) {
-    RouteHandlerUtils.baseHandler(eb, routingContext, Constants.Message.MSG_OP_USER_SUBJECT_COMPETENCY_MATRIX,
-        Constants.EventBus.MBEP_DISPATCHER, mbusTimeout, LOGGER);
   }
 }

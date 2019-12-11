@@ -16,6 +16,11 @@ import org.gooru.ds.user.processor.domain.report.DomainReportProcessor;
 import org.gooru.ds.user.processor.grade.boundary.GradeBoundaryListProcessor;
 import org.gooru.ds.user.processor.grade.competency.GradeCompetencyProcessor;
 import org.gooru.ds.user.processor.grade.master.GradeMasterProcessor;
+import org.gooru.ds.user.processor.learnerprefs.LearnerPrefsProcessor;
+import org.gooru.ds.user.processor.learnervectors.LearnerVectorsProcessor;
+import org.gooru.ds.user.processor.stats.learnerportfolio.LearnerPortfolioStatsProcessor;
+import org.gooru.ds.user.processor.stats.learnerportfolio.subject.LearnerPortfolioStatsSubjectProcessor;
+import org.gooru.ds.user.processor.stats.learnerportfolio.subjectdomain.LearnerPortfolioStatsSubjectDomainProcessor;
 import org.gooru.ds.user.processor.struggling.competencies.StrugglingCompetenciesProcessor;
 import org.gooru.ds.user.processor.struggling.competencies.perf.StrugglingCompetencyPerformanceProcessor;
 import org.gooru.ds.user.processor.subjectcompetencymatrix.UserSubjectCompetencyMatrixProcessor;
@@ -189,7 +194,17 @@ public final class MessageProcessorBuilder {
         
       case Constants.Message.MSG_OP_USER_SUBJECT_COMPETENCY_MATRIX:
       return new UserSubjectCompetencyMatrixProcessor(vertx, message);
-
+      case Constants.Message.MSG_OP_LEARNER_VECTORS:
+        return new LearnerVectorsProcessor(vertx, message);
+      case Constants.Message.MSG_OP_LEARNER_PREFS:
+        return new LearnerPrefsProcessor(vertx, message);
+      case Constants.Message.MSG_OP_LEARNER_PORTFOLIO_STATS:
+        return new LearnerPortfolioStatsProcessor(vertx, message);
+      case Constants.Message.MSG_OP_LEARNER_PORTFOLIO_SUBJECT_STATS:
+        return new LearnerPortfolioStatsSubjectProcessor(vertx, message);
+      case Constants.Message.MSG_OP_LEARNER_PORTFOLIO_SUBJECT_DOMAIN_STATS:
+        return new LearnerPortfolioStatsSubjectDomainProcessor(vertx, message);
+        
       default:
         return null;
     }
