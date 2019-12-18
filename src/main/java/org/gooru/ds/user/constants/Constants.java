@@ -78,32 +78,57 @@ public final class Constants {
     // Navigator Course ATC
     public static final String MSG_OP_USERS_PERF_VS_COMPLETION =
         "mb.op.users.performance.vs.completion";
-    public static final String MSG_OP_STATS_COMPETENCY_COMPLETION = "mb.op.competency.completion.stats";
+    public static final String MSG_OP_STATS_COMPETENCY_COMPLETION =
+        "mb.op.competency.completion.stats";
     // Read baseline learner profile
     public static final String MSG_OP_READ_BASELINE_LEARNER_PROFILE =
         "mb.op.base.learner.profile.read";
-    
-    //Content-Portfolio
-    public static final String MSG_OP_USER_PORTFOLIO_CONTENT_ITEMS_PERF = "mb.op.user.portfolio.content.items.perf";
-    public static final String MSG_OP_USER_PORTFOLIO_CONTENT_ITEM_PERF = "mb.op.user.portfolio.content.item.perf";
-    public static final String MSG_OP_USER_PORTFOLIO_CONTENT_ASMT_SUMMARY = "mb.op.user.portfolio.content.asmt.summary";
-    public static final String MSG_OP_USER_PORTFOLIO_CONTENT_COLL_SUMMARY = "mb.op.user.portfolio.content.coll.summary";
-    public static final String MSG_OP_USER_PORTFOLIO_CONTENT_OA_SUMMARY = "mb.op.user.portfolio.content.oa.summary";
-    public static final String MSG_OP_USER_PORTFOLIO_COMPETENCY = "mb.op.user.portfolio.competency.items.perf";
-    public static final String MSG_OP_USER_PORTFOLIO_DOMAIN = "mb.op.user.portfolio.domain.items.perf";
-    public static final String MSG_OP_USER_PORTFOLIO_SUBJECT = "mb.op.user.portfolio.subject.items.perf";
+
+    // Content-Portfolio
+    public static final String MSG_OP_USER_PORTFOLIO_CONTENT_ITEMS_PERF =
+        "mb.op.user.portfolio.content.items.perf";
+    public static final String MSG_OP_USER_PORTFOLIO_CONTENT_ITEM_PERF =
+        "mb.op.user.portfolio.content.item.perf";
+    public static final String MSG_OP_USER_PORTFOLIO_CONTENT_ASMT_SUMMARY =
+        "mb.op.user.portfolio.content.asmt.summary";
+    public static final String MSG_OP_USER_PORTFOLIO_CONTENT_COLL_SUMMARY =
+        "mb.op.user.portfolio.content.coll.summary";
+    public static final String MSG_OP_USER_PORTFOLIO_CONTENT_OA_SUMMARY =
+        "mb.op.user.portfolio.content.oa.summary";
+    public static final String MSG_OP_USER_PORTFOLIO_COMPETENCY =
+        "mb.op.user.portfolio.competency.items.perf";
+    public static final String MSG_OP_USER_PORTFOLIO_DOMAIN =
+        "mb.op.user.portfolio.domain.items.perf";
+    public static final String MSG_OP_USER_PORTFOLIO_SUBJECT =
+        "mb.op.user.portfolio.subject.items.perf";
 
     // Struggling competencies
     public static final String MSG_OP_STRUGGLING_COMPETENCIES = "mb.op.struggling.competencies";
-    public static final String MSG_OP_STRUGGLING_COMPETENCY_PERF = "mb.op.struggling.competency.performance";
-    
-    //User Competency Summary
-    public static final String MSG_OP_USER_COMPETENCY_SUMMARY =
-        "mb.op.user.competency.summary";
-    
-    //User Activity Feedback
-    public static final String MSG_OP_USER_ACTIVITY_FEEDBACK_CREATE = "mb.op.user.activity.feedback.create";
-    public static final String MSG_OP_USER_ACTIVITY_FEEDBACK_FETCH = "mb.op.user.activity.feedback.fetch";
+    public static final String MSG_OP_STRUGGLING_COMPETENCY_PERF =
+        "mb.op.struggling.competency.performance";
+
+    // User Competency Summary
+    public static final String MSG_OP_USER_COMPETENCY_SUMMARY = "mb.op.user.competency.summary";
+
+    // User Activity Feedback
+    public static final String MSG_OP_USER_ACTIVITY_FEEDBACK_CREATE =
+        "mb.op.user.activity.feedback.create";
+    public static final String MSG_OP_USER_ACTIVITY_FEEDBACK_FETCH =
+        "mb.op.user.activity.feedback.fetch";
+
+    // User Subject Competency Matrix
+    public static final String MSG_OP_USER_SUBJECT_COMPETENCY_MATRIX =
+        "mb.op.user.subject.competency.matrix";
+    // Learner Vectors
+    public static final String MSG_OP_LEARNER_VECTORS = "mb.op.user.vectors";
+    // Learner Preferences
+    public static final String MSG_OP_LEARNER_PREFS = "mb.op.user.prefs";
+    // Learner Portfolio  across subject stats
+    public static final String MSG_OP_LEARNER_PORTFOLIO_STATS = "mb.op.user.portfolio.stats";
+    // Learner Portfolio  by  subject stats
+    public static final String MSG_OP_LEARNER_PORTFOLIO_SUBJECT_STATS = "mb.op.user.portfolio.subject.stats";
+    // Learner Portfolio by subject domain stats
+    public static final String MSG_OP_LEARNER_PORTFOLIO_SUBJECT_DOMAIN_STATS = "mb.op.user.portfolio.subject.domain.stats";
 
     public static final String MSG_API_VERSION = "api.version";
     public static final String MSG_SESSION_TOKEN = "session.token";
@@ -194,14 +219,22 @@ public final class Constants {
     public static final String API_GRADES = API_BASE_ROUTE + "tx/grades";
     public static final String API_GRADE_BOUNDARY = API_BASE_ROUTE + "tx/grade/boundary/:gradeId";
     public static final String API_GRADE_COMPETENCIES = API_BASE_ROUTE + "tx/grade/competency";
+    public static final String API_USER_SUBJECT_COMPETENCY_MATRIX =
+        API_BASE_ROUTE + "tx/subjects/competency/matrix";
+    public static final String API_LEARNER_VECTORS = API_BASE_ROUTE + "learner/vectors";
+    public static final String API_LEARNER_PREFS = API_BASE_ROUTE + "learner/prefs";
+    public static final String API_LEARNER_PORTFOLIO_STATS = API_BASE_ROUTE + "learner/portfolio/stats";
+    public static final String API_LEARNER_PORTFOLIO_STATS_SUBJECT = API_BASE_ROUTE + "learner/portfolio/stats/subject";
+    public static final String API_LEARNER_PORTFOLIO_STATS_SUBJECT_DOMAIN = API_BASE_ROUTE + "learner/portfolio/stats/subject/domain";
 
     // Initial Learner Profile Setup
     // public static final String API_INTERNAL_INITIAL_LEARNER_PROFILE = "/api/internal/lp/initial";
     public static final String API_INTERNAL_BASE_LEARNER_PROFILE = "/api/internal/lp/baseline";
     // Navigator Course ATC
     public static final String API_NC_PERF_VS_COMPLETION = API_BASE_ROUTE + "nc/atc/pvc";
-    //public static final String API_ATC = API_BASE_ROUTE + "nc/atc/recompute";
-    public static final String API_STATS_COMPETENCY_COMPLETION = API_BASE_ROUTE + "stats/competency";
+    // public static final String API_ATC = API_BASE_ROUTE + "nc/atc/recompute";
+    public static final String API_STATS_COMPETENCY_COMPLETION =
+        API_BASE_ROUTE + "stats/competency";
     // User course competency report - domain level summary
     // http://staging.gooru.org/api/ds/users/v2/user/competency/report/course
     public static final String API_USER_COURSE_COMPETENCY_REPORT =
@@ -210,8 +243,9 @@ public final class Constants {
     // http://staging.gooru.org/api/ds/users/v2/user/baseline/learnerprofile
     public static final String API_USER_BASELINE_LEARNER_PROFILE =
         API_BASE_ROUTE + "user/baseline/learnerprofile";
-    //Competency Summary for a Student (inProgress, completed, notStarted)
-    public static final String API_USER_COMPETENCY_SUMMARY = API_BASE_ROUTE + "user/competency/summary";
+    // Competency Summary for a Student (inProgress, completed, notStarted)
+    public static final String API_USER_COMPETENCY_SUMMARY =
+        API_BASE_ROUTE + "user/competency/summary";
 
     // Domain Reports APIs
     public static final String ID_CLASS = "classId";
@@ -223,36 +257,46 @@ public final class Constants {
     // http://{host}/api/ds/users/{version}/classes/reports/domains/competencies/performance?tx_code={txCode}&agent={agent}
     public static final String API_DOMAIN_COMPETENCIES_PERFORMANCE_REPORT =
         API_BASE_ROUTE + "classes/reports/domains/competencies/performance";
-    //Portfolio
+    // Portfolio
     // http://{host}/api/ds/users/v2/content/portfolio/items
-    public static final String API_USER_PORTFOLIO_CONTENT_ITEMS_PERF = API_BASE_ROUTE + "content/portfolio/items";
+    public static final String API_USER_PORTFOLIO_CONTENT_ITEMS_PERF =
+        API_BASE_ROUTE + "content/portfolio/items";
     // http://{host}/api/ds/users/v2/content/portfolio/item
-    public static final String API_USER_PORTFOLIO_CONTENT_ITEM_PERF = API_BASE_ROUTE + "content/portfolio/item";
+    public static final String API_USER_PORTFOLIO_CONTENT_ITEM_PERF =
+        API_BASE_ROUTE + "content/portfolio/item";
     // http://{host}/api/ds/users/v2/content/portfolio/assessment/summary
-    public static final String API_USER_PORTFOLIO_CONTENT_ASMT_SUMMARY = API_BASE_ROUTE + "content/portfolio/assessment/summary";
+    public static final String API_USER_PORTFOLIO_CONTENT_ASMT_SUMMARY =
+        API_BASE_ROUTE + "content/portfolio/assessment/summary";
     // http://{host}/api/ds/users/v2/content/portfolio/collection/summary
-    public static final String API_USER_PORTFOLIO_CONTENT_COLL_SUMMARY = API_BASE_ROUTE + "content/portfolio/collection/summary";
+    public static final String API_USER_PORTFOLIO_CONTENT_COLL_SUMMARY =
+        API_BASE_ROUTE + "content/portfolio/collection/summary";
     // http://{host}/api/ds/users/v2/content/portfolio/oa/summary
-    public static final String API_USER_PORTFOLIO_CONTENT_OA_SUMMARY = API_BASE_ROUTE + "content/portfolio/oa/summary";
+    public static final String API_USER_PORTFOLIO_CONTENT_OA_SUMMARY =
+        API_BASE_ROUTE + "content/portfolio/oa/summary";
     // http://{host}/api/ds/users/v2/competency/portfolio/items
-    public static final String API_USER_PORTFOLIO_COMPETENCY = API_BASE_ROUTE + "competency/portfolio/items";
+    public static final String API_USER_PORTFOLIO_COMPETENCY =
+        API_BASE_ROUTE + "competency/portfolio/items";
     // http://{host}/api/ds/users/v2/domain/portfolio/items
-    public static final String API_USER_PORTFOLIO_DOMAIN = API_BASE_ROUTE + "domain/portfolio/items";
+    public static final String API_USER_PORTFOLIO_DOMAIN =
+        API_BASE_ROUTE + "domain/portfolio/items";
     // http://{host}/api/ds/users/v2/subject/portfolio/items
-    public static final String API_USER_PORTFOLIO_SUBJECT = API_BASE_ROUTE + "subject/portfolio/items";
+    public static final String API_USER_PORTFOLIO_SUBJECT =
+        API_BASE_ROUTE + "subject/portfolio/items";
 
     public static final String API_STRUGGLING_COMPETENCIES =
         API_BASE_ROUTE + "competencies/struggling";
-    
+
     public static final String API_STRUGGLING_COMPETENCY_PERF =
         API_BASE_ROUTE + "competencies/struggling/performance";
 
-    //User Activity Feedbacks
+    // User Activity Feedbacks
     // http://{host}/api/ds/users/v2/activity/feedbacks
-    public static final String API_USER_ACTIVITY_FEEDBACKS_CREATE = API_BASE_ROUTE + "activity/feedbacks";
+    public static final String API_USER_ACTIVITY_FEEDBACKS_CREATE =
+        API_BASE_ROUTE + "activity/feedbacks";
     // http://{host}/api/ds/users/v2/activity/feedbacks?content_id=&user_id=
-    public static final String API_USER_ACTIVITY_FEEDBACKS_FETCH = API_BASE_ROUTE + "activity/feedbacks";
-    
+    public static final String API_USER_ACTIVITY_FEEDBACKS_FETCH =
+        API_BASE_ROUTE + "activity/feedbacks";
+
     private Route() {
       throw new AssertionError();
     }

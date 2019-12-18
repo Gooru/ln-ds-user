@@ -1,0 +1,54 @@
+{
+	"variables": [],
+	"info": {
+		"name": "LearnerSCM",
+		"_postman_id": "31259e98-d793-ad96-fc02-f44eaa246350",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "LearnerSubjectCompetencyMatrix",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/api/ds/users/v2/tx/subjects/competency/matrix?user=95a744e1-631e-4642-875d-8b07a5e3b421",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"ds",
+						"users",
+						"v2",
+						"tx",
+						"subjects",
+						"competency",
+						"matrix"
+					],
+					"query": [
+						{
+							"key": "user",
+							"value": "95a744e1-631e-4642-875d-8b07a5e3b421",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token MjoxNTY3MDU2NzgyNTc4OjViOWU3OWY4LTYzZTQtNGM0Zi05NzY4LWI3ZGYzMzM0YjczNzo6YmE5NTZhOTctYWUxNS0xMWU1LWEzMDItZjhhOTYzMDY1OTc2",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
