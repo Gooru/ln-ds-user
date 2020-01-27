@@ -46,23 +46,24 @@ public class StrugglingCompetencyPerformanceService {
     JsonArray studentPerfArray = new JsonArray();
     List<UserModel> users = CORE_SERVICE.fetchUserDetails(strugglingUsers);
     users.forEach(user -> {
-      JsonObject userJson = new JsonObject();
-      userJson.put("id", user.getId());
-      userJson.put("first_name", user.getFirstName());
-      userJson.put("last_name", user.getLastName());
-      userJson.put("display_name", user.getDisplayName());
-      userJson.put("thumbnail", user.getThumbnail());
-      userJson.put("username", user.getUsername());
-
       StrugglingCompetencyPerformanceModel perfModel = performanceByUsers.get(user.getId());
-      if ( perfModel != null) {
+      if (perfModel != null) {
+        JsonObject userJson = new JsonObject();
+        userJson.put("id", user.getId());
+        userJson.put("first_name", user.getFirstName());
+        userJson.put("last_name", user.getLastName());
+        userJson.put("display_name", user.getDisplayName());
+        userJson.put("thumbnail", user.getThumbnail());
+        userJson.put("username", user.getUsername());
+
         userJson.put("performance", perfModel.getScore());
+        studentPerfArray.add(userJson);
       } else {
-        userJson.putNull("performance");
+        // We do not want to add the user in the response if there is no score exists in evidence
+        // table or the score is null
       }
-      studentPerfArray.add(userJson);
     });
-    
+
     JsonObject response = new JsonObject();
     response.put("students", studentPerfArray);
     return response;
