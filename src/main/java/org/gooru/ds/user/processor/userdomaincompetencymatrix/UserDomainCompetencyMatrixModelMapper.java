@@ -22,6 +22,7 @@ public class UserDomainCompetencyMatrixModelMapper
     model.setCompetencyStudentDesc(r.getString(MapperFields.COMPETENCY_STUDENT_DESC));
     model.setCompetencySeq(r.getInt(MapperFields.COMPETENCY_SEQ));
     model.setStatus(r.getInt(MapperFields.STATUS));
+    model.setSource(r.getString(MapperFields.SOURCE));
     return model;
   }
 
@@ -33,6 +34,7 @@ public class UserDomainCompetencyMatrixModelMapper
     static final String COMPETENCY_STUDENT_DESC = "tx_comp_student_desc";
     static final String COMPETENCY_SEQ = "tx_comp_seq";
     static final String STATUS = "status";
+    static final String SOURCE = "source";
 
     private MapperFields() {
       throw new AssertionError();
