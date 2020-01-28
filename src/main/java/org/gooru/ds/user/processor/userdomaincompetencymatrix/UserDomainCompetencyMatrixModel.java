@@ -11,6 +11,7 @@ class UserDomainCompetencyMatrixModel {
   private String competencyStudentDesc;
   private Integer competencySeq;
   private Integer status;
+  private String source;
 
   public String getDomainCode() {
     return domainCode;
@@ -67,11 +68,20 @@ class UserDomainCompetencyMatrixModel {
   public void setStatus(Integer status) {
     this.status = status;
   }
+  
+  public String getSource() {
+    return source;
+  }
+
+  public void setSource(String source) {
+    this.source = source;
+  }
+
 
   @Override
   public String toString() {
     return "UserDomainCompetencyMatrixModel [competencyCode=" + competencyCode + ", competencySeq="
-        + competencySeq + ", status=" + status + "]";
+        + competencySeq + ", status=" + status + ", source=" + source + "]";
   }
 
 }

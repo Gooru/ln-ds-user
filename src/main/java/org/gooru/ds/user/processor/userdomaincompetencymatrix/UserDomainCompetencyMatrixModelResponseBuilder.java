@@ -72,6 +72,7 @@ final class UserDomainCompetencyMatrixModelResponseBuilder {
     competencyModelResponse.setCompetencyStudentDesc(model.getCompetencyStudentDesc());
     competencyModelResponse.setCompetencySeq(model.getCompetencySeq());
     competencyModelResponse.setStatus(model.getStatus());
+    competencyModelResponse.setSource(model.getSource());
     return competencyModelResponse;
   }
 
