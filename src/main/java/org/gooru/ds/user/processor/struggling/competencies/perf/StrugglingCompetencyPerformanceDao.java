@@ -16,8 +16,8 @@ public interface StrugglingCompetencyPerformanceDao {
   @Mapper(StrugglingCompetencyPerformanceModelMapper.class)
   @SqlQuery("SELECT cs.score, cs.user_id, cs.collection_id, cs.updated_at FROM (SELECT DISTINCT ON (user_id) FIRST_VALUE(collection_score)"
       + " OVER (PARTITION BY user_id ORDER BY updated_at desc) as score, user_id, collection_id, updated_at FROM"
-      + " learner_profile_competency_evidence_ts WHERE gut_code = :competency AND user_id = ANY(:userIds) AND collection_type = 'assessment'"
-      + " AND status = 1 ORDER BY user_id, updated_at DESC) as cs")
+      + " learner_profile_competency_evidence_ts WHERE gut_code = :competency AND user_id = ANY(:userIds) AND collection_type IN ('assessment',"
+      + " 'offline-activity', 'assessment-external') AND status = 1 ORDER BY user_id, updated_at DESC) as cs")
   public List<StrugglingCompetencyPerformanceModel> fetchCompetencyPerformance(
       @Bind("userIds") PGArray<String> userIds, @Bind("competency") String competency);
 
