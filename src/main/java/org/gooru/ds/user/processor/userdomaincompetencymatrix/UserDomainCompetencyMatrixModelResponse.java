@@ -54,6 +54,7 @@ class UserDomainCompetencyMatrixModelResponse {
     private String competencyStudentDesc;
     private Integer competencySeq;
     private Integer status;
+    private String source;
 
     public String getCompetencyCode() {
       return competencyCode;
@@ -101,6 +102,14 @@ class UserDomainCompetencyMatrixModelResponse {
 
     public void setStatus(Integer status) {
       this.status = status;
+    }
+    
+    public String getSource() {
+      return source;
+    }
+
+    public void setSource(String source) {
+      this.source = source;
     }
   }
 }
