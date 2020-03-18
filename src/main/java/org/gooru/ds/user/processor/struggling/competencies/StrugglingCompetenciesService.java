@@ -134,6 +134,11 @@ public class StrugglingCompetenciesService {
         String gutCode = completedModel.getGutCode();
         if (strugglingCompetenciesMap.containsKey(gutCode)) {
           strugglingCompetenciesMap.get(gutCode).remove(completedModel.getUserId());
+          // After removal from the struggling competencies based on the completion, if there are no
+          // student struggling then we don't need to report the competency as struggling
+          if (strugglingCompetenciesMap.get(gutCode).isEmpty()) {
+            strugglingCompetenciesMap.remove(gutCode);
+          }
         }
       });
 
