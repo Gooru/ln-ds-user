@@ -12,7 +12,8 @@ public class CompetencySubjectListModel {
   private String description;
   private String code;
   private String frameworkId;
-  private String sequenceId;
+  private Integer sequenceId;
+  private boolean isDefault;
 
 
   public String getId() {
@@ -55,11 +56,20 @@ public class CompetencySubjectListModel {
     this.frameworkId = frameworkId;
   }
 
-  public String getSequenceId() {
+
+  public boolean isDefault() {
+    return isDefault;
+  }
+
+  public void setDefault(boolean isDefault) {
+    this.isDefault = isDefault;
+  }
+
+  public Integer getSequenceId() {
     return sequenceId;
   }
 
-  public void setSequenceId(String sequenceId) {
+  public void setSequenceId(Integer sequenceId) {
     this.sequenceId = sequenceId;
   }
 

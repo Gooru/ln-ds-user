@@ -21,7 +21,7 @@ public class CompetencySubjectListModelMapper
     model.setDescription(r.getString(MapperFields.DESCRIPTION));
     model.setFrameworkId(r.getString(MapperFields.FRAMEWORK_ID));
     model.setCode(r.getString(MapperFields.CODE));
-    model.setSequenceId(r.getString(MapperFields.SEQUENCE_ID));
+    model.setSequenceId(r.getInt(MapperFields.SEQUENCE_ID));
     return model;
   }
 
