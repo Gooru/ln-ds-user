@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import io.vertx.core.Future;
 import io.vertx.core.Vertx;
 import io.vertx.core.eventbus.Message;
@@ -29,7 +28,8 @@ public class CompetencySubjectListProcessor implements MessageProcessor {
       LoggerFactory.getLogger(CompetencySubjectListProcessor.class);
   private EventBusMessage eventBusMessage;
   private final CompetencySubjectListService competencySubjectListService =
-      new CompetencySubjectListService(DBICreator.getDbiForDefaultDS());
+      new CompetencySubjectListService(DBICreator.getDbiForDefaultDS(),
+          DBICreator.getDbiForCoreDS());
 
   public CompetencySubjectListProcessor(Vertx vertx, Message<JsonObject> message) {
     this.vertx = vertx;
@@ -41,8 +41,8 @@ public class CompetencySubjectListProcessor implements MessageProcessor {
   public Future<MessageResponse> process() {
     try {
       this.eventBusMessage = EventBusMessage.eventBusMessageBuilder(message);
-      CompetencySubjectListCommand command =
-          CompetencySubjectListCommand.builder(eventBusMessage.getRequestBody());
+      CompetencySubjectListCommand command = CompetencySubjectListCommand
+          .builder(eventBusMessage.getRequestBody(), this.eventBusMessage.tenant());
       fetchCompetencySubjectList(command);
     } catch (Throwable throwable) {
       LOGGER.warn("Encountered exception", throwable);
